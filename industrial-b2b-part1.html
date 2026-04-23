@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Industrial & B2B — Part 1: Foundations</title>
+<style>
+:root {
+  --navy: #1B4F72; --navy-dark: #154360; --orange: #D4551A; --gold: #F5A623;
+  --blue: #2980B9; --slate: #4A6375; --light-gray: #F0F2F5; --border: #DDE3EA;
+  --text: #2C3E50; --text-light: #7F8C8D; --success: #27AE60; --error: #E74C3C;
+  --p2: #0E7C5C; --p3: #D4551A; --p4: #5B3FA8; --p5: #0A7B8E; --p6: #8B1A4A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; background: var(--light-gray); color: var(--text); line-height: 1.65; }
+
+/* NAV */
+.top-nav { position: sticky; top: 0; z-index: 300; background: var(--navy); height: 58px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-shadow: 0 2px 14px rgba(0,0,0,0.28); }
+.brand { display: flex; align-items: center; }
+.brand-main { color: #fff; font-size: 1.35rem; font-weight: 900; letter-spacing: -0.5px; }
+.brand-main em { color: var(--gold); font-style: normal; }
+.brand-school { color: var(--gold); font-size: 0.66rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; border-left: 2px solid rgba(245,166,35,0.38); margin-left: 12px; padding-left: 12px; }
+.nav-badge { background: rgba(212,85,26,0.22); color: #FBB97A; border: 1px solid rgba(212,85,26,0.3); padding: 3px 12px; border-radius: 20px; font-size: 0.71rem; font-weight: 600; }
+
+/* SERIES NAV */
+.series-nav { position: sticky; top: 58px; z-index: 200; background: var(--navy-dark); border-bottom: 2px solid rgba(245,166,35,0.15); display: flex; align-items: center; padding: 0 48px; gap: 4px; overflow-x: auto; }
+.snav-label { color: rgba(255,255,255,0.3); font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.09); margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+.snav-link { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.76rem; font-weight: 600; padding: 13px 14px; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.15s; white-space: nowrap; }
+.snav-link:hover { color: rgba(255,255,255,0.82); }
+.snav-link.active { color: #fff; border-bottom-color: var(--slate); }
+.snav-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.sn-1 { background: var(--slate); }
+.sn-2 { background: var(--p2); }
+.sn-3 { background: var(--p3); }
+.sn-4 { background: var(--p4); }
+.sn-5 { background: var(--p5); }
+.sn-6 { background: var(--p6); }
+
+/* HERO */
+.hero { background: var(--navy); padding: 80px 48px 72px; position: relative; overflow: hidden; }
+.hero-blob { position: absolute; border-radius: 50%; pointer-events: none; }
+.hb1 { top: -80px; right: -80px; width: 440px; height: 440px; background: rgba(255,255,255,0.025); }
+.hb2 { bottom: -100px; right: 12%; width: 280px; height: 280px; background: rgba(245,166,35,0.04); }
+.hero-sq { position: absolute; pointer-events: none; }
+.hs1 { top: 44px; right: 64px; width: 22px; height: 22px; background: var(--gold); opacity: 0.7; }
+.hs2 { top: 74px; right: 42px; width: 14px; height: 14px; background: var(--blue); opacity: 0.55; }
+.hs3 { top: 58px; right: 94px; width: 11px; height: 11px; background: var(--orange); opacity: 0.6; }
+.hero-inner { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
+.hero-eyebrow { color: var(--gold); font-size: 0.74rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 18px; display: flex; align-items: center; gap: 12px; }
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); }
+.hero h1 { color: #fff; font-size: 3.1rem; font-weight: 900; line-height: 1.14; margin-bottom: 20px; }
+.hero h1 em { color: var(--orange); font-style: normal; }
+.hero-sub { color: rgba(255,255,255,0.68); font-size: 1.03rem; max-width: 580px; margin-bottom: 38px; line-height: 1.72; }
+.hero-pills { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-pill { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.11); border-radius: 20px; padding: 6px 14px; color: rgba(255,255,255,0.6); font-size: 0.78rem; }
+.hero-pill .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+
+.accent-bar { height: 4px; background: linear-gradient(90deg, var(--orange) 0%, var(--gold) 50%, var(--blue) 100%); }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+section.sec-light { background: var(--light-gray); padding: 68px 0; }
+section.sec-white { background: #fff; padding: 68px 0; }
+section.sec-dark { background: var(--navy); padding: 68px 0; }
+
+.sh { margin-bottom: 38px; }
+.sh-tag { color: var(--orange); font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+.sh-tag.wht { color: rgba(255,255,255,0.5); }
+.sh-title { font-size: 1.95rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.sh-title.wht { color: #fff; }
+.sh-desc { color: var(--text-light); font-size: 0.92rem; max-width: 700px; line-height: 1.7; }
+.sh-desc.wht { color: rgba(255,255,255,0.62); }
+
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 28px; transition: box-shadow 0.15s, transform 0.15s; }
+.card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.card.gray { background: var(--light-gray); }
+.card.navy { background: var(--navy); }
+.card-icon { font-size: 2rem; margin-bottom: 14px; }
+.card h3 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card.navy h3 { color: var(--gold); }
+.card p { font-size: 0.87rem; color: var(--text-light); line-height: 1.65; }
+.card.navy p { color: rgba(255,255,255,0.72); }
+
+.step-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px; display: flex; gap: 16px; align-items: flex-start; }
+.step-num { width: 38px; height: 38px; background: var(--orange); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.88rem; flex-shrink: 0; }
+.step-content h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.step-content p { font-size: 0.84rem; color: var(--text-light); line-height: 1.6; }
+
+.tbl { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+.tbl th { background: var(--slate); color: #fff; padding: 13px 18px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.tbl td { padding: 13px 18px; font-size: 0.86rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.55; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: #F8FAFB; }
+.tbl td strong { color: var(--navy); font-weight: 700; }
+.chk { color: var(--success); font-weight: 700; }
+.xmark { color: var(--error); font-weight: 700; }
+
+.callout { border-radius: 10px; padding: 20px 24px; margin: 28px 0; border-left: 4px solid; }
+.callout.gold { background: rgba(245,166,35,0.08); border-color: var(--gold); }
+.callout.orange { background: rgba(212,85,26,0.06); border-color: var(--orange); }
+.callout.navy { background: var(--navy); border-color: var(--gold); }
+.callout.green { background: rgba(39,174,96,0.06); border-color: var(--success); }
+.callout-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.callout.gold .callout-label { color: #9A6800; }
+.callout.orange .callout-label { color: var(--orange); }
+.callout.navy .callout-label { color: var(--gold); }
+.callout.green .callout-label { color: var(--success); }
+.callout p { font-size: 0.88rem; line-height: 1.68; }
+.callout.navy p { color: rgba(255,255,255,0.85); }
+
+.flow { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; background: var(--light-gray); border: 1px solid var(--border); border-radius: 12px; padding: 18px 24px; margin-bottom: 32px; }
+.flow-step { display: flex; align-items: center; gap: 8px; font-size: 0.82rem; font-weight: 600; color: var(--navy); }
+.flow-num { width: 26px; height: 26px; background: var(--navy); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: 800; flex-shrink: 0; }
+.flow-arrow { color: var(--gold); font-size: 1.1rem; font-weight: 700; }
+
+.chain { display: flex; border-radius: 12px; overflow: hidden; }
+.chain-item { flex: 1; padding: 26px 14px; text-align: center; position: relative; }
+.chain-item:not(:last-child)::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 1.2rem; font-weight: 700; z-index: 1; }
+.ci-1 { background: #1E5E8A; } .ci-2 { background: #1B5680; } .ci-3 { background: #174D74; } .ci-4 { background: #154568; } .ci-5 { background: #123D5C; }
+.chain-title { color: var(--gold); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 8px; }
+.chain-desc { color: rgba(255,255,255,0.7); font-size: 0.79rem; line-height: 1.5; }
+
+.bsmart-row { display: grid; grid-template-columns: repeat(6,1fr); gap: 10px; margin-bottom: 32px; }
+.bs-item { border-radius: 10px; padding: 20px 12px; text-align: center; }
+.bs-letter { font-size: 2.8rem; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+.bs-word { font-size: 0.76rem; font-weight: 700; margin-bottom: 5px; }
+.bs-desc { font-size: 0.7rem; opacity: 0.85; line-height: 1.5; }
+.bs-b { background: var(--navy); color: #fff; }
+.bs-s { background: var(--orange); color: #fff; }
+.bs-m { background: #7D5A0A; color: #fff; }
+.bs-a { background: var(--blue); color: #fff; }
+.bs-r { background: var(--slate); color: #fff; }
+.bs-t { background: var(--navy-dark); color: #fff; }
+
+.bse-table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+.bse-table th { padding: 13px 18px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #fff; }
+.bse-table th:first-child { background: var(--slate); }
+.bse-table th.ex1 { background: var(--navy); }
+.bse-table th.ex2 { background: var(--orange); }
+.bse-table td { padding: 13px 18px; font-size: 0.85rem; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.55; }
+.bse-table tr:last-child td { border-bottom: none; }
+.bse-table td.label-col { background: var(--light-gray); font-weight: 700; color: var(--navy); font-size: 0.83rem; }
+.bse-table td.ex1-col { background: rgba(27,79,114,0.04); }
+.bse-table td.ex2-col { background: rgba(212,85,26,0.04); }
+.bse-letter { display: inline-block; width: 22px; height: 22px; border-radius: 5px; color: #fff; font-weight: 900; font-size: 0.75rem; text-align: center; line-height: 22px; margin-right: 6px; }
+.bl-b { background: var(--navy); } .bl-s { background: var(--orange); } .bl-m { background: #7D5A0A; }
+.bl-a { background: var(--blue); } .bl-r { background: var(--slate); } .bl-t { background: var(--navy-dark); }
+
+.persona-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.persona-header { background: var(--navy); padding: 18px 20px; display: flex; align-items: center; gap: 14px; }
+.persona-av { width: 44px; height: 44px; background: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.persona-name { color: #fff; font-weight: 700; font-size: 0.95rem; }
+.persona-role { color: rgba(255,255,255,0.56); font-size: 0.77rem; }
+.persona-body { padding: 20px; }
+.persona-body h4 { color: var(--orange); font-size: 0.69rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; margin: 14px 0 7px; }
+.persona-body h4:first-child { margin-top: 0; }
+.persona-body ul { list-style: none; padding: 0; }
+.persona-body li { font-size: 0.83rem; color: var(--text); padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; }
+.persona-body li:last-child { border-bottom: none; }
+.persona-body li::before { content: '▸'; color: var(--orange); flex-shrink: 0; font-size: 0.79rem; }
+
+.sector-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px; border-top: 4px solid; }
+.sc1 { border-top-color: var(--navy); } .sc2 { border-top-color: var(--orange); }
+.sc3 { border-top-color: var(--gold); } .sc4 { border-top-color: var(--blue); }
+.sc5 { border-top-color: var(--slate); } .sc6 { border-top-color: var(--success); }
+.sector-icon { font-size: 1.7rem; margin-bottom: 10px; }
+.sector-title { font-weight: 700; color: var(--navy); font-size: 0.94rem; margin-bottom: 4px; }
+.sector-sub { color: var(--text-light); font-size: 0.79rem; margin-bottom: 12px; line-height: 1.5; }
+.sector-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.stag { background: var(--light-gray); color: var(--slate); padding: 3px 9px; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+
+.client-card { border-radius: 12px; overflow: hidden; }
+.client-header { padding: 20px; text-align: center; }
+.client-header h3 { color: #fff; font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; }
+.client-header p { color: rgba(255,255,255,0.72); font-size: 0.82rem; }
+.ch-mfr { background: var(--navy); } .ch-dist { background: var(--slate); } .ch-sup { background: var(--navy-dark); }
+.client-body { padding: 20px; background: #fff; border: 1px solid var(--border); border-top: none; }
+.client-section { margin-bottom: 16px; }
+.client-section:last-child { margin-bottom: 0; }
+.client-section h4 { font-size: 0.69rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--orange); margin-bottom: 8px; }
+.client-section ul { list-style: none; padding: 0; }
+.client-section li { font-size: 0.83rem; color: var(--text); padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+.client-section li:last-child { border-bottom: none; }
+.client-section li::before { content: '▸'; color: var(--slate); }
+
+.q-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.q-header { padding: 14px 20px; background: var(--navy); display: flex; align-items: center; gap: 10px; }
+.q-header-icon { font-size: 1.1rem; }
+.q-header-title { color: #fff; font-weight: 700; font-size: 0.9rem; }
+.q-body { padding: 16px 20px; }
+.q-list { list-style: none; padding: 0; }
+.q-list li { font-size: 0.83rem; color: var(--text); padding: 7px 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; align-items: flex-start; line-height: 1.55; }
+.q-list li:last-child { border-bottom: none; }
+.q-badge { background: var(--orange); color: #fff; width: 20px; height: 20px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.62rem; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+
+.mistake-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.mbox { border-radius: 10px; padding: 18px 20px; border: 1px solid; }
+.mbox.do { background: rgba(39,174,96,0.05); border-color: rgba(39,174,96,0.2); }
+.mbox.dont { background: rgba(231,76,60,0.05); border-color: rgba(231,76,60,0.2); }
+.mbox-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.mbox.do .mbox-label { color: var(--success); }
+.mbox.dont .mbox-label { color: var(--error); }
+.mbox p { font-size: 0.84rem; color: var(--text); line-height: 1.6; }
+
+.recap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.recap-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; }
+.recap-num { font-size: 2rem; font-weight: 900; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 4px; }
+.recap-title { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.recap-desc { color: rgba(255,255,255,0.62); font-size: 0.81rem; line-height: 1.6; }
+
+.toc-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+.toc-link { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; text-decoration: none; color: var(--text); font-size: 0.85rem; font-weight: 600; transition: all 0.15s; position: relative; }
+.toc-link:hover { background: var(--navy); color: #fff; border-color: var(--navy); }
+.toc-num { width: 30px; height: 30px; background: var(--navy); color: #fff; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.78rem; flex-shrink: 0; transition: all 0.15s; }
+.toc-link:hover .toc-num { background: var(--gold); color: var(--navy); }
+.new-badge { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); background: var(--orange); color: #fff; font-size: 0.62rem; font-weight: 800; padding: 2px 7px; border-radius: 4px; }
+
+.ft-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px; border-top: 4px solid var(--orange); text-decoration: none; display: block; transition: box-shadow 0.15s, transform 0.15s; }
+.ft-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.09); transform: translateY(-2px); }
+.ft-card.part2 { border-top-color: var(--p2); }
+.ft-card.part3 { border-top-color: var(--p3); }
+.ft-card.part4 { border-top-color: var(--p4); }
+.ft-card.part5 { border-top-color: var(--p5); }
+.ft-card.part6 { border-top-color: var(--p6); }
+.ft-part { font-size: 0.69rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+.ft-card.part2 .ft-part { color: var(--p2); }
+.ft-card.part3 .ft-part { color: var(--p3); }
+.ft-card.part4 .ft-part { color: var(--p4); }
+.ft-card.part5 .ft-part { color: var(--p5); }
+.ft-card.part6 .ft-part { color: var(--p6); }
+.ft-title { font-weight: 700; color: var(--navy); font-size: 1rem; margin-bottom: 10px; }
+.ft-desc { font-size: 0.83rem; color: var(--text-light); line-height: 1.65; margin-bottom: 14px; }
+.ft-topics { list-style: none; padding: 0; }
+.ft-topics li { font-size: 0.8rem; color: var(--text); padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+.ft-topics li:last-child { border-bottom: none; }
+.ft-topics li::before { content: '→'; flex-shrink: 0; }
+.ft-card.part2 .ft-topics li::before { color: var(--p2); }
+.ft-card.part3 .ft-topics li::before { color: var(--p3); }
+.ft-card.part4 .ft-topics li::before { color: var(--p4); }
+.ft-card.part5 .ft-topics li::before { color: var(--p5); }
+.ft-card.part6 .ft-topics li::before { color: var(--p6); }
+.ft-cta { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 0.8rem; font-weight: 700; padding: 8px 16px; border-radius: 6px; color: #fff; }
+.ft-card.part2 .ft-cta { background: var(--p2); }
+.ft-card.part3 .ft-cta { background: var(--p3); }
+.ft-card.part4 .ft-cta { background: var(--p4); }
+.ft-card.part5 .ft-cta { background: var(--p5); }
+.ft-card.part6 .ft-cta { background: var(--p6); }
+
+.next-part-cta { background: var(--navy-dark); padding: 56px 48px; text-align: center; }
+.npc-inner { max-width: 580px; margin: 0 auto; }
+.npc-label { color: rgba(255,255,255,0.35); font-size: 0.68rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.npc-title { color: #fff; font-size: 1.55rem; font-weight: 800; margin-bottom: 10px; }
+.npc-desc { color: rgba(255,255,255,0.52); font-size: 0.88rem; margin-bottom: 26px; line-height: 1.68; }
+.npc-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--p2); color: #fff; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-weight: 700; font-size: 0.92rem; transition: all 0.15s; }
+.npc-btn:hover { background: #0A5C43; transform: translateY(-1px); }
+
+.footer { background: #0D1C2B; padding: 48px; text-align: center; }
+.footer-brand { color: #fff; font-size: 1.5rem; font-weight: 900; margin-bottom: 6px; }
+.footer-brand em { color: var(--gold); font-style: normal; }
+.footer-school { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.footer-meta { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+.footer-meta span { color: rgba(255,255,255,0.28); font-size: 0.74rem; }
+
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { font-size: 0.87rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; line-height: 1.55; }
+ul.plain li:last-child { border-bottom: none; }
+ul.plain li::before { content: '▸'; color: var(--orange); flex-shrink: 0; }
+.mt16{margin-top:16px;} .mt24{margin-top:24px;} .mt32{margin-top:32px;}
+.mb24{margin-bottom:24px;} .mb32{margin-bottom:32px;}
+[id]::before { content: ''; display: block; height: 76px; margin-top: -76px; pointer-events: none; }
+
+@media (max-width: 900px) {
+  .g2,.g3,.g4 { grid-template-columns: 1fr; }
+  .bsmart-row { grid-template-columns: repeat(3,1fr); }
+  .toc-grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 2.1rem; }
+  .container { padding: 0 24px; }
+  .top-nav,.series-nav { padding: 0 24px; }
+  .chain { flex-direction: column; }
+  .chain-item::after { display: none; }
+  .mistake-pair { grid-template-columns: 1fr; }
+  .recap-grid { grid-template-columns: 1fr; }
+  .next-part-cta { padding: 44px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand">
+    <span class="brand-main">Outer<em>Box</em></span>
+    <span class="brand-school">B·SCHOOL</span>
+  </div>
+  <span class="nav-badge">Confidential · Employee Use Only</span>
+</nav>
+
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="industrial-b2b-part1.html" class="snav-link active"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="industrial-b2b-part2.html" class="snav-link"><span class="snav-num sn-2">2</span>SEO Strategy</a>
+  <a href="industrial-b2b-part3.html" class="snav-link"><span class="snav-num sn-3">3</span>PPC Strategy</a>
+  <a href="industrial-b2b-part4.html" class="snav-link"><span class="snav-num sn-4">4</span>Communication</a>
+  <a href="industrial-b2b-part5.html" class="snav-link"><span class="snav-num sn-5">5</span>Loop & CallRail</a>
+  <a href="industrial-b2b-part6.html" class="snav-link"><span class="snav-num sn-6">6</span>Retention & Heartbeat</a>
+</div>
+
+<section class="hero">
+  <div class="hero-blob hb1"></div>
+  <div class="hero-blob hb2"></div>
+  <div class="hero-sq hs1"></div>
+  <div class="hero-sq hs2"></div>
+  <div class="hero-sq hs3"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">B·School Training Series — Industrial & B2B</div>
+    <h1>Industrial &amp;<br><em>B2B</em> Considerations</h1>
+    <p class="hero-sub">Everything you need to work effectively in this vertical — without needing a degree in metallurgy or a background in manufacturing. This is about digital differentiation, not technical mastery.</p>
+    <div class="hero-pills">
+      <span class="hero-pill"><span class="dot"></span>April 2026</span>
+      <span class="hero-pill"><span class="dot"></span>Part 1 of 6 — Foundational Level</span>
+      <span class="hero-pill"><span class="dot"></span>~60 min</span>
+    </div>
+  </div>
+</section>
+<div class="accent-bar"></div>
+
+<!-- MINDSET RESET -->
+<section class="sec-white" id="mindset">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Before We Start</div>
+      <h2 class="sh-title">The Mindset Reset</h2>
+      <p class="sh-desc">The most important thing to understand before we get into anything else.</p>
+    </div>
+    <div class="callout navy">
+      <div class="callout-label">💡 Core Principle</div>
+      <p><strong style="color:var(--gold)">You do not need to be an expert in your client's industry to do excellent work for them.</strong> A very common hang-up for people new to this vertical is feeling like they need to understand die casting, steel processing, hydraulics, or machining inside and out. You don't. Industrial businesses are complex — and that's exactly why most of them have weak digital presences. Your job is to know <em style="color:var(--gold)">enough</em> to differentiate them online, speak the right language, and attract the right buyers. That's it.</p>
+    </div>
+    <div class="g3 mt32">
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <h3>What You <span style="color:var(--success)">Do</span> Need</h3>
+        <ul class="plain mt16">
+          <li>What type of business they are (manufacturer, distributor, supplier)</li>
+          <li>Who their buyers are and how those buyers search</li>
+          <li>Their key differentiators — speed, certifications, materials, geography</li>
+          <li>The language and terminology of the industry</li>
+          <li>How to apply B-SMART® to build keyword strategy</li>
+          <li>How to quickly read a client's website and intake form</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚫</div>
+        <h3>What You <span style="color:var(--error)">Don't</span> Need</h3>
+        <ul class="plain mt16">
+          <li>How to operate a CNC machine or press</li>
+          <li>The exact chemical composition of every alloy</li>
+          <li>How to read engineering blueprints or GD&T tolerances</li>
+          <li>Every detail of their manufacturing process</li>
+          <li>Pricing knowledge for industrial products</li>
+          <li>Years of experience in an industrial field</li>
+        </ul>
+      </div>
+      <div class="card navy">
+        <div class="card-icon">🔑</div>
+        <h3>Your Competitive Edge</h3>
+        <p>Industrial companies are often significantly behind in digital marketing — weak SEO, minimal PPC, outdated websites. The bar to make a real impact is lower than you think. If you understand the fundamentals and speak the language, you will win for these clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="sec-light" id="toc">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Part 1 — Navigation</div>
+      <h2 class="sh-title">What We're Covering</h2>
+      <p class="sh-desc">Click any section to jump directly to it. Sections marked NEW or ENHANCED were added beyond the original training. This is Part 1 of a 6-part series.</p>
+    </div>
+    <div class="toc-grid">
+      <a href="#foundation" class="toc-link"><span class="toc-num">1</span>What Is B2B Lead Generation &amp; Why It Matters</a>
+      <a href="#b2b-different" class="toc-link"><span class="toc-num">2</span>How B2B/Industrial Marketing Differs From B2C</a>
+      <a href="#purchases" class="toc-link"><span class="toc-num">3</span>The Nature of B2B Purchases &amp; Lead Value</a>
+      <a href="#buyers" class="toc-link"><span class="toc-num">4</span>The Industrial Buyer — Who They Are &amp; How They Buy<span class="new-badge">ENHANCED</span></a>
+      <a href="#sectors" class="toc-link"><span class="toc-num">5</span>Common Industrial Sectors You'll Encounter<span class="new-badge">NEW</span></a>
+      <a href="#clients" class="toc-link"><span class="toc-num">6</span>Manufacturers, Distributors &amp; Suppliers — Know Your Client</a>
+      <a href="#bsmart" class="toc-link"><span class="toc-num">7</span>The B-SMART® Method — Industrial Keyword Strategy</a>
+      <a href="#bsmart-applied" class="toc-link"><span class="toc-num">8</span>B-SMART® Applied — Worked Examples<span class="new-badge">ENHANCED</span></a>
+      <a href="#terminology" class="toc-link"><span class="toc-num">9</span>Industrial Terminology Wins</a>
+      <a href="#client-questions" class="toc-link"><span class="toc-num">10</span>Questions to Ask Your Client — Intake Cheat Sheet<span class="new-badge">NEW</span></a>
+      <a href="#mistakes" class="toc-link"><span class="toc-num">11</span>Common Mistakes to Avoid<span class="new-badge">NEW</span></a>
+      <a href="#recap" class="toc-link"><span class="toc-num">12</span>Recap &amp; What's Next in the Series</a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1: B2B LEAD GENERATION -->
+<section class="sec-white" id="foundation">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1</div>
+      <h2 class="sh-title">What Is B2B Lead Generation &amp; Why It Matters</h2>
+      <p class="sh-desc">B2B lead generation is the process by which a business attracts other businesses as potential buyers for their products or services. The focus is specifically on targeting professionals who have a need on behalf of their organization — not personal purchases.</p>
+    </div>
+    <div class="g2 mb32">
+      <div class="step-card"><div class="step-num">1</div><div class="step-content"><h4>Identify the ICP</h4><p>Build Ideal Customer Profiles based on company size, industry, pain points, purchase urgency, and decision-making structure. Know who you're trying to reach before anything else.</p></div></div>
+      <div class="step-card"><div class="step-num">2</div><div class="step-content"><h4>Attract Clients</h4><p>Via inbound channels (SEO, PPC, UX/CRO, content) and outbound (cold calling, trade shows, direct email). In industrial B2B, inbound is a major growth lever most clients underutilize.</p></div></div>
+      <div class="step-card"><div class="step-num">3</div><div class="step-content"><h4>Capture &amp; Nurture</h4><p>Engage prospects with relevant content, a strong web presence, and timely follow-up. In B2B, nurturing is critical — most buyers don't convert on the first visit.</p></div></div>
+      <div class="step-card"><div class="step-num">4</div><div class="step-content"><h4>Qualify Leads</h4><p>Determine readiness to buy. Classify leads as MQLs (Marketing Qualified) or SQLs (Sales Qualified) depending on where they are in the purchase cycle.</p></div></div>
+      <div class="step-card"><div class="step-num">5</div><div class="step-content"><h4>Sales Handoff</h4><p>Qualified inbound leads are assigned to the client's sales team to build relationships, issue quotes, and finalize the deal. Our job is to get them to the door — sales gets them across the threshold.</p></div></div>
+      <div class="card gray" style="padding:22px"><div class="card-icon">💡</div><h3>Why This Matters for You</h3><p>Understanding this flow helps you contextualize your work. A form fill, a phone call, a quote request — these are the outputs you're optimizing for. Every keyword, ad, and content piece should connect back to moving someone through this process.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: HOW B2B IS DIFFERENT -->
+<section class="sec-light" id="b2b-different">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2</div>
+      <h2 class="sh-title">How B2B/Industrial Marketing Differs</h2>
+      <p class="sh-desc">B2B transactions are fundamentally different from B2C — and industrial B2B has additional layers of complexity that shape everything about your strategy.</p>
+    </div>
+    <div class="g4 mb32">
+      <div class="card"><div style="width:32px;height:32px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:0.85rem;margin-bottom:14px">1</div><h3>Businesses Are the Buyers</h3><p>The main buyers are other companies — procurement teams, engineers, plant managers — not individual consumers making personal choices.</p></div>
+      <div class="card"><div style="width:32px;height:32px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:0.85rem;margin-bottom:14px">2</div><h3>The Nature of Purchases</h3><p>Volume, frequency, and order value are vastly different. A single B2B customer can represent hundreds of thousands — or millions — of dollars over time.</p></div>
+      <div class="card"><div style="width:32px;height:32px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:0.85rem;margin-bottom:14px">3</div><h3>Additional Complexity</h3><p>Supply chain requirements, lead times, compliance standards, customization needs, and urgency risk add layers of complexity not seen in consumer marketing.</p></div>
+      <div class="card"><div style="width:32px;height:32px;background:var(--orange);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:0.85rem;margin-bottom:14px">4</div><h3>Longer Sales Process</h3><p>Longer sales cycles, formal proposals and contracts, multiple stakeholders, and post-sale support are standard. Don't expect quick conversions the way you would in eCommerce.</p></div>
+    </div>
+    <h3 style="font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:20px">The B2B vs. B2C Divide</h3>
+    <table class="tbl">
+      <thead><tr><th>Dimension</th><th>B2C (Consumer)</th><th>B2B (Business)</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Who buys</strong></td><td>Individual consumers</td><td>Other companies / organizations</td></tr>
+        <tr><td><strong>Buying motivation</strong></td><td>Emotional, personal, aspirational</td><td>Rational, ROI-driven, operational</td></tr>
+        <tr><td><strong>Decision timeline</strong></td><td>Short — often same session</td><td>Long — weeks to months</td></tr>
+        <tr><td><strong>Audience size</strong></td><td>Wide, mass market</td><td>Narrow, highly defined ICP</td></tr>
+        <tr><td><strong>Decision makers</strong></td><td>Typically one person</td><td>Multiple stakeholders / committees</td></tr>
+        <tr><td><strong>Order value</strong></td><td>High volume, lower per-order value</td><td>Lower volume, high order value &amp; LTV</td></tr>
+        <tr><td><strong>Content that works</strong></td><td>Lifestyle, reviews, social proof</td><td>Specs, certifications, case studies, expertise</td></tr>
+        <tr><td><strong>Primary conversion</strong></td><td>Purchase / cart</td><td>RFQ, quote request, phone call, form fill</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 3: NATURE OF PURCHASES -->
+<section class="sec-white" id="purchases">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 3</div>
+      <h2 class="sh-title">The Nature of B2B Purchases &amp; Lead Value</h2>
+      <p class="sh-desc">One of the most important mental shifts when working with industrial B2B clients is understanding that a single lead can be worth an enormous amount — not just in the immediate transaction, but over a long relationship.</p>
+    </div>
+    <div class="g3 mb32">
+      <div class="card"><div class="card-icon">📦</div><h3>Large Orders</h3><p>Quantities are typically higher in volume and price. A product with a $10.00 price point, ordered at 10,000 units, becomes a $100,000 order. Volume transforms the math entirely.</p></div>
+      <div class="card"><div class="card-icon">🔄</div><h3>Order Frequency</h3><p>Frequency multiplies order volume. If a business needs 10,000 units every 6 months for 2 years, that single customer relationship becomes a $400,000 customer — from one form fill.</p></div>
+      <div class="card"><div class="card-icon">🤝</div><h3>Long-Term Relationships</h3><p>The complexity of industrial procurement leads to ongoing contracts, blanket POs, and supplier-buyer relationships that last years. Switching costs are high — once you win, you tend to keep winning.</p></div>
+    </div>
+    <h3 style="font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:20px">Lead Evaluation Formulas</h3>
+    <div class="g2 mb32">
+      <div class="card gray"><h3>Lifetime Value of a Customer (LTV)</h3><div style="background:var(--navy);border-radius:8px;padding:18px;margin:14px 0;text-align:center"><p style="color:rgba(255,255,255,0.65);font-size:0.81rem;margin-bottom:6px">Formula</p><p style="color:var(--gold);font-weight:700;font-size:1rem">(Avg. Purchase Value × Purchase Frequency) × Avg. Customer Lifespan</p></div><p style="font-size:0.85rem;color:var(--text)"><strong>Example:</strong> $2,500/month × 12 months × 2 years = <strong style="color:var(--navy)">$60,000 initial customer value</strong></p></div>
+      <div class="card gray"><h3>Lead Comparison — Same Product, Different Context</h3><div style="margin:14px 0"><div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:10px"><p style="font-size:0.81rem;color:var(--text-light);margin-bottom:4px">One-time buyer</p><p style="font-size:0.9rem;color:var(--text)">$10 × 1,000 units × 1 time = <strong style="color:var(--navy)">$10,000</strong></p></div><div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:14px"><p style="font-size:0.81rem;color:var(--text-light);margin-bottom:4px">Recurring buyer</p><p style="font-size:0.9rem;color:var(--text)">$10 × 1,000 units × 2×/year × 3 years = <strong style="color:var(--success)">$60,000</strong></p></div></div></div>
+    </div>
+    <h3 style="font-size:1.2rem;font-weight:800;color:var(--navy);margin-bottom:18px">The Sales &amp; Buying Process</h3>
+    <div class="flow">
+      <div class="flow-step"><span class="flow-num">1</span>Identify Need</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><span class="flow-num">2</span>Research</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><span class="flow-num">3</span>Build Specs</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><span class="flow-num">4</span>Evaluate Vendors</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><span class="flow-num">5</span>Request Quote</div><span class="flow-arrow">→</span>
+      <div class="flow-step"><span class="flow-num">6</span>Award / Order</div>
+    </div>
+    <div class="g3">
+      <div class="card"><h3>Longer Sales Cycles</h3><p>Multiple decision makers and large investments mean extended negotiation and approval times. A prospect that fills out a form today may not become a customer for 90 days.</p></div>
+      <div class="card"><h3>Formal Proposals &amp; Contracts</h3><p>Buying often requires detailed proposals, bids, and additional legal or compliance reviews. RFQs and RFPs are standard touchpoints your content should support.</p></div>
+      <div class="card"><h3>Post-Sale Support</h3><p>Ongoing service, account management, and relationship maintenance are key to retaining B2B clients. The relationship doesn't end at the first order — it's often just beginning.</p></div>
+    </div>
+    <div class="callout gold mt24"><div class="callout-label">OBx Insight</div><p><strong>Your role starts at Step 2 — Research.</strong> When a buyer identifies a need, they go online. Our job is to make sure our client is visible, credible, and compelling when that search happens. Every ranking, every ad, every piece of content is competing for that moment.</p></div>
+  </div>
+</section>
+
+<!-- SECTION 4: THE INDUSTRIAL BUYER -->
+<section class="sec-light" id="buyers">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 4 — Enhanced</div>
+      <h2 class="sh-title">The Industrial Buyer — Who They Are &amp; How They Buy</h2>
+      <p class="sh-desc">Industrial buyers are not impulse purchasers — they are methodical, spec-driven, and risk-averse. Understanding who they are changes how you approach every content and campaign decision.</p>
+    </div>
+    <div class="g2 mb32">
+      <div class="persona-card">
+        <div class="persona-header"><div class="persona-av">⚙️</div><div><div class="persona-name">The Engineer / Technical Buyer</div><div class="persona-role">Process Engineer, Design Engineer, Quality Engineer</div></div></div>
+        <div class="persona-body">
+          <h4>What They Search For</h4><ul><li>Specific material grades, tolerances, and technical specs</li><li>Process capabilities (5-axis, EDM, tight-tolerance machining)</li><li>Certifications (ISO 9001, AS9100, ITAR, ASTM)</li></ul>
+          <h4>What Influences Their Decision</h4><ul><li>Does this vendor understand what I need?</li><li>Are their specs and capabilities clearly stated?</li><li>Do they have quality documentation and certs?</li></ul>
+          <h4>Content That Works</h4><ul><li>Spec sheets, capability lists, tolerance tables</li><li>Technical blog content, process explanations</li><li>Case studies with actual project details</li></ul>
+        </div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-header"><div class="persona-av">📋</div><div><div class="persona-name">The Procurement Officer</div><div class="persona-role">Purchasing Manager, Supply Chain Manager, Procurement Director</div></div></div>
+        <div class="persona-body">
+          <h4>What They Search For</h4><ul><li>Multiple vendors to compare pricing and lead time</li><li>In-stock availability and MOQ information</li><li>Distribution capability and geographic reach</li></ul>
+          <h4>What Influences Their Decision</h4><ul><li>Reliability — can this vendor consistently deliver on time?</li><li>Pricing and volume discounts</li><li>Past experience with this supplier or similar vendors</li></ul>
+          <h4>Content That Works</h4><ul><li>Product catalogs, quick quote functionality</li><li>Lead time and availability messaging</li><li>Established vendor relationships, testimonials</li></ul>
+        </div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-header"><div class="persona-av">🏭</div><div><div class="persona-name">The Plant / Operations Manager</div><div class="persona-role">Plant Manager, Operations Manager, Maintenance Director</div></div></div>
+        <div class="persona-body">
+          <h4>What They Search For</h4><ul><li>Urgency solutions — "we need this now" searches</li><li>MRO (Maintenance, Repair &amp; Operations) supplies</li><li>Replacement parts and emergency inventory</li></ul>
+          <h4>What Influences Their Decision</h4><ul><li>Speed — can they get it here before my line goes down?</li><li>Local or regional availability</li><li>Trusted, established relationship with vendor</li></ul>
+          <h4>Content That Works</h4><ul><li>Emergency/rush order messaging front and center</li><li>In-stock, same-day shipping claims</li><li>Clear phone numbers and fast response times</li></ul>
+        </div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-header"><div class="persona-av">👔</div><div><div class="persona-name">The Business Owner / Executive</div><div class="persona-role">Owner, VP of Manufacturing, CEO of SMB</div></div></div>
+        <div class="persona-body">
+          <h4>What They Search For</h4><ul><li>Strategic supplier partnerships and long-term value</li><li>Company reputation, reviews, and longevity</li><li>Cost savings and efficiency improvements</li></ul>
+          <h4>What Influences Their Decision</h4><ul><li>Trust — do they look credible and established?</li><li>Total cost of partnership, not just unit price</li><li>Can this supplier scale with us?</li></ul>
+          <h4>Content That Works</h4><ul><li>About page, company story, years in business</li><li>Customer testimonials and case studies</li><li>Thought leadership content, industry recognition</li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="callout orange"><div class="callout-label">Key Insight</div><p><strong>Industrial buyers search with intent, not curiosity.</strong> When someone searches "A36 steel plate distributor Ohio" or "ISO 9001 certified aluminum machining" — they have a real, active, often urgent need. These are high-value searches that deserve precise, spec-matched content. Unlike B2C, there's rarely a "browsing" phase. They're ready to buy or close to it.</p></div>
+  </div>
+</section>
+
+<!-- SECTION 5: COMMON SECTORS -->
+<section class="sec-white" id="sectors">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 5 — New</div>
+      <h2 class="sh-title">Common Industrial Sectors You'll Encounter</h2>
+      <p class="sh-desc">You don't need to master each of these. But knowing what the business is and what it generally does will make you faster, smarter, and more credible with the client on day one.</p>
+    </div>
+    <div class="g3">
+      <div class="sector-card sc1"><div class="sector-icon">🔩</div><div class="sector-title">Metals &amp; Steel</div><div class="sector-sub">Service centers, mills, distributors, and processors of steel, aluminum, stainless, and specialty metals. Examples: O'Neal Steel.</div><div class="sector-tags"><span class="stag">Hot/Cold Rolled</span><span class="stag">Sheet &amp; Plate</span><span class="stag">Tubing &amp; Pipe</span><span class="stag">Bar Stock</span><span class="stag">Custom Cutting</span></div></div>
+      <div class="sector-card sc2"><div class="sector-icon">⚙️</div><div class="sector-title">Machining &amp; Fabrication</div><div class="sector-sub">CNC machine shops, metal fabricators, job shops doing cutting, bending, welding, and finishing. Examples: Bison Profab.</div><div class="sector-tags"><span class="stag">CNC Machining</span><span class="stag">Laser Cutting</span><span class="stag">Welding</span><span class="stag">Stamping</span><span class="stag">Prototyping</span></div></div>
+      <div class="sector-card sc3"><div class="sector-icon">🏗️</div><div class="sector-title">Die Casting &amp; Foundry</div><div class="sector-sub">Manufacturers who produce metal parts by injecting molten material into molds — common in automotive and industrial equipment.</div><div class="sector-tags"><span class="stag">Aluminum Die Casting</span><span class="stag">Zinc Die Casting</span><span class="stag">Sand Casting</span><span class="stag">Investment Casting</span></div></div>
+      <div class="sector-card sc4"><div class="sector-icon">🔧</div><div class="sector-title">Industrial Distribution</div><div class="sector-sub">Businesses that stock and resell industrial products, tools, hardware, MRO supplies, and components to manufacturers and contractors.</div><div class="sector-tags"><span class="stag">MRO Supplies</span><span class="stag">Fasteners</span><span class="stag">Safety Products</span><span class="stag">Industrial Tools</span></div></div>
+      <div class="sector-card sc5"><div class="sector-icon">🌊</div><div class="sector-title">Industrial Coatings &amp; Finishing</div><div class="sector-sub">Manufacturers and applicators of powder coatings, liquid coatings, thermal spray, and specialty industrial finishes. Examples: Endura Coatings, Thermion.</div><div class="sector-tags"><span class="stag">Powder Coating</span><span class="stag">Thermal Spray</span><span class="stag">Heat Trace</span><span class="stag">OEM Finishing</span></div></div>
+      <div class="sector-card sc6"><div class="sector-icon">🧪</div><div class="sector-title">Industrial Chemicals &amp; Fluids</div><div class="sector-sub">Suppliers of raw chemical inputs, surface treatment products, specialty coatings, lubricants, and processing chemicals.</div><div class="sector-tags"><span class="stag">Lubricants</span><span class="stag">Coatings</span><span class="stag">Adhesives</span><span class="stag">Solvents</span></div></div>
+    </div>
+    <div class="callout gold mt24"><div class="callout-label">Quick Tip</div><p>When you first get a new industrial client, spend 10 minutes on their website. Answer three questions: <strong>What do they make or sell? Who buys it? What makes them different?</strong> If you can answer those three things, you're ready to start building strategy.</p></div>
+  </div>
+</section>
+
+<!-- SECTION 6: CLIENT TYPES -->
+<section class="sec-light" id="clients">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 6</div>
+      <h2 class="sh-title">Manufacturers, Distributors &amp; Suppliers — Know Your Client</h2>
+      <p class="sh-desc">Before you build a single keyword or write a single piece of content — know what your client does and who they sell to. This changes everything about your strategy.</p>
+    </div>
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:14px">The Industrial Supply Chain</h3>
+    <p style="color:var(--text-light);font-size:0.87rem;margin-bottom:18px">Each layer has a different customer, a different value proposition, and a different marketing strategy — even if they're all involved with the same product.</p>
+    <div class="chain mb32">
+      <div class="chain-item ci-1"><div class="chain-title">Raw Material Source</div><div class="chain-desc">Mines, mills, and extractors of primary inputs</div></div>
+      <div class="chain-item ci-2"><div class="chain-title">Supplier</div><div class="chain-desc">Provides raw materials and components upstream</div></div>
+      <div class="chain-item ci-3"><div class="chain-title">Manufacturer</div><div class="chain-desc">Makes the finished product or component</div></div>
+      <div class="chain-item ci-4"><div class="chain-title">Distributor</div><div class="chain-desc">Stocks and resells to end users</div></div>
+      <div class="chain-item ci-5"><div class="chain-title">End User</div><div class="chain-desc">Uses the product in their operation</div></div>
+    </div>
+    <div class="g3 mb32">
+      <div class="client-card">
+        <div class="client-header ch-mfr"><h3>🏭 Manufacturer</h3><p>Makes the product</p></div>
+        <div class="client-body">
+          <div class="client-section"><h4>What They Do</h4><ul><li>Create products from raw materials or components</li><li>Often have proprietary processes, certifications, or patents</li><li>May offer custom fabrication or standard stock</li></ul></div>
+          <div class="client-section"><h4>Who They Sell To</h4><ul><li>Distributors (channel/wholesale)</li><li>Direct to large end users or OEMs</li><li>Sometimes both simultaneously</li></ul></div>
+          <div class="client-section"><h4>Marketing Priorities</h4><ul><li>Brand credibility &amp; product authority</li><li>Technical specs, certifications, case studies</li><li>"Why our product is best" messaging</li></ul></div>
+        </div>
+      </div>
+      <div class="client-card">
+        <div class="client-header ch-dist"><h3>📦 Distributor</h3><p>Stocks &amp; resells product</p></div>
+        <div class="client-body">
+          <div class="client-section"><h4>What They Do</h4><ul><li>Purchase inventory from manufacturers</li><li>Stock products in warehouses for quick fulfillment</li><li>Handle logistics, customer service, account mgmt</li></ul></div>
+          <div class="client-section"><h4>Who They Sell To</h4><ul><li>Contractors, fabricators, manufacturers, end users</li><li>Anyone who needs the product fast without buying direct</li></ul></div>
+          <div class="client-section"><h4>Marketing Priorities</h4><ul><li>Availability &amp; lead time messaging</li><li>Breadth of product offering</li><li>"We have it in stock" is a primary differentiator</li></ul></div>
+        </div>
+      </div>
+      <div class="client-card">
+        <div class="client-header ch-sup"><h3>🔗 Supplier</h3><p>Provides raw inputs upstream</p></div>
+        <div class="client-body">
+          <div class="client-section"><h4>What They Do</h4><ul><li>Provide raw materials or sub-components to manufacturers</li><li>Value = material quality, compliance, volume pricing</li><li>The term is sometimes used loosely — always clarify</li></ul></div>
+          <div class="client-section"><h4>Who They Sell To</h4><ul><li>Manufacturers and distributors</li><li>Sometimes government / military / large institutions</li></ul></div>
+          <div class="client-section"><h4>Marketing Priorities</h4><ul><li>Material grades, specs, compliance documentation</li><li>Volume pricing and MOQ information</li><li>Reliability, certifications, sourcing traceability</li></ul></div>
+        </div>
+      </div>
+    </div>
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:16px">Side-by-Side Comparison</h3>
+    <table class="tbl mb32">
+      <thead><tr><th>Dimension</th><th>Manufacturer</th><th>Distributor</th><th>Supplier</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Makes the product?</strong></td><td><span class="chk">✓ Yes</span></td><td><span class="xmark">✗ No</span></td><td>Sometimes (raw materials)</td></tr>
+        <tr><td><strong>Stocks inventory?</strong></td><td>Sometimes</td><td><span class="chk">✓ Core function</span></td><td>Sometimes</td></tr>
+        <tr><td><strong>Primary customer</strong></td><td>Distributors / OEMs</td><td>Contractors / End users</td><td>Manufacturers / Distributors</td></tr>
+        <tr><td><strong>Value proposition</strong></td><td>Quality, specs, innovation</td><td>Availability, speed, service</td><td>Material quality, compliance, volume</td></tr>
+        <tr><td><strong>Key search intent</strong></td><td>"[specs] [product] manufacturer"</td><td>"[product] distributor [location]"</td><td>"[material] supplier"</td></tr>
+        <tr><td><strong>Sales cycle</strong></td><td>Long</td><td>Medium</td><td>Medium–Long</td></tr>
+        <tr><td><strong>Content focus</strong></td><td>Specs, certs, case studies</td><td>Catalog, availability, lead times</td><td>Grades, compliance, pricing</td></tr>
+      </tbody>
+    </table>
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:16px">Understanding the Differences in Practice</h3>
+    <p style="color:var(--text-light);font-size:0.87rem;margin-bottom:20px">Same product — completely different messaging based on who your client is in the chain.</p>
+    <div class="g3">
+      <div class="card"><h3>🏭 Manufacturer Messaging</h3><p style="font-style:italic;margin-bottom:12px;color:var(--text)">"Our A36 steel plate is produced to ASTM standards with mill certifications available. Custom cutting and processing available."</p><p style="font-size:0.73rem;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">B-SMART Focus</p><ul class="plain"><li>Material grade (A36, A572, AR500)</li><li>Certifications (ASTM, mill certs)</li><li>Fabrication requirements &amp; capabilities</li><li>Size and format options</li></ul></div>
+      <div class="card"><h3>📦 Distributor Messaging</h3><p style="font-style:italic;margin-bottom:12px;color:var(--text)">"A36 steel plate in stock and ready to ship. Same-day cutting available. Serving contractors in the Southeast."</p><p style="font-size:0.73rem;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">B-SMART Focus</p><ul class="plain"><li>Brand of products carried</li><li>Size, SKU, availability</li><li>Area served — but don't always go hyper-local; most ship nationally</li></ul></div>
+      <div class="card"><h3>🔗 Supplier Messaging</h3><p style="font-style:italic;margin-bottom:12px;color:var(--text)">"Hot-rolled steel coil and slab available in volume. Certified mill source. Competitive pricing on large orders."</p><p style="font-size:0.73rem;font-weight:800;color:var(--orange);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">B-SMART Focus</p><ul class="plain"><li>Material specifications</li><li>Requirements and certifications</li><li>Volume type and MOQ</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: B-SMART -->
+<section class="sec-dark" id="bsmart">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag wht">Section 7</div>
+      <h2 class="sh-title wht">The B-SMART® Method</h2>
+      <p class="sh-desc wht">OBx's proprietary industrial keyword strategy framework. B-SMART gives you a structured way to think about how buyers search — and applies equally to SEO content strategy and PPC campaign structure. The nuance: in PPC, budget is attached to every keyword, so relevancy is even more critical.</p>
+    </div>
+    <div class="bsmart-row">
+      <div class="bs-item bs-b"><div class="bs-letter">B</div><div class="bs-word">Brand</div><div class="bs-desc">Manufacturer brands, proprietary product names, or the client's own brand</div></div>
+      <div class="bs-item bs-s"><div class="bs-letter">S</div><div class="bs-word">Size / Shape / SKU</div><div class="bs-desc">Dimensions, product forms, configurations, and SKU identifiers</div></div>
+      <div class="bs-item bs-m"><div class="bs-letter">M</div><div class="bs-word">Material</div><div class="bs-desc">Material type, grade, alloy designation, or composition</div></div>
+      <div class="bs-item bs-a"><div class="bs-letter">A</div><div class="bs-word">Application / Industry / Area</div><div class="bs-desc">Use case, industry served, or geographic market</div></div>
+      <div class="bs-item bs-r"><div class="bs-letter">R</div><div class="bs-word">Requirement</div><div class="bs-desc">Certifications, compliance standards, performance specs</div></div>
+      <div class="bs-item bs-t"><div class="bs-letter">T</div><div class="bs-word">Type</div><div class="bs-desc">Process type, product category, project classification</div></div>
+    </div>
+    <div class="callout navy" style="border-color:var(--gold)"><div class="callout-label">How B-SMART Works</div><p>B-SMART isn't a fill-in-all-six template for every keyword. It's a <strong style="color:var(--gold)">lens</strong> — a way of thinking about the full universe of how a buyer might search. Some keywords will hit 2–3 dimensions; others might use all 6. The goal is to systematically identify how buyers describe what they need, not how your client describes what they sell. Those are often different things.</p></div>
+  </div>
+</section>
+
+<!-- SECTION 8: B-SMART APPLIED -->
+<section class="sec-white" id="bsmart-applied">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 8 — Enhanced</div>
+      <h2 class="sh-title">B-SMART® Applied — Worked Examples</h2>
+      <p class="sh-desc">Two complete worked examples — O'Neal Steel (distributor) and Bison Profab (manufacturer). Use these as models when building keyword strategy for a new client.</p>
+    </div>
+    <table class="bse-table mb32">
+      <thead>
+        <tr><th>B-SMART Dimension</th><th class="ex1">Example 1: O'Neal Steel (Distributor)</th><th class="ex2">Example 2: Bison Profab (Manufacturer)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="label-col">Business Type</td><td class="ex1-col">Metals Service Center · National Distributor</td><td class="ex2-col">Custom Metal Fabrication · Job Shop Manufacturer</td></tr>
+        <tr><td class="label-col"><span class="bse-letter bl-b">B</span> Brand</td><td class="ex1-col">Nucor, Worthington, AK Steel — brands O'Neal carries; O'Neal's own service center brand</td><td class="ex2-col">Bison Profab name + "fabrication," "metal fab," "machine shop" modifiers</td></tr>
+        <tr><td class="label-col"><span class="bse-letter bl-s">S</span> Size / Shape / SKU</td><td class="ex1-col">1/4" plate, 4×8 sheet, 20' pipe lengths, 16 gauge cold rolled, specific thicknesses and widths</td><td class="ex2-col">Tolerances (±0.001"), project size ranges, sheet dimensions the shop works with</td></tr>
+        <tr><td class="label-col"><span class="bse-letter bl-m">M</span> Material</td><td class="ex1-col">A36 carbon steel, 304/316 stainless steel, 6061 aluminum, galvanized, hot-rolled, cold-rolled</td><td class="ex2-col">Steel, aluminum, stainless steel, carbon steel — materials the shop fabricates from</td></tr>
+        <tr><td class="label-col"><span class="bse-letter bl-a">A</span> Application / Industry / Area</td><td class="ex1-col">Construction, structural fabrication, automotive, Midwest region, Ohio, national shipping footprint</td><td class="ex2-col">OEM manufacturers, construction contractors, industrial equipment makers, Ohio / Midwest</td></tr>
+        <tr><td class="label-col"><span class="bse-letter bl-r">R</span> Requirement</td><td class="ex1-col">ASTM certified, mill certs available, food-grade, pressure vessel quality (PVQ)</td><td class="ex2-col">ISO 9001, AWS certified welding, specific finish requirements, tight tolerance specs</td></tr>
+        <tr><td class="label-col"><span class="bse-letter bl-t">T</span> Type</td><td class="ex1-col">Hot rolled, cold rolled, cut-to-length, structural vs. mechanical, strip vs. coil</td><td class="ex2-col">Laser cutting, plasma cutting, forming, welding, custom fabrication, prototype vs. production</td></tr>
+        <tr><td class="label-col" style="border-top:2px solid var(--border)">Example Keywords</td><td class="ex1-col" style="border-top:2px solid var(--border)">"A36 steel plate distributor Ohio" · "cold rolled steel sheet in stock" · "ASTM certified steel plate cut to length" · "Nucor A36 steel plate"</td><td class="ex2-col" style="border-top:2px solid var(--border)">"custom metal fabrication Ohio" · "laser cutting steel plate" · "custom aluminum fabrication OEM" · "ISO 9001 metal fabrication shop"</td></tr>
+      </tbody>
+    </table>
+    <div class="callout orange"><div class="callout-label">Remember</div><p>Not every B-SMART dimension applies to every client or every keyword. The framework is a discovery tool, not a formula. Use it to make sure you're not missing major search intent categories — especially material grades and certifications, which industrial buyers almost always include in their searches.</p></div>
+  </div>
+</section>
+
+<!-- SECTION 9: TERMINOLOGY -->
+<section class="sec-light" id="terminology">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 9</div>
+      <h2 class="sh-title">Industrial Terminology Wins</h2>
+      <p class="sh-desc">Using the right language is a trust signal. Using the wrong language — even casually — will undermine credibility with experienced buyers. These tables are your reference guide.</p>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:14px">1. Singular vs. Plural — Product Form Variations</h3>
+    <table class="tbl mb32">
+      <thead><tr><th>Misused (Avoid)</th><th>Correct / Preferred</th><th>Why It Matters</th></tr></thead>
+      <tbody>
+        <tr><td>"Plates"</td><td><strong>"Plate"</strong></td><td>"Plate" is used as a material category (e.g., "steel plate")</td></tr>
+        <tr><td>"Sheets"</td><td><strong>"Sheet"</strong></td><td>Used generically as a product form, not individual pieces</td></tr>
+        <tr><td>"Tubes"</td><td><strong>"Tubing" or "Tube"</strong></td><td>"Tubing" refers to the product form; "tubes" sounds consumer-facing</td></tr>
+        <tr><td>"Bars"</td><td><strong>"Bar"</strong></td><td>"Bar stock" or "bar" is the industry norm</td></tr>
+        <tr><td>"Rods"</td><td><strong>"Rod"</strong></td><td>"Rod" is the standard form reference</td></tr>
+        <tr><td>"Pipes"</td><td><strong>"Pipe"</strong></td><td>"Pipe" used generically; "pipes" sounds consumer-facing</td></tr>
+        <tr><td>"Wires"</td><td><strong>"Wire"</strong></td><td>"Wire" or "wire rod" is preferred</td></tr>
+        <tr><td>"Coils"</td><td><strong>"Coil"</strong></td><td>Refers to the product form, not individual pieces</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:14px">2. Commonly Confused Product Terms</h3>
+    <table class="tbl mb32">
+      <thead><tr><th>Misused / Confused</th><th>Correct Distinction</th></tr></thead>
+      <tbody>
+        <tr><td>Tube vs. Pipe</td><td><strong>Not interchangeable.</strong> Tube is measured by OD + wall thickness; Pipe is measured by nominal pipe size (NPS) + schedule.</td></tr>
+        <tr><td>Sheet vs. Plate</td><td>Generally, <strong>sheet = under 3/16" thick; plate = 3/16" or thicker</strong> (varies by material)</td></tr>
+        <tr><td>Bar vs. Rod</td><td>Rod is typically <strong>round and longer/coiled</strong>; Bar can be flat, square, round, or hex — broader term</td></tr>
+        <tr><td>Square Bar vs. Square Tube</td><td>Square bar is <strong>solid</strong>; square tube is <strong>hollow</strong> — critical distinction for load-bearing applications</td></tr>
+        <tr><td>Round Bar vs. Shaft</td><td>Shaft implies <strong>precision-ground tolerances</strong>; round bar is standard mill finish</td></tr>
+        <tr><td>Strip vs. Sheet vs. Coil</td><td>Strip = narrow, coiled; Sheet = cut flat panels; Coil = the rolled, uncut form</td></tr>
+        <tr><td>Structural Tubing vs. Mechanical Tubing</td><td>Structural = for <strong>construction/load-bearing</strong>; Mechanical = for <strong>precision applications</strong>, tighter tolerances</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:14px">3. Material &amp; Alloy Terminology</h3>
+    <table class="tbl mb32">
+      <thead><tr><th>Misused</th><th>Clarification</th></tr></thead>
+      <tbody>
+        <tr><td>"Stainless"</td><td>Should be <strong>"stainless steel"</strong> in formal and B2B contexts</td></tr>
+        <tr><td>"Aluminum" vs. "Aluminium"</td><td>Both correct — <strong>"Aluminum"</strong> is the US standard; "Aluminium" is international</td></tr>
+        <tr><td>"Mild Steel"</td><td>Technically correct but often confused with "carbon steel" — mild steel IS a low-carbon steel</td></tr>
+        <tr><td>"Alloy" (generic)</td><td>Should specify the <strong>alloy grade</strong> (e.g., 6061 aluminum, A36 steel, 304 stainless)</td></tr>
+        <tr><td>"Galvanized" vs. "Galvannealed"</td><td><strong>Different coating processes</strong> — not the same finish or application</td></tr>
+        <tr><td>"304 vs. 316 Stainless"</td><td>Frequently swapped — <strong>316 has molybdenum</strong> for better corrosion resistance</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:14px">4. Measurement &amp; Specification</h3>
+    <table class="tbl mb32">
+      <thead><tr><th>Misused</th><th>Clarification</th></tr></thead>
+      <tbody>
+        <tr><td>Gauge vs. Thickness</td><td>Gauge is a <strong>legacy measurement system</strong> — not a direct inch/mm value; always verify the actual decimal equivalent</td></tr>
+        <tr><td>OD vs. ID</td><td><strong>Outside Diameter vs. Inside Diameter</strong> — critical for tube and pipe ordering</td></tr>
+        <tr><td>Wall vs. Schedule</td><td>For pipe: <strong>schedule</strong> (Sch 40, Sch 80) defines wall thickness; for tube: wall is stated directly</td></tr>
+        <tr><td>Nominal Size vs. Actual Size</td><td>Nominal pipe/lumber sizes <strong>do not equal actual dimensions</strong></td></tr>
+        <tr><td>"1/4 inch plate"</td><td>Should specify grade — A36, A572, AR plate — <strong>grade matters as much as thickness</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:14px">5. Quantity &amp; Usage Terms</h3>
+    <table class="tbl mb32">
+      <thead><tr><th>Term</th><th>What It Means</th><th>Commonly Confused With</th><th>Why It Matters</th></tr></thead>
+      <tbody>
+        <tr><td><strong>EAU</strong> (Estimated Annual Usage)</td><td>Total projected quantity needed over 12 months</td><td>EAQ, EOQ, or "annual order"</td><td>Used by mills and distributors to determine pricing tiers and stocking commitments</td></tr>
+        <tr><td><strong>EOQ</strong> (Economic Order Quantity)</td><td>Optimal order quantity that minimizes inventory and ordering costs</td><td>MOQ — buyers often confuse these</td><td>EOQ is internally calculated; MOQ is supplier-imposed</td></tr>
+        <tr><td><strong>MOQ</strong> (Minimum Order Quantity)</td><td>The minimum a supplier will accept per order</td><td>EOQ or standard order quantity</td><td>Misunderstanding MOQ can delay procurement or result in over-ordering</td></tr>
+        <tr><td><strong>MRO</strong> (Maintenance, Repair &amp; Operations)</td><td>Supplies used in operations but not in the final product</td><td>Direct materials or production stock</td><td>Different procurement cycle, different buyer, different urgency</td></tr>
+        <tr><td><strong>Scheduled Release</strong></td><td>A pull against a blanket order at agreed intervals</td><td>Spot buy or standard PO</td><td>Not the same as placing a new order each time</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:14px">6. Condition &amp; Finishes</h3>
+    <table class="tbl">
+      <thead><tr><th>Misused</th><th>Correct Distinction</th></tr></thead>
+      <tbody>
+        <tr><td>Hot Rolled vs. Cold Rolled</td><td>HR has <strong>mill scale, looser tolerances</strong>; CR is <strong>smoother, tighter dimensions</strong> — not interchangeable</td></tr>
+        <tr><td>Cold Rolled vs. Cold Drawn</td><td>Cold rolled = flat product; Cold drawn = <strong>bar/tube pulled through a die</strong> for tighter tolerance</td></tr>
+        <tr><td>Annealed vs. Tempered</td><td>Both are heat treatments but with <strong>opposite hardness outcomes</strong> — annealed softens; tempered hardens</td></tr>
+        <tr><td>"Polished"</td><td>Should specify <strong>grit or finish type</strong> (e.g., #4 brushed, #8 mirror) — "polished" alone is vague</td></tr>
+        <tr><td>Mill Finish vs. No. 1 Finish</td><td>Specific <strong>stainless finish grades</strong> — often used loosely or incorrectly</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 10: CLIENT QUESTIONS -->
+<section class="sec-white" id="client-questions">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 10 — New</div>
+      <h2 class="sh-title">Questions to Ask Your Client — Intake Cheat Sheet</h2>
+      <p class="sh-desc">When you get a new industrial or B2B client, these are the questions that will unlock everything you need to build smart strategy.</p>
+    </div>
+    <div class="g2">
+      <div class="q-card">
+        <div class="q-header"><span class="q-header-icon">🏭</span><span class="q-header-title">Business &amp; Model</span></div>
+        <div class="q-body"><ul class="q-list">
+          <li><span class="q-badge">Q</span>Are you a manufacturer, distributor, supplier, or some combination?</li>
+          <li><span class="q-badge">Q</span>What do you make or sell — and what does the finished product/service look like?</li>
+          <li><span class="q-badge">Q</span>Do you sell direct to end users, through channel partners, or both?</li>
+          <li><span class="q-badge">Q</span>What industries or verticals do you primarily serve?</li>
+          <li><span class="q-badge">Q</span>What is your geographic reach — local, regional, or national?</li>
+        </ul></div>
+      </div>
+      <div class="q-card">
+        <div class="q-header"><span class="q-header-icon">👥</span><span class="q-header-title">Buyers &amp; ICP</span></div>
+        <div class="q-body"><ul class="q-list">
+          <li><span class="q-badge">Q</span>Who is your ideal customer — what does their company look like? What's their title?</li>
+          <li><span class="q-badge">Q</span>Who actually makes the purchase decision — and who influences it?</li>
+          <li><span class="q-badge">Q</span>What is a typical order value, and how frequently do customers reorder?</li>
+          <li><span class="q-badge">Q</span>What is the LTV of your best customers?</li>
+          <li><span class="q-badge">Q</span>What triggers someone to search for you — urgency, planned purchase, new project?</li>
+        </ul></div>
+      </div>
+      <div class="q-card">
+        <div class="q-header"><span class="q-header-icon">🔧</span><span class="q-header-title">Products &amp; Capabilities</span></div>
+        <div class="q-body"><ul class="q-list">
+          <li><span class="q-badge">Q</span>What are your top 3–5 products or service lines by revenue?</li>
+          <li><span class="q-badge">Q</span>Do you offer custom or standard products — or both?</li>
+          <li><span class="q-badge">Q</span>What certifications, standards, or compliance requirements do you meet?</li>
+          <li><span class="q-badge">Q</span>What materials, grades, or specifications are most commonly requested?</li>
+          <li><span class="q-badge">Q</span>What is your lead time, and how does that compare to competitors?</li>
+        </ul></div>
+      </div>
+      <div class="q-card">
+        <div class="q-header"><span class="q-header-icon">🏆</span><span class="q-header-title">Differentiators &amp; Competition</span></div>
+        <div class="q-body"><ul class="q-list">
+          <li><span class="q-badge">Q</span>Why do customers choose you over a competitor?</li>
+          <li><span class="q-badge">Q</span>Who are your top 2–3 competitors, and how do you typically compare?</li>
+          <li><span class="q-badge">Q</span>Have you lost business to a competitor recently — why did the customer go elsewhere?</li>
+          <li><span class="q-badge">Q</span>What do your best customers say about you in reviews or testimonials?</li>
+          <li><span class="q-badge">Q</span>What do customers ask for that you can't currently offer?</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="callout green mt24"><div class="callout-label">Pro Tip</div><p>Many industrial clients won't have polished answers to these questions right away. Use the conversation to build the picture together. The exercise itself creates value and positions you as a strategic partner, not just a vendor.</p></div>
+  </div>
+</section>
+
+<!-- SECTION 11: COMMON MISTAKES -->
+<section class="sec-light" id="mistakes">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 11 — New</div>
+      <h2 class="sh-title">Common Mistakes to Avoid</h2>
+      <p class="sh-desc">These are the patterns that show up most often when people are new to this vertical. Knowing them in advance puts you ahead.</p>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Defaulting to hyper-local targeting for distributors.</strong> "Ohio steel plate distributor" is often too limiting. Most industrial distributors ship regionally or nationally. Assume national reach until confirmed otherwise.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Ask the client explicitly about their shipping footprint. Build targeting that matches their actual reach — which is often much broader than they initially say.</p></div>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Writing copy that sounds consumer-facing.</strong> "Check out our wide selection of steel pipes!" uses casual, B2C language. "Steel pipe" not "pipes." No exclamation points. Precision language only.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Use the terminology tables in this training. Reference grades, certifications, and specifications. Buyers in this space expect technical precision — it builds trust instantly.</p></div>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Ignoring certifications in keyword and content strategy.</strong> Many industrial buyers filter vendors by certifications first. If your client has them and you're not using them, you're leaving significant opportunity on the table.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Make certifications prominent — in meta titles, headers, landing pages, and PPC ads. "ISO 9001 Certified CNC Machining" is a keyword AND a trust signal.</p></div>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Treating a manufacturer's strategy the same as a distributor's.</strong> A distributor's homepage should lead with availability and speed. A manufacturer's should lead with capability and quality.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Always identify which layer of the supply chain your client occupies before any strategy work. Use the side-by-side table in Section 6 to guide your approach.</p></div>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Using generic material references without grades.</strong> "Aluminum machining" is weaker than "6061 aluminum machining." Grades are how buyers think and search — especially engineers and procurement teams.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Always push for specific grades during intake. If the client isn't sure which grades to highlight, look at what competitors rank for and what their own product pages feature most prominently.</p></div>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Don't Do This</div><p><strong>Expecting quick conversions and measuring success like B2C.</strong> A 90-day sales cycle means your content may generate a lead today that doesn't close for months.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Do This Instead</div><p>Set client expectations around lead quality and sales cycle length. Focus on form fills, RFQ submissions, phone calls, and lead quality — not just volume. One qualified B2B lead can be worth more than 1,000 B2C transactions.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 12: RECAP -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh"><div class="sh-tag wht">Section 12 — Recap</div><h2 class="sh-title wht">What You Can Now Do</h2><p class="sh-desc wht">After completing Part 1, you should be able to apply these skills immediately on any industrial client.</p></div>
+    <div class="recap-grid">
+      <div class="recap-item"><div class="recap-num">01</div><div class="recap-title">Apply Intent-First Thinking</div><div class="recap-desc">Understand why B2B industrial is different from B2C, how purchases are structured, and why LTV context changes every performance conversation.</div></div>
+      <div class="recap-item"><div class="recap-num">02</div><div class="recap-title">Identify Your Client's Type</div><div class="recap-desc">Quickly identify whether a client is a manufacturer, distributor, or supplier — and how that changes your strategy, messaging, and keyword approach.</div></div>
+      <div class="recap-item"><div class="recap-num">03</div><div class="recap-title">Know the Industrial Buyer</div><div class="recap-desc">Understand who the buyer is — engineer, procurement officer, plant manager, or owner — and what content and keywords resonate with each persona.</div></div>
+      <div class="recap-item"><div class="recap-num">04</div><div class="recap-title">Apply B-SMART® to Any Client</div><div class="recap-desc">Use B-SMART® to systematically build keyword universes for SEO and PPC — for any industrial client from metals to machining to coatings.</div></div>
+      <div class="recap-item"><div class="recap-num">05</div><div class="recap-title">Use Industry Terminology Correctly</div><div class="recap-desc">Reference the terminology tables to write copy, build keywords, and communicate with clients using accurate, professional industrial language.</div></div>
+      <div class="recap-item"><div class="recap-num">06</div><div class="recap-title">Ask the Right Questions</div><div class="recap-desc">Use the intake cheat sheet to confidently lead discovery with any new industrial B2B client and extract the information needed for strong strategy.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S NEXT — FULL SERIES -->
+<section class="sec-white" id="whats-next">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Continue the Series</div>
+      <h2 class="sh-title">What's Next — Parts 2 Through 6</h2>
+      <p class="sh-desc">Part 1 is your foundation. The next five parts take everything you've learned here and apply it directly to SEO, PPC, client communication, measurement intelligence, and client retention. Each part builds on the last.</p>
+    </div>
+    <div class="g3">
+      <a href="industrial-b2b-part2.html" class="ft-card part2">
+        <div class="ft-part">Part 2</div>
+        <div class="ft-title">Industrial SEO Strategy — Content Architecture &amp; Search Strategy</div>
+        <div class="ft-desc">How to build content that captures industrial buyers — the 4 page types, B-SMART mapped to architecture, and real examples from O'Neal Steel and Bison Profab.</div>
+        <ul class="ft-topics"><li>Intent over volume — the industrial SEO mindset</li><li>The 4 industrial content page types</li><li>B-SMART mapped to content architecture</li><li>On-page SEO that converts industrial buyers</li></ul>
+        <span class="ft-cta">Start Part 2 →</span>
+      </a>
+      <a href="industrial-b2b-part3.html" class="ft-card part3">
+        <div class="ft-part">Part 3</div>
+        <div class="ft-title">Industrial PPC — Campaigns, Negatives &amp; Budget Discipline</div>
+        <div class="ft-desc">There's a budget attached to every click. Campaign structure, match types, negative keyword strategy, and ad copy that industrial buyers actually respond to.</div>
+        <ul class="ft-topics"><li>Why industrial PPC is uniquely high-stakes</li><li>B-SMART applied to PPC keyword strategy</li><li>Campaign structure by client type</li><li>Building airtight negative keyword lists</li></ul>
+        <span class="ft-cta">Start Part 3 →</span>
+      </a>
+      <a href="industrial-b2b-part4.html" class="ft-card part4">
+        <div class="ft-part">Part 4</div>
+        <div class="ft-title">Client Communication — Speaking Confidently About Strategy</div>
+        <div class="ft-desc">The ELFEC framework, the Trust Formula, translating metrics into business language, and handling the objections you'll actually face with industrial clients.</div>
+        <ul class="ft-topics"><li>Outcomes over tactics — leading with impact</li><li>The ELFEC client engagement framework</li><li>Translating digital metrics into business language</li><li>Handling common industrial client objections</li></ul>
+        <span class="ft-cta">Start Part 4 →</span>
+      </a>
+      <a href="industrial-b2b-part5.html" class="ft-card part5">
+        <div class="ft-part">Part 5</div>
+        <div class="ft-title">Loop + CallRail — From Inbound Signals to Pipeline-Ready Strategy</div>
+        <div class="ft-desc">Traditional reporting tells you how many. Loop and CallRail tell you who, why, and what buyers actually said. Here's how to use that intelligence to sharpen every SEO and PPC decision.</div>
+        <ul class="ft-topics"><li>The industrial measurement gap and why it matters</li><li>What CallRail captures and how to use it strategically</li><li>What Loop reveals from form behavior at scale</li><li>Connecting insights to SEO, PPC, and client conversations</li></ul>
+        <span class="ft-cta">Start Part 5 →</span>
+      </a>
+      <a href="industrial-b2b-part6.html" class="ft-card part6">
+        <div class="ft-part">Part 6</div>
+        <div class="ft-title">Client Retention &amp; Heartbeat — Winning the Client Is the Beginning</div>
+        <div class="ft-desc">Retention is not a passive outcome — it's a discipline. Learn how OBx measures client health through Heartbeat, why interactions are table stakes, and how to catch warning signs before they become churn.</div>
+        <ul class="ft-topics"><li>Why retention IS the business — the real cost of churn</li><li>How the Heartbeat Health Score works</li><li>Every factor that builds and breaks the score</li><li>Warning signs to catch before they escalate</li></ul>
+        <span class="ft-cta">Start Part 6 →</span>
+      </a>
+      <div class="card gray" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:32px">
+        <div style="font-size:2.5rem;margin-bottom:16px">🎓</div>
+        <h3 style="margin-bottom:8px">Complete All 6 Parts</h3>
+        <p>Work through the full series to become a confident, well-rounded industrial B2B digital marketer — from strategy through measurement through retention.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT PART CTA -->
+<div class="next-part-cta">
+  <div class="npc-inner">
+    <div class="npc-label">Up Next in the Series</div>
+    <div class="npc-title">Part 2: Industrial SEO Strategy</div>
+    <div class="npc-desc">How to build content architecture that captures industrial buyers — page types, B-SMART applied to content structure, on-page SEO that converts, and real examples from O'Neal Steel and Bison Profab.</div>
+    <a href="industrial-b2b-part2.html" class="npc-btn">Start Part 2 →</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Industrial & B2B Training — Part 1 of 6: Foundations</span>
+    <span>April 2026</span>
+    <span>Enhanced Edition</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+</body>
+</html>

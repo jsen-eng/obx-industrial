@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Industrial B2B — Part 6: Client Retention & Heartbeat</title>
+<style>
+:root {
+  --navy: #1B4F72; --navy-dark: #154360; --orange: #D4551A; --gold: #F5A623;
+  --blue: #2980B9; --slate: #4A6375; --light-gray: #F0F2F5; --border: #DDE3EA;
+  --text: #2C3E50; --text-light: #7F8C8D; --success: #27AE60; --error: #E74C3C;
+  --p2: #0E7C5C; --p3: #D4551A; --p4: #5B3FA8; --p5: #0A7B8E;
+  --p6: #8B1A4A; --p6-dark: #6B1238; --p6-light: rgba(139,26,74,0.07);
+  --hb-good: #27AE60; --hb-warn: #F5A623; --hb-risk: #E74C3C;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; background: var(--light-gray); color: var(--text); line-height: 1.65; }
+
+.top-nav { position: sticky; top: 0; z-index: 300; background: var(--navy); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+.brand { display: flex; align-items: center; }
+.brand-main { color: #fff; font-size: 1.3rem; font-weight: 900; letter-spacing: -0.5px; }
+.brand-main em { color: var(--gold); font-style: normal; }
+.brand-school { color: var(--gold); font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; border-left: 2px solid rgba(245,166,35,0.35); margin-left: 12px; padding-left: 12px; }
+.nav-badge { background: rgba(139,26,74,0.22); color: #EEA8C5; border: 1px solid rgba(139,26,74,0.3); padding: 3px 12px; border-radius: 20px; font-size: 0.71rem; font-weight: 600; }
+
+.series-nav { background: var(--navy-dark); border-bottom: 2px solid rgba(245,166,35,0.12); display: flex; align-items: center; padding: 0 48px; gap: 4px; overflow-x: auto; position: sticky; top: 56px; z-index: 190; }
+.snav-label { color: rgba(255,255,255,0.27); font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.08); margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+.snav-link { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.76rem; font-weight: 600; padding: 13px 14px; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.15s; white-space: nowrap; }
+.snav-link:hover { color: rgba(255,255,255,0.8); }
+.snav-link.active { color: #fff; border-bottom-color: var(--p6); }
+.snav-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.sn-1{background:var(--slate);} .sn-2{background:var(--p2);} .sn-3{background:var(--p3);}
+.sn-4{background:var(--p4);} .sn-5{background:var(--p5);} .sn-6{background:var(--p6);}
+
+.part-header { background: linear-gradient(135deg, #4A0D26 0%, #721540 55%, #8B1A4A 100%); padding: 72px 48px 64px; position: relative; overflow: hidden; }
+.ph-blob { position: absolute; border-radius: 50%; pointer-events: none; top: -80px; right: -60px; width: 420px; height: 420px; background: rgba(255,255,255,0.03); }
+.ph-sq1 { position: absolute; top: 36px; right: 80px; width: 20px; height: 20px; background: rgba(255,255,255,0.1); pointer-events: none; }
+.ph-sq2 { position: absolute; top: 58px; right: 56px; width: 13px; height: 13px; background: rgba(245,166,35,0.4); pointer-events: none; }
+.ph-inner { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
+.ph-series { font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.ph-series::before { content: ''; display: block; width: 24px; height: 2px; background: rgba(255,255,255,0.38); }
+.ph-badge { display: inline-flex; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 5px 12px; color: rgba(255,255,255,0.72); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
+.ph-title { color: #fff; font-size: 2.8rem; font-weight: 900; line-height: 1.12; margin-bottom: 16px; }
+.ph-sub { color: rgba(255,255,255,0.65); font-size: 0.98rem; max-width: 600px; line-height: 1.72; margin-bottom: 30px; }
+.ph-objs { display: flex; flex-wrap: wrap; gap: 9px; }
+.ph-obj { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.13); border-radius: 7px; padding: 7px 13px; color: rgba(255,255,255,0.78); font-size: 0.77rem; }
+.ph-obj::before { content: '✓ '; color: rgba(255,255,255,0.45); }
+
+.accent-bar { height: 4px; background: linear-gradient(90deg, var(--p6) 0%, var(--gold) 50%, var(--navy) 100%); }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+section.sec-light { background: var(--light-gray); padding: 64px 0; }
+section.sec-white { background: #fff; padding: 64px 0; }
+section.sec-dark { background: var(--navy); padding: 64px 0; }
+section.sec-p6 { background: var(--p6-light); padding: 64px 0; border-top: 1px solid rgba(139,26,74,0.1); border-bottom: 1px solid rgba(139,26,74,0.1); }
+
+.sh { margin-bottom: 36px; }
+.sh-tag { font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; color: var(--p6); }
+.sh-tag.wht { color: rgba(255,255,255,0.48); }
+.sh-tag.org { color: var(--orange); }
+.sh-title { font-size: 1.9rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.sh-title.wht { color: #fff; }
+.sh-desc { color: var(--text-light); font-size: 0.91rem; max-width: 700px; line-height: 1.7; }
+.sh-desc.wht { color: rgba(255,255,255,0.6); }
+
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 26px; transition: box-shadow 0.15s, transform 0.15s; }
+.card:hover { box-shadow: 0 5px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
+.card.gray { background: var(--light-gray); }
+.card.navy { background: var(--navy); }
+.card.p6 { background: var(--p6-light); border-color: rgba(139,26,74,0.2); }
+.card h3 { font-size: 0.97rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card.navy h3 { color: var(--gold); }
+.card.p6 h3 { color: var(--p6-dark); }
+.card p { font-size: 0.86rem; color: var(--text-light); line-height: 1.65; }
+.card.navy p { color: rgba(255,255,255,0.72); }
+.card-icon { font-size: 1.8rem; margin-bottom: 12px; }
+
+.tbl { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+.tbl th { background: var(--slate); color: #fff; padding: 13px 18px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.tbl th.p6h { background: var(--p6); }
+.tbl td { padding: 13px 18px; font-size: 0.86rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.55; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: #F8FAFB; }
+.tbl td strong { color: var(--navy); }
+
+.callout { border-radius: 10px; padding: 20px 24px; margin: 24px 0; border-left: 4px solid; }
+.callout.p6 { background: var(--p6-light); border-color: var(--p6); }
+.callout.navy { background: var(--navy); border-color: var(--gold); }
+.callout.gold { background: rgba(245,166,35,0.08); border-color: var(--gold); }
+.callout.orange { background: rgba(212,85,26,0.06); border-color: var(--orange); }
+.callout.green { background: rgba(39,174,96,0.06); border-color: var(--success); }
+.callout.red { background: rgba(231,76,60,0.06); border-color: var(--error); }
+.callout-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.callout.p6 .callout-label { color: var(--p6-dark); }
+.callout.navy .callout-label { color: var(--gold); }
+.callout.gold .callout-label { color: #9A6800; }
+.callout.orange .callout-label { color: var(--orange); }
+.callout.green .callout-label { color: var(--success); }
+.callout.red .callout-label { color: var(--error); }
+.callout p { font-size: 0.88rem; line-height: 1.68; }
+.callout.navy p { color: rgba(255,255,255,0.82); }
+
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { font-size: 0.86rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 9px; align-items: flex-start; line-height: 1.55; }
+ul.plain li:last-child { border-bottom: none; }
+ul.plain li::before { content: '▸'; color: var(--p6); flex-shrink: 0; font-size: 0.8rem; margin-top: 1px; }
+
+/* RETENTION COST CALC */
+.ret-calc { background: var(--navy); border-radius: 14px; padding: 32px; }
+.ret-calc-title { color: var(--gold); font-size: 1rem; font-weight: 800; margin-bottom: 20px; }
+.ret-calc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 20px; }
+.rc-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 18px; text-align: center; }
+.rc-num { font-size: 2rem; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 4px; }
+.rc-num.red { color: #F99; }
+.rc-label { color: rgba(255,255,255,0.52); font-size: 0.74rem; line-height: 1.4; }
+.ret-calc-insight { background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); border-radius: 9px; padding: 16px 20px; }
+.ret-calc-insight p { color: rgba(255,255,255,0.78); font-size: 0.86rem; line-height: 1.65; }
+
+/* HEARTBEAT SCORES */
+.hb-scores { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 28px; }
+.hbs-good { background: rgba(39,174,96,0.08); border-right: 1px solid var(--border); padding: 24px; }
+.hbs-warn { background: rgba(245,166,35,0.08); border-right: 1px solid var(--border); padding: 24px; }
+.hbs-risk { background: rgba(231,76,60,0.08); padding: 24px; }
+.hbs-range { font-size: 2.2rem; font-weight: 900; line-height: 1; margin-bottom: 6px; }
+.hbs-good .hbs-range { color: var(--hb-good); }
+.hbs-warn .hbs-range { color: var(--hb-warn); }
+.hbs-risk .hbs-range { color: var(--hb-risk); }
+.hbs-status { font-size: 0.82rem; font-weight: 700; margin-bottom: 12px; }
+.hbs-good .hbs-status { color: var(--hb-good); }
+.hbs-warn .hbs-status { color: var(--hb-warn); }
+.hbs-risk .hbs-status { color: var(--hb-risk); }
+.hbs-action { font-size: 0.82rem; color: var(--text); line-height: 1.6; margin-bottom: 12px; }
+.hbs-items { list-style: none; padding: 0; }
+.hbs-items li { font-size: 0.79rem; color: var(--text-light); padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; gap: 7px; line-height: 1.5; }
+.hbs-items li:last-child { border-bottom: none; }
+.hbs-items li::before { content: '→'; flex-shrink: 0; font-size: 0.78rem; }
+.hbs-good .hbs-items li::before { color: var(--hb-good); }
+.hbs-warn .hbs-items li::before { color: var(--hb-warn); }
+.hbs-risk .hbs-items li::before { color: var(--hb-risk); }
+
+/* SCORE FACTORS */
+.factor-card { border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+.fc-header { padding: 13px 20px; display: flex; align-items: center; justify-content: space-between; }
+.fc-left { display: flex; align-items: center; gap: 10px; }
+.fc-icon { font-size: 1.1rem; }
+.fc-title { font-weight: 700; color: #fff; font-size: 0.9rem; }
+.fc-pts { background: rgba(255,255,255,0.18); color: #fff; padding: 3px 10px; border-radius: 5px; font-size: 0.72rem; font-weight: 800; }
+.fch-comm { background: var(--navy); }
+.fch-acct { background: var(--p5); }
+.fch-report { background: #7D5A0A; }
+.fch-nps { background: var(--p4); }
+.fch-budget { background: var(--p2); }
+.fch-deact { background: var(--error); }
+.fc-body { background: #fff; border: 1px solid var(--border); border-top: none; }
+.fc-row { display: grid; grid-template-columns: 1fr 80px; border-bottom: 1px solid var(--border); }
+.fc-row:last-child { border-bottom: none; }
+.fc-row-label { padding: 10px 18px; font-size: 0.83rem; color: var(--text); }
+.fc-row-pts { padding: 10px 18px; font-size: 0.83rem; font-weight: 700; text-align: right; display: flex; align-items: center; justify-content: flex-end; }
+.pts-pos { color: var(--hb-good); }
+.pts-neg { color: var(--hb-risk); }
+.pts-cond { color: var(--hb-warn); }
+
+/* INTERACTIONS MATTER */
+.interaction-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.int-card { border-radius: 12px; overflow: hidden; }
+.int-header { padding: 14px 18px; }
+.int-icon { font-size: 1.4rem; margin-bottom: 8px; }
+.int-title { color: #fff; font-weight: 700; font-size: 0.9rem; margin-bottom: 3px; }
+.int-pts { color: rgba(255,255,255,0.65); font-size: 0.75rem; }
+.ih-phone { background: var(--navy); }
+.ih-video { background: var(--p5); }
+.ih-email { background: var(--slate); }
+.ih-report { background: #7D5A0A; }
+.ih-inperson { background: var(--p4); }
+.ih-nps { background: var(--p2); }
+.int-body { background: #fff; border: 1px solid var(--border); border-top: none; padding: 14px 18px; font-size: 0.83rem; color: var(--text); line-height: 1.6; }
+
+/* WARNING SIGNS */
+.warn-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 12px; border-left: 4px solid; }
+.wc-low { border-left-color: var(--hb-warn); }
+.wc-high { border-left-color: var(--hb-risk); }
+.warn-header { padding: 13px 18px; display: flex; align-items: center; gap: 10px; }
+.warn-icon { font-size: 1.1rem; }
+.warn-title { font-weight: 700; font-size: 0.9rem; }
+.wc-low .warn-title { color: #9A6800; }
+.wc-high .warn-title { color: var(--error); }
+.warn-body { padding: 13px 18px; font-size: 0.84rem; color: var(--text); line-height: 1.65; border-top: 1px solid var(--border); }
+.warn-body strong { color: var(--navy); }
+
+/* QPR */
+.qpr-steps { counter-reset: qpr; }
+.qpr-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 12px; }
+.qpr-num { width: 38px; height: 38px; background: var(--p6); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
+.qpr-content { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; flex: 1; }
+.qpr-content h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.qpr-content p { font-size: 0.84rem; color: var(--text-light); line-height: 1.6; }
+
+/* PERF CRITERIA */
+.perf-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.pg-header { padding: 14px 20px; }
+.pgh-green { background: var(--hb-good); }
+.pgh-red { background: var(--hb-risk); }
+.pgh-auto { background: #7D5A0A; }
+.pg-header h3 { color: #fff; font-weight: 700; font-size: 0.88rem; }
+.pg-header p { color: rgba(255,255,255,0.65); font-size: 0.76rem; }
+.pg-body { padding: 16px 20px; background: #fff; border-right: 1px solid var(--border); }
+.pg-body:last-child { border-right: none; }
+.pg-body ul { list-style: none; padding: 0; }
+.pg-body li { font-size: 0.82rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; line-height: 1.5; }
+.pg-body li:last-child { border-bottom: none; }
+.pg-body li::before { content: '▸'; flex-shrink: 0; font-size: 0.78rem; }
+.pgh-green + .pg-body li::before { color: var(--hb-good); }
+.pgh-red + .pg-body li::before { color: var(--hb-risk); }
+.pgh-auto + .pg-body li::before { color: #9A6800; }
+
+/* SERIES COMPLETE */
+.series-complete { background: linear-gradient(135deg, #0A2942 0%, var(--navy) 60%); padding: 72px 48px; text-align: center; }
+.sc-label { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.sc-title { color: #fff; font-size: 2rem; font-weight: 900; margin-bottom: 12px; }
+.sc-desc { color: rgba(255,255,255,0.58); font-size: 0.92rem; max-width: 560px; margin: 0 auto 32px; line-height: 1.7; }
+.sc-parts { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 32px; }
+.sc-part { display: flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 9px 14px; text-decoration: none; transition: all 0.15s; }
+.sc-part:hover { background: rgba(255,255,255,0.12); }
+.sc-p-num { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.66rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.sc-p-label { color: rgba(255,255,255,0.72); font-size: 0.79rem; font-weight: 600; }
+
+/* RECAP */
+.recap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.recap-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; }
+.recap-num { font-size: 2rem; font-weight: 900; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 4px; }
+.recap-title { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.recap-desc { color: rgba(255,255,255,0.62); font-size: 0.81rem; line-height: 1.6; }
+
+.footer { background: #0D1C2B; padding: 42px 48px; text-align: center; }
+.footer-brand { color: #fff; font-size: 1.4rem; font-weight: 900; margin-bottom: 5px; }
+.footer-brand em { color: var(--gold); font-style: normal; }
+.footer-school { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.footer-meta { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.footer-meta span { color: rgba(255,255,255,0.27); font-size: 0.73rem; }
+
+.mt16{margin-top:16px;} .mt24{margin-top:24px;} .mt32{margin-top:32px;}
+.mb16{margin-bottom:16px;} .mb24{margin-bottom:24px;} .mb32{margin-bottom:32px;}
+[id]::before { content: ''; display: block; height: 80px; margin-top: -80px; pointer-events: none; }
+
+@media (max-width: 860px) {
+  .g2,.g3,.hb-scores,.ret-calc-grid,.interaction-grid,.perf-grid,.sc-parts { grid-template-columns: 1fr; }
+  .container { padding: 0 24px; }
+  .top-nav,.series-nav { padding: 0 24px; }
+  .part-header { padding: 52px 24px 48px; }
+  .ph-title { font-size: 2rem; }
+  .recap-grid { grid-template-columns: 1fr; }
+  .fc-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand"><span class="brand-main">Outer<em>Box</em></span><span class="brand-school">B·SCHOOL</span></div>
+  <span class="nav-badge">Part 6 of 6 · Industrial & B2B</span>
+</nav>
+
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="industrial-b2b-part1.html" class="snav-link"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="industrial-b2b-part2.html" class="snav-link"><span class="snav-num sn-2">2</span>SEO Strategy</a>
+  <a href="industrial-b2b-part3.html" class="snav-link"><span class="snav-num sn-3">3</span>PPC Strategy</a>
+  <a href="industrial-b2b-part4.html" class="snav-link"><span class="snav-num sn-4">4</span>Communication</a>
+  <a href="industrial-b2b-part5.html" class="snav-link"><span class="snav-num sn-5">5</span>Loop & CallRail</a>
+  <a href="industrial-b2b-part6.html" class="snav-link active"><span class="snav-num sn-6">6</span>Retention & Heartbeat</a>
+</div>
+
+<div class="part-header">
+  <div class="ph-blob"></div><div class="ph-sq1"></div><div class="ph-sq2"></div>
+  <div class="ph-inner">
+    <div class="ph-series">Industrial & B2B Training Series — Final Part</div>
+    <div class="ph-badge">Part 6 — Client Retention & Heartbeat</div>
+    <h1 class="ph-title">Winning the Client<br>is the Beginning.<br>Keeping Them is the Business.</h1>
+    <p class="ph-sub">Everything in this series — the strategy, the communication, the measurement — only creates lasting value if the client stays. Retention is not a passive outcome. It's a discipline. And Heartbeat is how OBx measures it.</p>
+    <div class="ph-objs">
+      <span class="ph-obj">Understand why retention IS the business</span>
+      <span class="ph-obj">Know the true cost of losing a client</span>
+      <span class="ph-obj">Understand what Heartbeat measures and why</span>
+      <span class="ph-obj">Know every factor in the Health Score</span>
+      <span class="ph-obj">Treat interactions as table stakes — not nice-to-have</span>
+      <span class="ph-obj">Catch warning signs before they become churn</span>
+    </div>
+  </div>
+</div>
+<div class="accent-bar"></div>
+
+<!-- SECTION 1: RETENTION IS THE BUSINESS -->
+<section class="sec-white" id="why-retention">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1 — The Foundation</div>
+      <h2 class="sh-title">Retention Is the Business</h2>
+      <p class="sh-desc">Acquiring a client is expensive. Losing one is catastrophic — not just financially, but in momentum, morale, and the credibility that comes from sustained results. In industrial B2B, where relationships compound over time, retention is where the real value is built.</p>
+    </div>
+
+    <div class="callout navy mb32">
+      <div class="callout-label">The Math That Makes This Non-Negotiable</div>
+      <p>OBx's target is <strong style="color:var(--gold)">&gt;96% account retention and &gt;96% MRR retention</strong> — measured monthly. That target exists because we know the math: a retained client with a growing relationship is exponentially more valuable than the constant treadmill of replacing churned accounts. Retention isn't just good for clients. It's the financial engine of the business.</p>
+    </div>
+
+    <div class="ret-calc mb32">
+      <div class="ret-calc-title">The Real Cost of Losing One Industrial B2B Client</div>
+      <div class="ret-calc-grid">
+        <div class="rc-item">
+          <div class="rc-num red">$3,500</div>
+          <div class="rc-label">Average monthly retainer lost immediately at churn</div>
+        </div>
+        <div class="rc-item">
+          <div class="rc-num red">$42,000</div>
+          <div class="rc-label">Annual MRR lost from a single account churn</div>
+        </div>
+        <div class="rc-item">
+          <div class="rc-num red">$84,000–<br>$126,000</div>
+          <div class="rc-label">2–3 year LTV of a retained industrial client — gone</div>
+        </div>
+      </div>
+      <div class="ret-calc-insight">
+        <p><strong style="color:var(--gold)">And it gets worse.</strong> The cost isn't just the lost revenue. It's the acquisition cost to replace them, the ramp-up time to rebuild momentum with a new client, the team morale hit, and the reputational impact if the departure wasn't handled well. <strong style="color:var(--gold)">Losing one industrial client costs you far more than the last invoice they paid.</strong></p>
+      </div>
+    </div>
+
+    <div class="g3">
+      <div class="card p6">
+        <div class="card-icon">📈</div>
+        <h3>Retention Drives Growth</h3>
+        <p>A retained client with an expanding relationship is your best growth story. Cross-sells, service expansions, and budget increases all start with trust — which starts with consistent performance and consistent communication.</p>
+      </div>
+      <div class="card p6">
+        <div class="card-icon">🔁</div>
+        <h3>Churn Creates a Treadmill</h3>
+        <p>When accounts churn at even 5–8%, you spend all of your growth just staying flat. Every churned account requires a new client just to break even — before you can actually grow. Retention is the multiplier on every new business win.</p>
+      </div>
+      <div class="card p6">
+        <div class="card-icon">🤝</div>
+        <h3>Industrial Relationships Compound</h3>
+        <p>In industrial B2B, long-term relationships mean deeper knowledge of the client's business, stronger ICP alignment, and more intelligent strategy over time. The longer you work with an industrial client, the better you get at driving results for them. Don't give that up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: WHAT IS HEARTBEAT -->
+<section class="sec-light" id="heartbeat">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2 — The Tool</div>
+      <h2 class="sh-title">What Is Heartbeat?</h2>
+      <p class="sh-desc">Heartbeat is OBx's client health monitoring system. It translates the quality of your client relationships and account management behaviors into a quantitative score — giving you a real-time view of where every client stands, before a problem becomes a conversation you weren't prepared for.</p>
+    </div>
+
+    <div class="g2 mb32">
+      <div class="card">
+        <h3>What Heartbeat Measures</h3>
+        <ul class="plain mt16">
+          <li>How consistently you're communicating with the client (voice, email, meetings)</li>
+          <li>How well you're delivering on your commitments (plan adherence, request fulfillment)</li>
+          <li>Whether reports are submitted on time — the most basic accountability signal</li>
+          <li>Client satisfaction as measured by NPS scores</li>
+          <li>Budget health — are they maintaining, growing, or declining investment?</li>
+          <li>Whether service line changes or deactivation requests have occurred</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Why It Matters</h3>
+        <ul class="plain mt16">
+          <li>Without it, at-risk accounts often go undetected until a cancellation notice arrives</li>
+          <li>It creates accountability — account health is visible to the team, not just the IC</li>
+          <li>It quantifies things that are often treated as subjective — "how is the relationship?"</li>
+          <li>It catches patterns early — declining score over 3 weeks is a signal, not a surprise</li>
+          <li>It aligns the entire team around what "doing the job well" actually looks like day to day</li>
+          <li>It keeps client interactions from being reactive — you manage proactively because the score is always visible</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout p6">
+      <div class="callout-label">Think of It This Way</div>
+      <p>If Heartbeat is showing a client at 68 — that's not a scoring system telling you you're failing. <strong>That's an early warning system telling you to act before the client starts looking elsewhere.</strong> Every point in the score is a behavior. Change the behaviors and the score — and the relationship — changes with it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: THE HEALTH SCORE -->
+<section class="sec-white" id="health-score">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 3 — The Score</div>
+      <h2 class="sh-title">The Health Score: Ranges, Meaning, and What to Do</h2>
+      <p class="sh-desc">Health is scored on a scale of 0–100. Every account falls into one of three zones — and each zone carries a different expectation for how you respond. Know your zones.</p>
+    </div>
+
+    <div class="hb-scores mb32">
+      <div class="hbs-good">
+        <div class="hbs-range">85–100</div>
+        <div class="hbs-status">✅ Good</div>
+        <div class="hbs-action">The relationship is healthy. Communication is consistent, deliverables are on track, and the client is satisfied. Your job here is to <strong>maintain and expand</strong> — not coast.</div>
+        <ul class="hbs-items">
+          <li>Keep communication cadence strong — don't let it drift</li>
+          <li>Look for cross-sell opportunities — healthy clients are expansion candidates</li>
+          <li>Proactively share wins and positive signals before the monthly report</li>
+          <li>Explore deeper strategy conversations and QBRs</li>
+        </ul>
+      </div>
+      <div class="hbs-warn">
+        <div class="hbs-range">70–84</div>
+        <div class="hbs-status">⚠️ Needs Attention</div>
+        <div class="hbs-action">Something in the relationship has slipped. The score is declining — and if not addressed, it will move into At Risk territory. <strong>Act now, not at the next check-in.</strong></div>
+        <ul class="hbs-items">
+          <li>Identify which factor(s) dropped the score — communication? Reporting? NPS?</li>
+          <li>Schedule a direct check-in call — don't just send an email</li>
+          <li>Acknowledge any slippage before the client has to bring it up</li>
+          <li>Create a specific action plan to recover the score within 30 days</li>
+        </ul>
+      </div>
+      <div class="hbs-risk">
+        <div class="hbs-range">0–69</div>
+        <div class="hbs-status">🔴 At Risk</div>
+        <div class="hbs-action">The relationship is in jeopardy. This requires immediate attention and escalation. An At Risk account can churn — and OBx's target is <strong>fewer than 8 At Risk accounts at any time.</strong></div>
+        <ul class="hbs-items">
+          <li>Escalate immediately — this requires team and leadership awareness</li>
+          <li>Schedule an urgent client meeting — voice or video, not email</li>
+          <li>Conduct a root cause analysis — what went wrong and when?</li>
+          <li>Build a formal recovery plan with milestones and leadership sign-off</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-label">Performance Standard</div>
+      <p>An account is considered <strong>positively performing</strong> if it meets 2 out of 3 criteria: (1) pacing ahead in Traffic YoY/YTD, (2) pacing ahead on Revenue/Leads YoY/YTD, (3) growing in Share of Voice. <strong>If Revenue/Leads is negative — it's an automatic negative, regardless of other metrics.</strong> If performance drops below 80% for 3 consecutive weeks, it must be raised with the broader team. Your target: over 80% of assigned accounts with positive performance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: SCORE FACTORS -->
+<section class="sec-light" id="factors">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 4 — What Builds and Breaks the Score</div>
+      <h2 class="sh-title">Every Point Has a Behavior Behind It</h2>
+      <p class="sh-desc">The Health Score is not abstract. Every point up or down is tied to a specific, measurable behavior. Know what they are and you'll know exactly how to manage your score — and your client relationships.</p>
+    </div>
+
+    <div class="factor-card">
+      <div class="fc-header fch-comm"><div class="fc-left"><span class="fc-icon">📞</span><span class="fc-title">Voice Communication</span></div><span class="fc-pts">Up to +20 pts / rolling 31 days</span></div>
+      <div class="fc-body">
+        <div class="fc-row"><div class="fc-row-label"><strong>Phone Call</strong> — At least 1 check-in call per rolling 31 days</div><div class="fc-row-pts pts-pos">+15</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Video Meeting</strong> — At least 1 video meeting per rolling 31 days (highest value)</div><div class="fc-row-pts pts-pos">+20</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>In-Person Meeting</strong> — At least 1 in-person meeting per rolling 31 days</div><div class="fc-row-pts pts-pos">+20</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>No Voice Communication</strong> — No voice contact in rolling 45 days</div><div class="fc-row-pts pts-neg">−10</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>No Communication at All</strong> — Complete silence for 45 days</div><div class="fc-row-pts pts-neg">−10</div></div>
+        <div class="fc-row" style="border-bottom:none"><div class="fc-row-label" style="font-size:0.79rem;color:var(--text-light);font-style:italic">Note: Teams earn phone call credit for up to 2 calls if no meeting occurs. Teams earn video meeting credit for up to 2 meetings if no phone call occurs.</div><div class="fc-row-pts"></div></div>
+      </div>
+    </div>
+
+    <div class="factor-card">
+      <div class="fc-header fch-comm" style="background:var(--slate)"><div class="fc-left"><span class="fc-icon">📧</span><span class="fc-title">Client Communication</span></div><span class="fc-pts">+5 pts each / rolling 31 days</span></div>
+      <div class="fc-body">
+        <div class="fc-row"><div class="fc-row-label"><strong>Voicemail</strong> — At least 1 voicemail logged</div><div class="fc-row-pts pts-pos">+5</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Email Follow-Up</strong> — Email sent following a call attempt</div><div class="fc-row-pts pts-pos">+5</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Email Communication</strong> — General email to client (excluding reports)</div><div class="fc-row-pts pts-pos">+5</div></div>
+        <div class="fc-row" style="border-bottom:none"><div class="fc-row-label"><strong>Channel Touchpoints Bonus</strong> — At least 1 person from each active service line logs an interaction TA Type</div><div class="fc-row-pts pts-pos">+5</div></div>
+      </div>
+    </div>
+
+    <div class="factor-card">
+      <div class="fc-header fch-acct"><div class="fc-left"><span class="fc-icon">✅</span><span class="fc-title">Accountability Metrics</span></div><span class="fc-pts">Up to +23 pts / rolling 31 days</span></div>
+      <div class="fc-body">
+        <div class="fc-row"><div class="fc-row-label"><strong>Plan Adherence</strong> — All planned tasks completed within the budget month</div><div class="fc-row-pts pts-pos">+10</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Client Request</strong> — Time logged meets 30% of monthly budget</div><div class="fc-row-pts pts-pos">+7</div></div>
+        <div class="fc-row" style="border-bottom:none"><div class="fc-row-label"><strong>Implementation Time</strong> — Time logged toward On-Page optimization + Account Management</div><div class="fc-row-pts pts-pos">+6</div></div>
+      </div>
+    </div>
+
+    <div class="factor-card">
+      <div class="fc-header fch-report"><div class="fc-left"><span class="fc-icon">📊</span><span class="fc-title">Reporting Requirements</span></div><span class="fc-pts">Up to +15 pts / −15 pts</span></div>
+      <div class="fc-body">
+        <div class="fc-row"><div class="fc-row-label"><strong>Report by the 15th</strong> — Best outcome, maximum points</div><div class="fc-row-pts pts-pos">+15</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Report by the 20th</strong> — Still acceptable, reduced points</div><div class="fc-row-pts pts-cond">+10</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Late Report (after EOM)</strong> — Penalized</div><div class="fc-row-pts pts-neg">−5</div></div>
+        <div class="fc-row" style="border-bottom:none"><div class="fc-row-label"><strong>No Report</strong> — Significant penalty; never acceptable</div><div class="fc-row-pts pts-neg">−15</div></div>
+      </div>
+    </div>
+
+    <div class="factor-card">
+      <div class="fc-header fch-nps"><div class="fc-left"><span class="fc-icon">😊</span><span class="fc-title">Client Sentiment (NPS)</span></div><span class="fc-pts">Rolling 31 days</span></div>
+      <div class="fc-body">
+        <div class="fc-row"><div class="fc-row-label">NPS &gt;10 (Promoter)</div><div class="fc-row-pts pts-pos">+10</div></div>
+        <div class="fc-row"><div class="fc-row-label">NPS = 9</div><div class="fc-row-pts pts-pos">+9</div></div>
+        <div class="fc-row"><div class="fc-row-label">NPS = 7 or 8 (Passive)</div><div class="fc-row-pts pts-cond">+8</div></div>
+        <div class="fc-row"><div class="fc-row-label">NPS = 6</div><div class="fc-row-pts pts-neg">−5</div></div>
+        <div class="fc-row"><div class="fc-row-label">NPS ≤ 5 (Detractor)</div><div class="fc-row-pts pts-neg">−10</div></div>
+        <div class="fc-row" style="border-bottom:none"><div class="fc-row-label">No Response</div><div class="fc-row-pts pts-cond">+5</div></div>
+      </div>
+    </div>
+
+    <div class="factor-card">
+      <div class="fc-header fch-budget"><div class="fc-left"><span class="fc-icon">💰</span><span class="fc-title">Budget Management</span></div><span class="fc-pts">Rolling 60 days</span></div>
+      <div class="fc-body">
+        <div class="fc-row"><div class="fc-row-label"><strong>Maintain Budget</strong> — No changes in 60 days</div><div class="fc-row-pts pts-pos">+5</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Budget Increase</strong></div><div class="fc-row-pts pts-pos">+10</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Cross Sells</strong> — Via Proposaltron</div><div class="fc-row-pts pts-pos">+15</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>POC Consistency</strong> — No internal POC changes in period</div><div class="fc-row-pts pts-pos">+5</div></div>
+        <div class="fc-row" style="border-bottom:none"><div class="fc-row-label"><strong>Budget Decrease</strong></div><div class="fc-row-pts pts-neg">−15</div></div>
+      </div>
+    </div>
+
+    <div class="factor-card">
+      <div class="fc-header fch-deact"><div class="fc-left"><span class="fc-icon">🚫</span><span class="fc-title">Service Line Changes & Deactivations</span></div><span class="fc-pts">Rolling 90 days</span></div>
+      <div class="fc-body">
+        <div class="fc-row"><div class="fc-row-label"><strong>No Deactivation Within 90 Days</strong></div><div class="fc-row-pts pts-pos">+5</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Service Line Resumed Within 90 Days</strong></div><div class="fc-row-pts pts-pos">+10</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Deactivation Request</strong></div><div class="fc-row-pts pts-neg">−15</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>Service Line Change</strong></div><div class="fc-row-pts pts-neg">−10</div></div>
+        <div class="fc-row"><div class="fc-row-label"><strong>LOOP Deactivation</strong></div><div class="fc-row-pts pts-neg">−5</div></div>
+        <div class="fc-row" style="border-bottom:none"><div class="fc-row-label"><strong>Account Churn</strong> — The worst outcome</div><div class="fc-row-pts pts-neg">−35</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: INTERACTIONS ARE TABLE STAKES -->
+<section class="sec-p6" id="interactions">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 5 — Non-Negotiable</div>
+      <h2 class="sh-title">Interactions Are Table Stakes — Not Optional</h2>
+      <p class="sh-desc">The most common driver of declining Heartbeat scores isn't bad strategy or missed results. It's a drift in communication frequency. This section is direct: if you're not touching the client regularly, you're not doing the job.</p>
+    </div>
+
+    <div class="callout navy mb32">
+      <div class="callout-label">The Reality</div>
+      <p>Industrial clients are busy. They're running production floors, managing supply chains, and dealing with real operational pressure. When your communication drifts, <strong style="color:var(--gold)">they don't assume things are going well. They start wondering if anything is happening at all.</strong> Silence creates narratives — and in the absence of information, clients tell themselves a story. Make sure you're the one writing that story by staying in contact.</p>
+    </div>
+
+    <div class="interaction-grid mb32">
+      <div class="int-card">
+        <div class="int-header ih-phone"><div class="int-icon">📞</div><div class="int-title">Phone Check-In Call</div><div class="int-pts">+15 pts · At least 1 per 31 days</div></div>
+        <div class="int-body">A 15-minute check-in call is worth more than a long report that goes unread. Phone calls signal you're attentive, you're available, and you care how things are going — not just in the metrics. For industrial clients who are often more comfortable talking than emailing, calls are especially high-value.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-header ih-video"><div class="int-icon">💻</div><div class="int-title">Video Meeting</div><div class="int-pts">+20 pts · Highest single communication score</div></div>
+        <div class="int-body">Video meetings build the most trust per interaction because they're personal, focused, and demonstrate commitment of time on both sides. Monthly strategy reviews, QBRs, and kickoffs should always be video. Even a brief mid-month check-in on video signals seriousness.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-header ih-email"><div class="int-icon">📧</div><div class="int-title">Email Communication</div><div class="int-pts">+5 pts each · Separate from reports</div></div>
+        <div class="int-body">Regular email communication — sharing a quick win, flagging an opportunity, acknowledging a concern — keeps the relationship warm between formal touchpoints. This is distinct from sending reports. A "wanted to share something I noticed in your account this week" email is worth 5 points and significant goodwill.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-header ih-report"><div class="int-icon">📊</div><div class="int-title">Monthly Report — By the 15th</div><div class="int-pts">+15 pts · Late reports penalized</div></div>
+        <div class="int-body">The monthly report is the most visible deliverable you own. Submitting by the 15th signals professionalism and accountability. Late reports — especially after EOM — send the opposite signal. The report is often what the client shows their leadership team. Make it count, and make it on time, every time.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-header ih-inperson"><div class="int-icon">🤝</div><div class="int-title">In-Person Meeting</div><div class="int-pts">+20 pts · Same as video</div></div>
+        <div class="int-body">In industrial B2B especially, face-to-face relationships matter enormously. If you have the opportunity to visit a client on-site — to see their facility, meet the team, and understand their operation firsthand — take it. Nothing accelerates trust like showing up in person. It's also one of the best ways to generate Loop-relevant ICP insight.</div>
+      </div>
+      <div class="int-card">
+        <div class="int-header ih-nps"><div class="int-icon">⭐</div><div class="int-title">NPS Response</div><div class="int-pts">Up to +10 pts · Detractor = −10 pts</div></div>
+        <div class="int-body">NPS is your direct signal of how the client feels. A detractor (≤5) is a client who will tell others they're unhappy — proactive relationship repair is urgent. A passive (7–8) is a client who could go either way. A promoter (&gt;9) is a client you should ask for a testimonial and look to expand. Don't wait for bad NPS to have a retention conversation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: WARNING SIGNS -->
+<section class="sec-white" id="warnings">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 6 — Catch It Early</div>
+      <h2 class="sh-title">Retention Warning Signs — Catch Them Before They Escalate</h2>
+      <p class="sh-desc">Most client churn doesn't happen overnight. It builds over weeks and months through patterns that are visible — if you're paying attention. Here are the signals that tell you a relationship needs immediate attention.</p>
+    </div>
+
+    <div class="g2 mb32">
+      <div>
+        <h3 style="font-size:1rem;font-weight:700;color:var(--hb-warn);margin-bottom:14px">⚠️ Early Warning Signs — Act Proactively</h3>
+        <div class="warn-card wc-low">
+          <div class="warn-header"><span class="warn-icon">📉</span><span class="warn-title">Communication Frequency Is Dropping</span></div>
+          <div class="warn-body">Meetings are being rescheduled, emails are going days without a response, and you're doing most of the outreach. <strong>Act immediately.</strong> A client going quiet is a client who is either frustrated or disengaged — neither is good. Schedule a direct check-in call and use ELFEC to open the conversation honestly.</div>
+        </div>
+        <div class="warn-card wc-low">
+          <div class="warn-header"><span class="warn-icon">😶</span><span class="warn-title">Short, Disengaged Responses in Meetings</span></div>
+          <div class="warn-body">The client used to ask questions and engage. Now they say "sounds good" to everything and seem distracted. <strong>They've mentally checked out or are evaluating alternatives.</strong> This is the time for an honest ELFEC-structured conversation — start with Listen and create real space for them to share what's changed.</div>
+        </div>
+        <div class="warn-card wc-low">
+          <div class="warn-header"><span class="warn-icon">🔍</span><span class="warn-title">Requests for Detailed Competitive Analysis</span></div>
+          <div class="warn-body">Suddenly they want to know what competitors are doing and what other agencies charge. <strong>This often means they're in evaluation mode.</strong> Respond by leaning into your value story — bring specific results data, Loop/CallRail insights, and a forward-looking strategy conversation that reminds them what they'd be giving up.</div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:1rem;font-weight:700;color:var(--hb-risk);margin-bottom:14px">🔴 High-Alert Signs — Escalate Immediately</h3>
+        <div class="warn-card wc-high">
+          <div class="warn-header"><span class="warn-icon">💸</span><span class="warn-title">Budget Reduction Request or Pause</span></div>
+          <div class="warn-body">A budget decrease is one of the most significant negative signals in the Health Score (−15). <strong>Don't let this conversation happen without a direct meeting first.</strong> Understand the driver — financial constraint, performance concern, or change in strategy — and address it head-on with data and a specific plan.</div>
+        </div>
+        <div class="warn-card wc-high">
+          <div class="warn-header"><span class="warn-icon">❌</span><span class="warn-title">Service Line Deactivation Request</span></div>
+          <div class="warn-body">This is a formal at-risk signal. The client has made a decision to reduce scope. <strong>Escalate within the team immediately, schedule an urgent retention conversation, and conduct a root cause analysis.</strong> What happened, when did it start, and what can be done? Come to the conversation prepared with a concrete recovery plan.</div>
+        </div>
+        <div class="warn-card wc-high">
+          <div class="warn-header"><span class="warn-icon">📊</span><span class="warn-title">Negative Performance for 3+ Consecutive Weeks</span></div>
+          <div class="warn-body">If an account is underperforming on Revenue/Leads for 3 consecutive weeks, it <strong>must be raised with the broader team — this is policy, not optional.</strong> Underperformance that isn't proactively addressed becomes a retention crisis. Bring a specific action plan, set a clear expectation timeline, and communicate directly with the client about what you're doing about it.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: THE QUARTERLY PORTFOLIO REVIEW -->
+<section class="sec-light" id="qpr">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 7</div>
+      <h2 class="sh-title">The Quarterly Portfolio Review</h2>
+      <p class="sh-desc">Every 90 days, accounts are formally reviewed for health, performance, and risk. The Quarterly Portfolio Review (QPR) is where retention is proactively managed at a team level — not just individually. Here's how it works and why it matters.</p>
+    </div>
+
+    <div class="qpr-steps mb32">
+      <div class="qpr-step">
+        <div class="qpr-num">1</div>
+        <div class="qpr-content">
+          <h4>At-Risk Account Spotlight — 25-Minute Block</h4>
+          <p>Each QPR dedicates focused time to 2–3 accounts with underperformance or client dissatisfaction. This isn't a blame session — it's a structured, team-level problem-solving conversation. Who knows this client? What do we know about the root cause? What's the plan?</p>
+        </div>
+      </div>
+      <div class="qpr-step">
+        <div class="qpr-num">2</div>
+        <div class="qpr-content">
+          <h4>Root Cause Discussion</h4>
+          <p>For each at-risk account, identify the specific cause: revised content plans, technical audits, communication gaps, performance issues, or a shift in client expectations. Name it specifically — vague root causes lead to vague solutions.</p>
+        </div>
+      </div>
+      <div class="qpr-step">
+        <div class="qpr-num">3</div>
+        <div class="qpr-content">
+          <h4>Corrective Action Plan</h4>
+          <p>Every at-risk account reviewed should leave the QPR with a specific, time-bound corrective action plan. Who owns what, by when, and what does success look like in 30 and 60 days? Apply the "Who Will Do What By When" framework.</p>
+        </div>
+      </div>
+      <div class="qpr-step">
+        <div class="qpr-num">4</div>
+        <div class="qpr-content">
+          <h4>Preparation: What to Bring</h4>
+          <p>Review client sentiment, recent communication history, NPS scores, and QoQ/YoY performance trends before the QPR. Heartbeat's health history and account field data are your primary inputs. The more prepared you are, the more productive the conversation.</p>
+        </div>
+      </div>
+      <div class="qpr-step" style="margin-bottom:0">
+        <div class="qpr-num">5</div>
+        <div class="qpr-content" style="margin-bottom:0">
+          <h4>The Goal: Prevent the Conversation You Weren't Prepared For</h4>
+          <p>The QPR exists so that churn doesn't come as a surprise. Every churn event that could have been prevented with earlier intervention is a failure of proactive management — not just of delivery. The QPR is the system that closes that gap.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout green">
+      <div class="callout-label">Key Benefits of the QPR</div>
+      <p><strong>Proactive support</strong> builds long-term trust and client loyalty. <strong>Aligned expectations</strong> reduce the misunderstandings that lead to churn. <strong>Early issue detection</strong> pinpoints underperformance before it escalates into a cancellation notice. These three outcomes are why the QPR is a non-negotiable part of how OBx manages client health.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: RETENTION IN INDUSTRIAL B2B -->
+<section class="sec-white" id="industrial-retention">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 8 — Vertical Context</div>
+      <h2 class="sh-title">Retention in Industrial B2B: Why It's Different Here</h2>
+      <p class="sh-desc">Everything you've learned about Heartbeat and client health applies across all clients. But industrial B2B clients have specific retention dynamics that are worth knowing before you find out the hard way.</p>
+    </div>
+
+    <div class="g2 mb32">
+      <div class="card">
+        <h3>🏭 The Industrial Client's Retention Mindset</h3>
+        <ul class="plain mt16">
+          <li>Industrial clients have long memories — they remember what you promised in the kickoff</li>
+          <li>They are skeptical of digital marketing until they see real results — patience is required but results matter enormously</li>
+          <li>Lead quality concerns can surface months into a program once the sales team weighs in</li>
+          <li>They often don't proactively give feedback — going quiet doesn't mean things are fine</li>
+          <li>They make decisions slowly — but once they decide to leave, it's usually final</li>
+          <li>They talk to peers in the industry — your reputation with one industrial client can influence others</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🔑 Retention Behaviors That Work in This Vertical</h3>
+        <ul class="plain mt16">
+          <li>Bring industry intelligence proactively — search trends, competitor movements, new keyword opportunities</li>
+          <li>Use Loop + CallRail data to show you understand their buyers at a level they don't have internally</li>
+          <li>Connect wins back to business outcomes in their language — not digital marketing jargon</li>
+          <li>Acknowledge the long sales cycle early and set realistic expectations about attribution timelines</li>
+          <li>Ask about sales team feedback on lead quality at every monthly review — close the loop</li>
+          <li>Educate them on the value of what we're building — organic rankings compound; stopping too early means losing the investment</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:18px">Account Performance Standards — Know What You're Being Measured Against</h3>
+    <div class="perf-grid mb32">
+      <div>
+        <div class="pg-header pgh-green"><h3>✅ Positively Performing</h3><p>Meets 2 of 3 criteria</p></div>
+        <div class="pg-body">
+          <ul>
+            <li>Pacing ahead in Traffic (Users/Sessions) YoY/YTD</li>
+            <li>Pacing ahead on Revenue/Leads YoY/YTD</li>
+            <li>Growing in Share of Voice</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="pg-header pgh-red"><h3>❌ Negatively Performing</h3><p>Revenue/Leads = automatic negative</p></div>
+        <div class="pg-body">
+          <ul>
+            <li>Revenue/Leads negative = automatic negative regardless of other metrics</li>
+            <li>Only 1 of 3 performance criteria met</li>
+            <li>Performance below 80% for any period</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="pg-header pgh-auto"><h3>🚨 Escalation Required</h3><p>Mandatory team raise</p></div>
+        <div class="pg-body">
+          <ul>
+            <li>Performance drops below 80% for 3 consecutive weeks</li>
+            <li>Issue must be raised with broader team — this is policy</li>
+            <li>Target: &gt;80% of assigned accounts positively performing at all times</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECAP -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh"><div class="sh-tag wht">Part 6 Recap</div><h2 class="sh-title wht">What You Can Now Do</h2><p class="sh-desc wht">After Part 6, you understand not just how to win for clients — but how to keep them. Retention is the outcome of everything in this series done consistently and well.</p></div>
+    <div class="recap-grid">
+      <div class="recap-item"><div class="recap-num">01</div><div class="recap-title">Understand Why Retention Matters</div><div class="recap-desc">Articulate the true cost of client loss — not just the retainer, but the LTV, the replacement cost, and the compounding loss of a long-term relationship.</div></div>
+      <div class="recap-item"><div class="recap-num">02</div><div class="recap-title">Know the Health Score System</div><div class="recap-desc">Understand all six score factor categories, know the score ranges and what each requires from you, and proactively manage your accounts to stay in the Good zone.</div></div>
+      <div class="recap-item"><div class="recap-num">03</div><div class="recap-title">Treat Interactions as Table Stakes</div><div class="recap-desc">Regular voice communication, timely reports, and consistent email touchpoints are not above and beyond — they are the baseline expectation. Own your communication cadence.</div></div>
+      <div class="recap-item"><div class="recap-num">04</div><div class="recap-title">Catch Warning Signs Early</div><div class="recap-desc">Recognize the patterns that predict churn — communication drift, disengaged meetings, budget conversations — and act before the conversation you weren't prepared for.</div></div>
+      <div class="recap-item"><div class="recap-num">05</div><div class="recap-title">Engage the QPR Process</div><div class="recap-desc">Come prepared to Quarterly Portfolio Reviews with client sentiment, performance data, and a clear root cause and action plan for any at-risk accounts you own.</div></div>
+      <div class="recap-item"><div class="recap-num">06</div><div class="recap-title">Apply Everything From This Series</div><div class="recap-desc">Retention is the outcome of great strategy (Parts 2–3), great communication (Part 4), great measurement (Part 5), and consistent relationship management (Part 6). It all connects.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERIES COMPLETE -->
+<div class="series-complete">
+  <div class="sc-label">🎓 Series Complete</div>
+  <h2 class="sc-title">Industrial & B2B Training Series</h2>
+  <p class="sc-desc">You've completed all 6 parts of the OBx B-School Industrial & B2B Training Series. You now have everything you need to work confidently in this vertical — from understanding the buyer to winning, serving, and retaining the client.</p>
+  <div class="sc-parts">
+    <a href="industrial-b2b-part1.html" class="sc-part"><span class="sc-p-num" style="background:var(--slate)">1</span><span class="sc-p-label">Foundations</span></a>
+    <a href="industrial-b2b-part2.html" class="sc-part"><span class="sc-p-num" style="background:var(--p2)">2</span><span class="sc-p-label">SEO Strategy</span></a>
+    <a href="industrial-b2b-part3.html" class="sc-part"><span class="sc-p-num" style="background:var(--p3)">3</span><span class="sc-p-label">PPC Strategy</span></a>
+    <a href="industrial-b2b-part4.html" class="sc-part"><span class="sc-p-num" style="background:var(--p4)">4</span><span class="sc-p-label">Communication</span></a>
+    <a href="industrial-b2b-part5.html" class="sc-part"><span class="sc-p-num" style="background:var(--p5)">5</span><span class="sc-p-label">Loop & CallRail</span></a>
+    <a href="industrial-b2b-part6.html" class="sc-part"><span class="sc-p-num" style="background:var(--p6)">6</span><span class="sc-p-label">Retention & Heartbeat</span></a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Industrial & B2B Training — Part 6: Client Retention & Heartbeat</span>
+    <span>April 2026</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+</body>
+</html>

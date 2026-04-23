@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Industrial B2B — Part 3: PPC Strategy</title>
+<style>
+:root {
+  --navy: #1B4F72; --navy-dark: #154360; --orange: #D4551A; --gold: #F5A623;
+  --blue: #2980B9; --slate: #4A6375; --light-gray: #F0F2F5; --border: #DDE3EA;
+  --text: #2C3E50; --text-light: #7F8C8D; --success: #27AE60; --error: #E74C3C;
+  --p2: #0E7C5C; --p3: #D4551A; --p3-dark: #A03E14; --p3-light: rgba(212,85,26,0.07);
+  --p4: #5B3FA8; --p5: #0A7B8E; --p6: #8B1A4A;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; background: var(--light-gray); color: var(--text); line-height: 1.65; }
+
+.top-nav { position: sticky; top: 0; z-index: 300; background: var(--navy); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+.brand { display: flex; align-items: center; }
+.brand-main { color: #fff; font-size: 1.3rem; font-weight: 900; letter-spacing: -0.5px; }
+.brand-main em { color: var(--gold); font-style: normal; }
+.brand-school { color: var(--gold); font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; border-left: 2px solid rgba(245,166,35,0.35); margin-left: 12px; padding-left: 12px; }
+.nav-badge { background: rgba(212,85,26,0.22); color: #FBAB80; border: 1px solid rgba(212,85,26,0.3); padding: 3px 12px; border-radius: 20px; font-size: 0.71rem; font-weight: 600; }
+
+.series-nav { background: var(--navy-dark); border-bottom: 2px solid rgba(245,166,35,0.12); display: flex; align-items: center; padding: 0 48px; gap: 4px; overflow-x: auto; position: sticky; top: 56px; z-index: 190; }
+.snav-label { color: rgba(255,255,255,0.27); font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.08); margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+.snav-link { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.76rem; font-weight: 600; padding: 13px 14px; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.15s; white-space: nowrap; }
+.snav-link:hover { color: rgba(255,255,255,0.8); }
+.snav-link.active { color: #fff; border-bottom-color: var(--p3); }
+.snav-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.sn-1{background:var(--slate);} .sn-2{background:var(--p2);} .sn-3{background:var(--p3);}
+.sn-4{background:var(--p4);} .sn-5{background:var(--p5);} .sn-6{background:var(--p6);}
+
+.part-header { background: linear-gradient(135deg, #8A2E0A 0%, #C04A16 45%, #D4551A 100%); padding: 72px 48px 64px; position: relative; overflow: hidden; }
+.ph-blob { position: absolute; border-radius: 50%; pointer-events: none; top: -80px; right: -60px; width: 420px; height: 420px; background: rgba(255,255,255,0.03); }
+.ph-s1 { position: absolute; top: 36px; right: 80px; width: 20px; height: 20px; background: rgba(255,255,255,0.1); pointer-events: none; }
+.ph-s2 { position: absolute; top: 60px; right: 56px; width: 12px; height: 12px; background: rgba(245,166,35,0.4); pointer-events: none; }
+.ph-inner { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
+.ph-series { font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.52); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.ph-series::before { content: ''; display: block; width: 24px; height: 2px; background: rgba(255,255,255,0.38); }
+.ph-badge { display: inline-flex; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 5px 12px; color: rgba(255,255,255,0.72); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
+.ph-title { color: #fff; font-size: 2.8rem; font-weight: 900; line-height: 1.12; margin-bottom: 16px; }
+.ph-sub { color: rgba(255,255,255,0.65); font-size: 0.98rem; max-width: 600px; line-height: 1.72; margin-bottom: 30px; }
+.ph-objectives { display: flex; flex-wrap: wrap; gap: 9px; }
+.ph-obj { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.13); border-radius: 7px; padding: 7px 13px; color: rgba(255,255,255,0.78); font-size: 0.77rem; }
+.ph-obj::before { content: '✓ '; color: rgba(255,255,255,0.45); font-size: 0.72rem; }
+
+.accent-bar { height: 4px; background: linear-gradient(90deg, var(--p3) 0%, var(--gold) 50%, var(--navy) 100%); }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+section.sec-light { background: var(--light-gray); padding: 64px 0; }
+section.sec-white { background: #fff; padding: 64px 0; }
+section.sec-dark { background: var(--navy); padding: 64px 0; }
+section.sec-p3 { background: var(--p3-light); padding: 64px 0; border-top: 1px solid rgba(212,85,26,0.1); border-bottom: 1px solid rgba(212,85,26,0.1); }
+section.sec-p2 { background: rgba(14,124,92,0.06); padding: 64px 0; border-top: 1px solid rgba(14,124,92,0.12); border-bottom: 1px solid rgba(14,124,92,0.12); }
+
+.sh { margin-bottom: 36px; }
+.sh-tag { font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; color: var(--p3); }
+.sh-tag.wht { color: rgba(255,255,255,0.48); }
+.sh-tag.p2c { color: var(--p2); }
+.sh-tag.gold { color: #9A6800; }
+.sh-title { font-size: 1.9rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.sh-title.wht { color: #fff; }
+.sh-desc { color: var(--text-light); font-size: 0.91rem; max-width: 700px; line-height: 1.7; }
+.sh-desc.wht { color: rgba(255,255,255,0.6); }
+
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 26px; transition: box-shadow 0.15s, transform 0.15s; }
+.card:hover { box-shadow: 0 5px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
+.card.gray { background: var(--light-gray); }
+.card.navy { background: var(--navy); }
+.card.p3 { background: var(--p3-light); border-color: rgba(212,85,26,0.2); }
+.card.p2 { background: rgba(14,124,92,0.07); border-color: rgba(14,124,92,0.2); }
+.card h3 { font-size: 0.97rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card.navy h3 { color: var(--gold); }
+.card.p3 h3 { color: var(--p3-dark); }
+.card.p2 h3 { color: var(--p2); }
+.card p { font-size: 0.86rem; color: var(--text-light); line-height: 1.65; }
+.card.navy p { color: rgba(255,255,255,0.72); }
+.card-icon { font-size: 1.8rem; margin-bottom: 12px; }
+
+.tbl { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+.tbl th { background: var(--slate); color: #fff; padding: 13px 18px; text-align: left; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
+.tbl th.p3h { background: var(--p3); }
+.tbl th.greenh { background: var(--success); }
+.tbl th.redh { background: var(--error); }
+.tbl td { padding: 13px 18px; font-size: 0.86rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.55; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: #F8FAFB; }
+.tbl td strong { color: var(--navy); }
+
+.callout { border-radius: 10px; padding: 20px 24px; margin: 24px 0; border-left: 4px solid; }
+.callout.p3 { background: var(--p3-light); border-color: var(--p3); }
+.callout.navy { background: var(--navy); border-color: var(--gold); }
+.callout.gold { background: rgba(245,166,35,0.08); border-color: var(--gold); }
+.callout.green { background: rgba(39,174,96,0.06); border-color: var(--success); }
+.callout.red { background: rgba(231,76,60,0.06); border-color: var(--error); }
+.callout.p2 { background: rgba(14,124,92,0.07); border-color: var(--p2); }
+.callout.blue { background: rgba(41,128,185,0.07); border-color: var(--blue); }
+.callout-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.callout.p3 .callout-label { color: var(--p3-dark); }
+.callout.navy .callout-label { color: var(--gold); }
+.callout.gold .callout-label { color: #9A6800; }
+.callout.green .callout-label { color: var(--success); }
+.callout.red .callout-label { color: var(--error); }
+.callout.p2 .callout-label { color: var(--p2); }
+.callout.blue .callout-label { color: var(--blue); }
+.callout p { font-size: 0.88rem; line-height: 1.68; }
+.callout.navy p { color: rgba(255,255,255,0.82); }
+
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { font-size: 0.86rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 9px; align-items: flex-start; line-height: 1.55; }
+ul.plain li:last-child { border-bottom: none; }
+ul.plain li::before { content: '▸'; color: var(--p3); flex-shrink: 0; font-size: 0.8rem; margin-top: 1px; }
+ul.plain.green li::before { color: var(--success); }
+
+/* 4-STEP METHODOLOGY */
+.four-step { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border-radius: 14px; overflow: hidden; }
+.fs-item { padding: 24px 20px; text-align: center; position: relative; }
+.fs-item:not(:last-child)::after { content: '→'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); font-size: 1.2rem; font-weight: 700; z-index: 1; }
+.fs-1 { background: var(--navy); }
+.fs-2 { background: #1A4A68; }
+.fs-3 { background: var(--p3-dark); }
+.fs-4 { background: var(--p2); }
+.fs-num { font-size: 2rem; font-weight: 900; opacity: 0.25; line-height: 1; margin-bottom: 6px; color: #fff; }
+.fs-title { color: var(--gold); font-weight: 800; font-size: 0.88rem; margin-bottom: 6px; }
+.fs-desc { color: rgba(255,255,255,0.65); font-size: 0.78rem; line-height: 1.5; }
+
+/* LTV CALC */
+.ltv-calc { background: var(--navy); border-radius: 14px; padding: 32px; margin-bottom: 28px; }
+.ltv-title { color: var(--gold); font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; }
+.ltv-row { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 16px; align-items: center; }
+.ltv-item { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 18px; text-align: center; }
+.ltv-num { font-size: 2rem; font-weight: 900; color: #fff; line-height: 1; margin-bottom: 4px; }
+.ltv-label { color: rgba(255,255,255,0.5); font-size: 0.75rem; line-height: 1.4; }
+.ltv-arrow { color: var(--gold); font-size: 1.4rem; font-weight: 700; text-align: center; }
+.ltv-formula { background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2); border-radius: 8px; padding: 14px 20px; margin-top: 16px; }
+.ltv-formula p { color: rgba(255,255,255,0.75); font-size: 0.84rem; line-height: 1.6; }
+
+/* BID TO BUDGET */
+.btb-formula { background: var(--light-gray); border: 2px solid var(--border); border-radius: 12px; padding: 24px; text-align: center; margin-bottom: 24px; }
+.btb-eq { font-size: 1.2rem; font-weight: 800; color: var(--navy); font-family: 'Courier New', monospace; }
+.btb-eq span { color: var(--p3); }
+.btb-scenarios { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.btb-scenario { border-radius: 10px; overflow: hidden; }
+.btbs-header { padding: 12px 16px; }
+.bsh-1 { background: var(--error); }
+.bsh-2 { background: var(--success); }
+.bsh-3 { background: var(--blue); }
+.btbs-header h4 { color: #fff; font-size: 0.82rem; font-weight: 700; }
+.btbs-body { background: #fff; border: 1px solid var(--border); border-top: none; padding: 14px 16px; }
+.btbs-body p { font-size: 0.82rem; color: var(--text); line-height: 1.6; }
+.btbs-result { margin-top: 8px; font-weight: 700; font-size: 0.82rem; }
+.bsr-bad { color: var(--error); }
+.bsr-good { color: var(--success); }
+.bsr-neutral { color: var(--blue); }
+
+/* CAMPAIGN BLOCKS */
+.campaign-block { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+.cb-header { padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+.cb-left { display: flex; align-items: center; gap: 10px; }
+.cb-num { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.82rem; color: #fff; flex-shrink: 0; }
+.cn-p3{background:var(--p3);} .cn-navy{background:var(--navy);} .cn-slate{background:var(--slate);} .cn-p2{background:var(--p2);}
+.cb-name { font-weight: 700; color: var(--navy); font-size: 0.92rem; }
+.cb-type { color: var(--text-light); font-size: 0.77rem; }
+.cb-pill { background: rgba(212,85,26,0.1); color: var(--p3-dark); border: 1px solid rgba(212,85,26,0.2); padding: 3px 10px; border-radius: 20px; font-size: 0.73rem; font-weight: 700; }
+.cb-pill.high { background: rgba(39,174,96,0.1); color: var(--success); border-color: rgba(39,174,96,0.2); }
+.cb-body { padding: 0; }
+.cb-row { display: grid; grid-template-columns: 160px 1fr; border-top: 1px solid var(--border); }
+.cb-label { padding: 12px 18px; background: var(--light-gray); font-size: 0.78rem; font-weight: 700; color: var(--navy); display: flex; align-items: flex-start; }
+.cb-value { padding: 12px 18px; font-size: 0.84rem; color: var(--text); line-height: 1.6; }
+.cb-value code { display: inline-block; background: #F0F2F5; padding: 3px 8px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 0.77rem; color: var(--navy); margin: 2px; }
+
+/* MATCH TYPE CARDS */
+.match-card { border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.mc-header { padding: 14px 20px; }
+.mc-h-broad { background: var(--navy); }
+.mc-h-phrase { background: var(--slate); }
+.mc-h-exact { background: var(--p3); }
+.mc-title { color: #fff; font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+.mc-badge { background: rgba(255,255,255,0.18); color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-family: 'Courier New', monospace; }
+.mc-platform { background: rgba(245,166,35,0.25); color: var(--gold); padding: 2px 8px; border-radius: 4px; font-size: 0.68rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+.mc-body { background: #fff; padding: 16px 20px; }
+.mc-row { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.83rem; }
+.mc-row:last-child { border-bottom: none; }
+.mc-key { color: var(--text-light); font-weight: 600; min-width: 90px; flex-shrink: 0; }
+.mc-val { color: var(--text); line-height: 1.55; flex: 1; }
+.mc-example { background: var(--light-gray); border-radius: 5px; padding: 4px 8px; font-family: 'Courier New', monospace; font-size: 0.75rem; color: var(--navy); display: inline-block; margin-top: 4px; margin-right: 4px; }
+
+/* NEGATIVE KEYWORD CATEGORIES */
+.neg-category { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 14px; }
+.neg-cat-header { padding: 13px 20px; display: flex; align-items: center; gap: 10px; background: rgba(212,85,26,0.06); border-bottom: 1px solid rgba(212,85,26,0.15); }
+.nch-icon { font-size: 1.1rem; }
+.nch-title { font-weight: 700; color: var(--navy); font-size: 0.9rem; }
+.neg-cat-body { padding: 14px 20px; }
+.neg-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.neg-tag { background: var(--light-gray); border: 1px solid var(--border); border-radius: 6px; padding: 5px 11px; font-size: 0.79rem; color: var(--text); font-family: 'Courier New', monospace; }
+.neg-tag.bad { border-color: rgba(231,76,60,0.3); background: rgba(231,76,60,0.05); color: var(--error); }
+.neg-tag.info { background: rgba(41,128,185,0.06); border-color: rgba(41,128,185,0.2); color: var(--blue); font-family: inherit; font-size: 0.77rem; font-style: italic; }
+
+/* AD EXAMPLES */
+.ad-example { background: #fff; border: 2px solid var(--border); border-radius: 10px; padding: 16px 20px; margin-bottom: 14px; }
+.ae-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px; }
+.ae-good { border-color: rgba(39,174,96,0.35); }
+.ae-bad { border-color: rgba(231,76,60,0.35); }
+.ae-good .ae-label { color: var(--success); }
+.ae-bad .ae-label { color: var(--error); }
+.ae-url { color: var(--success); font-size: 0.78rem; margin-bottom: 5px; }
+.ae-headline { color: #1558D6; font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; line-height: 1.4; }
+.ae-desc { color: var(--text); font-size: 0.82rem; line-height: 1.5; }
+
+/* ACCOUNT REVIEW STEPS */
+.review-step { display: flex; gap: 16px; align-items: flex-start; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; transition: box-shadow 0.15s; }
+.review-step:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+.rs-num { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; color: #fff; flex-shrink: 0; background: var(--p3); }
+.rs-num.critical { background: var(--error); }
+.rs-content h4 { font-size: 0.95rem; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+.rs-content p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+.rs-content ul { list-style: none; padding: 0; margin-top: 8px; }
+.rs-content ul li { font-size: 0.83rem; color: var(--text); padding: 4px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; align-items: flex-start; }
+.rs-content ul li:last-child { border-bottom: none; }
+.rs-content ul li::before { content: '→'; color: var(--p3); flex-shrink: 0; font-size: 0.8rem; }
+.rs-badge { display: inline-block; margin-top: 8px; padding: 3px 10px; border-radius: 5px; font-size: 0.72rem; font-weight: 700; }
+.rsb-critical { background: rgba(231,76,60,0.1); color: var(--error); }
+.rsb-note { background: rgba(245,166,35,0.12); color: #9A6800; }
+.rsb-good { background: rgba(39,174,96,0.1); color: var(--success); }
+
+/* POLICY CARDS */
+.policy-card { border-radius: 12px; overflow: hidden; }
+.policy-header { padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+.ph-do { background: var(--success); }
+.ph-dont { background: var(--error); }
+.ph-note { background: var(--navy); }
+.policy-header h3 { color: #fff; font-weight: 700; font-size: 0.9rem; }
+.policy-body { background: #fff; border: 1px solid var(--border); border-top: none; padding: 16px 20px; }
+.policy-body p { font-size: 0.84rem; color: var(--text); line-height: 1.65; }
+.policy-body ul { list-style: none; padding: 0; margin-top: 8px; }
+.policy-body ul li { font-size: 0.83rem; color: var(--text); padding: 5px 0; border-bottom: 1px solid var(--border); display: flex; gap: 8px; }
+.policy-body ul li:last-child { border-bottom: none; }
+.policy-body ul li::before { content: '▸'; color: var(--navy); flex-shrink: 0; }
+
+/* STR TABLE */
+.str-table { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 1px 5px rgba(0,0,0,0.05); }
+.str-table th { padding: 12px 18px; text-align: left; font-size: 0.77rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #fff; }
+.str-table th.good { background: var(--success); }
+.str-table th.bad { background: var(--error); }
+.str-table th.action { background: var(--navy); }
+.str-table td { padding: 12px 18px; font-size: 0.84rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.55; }
+.str-table tr:last-child td { border-bottom: none; }
+.str-table tr:nth-child(even) td { background: #F8FAFB; }
+
+/* CLIENT EXAMPLES */
+.client-ex { background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.ce-header { padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; }
+.ce-h-left { display: flex; align-items: center; gap: 12px; }
+.ce-logo { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 900; color: #fff; flex-shrink: 0; }
+.ce-logo-dist { background: var(--navy); }
+.ce-logo-coat { background: var(--p4); }
+.ce-name { font-weight: 700; color: var(--navy); font-size: 0.95rem; }
+.ce-type { color: var(--text-light); font-size: 0.77rem; }
+.ce-tag { padding: 4px 12px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; }
+.ct-dist { background: rgba(27,79,114,0.1); color: var(--navy); }
+.ct-coat { background: rgba(91,63,168,0.1); color: var(--p4); }
+.ce-body { padding: 0; }
+.ce-row { display: grid; grid-template-columns: 190px 1fr; border-top: 1px solid var(--border); }
+.ce-label { padding: 12px 18px; background: var(--light-gray); font-size: 0.79rem; font-weight: 700; color: var(--navy); display: flex; align-items: flex-start; }
+.ce-value { padding: 12px 18px; font-size: 0.84rem; color: var(--text); line-height: 1.6; }
+
+/* SYNERGY VISUAL */
+.synergy-split { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; border-radius: 14px; overflow: hidden; }
+.syn-seo { background: var(--p2); padding: 28px; }
+.syn-ppc { background: var(--p3); padding: 28px; }
+.syn-mid { display: flex; align-items: center; justify-content: center; background: var(--navy); padding: 0 20px; }
+.syn-mid-icon { font-size: 2rem; }
+.syn-title { color: #fff; font-weight: 800; font-size: 1rem; margin-bottom: 6px; }
+.syn-sub { color: rgba(255,255,255,0.6); font-size: 0.77rem; margin-bottom: 16px; }
+.syn-items { list-style: none; padding: 0; }
+.syn-items li { color: rgba(255,255,255,0.82); font-size: 0.83rem; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; gap: 8px; line-height: 1.5; }
+.syn-items li:last-child { border-bottom: none; }
+.syn-items li::before { content: '→'; color: rgba(255,255,255,0.45); flex-shrink: 0; }
+
+/* EP TIP */
+.ep-tip { background: linear-gradient(135deg, var(--navy-dark), var(--navy)); border-radius: 12px; padding: 24px 28px; border-left: 4px solid var(--gold); margin: 20px 0; }
+.ep-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+.ep-label::before { content: '💡'; font-size: 0.9rem; }
+.ep-text { color: rgba(255,255,255,0.82); font-size: 0.87rem; line-height: 1.7; }
+
+/* MISTAKE PAIRS */
+.mistake-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.mbox { border-radius: 10px; padding: 18px 20px; border: 1px solid; }
+.mbox.do { background: rgba(39,174,96,0.05); border-color: rgba(39,174,96,0.2); }
+.mbox.dont { background: rgba(231,76,60,0.05); border-color: rgba(231,76,60,0.2); }
+.mbox-label { font-size: 0.69rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.mbox.do .mbox-label { color: var(--success); }
+.mbox.dont .mbox-label { color: var(--error); }
+.mbox p { font-size: 0.84rem; color: var(--text); line-height: 1.6; }
+
+/* KEYWORD RESEARCH PROCESS */
+.kr-step { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; margin-bottom: 12px; display: flex; gap: 16px; align-items: flex-start; }
+.krs-num { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.82rem; flex-shrink: 0; }
+.krs-content h4 { font-weight: 700; color: var(--navy); font-size: 0.92rem; margin-bottom: 6px; }
+.krs-content p { font-size: 0.84rem; color: var(--text-light); line-height: 1.6; }
+.krs-tip { background: rgba(245,166,35,0.08); border: 1px solid rgba(245,166,35,0.2); border-radius: 6px; padding: 8px 12px; margin-top: 10px; font-size: 0.81rem; color: var(--text); }
+.krs-tip strong { color: #9A6800; }
+
+/* RECAP */
+.recap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.recap-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; }
+.recap-num { font-size: 2rem; font-weight: 900; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 4px; }
+.recap-title { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.recap-desc { color: rgba(255,255,255,0.62); font-size: 0.81rem; line-height: 1.6; }
+
+.next-part-cta { background: var(--navy-dark); padding: 52px 48px; text-align: center; }
+.npc-inner { max-width: 560px; margin: 0 auto; }
+.npc-label { color: rgba(255,255,255,0.35); font-size: 0.68rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.npc-title { color: #fff; font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+.npc-desc { color: rgba(255,255,255,0.52); font-size: 0.87rem; margin-bottom: 24px; line-height: 1.65; }
+.npc-btn { display: inline-flex; align-items: center; gap: 10px; background: var(--p4); color: #fff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; transition: all 0.15s; }
+.npc-btn:hover { background: #3D2882; transform: translateY(-1px); }
+
+.footer { background: #0D1C2B; padding: 42px 48px; text-align: center; }
+.footer-brand { color: #fff; font-size: 1.4rem; font-weight: 900; margin-bottom: 5px; }
+.footer-brand em { color: var(--gold); font-style: normal; }
+.footer-school { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.footer-meta { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.footer-meta span { color: rgba(255,255,255,0.27); font-size: 0.73rem; }
+
+.mt16{margin-top:16px;} .mt24{margin-top:24px;} .mt32{margin-top:32px;}
+.mb16{margin-bottom:16px;} .mb24{margin-bottom:24px;} .mb32{margin-bottom:32px;}
+[id]::before { content: ''; display: block; height: 80px; margin-top: -80px; pointer-events: none; }
+
+@media (max-width: 860px) {
+  .g2,.g3,.g4,.btb-scenarios,.four-step,.synergy-split,.ltv-row { grid-template-columns: 1fr; }
+  .container { padding: 0 24px; }
+  .top-nav,.series-nav { padding: 0 24px; }
+  .part-header { padding: 52px 24px 48px; }
+  .ph-title { font-size: 2rem; }
+  .cb-row,.ce-row { grid-template-columns: 1fr; }
+  .mistake-pair { grid-template-columns: 1fr; }
+  .recap-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="brand"><span class="brand-main">Outer<em>Box</em></span><span class="brand-school">B·SCHOOL</span></div>
+  <span class="nav-badge">Part 3 of 6 · Industrial & B2B</span>
+</nav>
+
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="industrial-b2b-part1.html" class="snav-link"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="industrial-b2b-part2.html" class="snav-link"><span class="snav-num sn-2">2</span>SEO Strategy</a>
+  <a href="industrial-b2b-part3.html" class="snav-link active"><span class="snav-num sn-3">3</span>PPC Strategy</a>
+  <a href="industrial-b2b-part4.html" class="snav-link"><span class="snav-num sn-4">4</span>Communication</a>
+  <a href="industrial-b2b-part5.html" class="snav-link"><span class="snav-num sn-5">5</span>Loop & CallRail</a>
+  <a href="industrial-b2b-part6.html" class="snav-link"><span class="snav-num sn-6">6</span>Retention & Heartbeat</a>
+</div>
+
+<div class="part-header">
+  <div class="ph-blob"></div>
+  <div class="ph-s1"></div><div class="ph-s2"></div>
+  <div class="ph-inner">
+    <div class="ph-series">Industrial & B2B Training Series</div>
+    <div class="ph-badge">Part 3 of 6 — PPC Strategy</div>
+    <h1 class="ph-title">Industrial PPC:<br>Campaigns, Review<br>&amp; Budget Discipline</h1>
+    <p class="ph-sub">There's a budget attached to every click. In industrial PPC, relevancy isn't best practice — it's financial discipline. This part covers how to build accounts, review and optimize them, and make every dollar accountable.</p>
+    <div class="ph-objectives">
+      <span class="ph-obj">Apply the OBx 4-step PPC methodology</span>
+      <span class="ph-obj">Apply B-SMART to keyword research</span>
+      <span class="ph-obj">Structure campaigns by client type</span>
+      <span class="ph-obj">Conduct account reviews the right way</span>
+      <span class="ph-obj">Master match types, negatives &amp; STR analysis</span>
+      <span class="ph-obj">Align PPC and SEO as one integrated strategy</span>
+    </div>
+  </div>
+</div>
+<div class="accent-bar"></div>
+
+<!-- SECTION 1: THE 4-STEP METHODOLOGY -->
+<section class="sec-white" id="methodology">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1 — Start Here</div>
+      <h2 class="sh-title">The OBx 4-Step PPC Methodology</h2>
+      <p class="sh-desc">Every PPC engagement at OBx follows the same core process — whether you're launching a brand new account or reviewing a mature one. This framework is the foundation everything else in this part builds on.</p>
+    </div>
+    <div class="four-step mb32">
+      <div class="fs-item fs-1"><div class="fs-num">1</div><div class="fs-title">Understand the Business</div><div class="fs-desc">Know the client, their ICP, their differentiators, and what a good lead looks like for them</div></div>
+      <div class="fs-item fs-2"><div class="fs-num">2</div><div class="fs-title">Diagnose the Account</div><div class="fs-desc">Systematically review conversion tracking, structure, bid ratios, and keyword intent</div></div>
+      <div class="fs-item fs-3"><div class="fs-num">3</div><div class="fs-title">Strategize Improvements</div><div class="fs-desc">Identify opportunities, prioritize changes, and build a data-backed plan to act on</div></div>
+      <div class="fs-item fs-4"><div class="fs-num">4</div><div class="fs-title">Execute</div><div class="fs-desc">Implement changes, track outcomes, and feed learnings back into the next review cycle</div></div>
+    </div>
+    <div class="callout navy">
+      <div class="callout-label">Core Principle</div>
+      <p>The focus is on capturing <strong style="color:var(--gold)">intent-based users</strong> — individuals whose searches explicitly show they are looking for the client's products or services. This avoids wasting budget on users who are not reaching or just browsing. <strong style="color:var(--gold)">Every decision in the account should be traceable back to this principle.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: WHY INDUSTRIAL PPC IS HIGH-STAKES -->
+<section class="sec-light" id="ppc-different">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2</div>
+      <h2 class="sh-title">Why Industrial PPC Is Uniquely High-Stakes</h2>
+      <p class="sh-desc">PPC in industrial B2B is not the same game as eCommerce or local services. The economics, search behavior, and margin for error are completely different. Understand this before you touch a single bid.</p>
+    </div>
+    <div class="g3 mb32">
+      <div class="card p3"><div class="card-icon">💰</div><h3>High CPCs, Low Volume</h3><p>Industrial keywords often cost $8–$30+ per click. Search volumes are small. There's no room for irrelevant traffic. Every click must be defensible with intent and a clear connection to pipeline.</p></div>
+      <div class="card p3"><div class="card-icon">🎯</div><h3>Specificity = ROI</h3><p>The more specific the keyword, the more qualified the click, the higher the conversion potential. "Steel bar" wastes budget. "A36 hot rolled steel bar Ohio distributor" spends money to attract a real buyer.</p></div>
+      <div class="card p3"><div class="card-icon">📈</div><h3>The LTV Math Changes Everything</h3><p>One converted B2B lead can be worth $50,000–$500,000 in lifetime revenue. This fundamentally changes how you evaluate CPC and what you're willing to spend per conversion. Always contextualize CPL against LTV.</p></div>
+    </div>
+    <div class="ltv-calc">
+      <div class="ltv-title">The Math That Justifies Industrial PPC Investment</div>
+      <div class="ltv-row">
+        <div class="ltv-item"><div class="ltv-num">$22</div><div class="ltv-label">Avg. CPC for a specific industrial keyword</div></div>
+        <div class="ltv-arrow">×</div>
+        <div class="ltv-item"><div class="ltv-num">50</div><div class="ltv-label">Clicks to generate 1 qualified RFQ lead</div></div>
+        <div class="ltv-arrow">=</div>
+        <div class="ltv-item"><div class="ltv-num">$1,100</div><div class="ltv-label">Cost per lead (CPL)</div></div>
+      </div>
+      <div class="ltv-formula"><p>That $1,100 CPL looks expensive — until you factor in that one converted lead at <strong style="color:var(--gold)">$10,000/order × 2 orders/year × 3 years = $60,000 LTV.</strong> The real cost per acquired customer is the conversation to have with your client when they question spend. Always anchor CPL to LTV — it's your most powerful reframe.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: KEYWORD RESEARCH PROCESS -->
+<section class="sec-white" id="keyword-research">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 3</div>
+      <h2 class="sh-title">The Keyword Research Process — Building From Scratch</h2>
+      <p class="sh-desc">Before you launch anything, you need a keyword list built on intent. Here's the step-by-step process OBx follows — from brainstorming through refinement — using B-SMART as the core framework.</p>
+    </div>
+
+    <div class="kr-step">
+      <div class="krs-num">1</div>
+      <div class="krs-content">
+        <h4>Brainstorming & Intent — Start With the Business</h4>
+        <p>Identify the client's core services or products first. Then focus exclusively on <strong>transactional keywords</strong> — terms that show a user is ready to buy or request a quote (e.g., "A36 steel plate distributor Ohio"), not informational keywords (e.g., "what is A36 steel"). In industrial PPC, informational traffic is a budget leak.</p>
+        <div class="krs-tip"><strong>Apply B-SMART here:</strong> Run each dimension (Brand, Size, Material, Application, Requirement, Type) and brainstorm keyword variations for each. This is how you build a comprehensive list without guessing.</div>
+      </div>
+    </div>
+
+    <div class="kr-step">
+      <div class="krs-num">2</div>
+      <div class="krs-content">
+        <h4>Tool & SERP-Based Research</h4>
+        <p>Use OBx Chat to expand your initial list and gather data. Use Google Keyword Planner to validate search volume and identify variations. Use the SERP itself — look at what Google suggests, what competitors are bidding on, and what "People Also Ask" questions reveal about buyer language.</p>
+        <div class="krs-tip"><strong>OBx Chat tip:</strong> Prompt it with the client's business type, products, and ICP. Ask it to generate keyword variations using B-SMART dimensions. Then validate and refine — don't take the output raw.</div>
+      </div>
+    </div>
+
+    <div class="kr-step">
+      <div class="krs-num">3</div>
+      <div class="krs-content">
+        <h4>List Refinement & Organization</h4>
+        <p>Organize keywords into tightly themed ad groups by product or capability (e.g., one ad group for "A36 plate," a separate one for "304 stainless sheet"). The ideal keyword length is <strong>2 to 4 words</strong> — specific enough to show intent, not so long they have zero volume.</p>
+        <div class="krs-tip"><strong>Cleanup checklist:</strong> Run a spell check · Use Excel's "Remove Duplicates" · Sort alphabetically · Remove anything under 2 words or over 5 words · Cross-check against B-SMART — are all dimensions covered?</div>
+      </div>
+    </div>
+
+    <div class="callout gold mt24 mb32">
+      <div class="callout-label">OBx Formatting Rules — Keyword Lists</div>
+      <p>Use <strong>singular nouns</strong> for most industrial keywords — "Bar" not "Bars," "Coil" not "Coils," "Plate" not "Plates." Exceptions: words where the plural form is also a verb, like "Piping" or "Tubing." You'll build out plural terms later in the ad copy creation process, not in the keyword list itself.</p>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:18px">B-SMART Applied to Keyword Research</h3>
+    <table class="tbl mb32">
+      <thead>
+        <tr><th>Letter</th><th>PPC Application</th><th>Industrial Example Keywords</th><th>PPC-Specific Note</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong style="color:var(--navy);font-size:1.1rem">B</strong> — Brand</td><td>Brands the client carries (distributors); client's own brand. See branded terms policy below.</td><td>"Nucor A36 steel plate", "Ryerson aluminum distributor", "O'Neal Steel"</td><td>Brand campaigns typically have the highest CTR and lowest CPC. For distributors, leading with the brands they carry is often a top performer.</td></tr>
+        <tr><td><strong style="color:var(--orange);font-size:1.1rem">S</strong> — Size/Shape/SKU</td><td>Specific dimensions, gauges, stock lengths — buyers who know exactly what they need</td><td>"1/4 inch A36 plate", "2 inch OD DOM tubing", "16 gauge cold rolled sheet"</td><td>Very high purchase intent. Low volume but exceptional conversion rates. These buyers have a PO ready — they're validating availability.</td></tr>
+        <tr><td><strong style="color:#7D5A0A;font-size:1.1rem">M</strong> — Material</td><td>Grade + form combinations. The backbone of industrial PPC keyword lists.</td><td>"304 stainless plate", "6061 aluminum bar", "A36 carbon steel", "4140 alloy steel"</td><td>Always layer grade with form. Never bid on "stainless steel" alone — the traffic is too diffuse and the CPC isn't justified without intent specificity.</td></tr>
+        <tr><td><strong style="color:var(--blue);font-size:1.1rem">A</strong> — Application</td><td>Industry or use-case keywords for buyers searching by application, not material</td><td>"aerospace aluminum supplier", "food grade stainless tubing", "structural steel fabrication"</td><td>Monitor CPL carefully — conversion intent is slightly lower than grade-specific terms. Good for awareness but watch spend allocation.</td></tr>
+        <tr><td><strong style="color:var(--slate);font-size:1.1rem">R</strong> — Requirement</td><td>Certification and compliance-driven searches. Extremely high conversion intent.</td><td>"DFARS compliant titanium", "ISO 9001 CNC machining", "AS9100 precision machining"</td><td>These buyers have already made a compliance decision. If your client meets the requirement, these are among the most valuable keywords in the account.</td></tr>
+        <tr><td><strong style="color:var(--navy-dark);font-size:1.1rem">T</strong> — Type</td><td>Process type, product form, project classification modifiers</td><td>"custom steel fabrication", "laser cutting service", "precision machining shop"</td><td>Use T-dimension keywords to differentiate campaign groups. Each process type should likely have its own ad group or campaign.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- SECTION 4: OBX POLICIES -->
+<section class="sec-p3" id="policies">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 4 — OBx Policies</div>
+      <h2 class="sh-title">OBx Bidding Policies — Know These Before You Build</h2>
+      <p class="sh-desc">These are not suggestions — they are OBx policies and standards that apply to every account. Know them before you build your first keyword list.</p>
+    </div>
+    <div class="g3">
+      <div class="policy-card">
+        <div class="policy-header ph-dont"><h3>🚫 Competitor Business Names</h3></div>
+        <div class="policy-body">
+          <p><strong>OBx does not bid on competitor business names.</strong> This is company policy and applies across all accounts and all verticals. If a client asks you to bid on a competitor's brand name — that's a conversation to escalate, not something you do unilaterally.</p>
+          <p style="margin-top:10px;font-size:0.82rem;color:var(--text-light)">This is separate from bidding on competitor's <em>product names</em> when a distributor carries the same product — that's permitted and often effective for distributors.</p>
+        </div>
+      </div>
+      <div class="policy-card">
+        <div class="policy-header ph-note"><h3>📋 Branded Terms — When to Bid</h3></div>
+        <div class="policy-body">
+          <p>Bid on a client's own brand name <strong>only when</strong> one of these conditions applies:</p>
+          <ul>
+            <li>They are a manufacturer whose products are sold by distributors (defend your brand)</li>
+            <li>They are a distributor of multiple brands (brand campaigns are high performers)</li>
+            <li>They do not rank organically for their own brand name</li>
+          </ul>
+          <p style="margin-top:10px;font-size:0.82rem;color:var(--text-light)">If the client dominates organic results for their own name, branded PPC spend may not be the best use of budget. Evaluate case by case.</p>
+        </div>
+      </div>
+      <div class="policy-card">
+        <div class="policy-header ph-do"><h3>✅ Match Type Defaults by Platform</h3></div>
+        <div class="policy-body">
+          <p>OBx match type defaults differ by platform:</p>
+          <ul>
+            <li><strong>Google → Broad Match</strong> (with strong negatives in place)</li>
+            <li><strong>Bing → Phrase Match</strong></li>
+            <li><strong>Exact Match → Rarely</strong>, only when absolutely necessary for a specific high-value term</li>
+          </ul>
+          <p style="margin-top:10px;font-size:0.82rem;color:var(--text-light)">This may feel counterintuitive if you've learned to default to phrase match everywhere. The reasoning: Google's algorithm has matured significantly, and broad match with proper negatives often outperforms tight match types when conversion data is available.</p>
+        </div>
+      </div>
+    </div>
+    <div class="callout p3 mt24">
+      <div class="callout-label">Why Broad Match on Google — The Nuance</div>
+      <p>Google's broad match has evolved. When paired with a mature negative keyword list and a well-structured account with conversion data, broad match allows Google's algorithm to find converting queries you wouldn't have thought to target. <strong>The keyword you bid on is a signal to Google — not a rigid filter.</strong> The negative keyword list is what provides the filter. This is why negatives must be built before launch, not after. Broad match without negatives is wasted spend. Broad match with comprehensive negatives is a discovery engine.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: CAMPAIGN STRUCTURE -->
+<section class="sec-white" id="campaign-structure">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 5</div>
+      <h2 class="sh-title">Campaign Structure by Client Type</h2>
+      <p class="sh-desc">A distributor's campaign structure looks fundamentally different from a manufacturer's. Build each one to match the client's actual value proposition — not a generic template you copy from another account.</p>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:16px;display:flex;align-items:center;gap:10px">
+      <span style="background:var(--navy);color:#fff;padding:4px 12px;border-radius:6px;font-size:0.78rem">DISTRIBUTOR</span>
+      Example: O'Neal Steel
+    </h3>
+    <div class="campaign-block">
+      <div class="cb-header"><div class="cb-left"><div class="cb-num cn-p3">C1</div><div><div class="cb-name">Core Material + Form</div><div class="cb-type">Highest spend priority · Primary conversion driver</div></div></div><span class="cb-pill high">High Priority</span></div>
+      <div class="cb-body">
+        <div class="cb-row"><div class="cb-label">Goal</div><div class="cb-value">Capture buyers searching for specific materials and forms the distributor stocks and ships</div></div>
+        <div class="cb-row"><div class="cb-label">Keywords</div><div class="cb-value"><code>A36 steel plate distributor</code> <code>cold rolled steel sheet in stock</code> <code>6061 aluminum bar stock</code> <code>hot rolled coil steel</code></div></div>
+        <div class="cb-row"><div class="cb-label">Match Type</div><div class="cb-value">Google → Broad match with comprehensive negatives. Bing → Phrase match. Each grade or form should be its own tightly themed ad group.</div></div>
+        <div class="cb-row"><div class="cb-label">Landing Page</div><div class="cb-value">Route to the grade-specific product page — not the homepage. The page should have a spec table, availability messaging, and a quote form prominently placed.</div></div>
+      </div>
+    </div>
+    <div class="campaign-block">
+      <div class="cb-header"><div class="cb-left"><div class="cb-num cn-navy">C2</div><div><div class="cb-name">Brand Name Keywords</div><div class="cb-type">Brands the distributor carries · High CTR, often lower CPC</div></div></div><span class="cb-pill">Medium-High Priority</span></div>
+      <div class="cb-body">
+        <div class="cb-row"><div class="cb-label">Goal</div><div class="cb-value">Capture buyers searching for specific manufacturer brands the distributor carries — Nucor, Worthington, AK Steel, etc.</div></div>
+        <div class="cb-row"><div class="cb-label">Keywords</div><div class="cb-value"><code>Nucor A36 steel plate</code> <code>Worthington Industries steel</code> <code>buy Nucor hot rolled coil</code></div></div>
+        <div class="cb-row"><div class="cb-label">Landing Page</div><div class="cb-value">Brand-specific landing page featuring that manufacturer's products the distributor carries. Show the brand prominently to validate the match.</div></div>
+      </div>
+    </div>
+    <div class="campaign-block">
+      <div class="cb-header"><div class="cb-left"><div class="cb-num cn-slate">C3</div><div><div class="cb-name">Availability / Urgency Terms</div><div class="cb-type">Urgency-driven buyers · Often highest immediate conversion intent</div></div></div><span class="cb-pill high">High Priority</span></div>
+      <div class="cb-body">
+        <div class="cb-row"><div class="cb-label">Goal</div><div class="cb-value">Capture plant managers and buyers with time-sensitive needs — the "I need this now" searches that drive same-week orders</div></div>
+        <div class="cb-row"><div class="cb-label">Keywords</div><div class="cb-value"><code>steel plate in stock</code> <code>aluminum bar ready to ship</code> <code>same day steel cut</code> <code>steel service center</code></div></div>
+        <div class="cb-row"><div class="cb-label">Ad Copy</div><div class="cb-value">Lead aggressively with availability: "In Stock & Ready to Ship" · "Same-Day Cut to Length" · Prominent phone number for urgency buyers who want to call.</div></div>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin:32px 0 16px;display:flex;align-items:center;gap:10px">
+      <span style="background:var(--p2);color:#fff;padding:4px 12px;border-radius:6px;font-size:0.78rem">MANUFACTURER</span>
+      Example: Bison Profab &amp; Endura Coatings
+    </h3>
+    <div class="campaign-block">
+      <div class="cb-header"><div class="cb-left"><div class="cb-num cn-p3">C1</div><div><div class="cb-name">Core Capability / Process Terms</div><div class="cb-type">What they do, not what they stock</div></div></div><span class="cb-pill high">High Priority</span></div>
+      <div class="cb-body">
+        <div class="cb-row"><div class="cb-label">Goal</div><div class="cb-value">Capture buyers searching for the fabrication or manufacturing process the client offers</div></div>
+        <div class="cb-row"><div class="cb-label">Keywords</div><div class="cb-value"><code>custom metal fabrication</code> <code>laser cutting steel plate</code> <code>CNC precision machining</code> <code>industrial powder coating</code></div></div>
+        <div class="cb-row"><div class="cb-label">Landing Page</div><div class="cb-value">Capability/service page with equipment specs, materials handled, tolerances, certifications, and real project examples. Spec-forward.</div></div>
+      </div>
+    </div>
+    <div class="campaign-block">
+      <div class="cb-header"><div class="cb-left"><div class="cb-num cn-navy">C2</div><div><div class="cb-name">Certification / Compliance Terms</div><div class="cb-type">Requirement-filtered buyers · Among the highest-converting in industrial PPC</div></div></div><span class="cb-pill high">High Priority</span></div>
+      <div class="cb-body">
+        <div class="cb-row"><div class="cb-label">Goal</div><div class="cb-value">Capture buyers who filter vendors by certification first — if your client has the cert, these are often the best-converting keywords in the entire account</div></div>
+        <div class="cb-row"><div class="cb-label">Keywords</div><div class="cb-value"><code>ISO 9001 certified machining</code> <code>AS9100 precision parts</code> <code>ITAR compliant machine shop</code> <code>FDA compliant coatings</code></div></div>
+        <div class="cb-row"><div class="cb-label">Match Type</div><div class="cb-value">These are highly specific — give them their own campaign with dedicated negatives. The buyer who searches for this has already decided the cert is a requirement.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 6: ACCOUNT REVIEW & OPTIMIZATION -->
+<section class="sec-light" id="account-review">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 6 — The Diagnostic Process</div>
+      <h2 class="sh-title">How to Conduct an Industrial PPC Account Review</h2>
+      <p class="sh-desc">A PPC account review is not a glance at impressions and clicks. It's a systematic diagnosis that follows a specific sequence. Skip steps at your own risk — and your client's budget.</p>
+    </div>
+
+    <div class="review-step">
+      <div class="rs-num critical">1</div>
+      <div class="rs-content">
+        <h4>Verify Conversion Tracking — Do This First, Every Time</h4>
+        <p>Without accurate conversion tracking, it's impossible to measure success or make data-driven decisions. You need to know which keywords, ads, and campaigns are driving valuable actions.</p>
+        <ul>
+          <li>Navigate to <strong>Goals → Conversions → Summary</strong> in Google Ads</li>
+          <li>Identify what is being tracked as a conversion — is it a form fill, a phone call, a purchase, or a page visit?</li>
+          <li>Confirm that conversion actions align directly with the client's actual business goals</li>
+          <li>Check that conversions are firing — a conversion action that exists but isn't recording data is a red flag</li>
+        </ul>
+        <span class="rs-badge rsb-critical">⚠️ Never optimize an account without confirming tracking is working correctly first</span>
+      </div>
+    </div>
+
+    <div class="review-step">
+      <div class="rs-num">2</div>
+      <div class="rs-content">
+        <h4>Analyze Campaign Structure &amp; Budget Allocation</h4>
+        <p>This step helps you understand how the budget is distributed and whether the structure is set up for success. Limited budgets require a focused strategy — not fragmented spend across too many campaigns.</p>
+        <ul>
+          <li>Navigate to the <strong>Campaigns tab</strong> and count the number of active campaigns</li>
+          <li>Review the bidding strategy: Is it automated (Maximize Conversions, Target CPA) or manual CPC?</li>
+          <li>Assess whether the structure is logical — segmented by product, service, or location for better control and reporting</li>
+          <li>Identify any campaigns that are limited by budget — these are opportunities being left on the table</li>
+        </ul>
+        <span class="rs-badge rsb-note">Best Practice: Structure should mirror how the client's sales team thinks about their products — not how it was convenient to set up at launch</span>
+      </div>
+    </div>
+
+    <div class="review-step">
+      <div class="rs-num">3</div>
+      <div class="rs-content">
+        <h4>Analyze the Bid-to-Budget Ratio</h4>
+        <p>The relationship between daily budget and average CPC determines how many opportunities (clicks) a client gets per day. A poor ratio severely limits exposure and lead potential. Use this formula before making any bid changes.</p>
+        <div style="margin:12px 0">
+          <div class="btb-formula">
+            <div class="btb-eq">Daily Budget <span>÷</span> Average CPC <span>=</span> Clicks Per Day</div>
+          </div>
+          <div class="btb-scenarios">
+            <div class="btb-scenario">
+              <div class="btbs-header bsh-1"><h4>⚠️ Increasing Bids on Limited Budget</h4></div>
+              <div class="btbs-body"><p>Bid increases from $1.45 → $2.00 on a $15 daily budget</p><div class="btbs-result bsr-bad">Clicks drop from 10 → 7<br>Fewer opportunities for leads</div></div>
+            </div>
+            <div class="btb-scenario">
+              <div class="btbs-header bsh-2"><h4>✅ Decreasing Bids on Limited Budget</h4></div>
+              <div class="btbs-body"><p>Reducing avg. CPC from $5.00 → $1.00 on a $10 budget</p><div class="btbs-result bsr-good">Clicks increase from 2 → 10<br>5x the opportunities</div></div>
+            </div>
+            <div class="btb-scenario">
+              <div class="btbs-header bsh-3"><h4>📈 Increasing the Budget</h4></div>
+              <div class="btbs-body"><p>Client increases budget from $20 → $40, same bid</p><div class="btbs-result bsr-neutral">Clicks double from 10 → 20<br>Double the opportunities</div></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:0.84rem;color:var(--text-light)">Before making any bid or budget changes, always ask: <strong>What data is this decision based on?</strong> And: <strong>How will this change impact the client's lead quantity and revenue?</strong></p>
+      </div>
+    </div>
+
+    <div class="review-step">
+      <div class="rs-num">4</div>
+      <div class="rs-content">
+        <h4>Review Keywords &amp; Budget Distribution</h4>
+        <p>Often, a small number of keywords consume the majority of the budget. We need to confirm that the high-cost keywords are also high-performing and show strong intent — not just high-spending.</p>
+        <ul>
+          <li>Navigate to <strong>Keywords → Search Keywords</strong></li>
+          <li>Sort the keyword list by "Cost" in descending order</li>
+          <li>Analyze the top-spending keywords — are they directly relevant to the client's core offerings?</li>
+          <li>If a high-spending keyword has low conversion rate, investigate before cutting — it may be a landing page or offer problem, not a keyword problem</li>
+        </ul>
+        <span class="rs-badge rsb-note">The goal: confirm that money is going where intent is highest — not where history has made it habit to spend</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 7: SEARCH TERMS REPORT -->
+<section class="sec-white" id="str">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 7 — Critical Ongoing Practice</div>
+      <h2 class="sh-title">The Search Terms Report — Your Most Honest Data Source</h2>
+      <p class="sh-desc">The search terms report shows the actual queries people typed into Google that triggered your ads. This is the ultimate test of keyword relevance and quality. Review it weekly — not monthly.</p>
+    </div>
+
+    <div class="callout p3 mb32">
+      <div class="callout-label">Where to Find It</div>
+      <p>Navigate to <strong>Keywords → Search Terms</strong> in Google Ads. Sort by Cost descending. Look at what people actually typed — not what you bid on. These are often two very different things, especially early in an account's life or when using broad match.</p>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:16px">How to Evaluate and Act on What You See</h3>
+    <table class="str-table mb32">
+      <thead>
+        <tr>
+          <th class="good">✅ Good Query Signals</th>
+          <th class="bad">❌ Bad Query Signals</th>
+          <th class="action">What to Do</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"5 hp industrial water pump" — specific, transactional, matches product</td>
+          <td>"how does a pump work" — informational, not buying</td>
+          <td>Add "how does" as a broad match negative. Keep the specific term.</td>
+        </tr>
+        <tr>
+          <td>"304 stainless plate distributor Ohio" — grade + form + geography</td>
+          <td>"stainless steel wall tiles" — consumer application, wrong context</td>
+          <td>Add "tiles" as a negative. The grade query shows buyer intent.</td>
+        </tr>
+        <tr>
+          <td>"DFARS compliant titanium bar" — specific requirement, high-value buyer</td>
+          <td>"prescription glasses" triggered by "industrial glasses safety" — completely off</td>
+          <td>Add "prescription" and "eyewear" as negatives. Investigate which keyword triggered this.</td>
+        </tr>
+        <tr>
+          <td>"A36 plate cut to length Houston" — specific, geographic, transactional</td>
+          <td>"metal working DIY projects" — hobbyist intent</td>
+          <td>Add "DIY" and "projects" as broad match negatives. These will eliminate dozens of variants.</td>
+        </tr>
+        <tr>
+          <td>"ISO 9001 machine shop near me" — certification + proximity</td>
+          <td>"machine shop jobs near me" — career intent, not buyer</td>
+          <td>Add "jobs," "careers," "hiring" as broad match negatives from the start.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="g2 mb32">
+      <div class="card p3">
+        <h3>If a Query Is Irrelevant → Add as Negative</h3>
+        <p>Add irrelevant queries as negative keywords to prevent wasting money on them in the future. The STR is your feedback mechanism — what the account is actually doing vs. what you intended it to do.</p>
+        <ul class="plain mt16">
+          <li>Use <strong>broad match negatives</strong> for single-word themes (e.g., "DIY," "jobs," "free")</li>
+          <li>Use <strong>phrase match negatives</strong> for multi-word phrases (e.g., "Home Depot," "how to build")</li>
+          <li>Use <strong>exact match negatives</strong> for very specific queries you never want to trigger (e.g., [Fiber Optic])</li>
+        </ul>
+      </div>
+      <div class="card p2">
+        <h3>If a Query Is Highly Relevant → Add as a Keyword</h3>
+        <p>If you see a search query that converts well but isn't in your keyword list, add it as a new keyword so you can control bids on it directly and get more bidding precision.</p>
+        <ul class="plain mt16">
+          <li>Add as <strong>phrase match</strong> on Bing or if you need reach control on Google</li>
+          <li>Add to the most relevant ad group — not just the catch-all campaign</li>
+          <li>This is how accounts improve over time — the STR is your gold mine</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout gold">
+      <div class="callout-label">⚠️ Avoid "Chasing With Negatives"</div>
+      <p>This happens when you're constantly adding negative keywords because your primary keywords are too broad. If you find yourself adding 20+ negatives per week, it's often a signal to step back and <strong>refine the keyword match types themselves</strong> rather than playing whack-a-mole with negatives. The root cause is usually a keyword that's doing too much work for too many irrelevant queries.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 8: NEGATIVE KEYWORDS -->
+<section class="sec-light" id="negative-keywords">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 8 — Build Before Launch</div>
+      <h2 class="sh-title">Negative Keyword Strategy: Protecting Your Budget</h2>
+      <p class="sh-desc">What you block is just as important as what you target. Build negatives before you launch — not after you've spent money on the wrong audience. The OBx Informational Terms Master List is your starting point.</p>
+    </div>
+
+    <div class="callout navy mb32">
+      <div class="callout-label">Start Here — OBx Master List</div>
+      <p>OBx maintains an <strong style="color:var(--gold)">Informational Terms Master List</strong> — your starting baseline for top-of-funnel terms to negate. <strong style="color:var(--gold)">Do not blindly copy and paste it.</strong> Review the list and remove any terms that might actually apply to what you're targeting. Then build client-specific negatives on top using B-SMART applied in reverse — what does this client NOT sell, NOT serve, and NOT want to attract?</p>
+    </div>
+
+    <div class="neg-category">
+      <div class="neg-cat-header"><span class="nch-icon">📚</span><span class="nch-title">Category 1 — Informational / Educational Intent</span></div>
+      <div class="neg-cat-body">
+        <p style="font-size:0.83rem;color:var(--text-light);margin-bottom:12px">Common starter negatives that apply to nearly every industrial account:</p>
+        <div class="neg-tags">
+          <span class="neg-tag bad">how</span><span class="neg-tag bad">what</span><span class="neg-tag bad">when</span><span class="neg-tag bad">where</span><span class="neg-tag bad">why</span><span class="neg-tag bad">diy</span><span class="neg-tag bad">free</span><span class="neg-tag bad">instructions</span><span class="neg-tag bad">guide</span><span class="neg-tag bad">manual</span><span class="neg-tag bad">definition</span><span class="neg-tag bad">tutorial</span><span class="neg-tag bad">wiki</span><span class="neg-tag bad">overview</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="neg-category">
+      <div class="neg-cat-header"><span class="nch-icon">🛒</span><span class="nch-title">Category 2 — Consumer / DIY / Retail Intent</span></div>
+      <div class="neg-cat-body">
+        <p style="font-size:0.83rem;color:var(--text-light);margin-bottom:12px">Buyers shopping for personal projects or small quantities that don't match B2B minimums.</p>
+        <div class="neg-tags">
+          <span class="neg-tag bad">cheap</span><span class="neg-tag bad">DIY</span><span class="neg-tag bad">home</span><span class="neg-tag bad">hobby</span><span class="neg-tag bad">small quantity</span><span class="neg-tag bad">buy one</span><span class="neg-tag bad">Amazon</span><span class="neg-tag bad">Home Depot</span><span class="neg-tag bad">Lowe's</span><span class="neg-tag bad">eBay</span><span class="neg-tag bad">retail</span><span class="neg-tag bad">backyard</span><span class="neg-tag bad">craft</span>
+          <span class="neg-tag info">Real example: "Metal Spinning Services" client → add "fidget" to avoid "metal fidget spinners"</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="neg-category">
+      <div class="neg-cat-header"><span class="nch-icon">🎓</span><span class="nch-title">Category 3 — Career / Recruitment Intent</span></div>
+      <div class="neg-cat-body">
+        <p style="font-size:0.83rem;color:var(--text-light);margin-bottom:12px">People looking for jobs in the industry — not buyers. Add these from day one.</p>
+        <div class="neg-tags">
+          <span class="neg-tag bad">jobs</span><span class="neg-tag bad">careers</span><span class="neg-tag bad">salary</span><span class="neg-tag bad">hiring</span><span class="neg-tag bad">training program</span><span class="neg-tag bad">apprenticeship</span><span class="neg-tag bad">degree</span><span class="neg-tag bad">school</span><span class="neg-tag bad">resume</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="neg-category">
+      <div class="neg-cat-header"><span class="nch-icon">🏷️</span><span class="nch-title">Category 4 — B-SMART Negatives (Client-Specific)</span></div>
+      <div class="neg-cat-body">
+        <p style="font-size:0.83rem;color:var(--text-light);margin-bottom:12px">Use B-SMART in reverse — every dimension the client does NOT serve becomes a negative.</p>
+        <div class="neg-tags">
+          <span class="neg-tag info">Distributor with no fabrication →</span>
+          <span class="neg-tag bad">custom fabrication</span><span class="neg-tag bad">laser cutting</span><span class="neg-tag bad">welding service</span>
+          <span class="neg-tag info">Steel-only distributor →</span>
+          <span class="neg-tag bad">aluminum</span><span class="neg-tag bad">titanium</span><span class="neg-tag bad">copper</span>
+          <span class="neg-tag info">Manufacturer without distribution →</span>
+          <span class="neg-tag bad">in stock</span><span class="neg-tag bad">off-the-shelf</span><span class="neg-tag bad">same-day shipping</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout gold mt24">
+      <div class="callout-label">Negative Match Type Strategy</div>
+      <p>Use the right match type for each negative: <strong>Broad match</strong> for single-word negatives (e.g., "fidget," "DIY") — this eliminates the entire theme across all variations. <strong>Phrase match</strong> for multi-word phrases you want to exclude (e.g., "Home Depot," "how to build"). <strong>Exact match</strong> to exclude a very specific query you never want to trigger (e.g., [Fiber Optic]). <strong>One well-placed broad match negative does the work of dozens of specific ones.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 9: AD COPY -->
+<section class="sec-white" id="ad-copy">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 9</div>
+      <h2 class="sh-title">Ad Copy That Works for Industrial Buyers</h2>
+      <p class="sh-desc">Industrial buyers respond to specificity, credibility, and speed. They are not browsing — they have a real need. Your ad copy needs to confirm immediately that you can meet that need. Match the keyword. Speak to the buyer. Lead with what they care about.</p>
+    </div>
+    <div class="g2 mb32">
+      <div>
+        <h3 style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:14px">✅ What Works</h3>
+        <ul class="plain">
+          <li>Lead with the grade or capability in Headline 1 — match the keyword exactly</li>
+          <li>Use certifications as a headline — "AS9100 Certified," "ISO 9001," "DFARS Compliant"</li>
+          <li>Mention availability if a distributor: "In Stock," "Ready to Ship," "Same-Day Cut Available"</li>
+          <li>Use specific, action-oriented CTAs: "Request a Quote," "Get Pricing," "Submit an RFQ"</li>
+          <li>Include technical capabilities that signal expertise: "Mill Certified," "Tight Tolerance Machining"</li>
+          <li>Name specific materials or grades in the ad — it signals relevance to a buyer scanning fast</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="font-size:1rem;font-weight:800;color:var(--navy);margin-bottom:14px">❌ What Doesn't Work</h3>
+        <ul class="plain">
+          <li>Generic openers: "Welcome to [Company]" or "We Are Your Trusted Partner..."</li>
+          <li>Consumer language: "Amazing Deals," "Best Prices," "Shop Now"</li>
+          <li>Vague claims: "High Quality Products," "Great Service," "Wide Selection"</li>
+          <li>"Contact Us Today" as the only CTA — too passive for a buyer with an active need</li>
+          <li>Headline 1 that doesn't match the keyword — disconnects the buyer and kills Quality Score</li>
+          <li>No grade or capability mentioned — buyers scan for their specific spec in half a second</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:16px">Ad Copy Side-by-Side Examples</h3>
+    <div class="g2 mb32">
+      <div>
+        <div class="ad-example ae-good">
+          <div class="ae-label">✓ Strong — Distributor (O'Neal Steel)</div>
+          <div class="ae-url">onealsteel.com/a36-steel-plate</div>
+          <div class="ae-headline">A36 Steel Plate | In Stock, Ready to Ship</div>
+          <div class="ae-headline">ASTM Certified · Custom Cut to Length Available</div>
+          <div class="ae-desc">A36 carbon steel plate in stock at our service centers. Mill certified, same-day cut-to-length available. Request a quote online or call for availability.</div>
+        </div>
+      </div>
+      <div>
+        <div class="ad-example ae-bad">
+          <div class="ae-label">✗ Weak — Same Client, Poor Copy</div>
+          <div class="ae-url">onealsteel.com</div>
+          <div class="ae-headline">Steel Products Available | O'Neal Steel</div>
+          <div class="ae-headline">Quality Metal Products For All Needs</div>
+          <div class="ae-desc">We offer a wide range of high quality steel and metal products for industrial use. Contact us today to learn more about our services.</div>
+        </div>
+      </div>
+      <div>
+        <div class="ad-example ae-good">
+          <div class="ae-label">✓ Strong — Manufacturer (Endura Coatings)</div>
+          <div class="ae-url">enduracoatings.com/industrial-coatings</div>
+          <div class="ae-headline">Industrial Powder Coating | OEM & Heavy Equipment</div>
+          <div class="ae-headline">FDA & USDA Approved Options | Request a Quote</div>
+          <div class="ae-desc">Industrial powder coating for heavy equipment, agricultural, and OEM applications. FDA/USDA approved finishes available. Request a quote for volume pricing.</div>
+        </div>
+      </div>
+      <div>
+        <div class="ad-example ae-bad">
+          <div class="ae-label">✗ Weak — Same Client, Poor Copy</div>
+          <div class="ae-url">enduracoatings.com</div>
+          <div class="ae-headline">Endura Coatings | Industrial Coating Services</div>
+          <div class="ae-headline">We Provide Great Coating Solutions</div>
+          <div class="ae-desc">Endura Coatings provides industrial coating services for a variety of applications. We have years of experience. Contact us!</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout navy">
+      <div class="callout-label">Ad Extensions — Don't Skip These</div>
+      <p>Sitelink extensions should link to your highest-converting page types: specific grade pages, certification pages, quote forms, and catalog pages. Callout extensions are your differentiator space: <strong style="color:var(--gold)">"Mill Certified Stock" · "Same-Day Cut to Length" · "AS9100 Certified" · "National Shipping" · "RFQ Response in 24 Hours"</strong>. Structured snippets can feature specific grades carried, capabilities, or industries served. These cost nothing extra and significantly increase CTR from qualified buyers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 10: PAID + ORGANIC SYNERGY -->
+<section class="sec-p2" id="synergy">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 10 — Critical Partnership</div>
+      <h2 class="sh-title">PPC + SEO Synergy: You Are a Team</h2>
+      <p class="sh-desc">A user seeing a business in both paid and organic search results is more likely to trust and click on that brand. PPC and SEO are not competing channels — they are complementary strategies that are stronger together than either is alone.</p>
+    </div>
+
+    <div class="synergy-split mb32">
+      <div class="syn-seo">
+        <div class="syn-title">🔍 SEO</div>
+        <div class="syn-sub">Organic, long-term, compounding</div>
+        <ul class="syn-items">
+          <li>Builds authority and trust over time</li>
+          <li>Slower to rank but longer-lasting results</li>
+          <li>Content signals to Google what the site is about</li>
+          <li>Can surface for long-tail, specific grade queries</li>
+          <li>New pages need time to gain visibility in search</li>
+        </ul>
+      </div>
+      <div class="syn-mid"><div class="syn-mid-icon">⚡</div></div>
+      <div class="syn-ppc">
+        <div class="syn-title">💰 PPC</div>
+        <div class="syn-sub">Paid, immediate, controllable</div>
+        <ul class="syn-items">
+          <li>Immediate visibility — ads go live same day</li>
+          <li>Drives traffic to new pages before SEO kicks in</li>
+          <li>Search Terms Report reveals real buyer language</li>
+          <li>Can cover gaps where organic rankings are weak</li>
+          <li>Budget can be scaled up or down in real time</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:1.05rem;font-weight:800;color:var(--navy);margin-bottom:18px">How to Work Together — Practical Actions</h3>
+    <div class="g3 mb24">
+      <div class="card">
+        <div class="card-icon">🔄</div>
+        <h3>Feed STR Data Into SEO Strategy</h3>
+        <p>Use the PPC Search Terms Report to discover new, high-intent keywords that can be targeted in SEO content strategy. If buyers are searching for "DFARS compliant titanium bar" and converting through PPC — that's a content brief for the SEO team.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📄</div>
+        <h3>Run PPC to New SEO Pages Immediately</h3>
+        <p>If the SEO team implements a new page or new content, run ads to that page right away — as long as there's budget and it's a client priority. PPC is faster and will direct traffic to the page in a much shorter time frame than organic rankings alone.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛡️</div>
+        <h3>Cover Organic Gaps With Paid</h3>
+        <p>If organic rankings are low for a high-value keyword, use paid search to ensure immediate visibility. This is the core logic behind integrated marketing — wherever PPC lacks, SEO can make up for it, and vice versa.</p>
+      </div>
+    </div>
+
+    <div class="ep-tip">
+      <div class="ep-label">From the Field — Paid Media Team</div>
+      <div class="ep-text">Your SEO counterpart will be your best and most frequent collaborator. You should be building strategy together because wherever PPC lacks, SEO can make up for it — and vice versa. If your SEO implements a new page, have ads running to it. If your keyword research reveals new intent themes, share them with your SEO. Consistent message and user experience between your ads and the corresponding landing pages isn't just good practice — it's what makes the whole thing work as a unified strategy rather than two separate tactics running in parallel.</div>
+    </div>
+
+    <div class="g2 mt24">
+      <div class="card gray">
+        <h3>📊 SERP Domination — Why It Matters</h3>
+        <ul class="plain mt16">
+          <li>Greater visibility — appearing in paid AND organic means your brand is seen twice in the results</li>
+          <li>Increased trust — multiple listings act as social proof, boosting credibility with the buyer</li>
+          <li>Strategic defense — occupying both spots prevents competitors from gaining that visibility</li>
+          <li>Message consistency — your paid ad and your organic listing should reinforce each other</li>
+        </ul>
+      </div>
+      <div class="card gray">
+        <h3>🔍 What to Align Between PPC and SEO</h3>
+        <ul class="plain mt16">
+          <li>Landing page message matches the ad copy — no disconnect when the buyer arrives</li>
+          <li>Keywords in ad copy match the H1 and title tag of the landing page</li>
+          <li>CTAs are consistent — if the ad says "Request a Quote," the page should lead with a quote form</li>
+          <li>Share keyword performance data both directions — what's converting in PPC is a signal for SEO priority</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 11: COMMON MISTAKES -->
+<section class="sec-white" id="mistakes">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 11</div>
+      <h2 class="sh-title">Common Industrial PPC Mistakes to Avoid</h2>
+      <p class="sh-desc">These patterns consistently undermine industrial PPC performance. Knowing them before you launch is how you avoid them.</p>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Skipping Conversion Tracking Verification</div><p>Launching or optimizing an account without confirming that conversion tracking is firing correctly. Every optimization decision made without accurate conversion data is a guess — and guesses cost money in PPC.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Verify Tracking Before Anything Else</div><p>Step 1 of every account review is conversion tracking verification. Check Goals → Conversions → Summary. Confirm what is being tracked and that it aligns with the client's actual business goals — not just whatever was convenient to set up at launch.</p></div>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Launching Without Negatives</div><p>Starting a campaign with no negative keyword list. In industrial B2B, broad match without negatives will immediately burn budget on consumer, educational, and career-intent searches — all the wrong audience at real CPC costs.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Build Negatives Before Launch</div><p>Use the OBx Informational Terms Master List as your baseline. Layer in B-SMART-driven client-specific negatives. Use broad match negatives for themes (e.g., "DIY" eliminates dozens of irrelevant variants in one entry). Review STR weekly and expand from there.</p></div>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Ignoring the STR and Just Watching Metrics</div><p>Looking at impressions, clicks, and conversions at the campaign level without reviewing what actual search queries triggered the ads. The STR is where the account is actually performing — or failing.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Review the STR Weekly</div><p>Identify irrelevant queries and add them as negatives. Identify high-converting queries that aren't in your keyword list and add them. The STR is both your quality filter and your discovery engine — don't skip it.</p></div>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ Evaluating CPL Without LTV Context</div><p>Panicking about a $1,200 CPL when that lead could be worth $60,000 in lifetime revenue. Industrial CPL math is completely different from consumer PPC. Evaluating it without LTV leads to cutting spend that was actually working.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Always Anchor CPL to LTV</div><p>Present performance in terms the client cares about: "We generated X leads this month at $Y CPL. Based on your average order value, even a 10% close rate represents $Z in potential pipeline." Change the frame entirely.</p></div>
+    </div>
+    <div class="mistake-pair">
+      <div class="mbox dont"><div class="mbox-label">✗ PPC and SEO Working in Silos</div><p>Running PPC campaigns and SEO strategies completely independently — different keyword lists, different content priorities, no shared intelligence. This is leaving money on the table and creating inconsistent brand experiences for buyers.</p></div>
+      <div class="mbox do"><div class="mbox-label">✓ Build Strategy Together</div><p>Share STR data with your SEO counterpart. Run PPC to new SEO pages immediately. Use paid to cover organic gaps. Align landing page messaging with ad copy. You and your SEO are one integrated marketing team — not two separate services running simultaneously.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECAP -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh"><div class="sh-tag wht">Part 3 Recap</div><h2 class="sh-title wht">What You Can Now Do</h2><p class="sh-desc wht">After Part 3, you should be able to build, review, and manage an industrial PPC account with the discipline and financial accountability this vertical requires.</p></div>
+    <div class="recap-grid">
+      <div class="recap-item"><div class="recap-num">01</div><div class="recap-title">Apply the 4-Step Methodology</div><div class="recap-desc">Follow the OBx framework: understand the business, diagnose the account, strategize improvements, and execute — in that order, every time.</div></div>
+      <div class="recap-item"><div class="recap-num">02</div><div class="recap-title">Build Keyword Lists With Intent</div><div class="recap-desc">Use B-SMART to build comprehensive, intent-driven keyword lists. Apply OBx formatting rules. Know when to use branded terms and when not to. Never bid on competitor business names.</div></div>
+      <div class="recap-item"><div class="recap-num">03</div><div class="recap-title">Structure Campaigns by Client Type</div><div class="recap-desc">Distributor and manufacturer campaigns look fundamentally different. Match the structure to the client's value proposition — availability-first vs. capability-first.</div></div>
+      <div class="recap-item"><div class="recap-num">04</div><div class="recap-title">Conduct Account Reviews the Right Way</div><div class="recap-desc">Verify conversion tracking first. Analyze campaign structure and budget allocation. Calculate bid-to-budget ratio. Review STR weekly. Never optimize on assumptions.</div></div>
+      <div class="recap-item"><div class="recap-num">05</div><div class="recap-title">Build Airtight Negatives</div><div class="recap-desc">Use the OBx Master List as your base. Apply B-SMART in reverse for client-specific negatives. Use the right match type per negative category. Build before launch — not after.</div></div>
+      <div class="recap-item"><div class="recap-num">06</div><div class="recap-title">Partner With Your SEO</div><div class="recap-desc">Share STR data. Run PPC to new SEO pages immediately. Cover organic gaps with paid. Align messaging across channels. You are one integrated team — not two parallel services.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="next-part-cta">
+  <div class="npc-inner">
+    <div class="npc-label">Up Next in the Series</div>
+    <div class="npc-title">Part 4: Client Communication</div>
+    <div class="npc-desc">You have the strategy. Now learn how to communicate it. Part 4 covers how to lead with business outcomes, apply the ELFEC framework, use the Trust Formula, translate digital metrics into client language, and handle the objections you'll actually face.</div>
+    <a href="industrial-b2b-part4.html" class="npc-btn">Start Part 4 →</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Industrial & B2B Training — Part 3 of 6: PPC Strategy</span>
+    <span>April 2026</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+</body>
+</html>
