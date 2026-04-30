@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Industrial B2B — Part 8: The Relativity Problem</title>
+<style>
+:root {
+  --navy: #1B4F72; --navy-dark: #154360; --orange: #D4551A; --gold: #F5A623;
+  --blue: #2980B9; --slate: #4A6375; --light-gray: #F0F2F5; --border: #DDE3EA;
+  --text: #2C3E50; --text-light: #7F8C8D; --success: #27AE60; --error: #E74C3C;
+  --p2: #0E7C5C; --p2-dark: #0A5C43; --p2-light: rgba(14,124,92,0.08);
+  --p3: #D4551A; --p4: #5B3FA8; --p5: #0A7B8E; --p6: #8B1A4A;
+  --p7: #2C5F7A; --p7-dark: #1E4558; --p7-light: rgba(44,95,122,0.08);
+  --p8: #7A4A00; --p8-dark: #5C3600; --p8-light: rgba(122,74,0,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; background: var(--light-gray); color: var(--text); line-height: 1.65; }
+
+/* ── NAV ── */
+.top-nav { position: sticky; top: 0; z-index: 300; background: var(--navy); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+.brand { display: flex; align-items: center; }
+.brand-main { color: #fff; font-size: 1.3rem; font-weight: 900; letter-spacing: -0.5px; }
+.brand-main em { color: var(--gold); font-style: normal; }
+.brand-school { color: var(--gold); font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; border-left: 2px solid rgba(245,166,35,0.35); margin-left: 12px; padding-left: 12px; }
+.nav-badge { background: rgba(122,74,0,0.3); color: #FFD080; border: 1px solid rgba(122,74,0,0.5); padding: 3px 12px; border-radius: 20px; font-size: 0.71rem; font-weight: 600; }
+
+.series-nav { background: var(--navy-dark); border-bottom: 2px solid rgba(245,166,35,0.15); display: flex; align-items: center; padding: 0 48px; gap: 4px; overflow-x: auto; position: sticky; top: 56px; z-index: 190; }
+.snav-label { color: rgba(255,255,255,0.28); font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.08); margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+.snav-link { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.76rem; font-weight: 600; padding: 13px 14px; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.15s; white-space: nowrap; }
+.snav-link:hover { color: rgba(255,255,255,0.8); }
+.snav-link.active { color: #fff; border-bottom-color: var(--p8); }
+.snav-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.sn-1{background:var(--slate);} .sn-2{background:var(--p2);} .sn-3{background:var(--p3);}
+.sn-4{background:var(--p4);} .sn-5{background:var(--p5);} .sn-6{background:var(--p6);}
+.sn-7{background:var(--p7);} .sn-8{background:var(--p8);}
+
+/* ── HEADER ── */
+.part-header { background: linear-gradient(135deg, #3D2600 0%, #7A4A00 55%, #5E3800 100%); padding: 72px 48px 64px; position: relative; overflow: hidden; }
+.ph-blob { position: absolute; border-radius: 50%; pointer-events: none; top: -80px; right: -80px; width: 420px; height: 420px; background: rgba(255,255,255,0.03); }
+.ph-s1 { position: absolute; top: 36px; right: 72px; width: 20px; height: 20px; background: rgba(255,255,255,0.12); pointer-events: none; }
+.ph-s2 { position: absolute; top: 60px; right: 50px; width: 13px; height: 13px; background: rgba(245,166,35,0.35); pointer-events: none; }
+.ph-s3 { position: absolute; top: 48px; right: 100px; width: 10px; height: 10px; background: rgba(255,255,255,0.08); pointer-events: none; }
+.ph-inner { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
+.ph-series { font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.ph-series::before { content: ''; display: block; width: 24px; height: 2px; background: rgba(255,255,255,0.4); }
+.ph-badge { display: inline-flex; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 5px 12px; color: rgba(255,255,255,0.75); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
+.ph-title { color: #fff; font-size: 2.8rem; font-weight: 900; line-height: 1.12; margin-bottom: 16px; }
+.ph-sub { color: rgba(255,255,255,0.65); font-size: 0.98rem; max-width: 640px; line-height: 1.72; margin-bottom: 30px; }
+.ph-objectives { display: flex; flex-wrap: wrap; gap: 9px; }
+.ph-obj { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.13); border-radius: 7px; padding: 7px 13px; color: rgba(255,255,255,0.78); font-size: 0.77rem; }
+.ph-obj::before { content: '✓ '; color: rgba(255,255,255,0.45); font-size: 0.72rem; }
+
+.accent-bar { height: 4px; background: linear-gradient(90deg, var(--p8) 0%, var(--gold) 60%, var(--navy) 100%); }
+
+/* ── LAYOUT ── */
+.container { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+section.sec-light { background: var(--light-gray); padding: 64px 0; }
+section.sec-white { background: #fff; padding: 64px 0; }
+section.sec-dark  { background: var(--navy); padding: 64px 0; }
+section.sec-p8    { background: var(--p8-light); padding: 64px 0; border-top: 1px solid rgba(122,74,0,0.12); border-bottom: 1px solid rgba(122,74,0,0.12); }
+
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+
+/* ── SECTION HEADERS ── */
+.sh { margin-bottom: 36px; }
+.sh-tag { font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; color: var(--p8); }
+.sh-tag.wht { color: rgba(255,255,255,0.5); }
+.sh-tag.gold { color: var(--gold); }
+.sh-title { font-size: 1.9rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.sh-title.wht { color: #fff; }
+.sh-desc { color: var(--text-light); font-size: 0.91rem; max-width: 720px; line-height: 1.7; }
+.sh-desc.wht { color: rgba(255,255,255,0.62); }
+
+.sub-sh { font-size: 0.97rem; font-weight: 800; color: var(--navy); margin: 32px 0 14px; padding-bottom: 9px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.sub-sh-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* ── CARDS ── */
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 26px; transition: box-shadow 0.15s, transform 0.15s; }
+.card:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.07); transform: translateY(-2px); }
+.card.gray  { background: var(--light-gray); }
+.card.navy  { background: var(--navy); }
+.card.p8    { background: var(--p8-light); border-color: rgba(122,74,0,0.2); }
+.card h3 { font-size: 0.97rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card.navy h3 { color: var(--gold); }
+.card.p8 h3 { color: var(--p8-dark); }
+.card p { font-size: 0.86rem; color: var(--text-light); line-height: 1.65; }
+.card.navy p { color: rgba(255,255,255,0.72); }
+.card-icon { font-size: 1.8rem; margin-bottom: 12px; }
+
+/* ── TABLES ── */
+.tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.05); margin-bottom: 24px; }
+.tbl-wrap .tbl { border-radius: 0; box-shadow: none; margin-bottom: 0; }
+.tbl { width: 100%; border-collapse: collapse; background: #fff; }
+.tbl th { padding: 12px 16px; text-align: left; font-size: 0.73rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #fff; }
+.tbl td { padding: 12px 16px; font-size: 0.83rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.52; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: #F8FAFB; }
+.tbl td strong { color: var(--navy); }
+.th-navy{background:var(--navy);} .th-slate{background:var(--slate);} .th-p2{background:var(--p2);}
+.th-p3{background:var(--p3);} .th-p4{background:var(--p4);} .th-p5{background:var(--p5);}
+.th-p6{background:var(--p6);} .th-p7{background:var(--p7);} .th-p8{background:var(--p8);}
+
+/* ── CALLOUTS ── */
+.callout { border-radius: 10px; padding: 20px 24px; margin: 24px 0; border-left: 4px solid; }
+.callout.p2    { background: rgba(14,124,92,0.07);  border-color: var(--p2); }
+.callout.orange{ background: rgba(212,85,26,0.06);  border-color: var(--orange); }
+.callout.navy  { background: var(--navy);            border-color: var(--gold); }
+.callout.gold  { background: rgba(245,166,35,0.08); border-color: var(--gold); }
+.callout.p4    { background: rgba(91,63,168,0.07);  border-color: var(--p4); }
+.callout.p8    { background: var(--p8-light);        border-color: var(--p8); }
+.callout.error { background: rgba(231,76,60,0.06);  border-color: var(--error); }
+.callout-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.callout.p2    .callout-label { color: var(--p2-dark); }
+.callout.orange .callout-label { color: var(--orange); }
+.callout.navy  .callout-label { color: var(--gold); }
+.callout.gold  .callout-label { color: #8A5F00; }
+.callout.p4    .callout-label { color: var(--p4); }
+.callout.p8    .callout-label { color: var(--p8-dark); }
+.callout.error .callout-label { color: var(--error); }
+.callout p { font-size: 0.88rem; line-height: 1.68; }
+.callout.navy p { color: rgba(255,255,255,0.82); }
+
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { font-size: 0.85rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 9px; align-items: flex-start; line-height: 1.55; }
+ul.plain li:last-child { border-bottom: none; }
+ul.plain li::before { content: '▸'; color: var(--p8); flex-shrink: 0; font-size: 0.8rem; margin-top: 1px; }
+
+/* ── PHRASE SPLIT (same phrase, different realities) ── */
+.phrase-split { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+.phrase-header { background: var(--navy); padding: 14px 24px; text-align: center; }
+.phrase-header-text { color: var(--gold); font-size: 0.95rem; font-weight: 800; font-family: 'Courier New', monospace; letter-spacing: 0.5px; }
+.phrase-header-sub { color: rgba(255,255,255,0.45); font-size: 0.7rem; margin-top: 4px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
+.phrase-body { display: grid; grid-template-columns: 1fr 1fr; }
+.phrase-side { padding: 20px 22px; }
+.phrase-side-a { border-right: 1px solid var(--border); background: rgba(14,124,92,0.04); }
+.phrase-side-b { background: rgba(231,76,60,0.04); }
+.phrase-industry { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; padding: 4px 10px; border-radius: 4px; display: inline-block; }
+.phrase-industry.ind-a { background: rgba(14,124,92,0.12); color: var(--p2-dark); }
+.phrase-industry.ind-b { background: rgba(231,76,60,0.12); color: #B03A2E; }
+.phrase-meaning { font-size: 0.85rem; color: var(--text); line-height: 1.65; margin-top: 8px; }
+.phrase-meaning strong { color: var(--navy); }
+.phrase-reality { margin-top: 12px; padding: 10px 14px; border-radius: 7px; font-size: 0.8rem; font-weight: 700; }
+.phrase-reality.real-a { background: rgba(14,124,92,0.1); color: var(--p2-dark); }
+.phrase-reality.real-b { background: rgba(231,76,60,0.1); color: #B03A2E; }
+
+/* ── RELATIVITY SCALE BAR ── */
+.rel-scale { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+.rel-scale-header { padding: 14px 20px; background: var(--p8); color: #fff; font-size: 0.8rem; font-weight: 700; }
+.rel-scale-body { padding: 24px 20px 18px; }
+.scale-track-wrap { position: relative; padding-top: 48px; padding-bottom: 28px; }
+.scale-track { height: 10px; background: linear-gradient(90deg, var(--p2) 0%, var(--gold) 50%, var(--error) 100%); border-radius: 5px; position: relative; }
+.scale-markers { display: flex; justify-content: space-between; position: absolute; top: 0; left: 0; right: 0; }
+.scale-marker { display: flex; flex-direction: column; align-items: center; }
+.scale-marker-line { width: 2px; height: 14px; background: var(--slate); margin: 0 auto 4px; margin-top: 20px; }
+.scale-marker-label { font-size: 0.67rem; font-weight: 700; color: var(--navy); text-align: center; white-space: nowrap; }
+.scale-marker-sub { font-size: 0.61rem; color: var(--text-light); text-align: center; white-space: nowrap; }
+.scale-anchors { display: flex; justify-content: space-between; margin-top: 6px; }
+.scale-anchor { font-size: 0.69rem; color: var(--text-light); }
+
+/* ── RELATIVITY CARDS ── */
+.rel-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+.rel-card-header { padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; }
+.rel-card-industry { font-size: 0.8rem; font-weight: 700; color: var(--navy); }
+.rel-card-type { font-size: 0.69rem; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 1.5px; }
+.rel-card-body { padding: 0; }
+.rel-card-row { display: grid; grid-template-columns: 160px 1fr 1fr; border-top: 1px solid var(--border); }
+.rel-card-row.hdr { background: var(--light-gray); }
+.rel-card-cell { padding: 10px 14px; font-size: 0.82rem; color: var(--text); line-height: 1.5; }
+.rel-card-cell.lbl { font-size: 0.72rem; font-weight: 700; color: var(--slate); text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; }
+.rel-card-cell strong { color: var(--navy); display: block; margin-bottom: 2px; font-size: 0.84rem; }
+.rel-card-cell span { color: var(--text-light); font-size: 0.77rem; }
+
+/* ── SIZE INDICATOR BADGES ── */
+.size-badge { display: inline-block; padding: 2px 9px; border-radius: 4px; font-size: 0.71rem; font-weight: 700; white-space: nowrap; font-family: 'Courier New', monospace; }
+.sb-xs  { background: rgba(14,124,92,0.12);  color: #0A5C43; }
+.sb-sm  { background: rgba(41,128,185,0.12); color: #1A6FA8; }
+.sb-md  { background: rgba(245,166,35,0.14); color: #8A5F00; }
+.sb-lg  { background: rgba(212,85,26,0.14);  color: #A84214; }
+.sb-xl  { background: rgba(139,26,74,0.13);  color: #6B1538; }
+
+/* ── VOLUME INDICATOR ── */
+.vol-bar-wrap { display: flex; align-items: center; gap: 10px; }
+.vol-bar { height: 8px; border-radius: 4px; flex-shrink: 0; }
+.vol-label { font-size: 0.77rem; font-weight: 700; color: var(--text); }
+
+/* ── QUESTION CARDS ── */
+.q-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 14px; }
+.q-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 22px; display: flex; gap: 14px; align-items: flex-start; transition: box-shadow 0.15s; }
+.q-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.07); }
+.q-num { width: 36px; height: 36px; border-radius: 50%; background: var(--p8); color: #fff; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.q-content h4 { font-size: 0.92rem; font-weight: 700; color: var(--navy); margin-bottom: 7px; }
+.q-content p  { font-size: 0.82rem; color: var(--text-light); line-height: 1.6; }
+.q-content .q-why { margin-top: 10px; background: var(--p8-light); border-radius: 6px; padding: 8px 12px; font-size: 0.78rem; color: var(--p8-dark); font-weight: 600; }
+
+/* ── MISTAKE PAIR ── */
+.mistake-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.mbox { border-radius: 10px; padding: 18px 20px; border: 1px solid; }
+.mbox.do   { background: rgba(14,124,92,0.05);  border-color: rgba(14,124,92,0.2); }
+.mbox.dont { background: rgba(231,76,60,0.05);  border-color: rgba(231,76,60,0.2); }
+.mbox-label { font-size: 0.69rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+.mbox.do   .mbox-label { color: var(--p2); }
+.mbox.dont .mbox-label { color: var(--error); }
+.mbox p { font-size: 0.83rem; color: var(--text); line-height: 1.6; }
+.mbox code { display: block; margin-top: 8px; font-family: 'Courier New', monospace; font-size: 0.78rem; padding: 6px 10px; border-radius: 5px; }
+.mbox.do   code { background: rgba(14,124,92,0.1);  color: var(--p2-dark); }
+.mbox.dont code { background: rgba(231,76,60,0.1); color: #B03A2E; }
+
+/* ── SCENARIO BLOCK ── */
+.scenario { background: var(--navy); border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; }
+.scenario-label { font-size: 0.68rem; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+.scenario h4 { color: #fff; font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+.scenario p  { color: rgba(255,255,255,0.72); font-size: 0.86rem; line-height: 1.68; }
+.scenario .s-outcome { margin-top: 14px; background: rgba(231,76,60,0.25); border: 1px solid rgba(231,76,60,0.4); border-radius: 8px; padding: 10px 14px; color: #FF9090; font-size: 0.82rem; font-weight: 600; }
+.scenario .s-fix { margin-top: 8px; background: rgba(39,174,96,0.2); border: 1px solid rgba(39,174,96,0.35); border-radius: 8px; padding: 10px 14px; color: #6EDDB9; font-size: 0.82rem; font-weight: 600; }
+
+/* ── TOLERANCE VISUAL ── */
+.tol-scale { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.tol-row { display: grid; grid-template-columns: 200px 1fr 120px; border-bottom: 1px solid var(--border); align-items: center; }
+.tol-row:last-child { border-bottom: none; }
+.tol-row.hdr { background: var(--navy); }
+.tol-label { padding: 12px 16px; font-size: 0.83rem; font-weight: 600; color: var(--text); }
+.tol-row.hdr .tol-label { color: rgba(255,255,255,0.65); font-size: 0.73rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.tol-bar-cell { padding: 12px 16px; border-left: 1px solid var(--border); }
+.tol-row.hdr .tol-bar-cell { border-left: 1px solid rgba(255,255,255,0.12); }
+.tol-bar-bg { background: var(--light-gray); border-radius: 4px; height: 12px; overflow: hidden; }
+.tol-bar-fill { height: 100%; border-radius: 4px; }
+.tol-value-cell { padding: 12px 16px; border-left: 1px solid var(--border); font-size: 0.8rem; font-weight: 700; text-align: right; font-family: 'Courier New', monospace; }
+.tol-row.hdr .tol-value-cell { color: rgba(255,255,255,0.65); font-size: 0.73rem; text-transform: uppercase; letter-spacing: 0.5px; border-left: 1px solid rgba(255,255,255,0.12); }
+
+/* ── LEAD TIME COMPARISON ── */
+.lt-item { display: flex; gap: 14px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.lt-item:last-child { border-bottom: none; }
+.lt-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.lt-content { flex: 1; }
+.lt-material { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.lt-bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.lt-bar { height: 10px; border-radius: 5px; }
+.lt-time { font-size: 0.82rem; font-weight: 700; }
+.lt-context { font-size: 0.75rem; color: var(--text-light); }
+
+/* ── VALUE COMPARISON CARDS ── */
+.value-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.value-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.vc-header { padding: 14px 16px; }
+.vc-industry { font-size: 0.8rem; font-weight: 700; color: #fff; }
+.vc-type { font-size: 0.68rem; color: rgba(255,255,255,0.65); margin-top: 2px; }
+.vc-body { padding: 14px 16px; }
+.vc-row { display: flex; justify-content: space-between; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.82rem; }
+.vc-row:last-child { border-bottom: none; }
+.vc-label { color: var(--text-light); font-size: 0.77rem; }
+.vc-amount { font-weight: 700; font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--navy); }
+
+/* ── RECAP ── */
+.recap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.recap-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; }
+.recap-num   { font-size: 2rem; font-weight: 900; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 4px; }
+.recap-title { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.recap-desc  { color: rgba(255,255,255,0.62); font-size: 0.81rem; line-height: 1.6; }
+
+.next-part-cta { background: var(--navy-dark); padding: 52px 48px; text-align: center; }
+.npc-inner  { max-width: 560px; margin: 0 auto; }
+.npc-label  { color: rgba(255,255,255,0.35); font-size: 0.68rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.npc-title  { color: #fff; font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+.npc-desc   { color: rgba(255,255,255,0.52); font-size: 0.87rem; margin-bottom: 24px; line-height: 1.65; }
+.npc-btn    { display: inline-flex; align-items: center; gap: 10px; background: var(--p8); color: #fff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; transition: all 0.15s; }
+.npc-btn:hover { background: var(--p8-dark); transform: translateY(-1px); }
+
+.footer { background: #0D1C2B; padding: 42px 48px; text-align: center; }
+.footer-brand  { color: #fff; font-size: 1.4rem; font-weight: 900; margin-bottom: 5px; }
+.footer-brand em { color: var(--gold); font-style: normal; }
+.footer-school { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.footer-meta   { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.footer-meta span { color: rgba(255,255,255,0.28); font-size: 0.73rem; }
+
+.mt16{margin-top:16px;} .mt24{margin-top:24px;} .mt32{margin-top:32px;}
+.mb8{margin-bottom:8px;} .mb16{margin-bottom:16px;} .mb24{margin-bottom:24px;} .mb32{margin-bottom:32px;}
+[id]::before { content: ''; display: block; height: 80px; margin-top: -80px; pointer-events: none; }
+
+@media (max-width: 860px) {
+  .g2,.g3,.g4 { grid-template-columns: 1fr; }
+  .q-grid { grid-template-columns: 1fr; }
+  .mistake-pair { grid-template-columns: 1fr; }
+  .value-grid { grid-template-columns: 1fr; }
+  .recap-grid { grid-template-columns: 1fr; }
+  .phrase-body { grid-template-columns: 1fr; }
+  .phrase-side-a { border-right: none; border-bottom: 1px solid var(--border); }
+  .tol-row { grid-template-columns: 1fr; }
+  .container { padding: 0 24px; }
+  .top-nav,.series-nav { padding: 0 24px; }
+  .part-header { padding: 52px 24px 48px; }
+  .ph-title { font-size: 2rem; }
+  .rel-card-row { grid-template-columns: 1fr; }
+  .next-part-cta { padding: 40px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP NAV ═══ -->
+<nav class="top-nav">
+  <div class="brand"><span class="brand-main">Outer<em>Box</em></span><span class="brand-school">B·SCHOOL</span></div>
+  <span class="nav-badge">Part 8 of 8 · Industrial &amp; B2B</span>
+</nav>
+
+<!-- ═══ SERIES NAV ═══ -->
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="industrial-b2b-part1.html"  class="snav-link"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="industrial-b2b-part2.html"  class="snav-link"><span class="snav-num sn-2">2</span>SEO Strategy</a>
+  <a href="industrial-b2b-part3.html"  class="snav-link"><span class="snav-num sn-3">3</span>PPC Strategy</a>
+  <a href="industrial-b2b-part4.html"  class="snav-link"><span class="snav-num sn-4">4</span>Communication</a>
+  <a href="industrial-b2b-part5.html"  class="snav-link"><span class="snav-num sn-5">5</span>Loop &amp; CallRail</a>
+  <a href="industrial-b2b-part6.html"  class="snav-link"><span class="snav-num sn-6">6</span>Retention &amp; Heartbeat</a>
+  <a href="industrial-b2b-part7.html"  class="snav-link"><span class="snav-num sn-7">7</span>Materials Guide</a>
+  <a href="industrial-b2b-part8.html"  class="snav-link active"><span class="snav-num sn-8">8</span>Relativity Problem</a>
+</div>
+
+<!-- ═══ PART HEADER ═══ -->
+<div class="part-header">
+  <div class="ph-blob"></div>
+  <div class="ph-s1"></div><div class="ph-s2"></div><div class="ph-s3"></div>
+  <div class="ph-inner">
+    <div class="ph-series">Industrial &amp; B2B Training Series</div>
+    <div class="ph-badge">Part 8 of 8 — Context &amp; Relativity</div>
+    <h1 class="ph-title">The Relativity Problem:<br>"Big," "Custom," "High Volume"<br>&amp; What They Actually Mean</h1>
+    <p class="ph-sub">In industrial B2B, the most dangerous words in your content aren't wrong — they're just undefined. "Large orders welcome," "custom work available," and "quick turnaround" mean entirely different things depending on the material, industry, and position in the supply chain. Learn to anchor every relative term to a specific, credible context.</p>
+    <div class="ph-objectives">
+      <span class="ph-obj">Understand why relative terms fail in industrial content</span>
+      <span class="ph-obj">Know what "high volume" means across 10+ industries</span>
+      <span class="ph-obj">Understand dimensional relativity — "large" by material &amp; process</span>
+      <span class="ph-obj">Decode "custom" across service centers, machine shops &amp; mills</span>
+      <span class="ph-obj">Map lead time expectations by material &amp; complexity</span>
+      <span class="ph-obj">Understand tolerance &amp; precision in context</span>
+      <span class="ph-obj">Know the right questions to ask before writing anything</span>
+    </div>
+  </div>
+</div>
+<div class="accent-bar"></div>
+
+
+<!-- ══════════════════════════════
+     SECTION 1 — THE RELATIVITY PROBLEM
+══════════════════════════════ -->
+<section class="sec-white" id="intro">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1 — The Core Problem</div>
+      <h2 class="sh-title">Why Relative Language Fails Industrial Buyers</h2>
+      <p class="sh-desc">Industrial buyers are specialists. They come to a vendor's website with a precise mental model of what they need — a specific quantity, a specific lead time expectation, a specific tolerance requirement. When your content uses vague relative language, it doesn't just fail to communicate — it actively signals that the writer doesn't understand the industry.</p>
+    </div>
+
+    <div class="callout navy mb32">
+      <div class="callout-label">🎯 The Central Insight</div>
+      <p><strong style="color:var(--gold)">Every relative term in industrial content is a missed opportunity to be specific — and specificity is the engine of both SEO performance and buyer trust.</strong> The word "large" means a 500-ton steel structure to a structural fabricator, an 18-inch billet to a CNC machinist, and a 1.25-inch diameter bar to a Swiss screw machine shop. If your content says "we handle large orders," you've said nothing. If it says "we stock A36 plate up to 4" thick × 120" × 240"," you've qualified a buyer in three seconds.</p>
+    </div>
+
+    <div class="g3 mb32">
+      <div class="card p8">
+        <div class="card-icon">📏</div>
+        <h3>The Scale Problem</h3>
+        <p>Industrial industries span orders of magnitude in terms of size, quantity, and value. A "big job" at a Swiss screw machine shop is 2,000,000 parts. A "big job" at a Vespel machining shop is 15 parts. The same phrase, attached to either client, sends completely different signals to buyers — and most of the time, the wrong one.</p>
+      </div>
+      <div class="card p8">
+        <div class="card-icon">🔍</div>
+        <h3>The Buyer Trust Problem</h3>
+        <p>Technical buyers — engineers, procurement managers, plant supervisors — immediately recognize content written by someone who doesn't understand their world. Undefined relative terms are a red flag. A buyer who sees "precision machining available" on a structural steel fabricator's site will question the credibility of everything else on the page.</p>
+      </div>
+      <div class="card p8">
+        <div class="card-icon">📈</div>
+        <h3>The SEO Problem</h3>
+        <p>Nobody searches for "large metal orders" or "custom manufacturing available." Buyers search for specifics: "A36 plate cut to size 4 inch thick," "Inconel 718 machining 50 piece order." Vague relative terms aren't just bad for buyer trust — they're not keywords anyone uses. Specificity serves both goals simultaneously.</p>
+      </div>
+    </div>
+
+    <!-- FOUR DANGEROUS WORDS -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--p8)"></div>The Four Terms That Need Context Every Time</div>
+    <div class="g2 mb24">
+      <div class="phrase-split">
+        <div class="phrase-header">
+          <div class="phrase-header-text">"WE WELCOME HIGH-VOLUME ORDERS"</div>
+          <div class="phrase-header-sub">Same phrase — completely different realities</div>
+        </div>
+        <div class="phrase-body">
+          <div class="phrase-side phrase-side-a">
+            <div class="phrase-industry ind-a">Swiss Screw Machine Shop</div>
+            <div class="phrase-meaning">High volume means their sweet spot — <strong>50,000 to 5,000,000 pieces per run</strong>. Anything under 10,000 pieces is a prototype or development run. Their equipment runs lights-out over weekends to fill these orders. "High volume" is their entire business model.</div>
+            <div class="phrase-reality real-a">Minimum: ~10,000 pieces · Sweet spot: 500K+</div>
+          </div>
+          <div class="phrase-side phrase-side-b">
+            <div class="phrase-industry ind-b">Vespel / Exotic Plastic Machinist</div>
+            <div class="phrase-meaning">High volume means <strong>15 to 50 pieces per order</strong>. Raw stock costs $800–$2,000 per pound. Each part takes 4–8 hours of machine time. A 20-piece run is a significant, multi-week engagement for this shop. "High volume" means something entirely different here.</div>
+            <div class="phrase-reality real-b">Typical "large" order: 10–50 pieces</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phrase-split">
+        <div class="phrase-header">
+          <div class="phrase-header-text">"CUSTOM WORK AVAILABLE"</div>
+          <div class="phrase-header-sub">Same phrase — completely different commitments</div>
+        </div>
+        <div class="phrase-body">
+          <div class="phrase-side phrase-side-a">
+            <div class="phrase-industry ind-a">Steel Service Center</div>
+            <div class="phrase-meaning">"Custom" means <strong>cut-to-non-standard length</strong> — a $50–$200 upcharge on a standard order. No tooling. No engineering. The plasma table runs for 10 extra minutes. Custom is a same-day or next-day service add-on, not a separate engagement.</div>
+            <div class="phrase-reality real-a">Custom = cut-to-length, no tooling, same-day</div>
+          </div>
+          <div class="phrase-side phrase-side-b">
+            <div class="phrase-industry ind-b">Closed-Die Forging Shop</div>
+            <div class="phrase-meaning">"Custom" means <strong>new forging die tooling</strong> — a $15,000 to $250,000 upfront investment, 12–26 week lead time for first article, and a multi-year amortization commitment. Custom requires an engineering review, DFM analysis, and a signed purchase agreement before any metal is touched.</div>
+            <div class="phrase-reality real-b">Custom = new die, $15K–$250K, 12–26 week lead</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="g2 mb32">
+      <div class="phrase-split">
+        <div class="phrase-header">
+          <div class="phrase-header-text">"FAST TURNAROUND AVAILABLE"</div>
+          <div class="phrase-header-sub">Same phrase — completely different timelines</div>
+        </div>
+        <div class="phrase-body">
+          <div class="phrase-side phrase-side-a">
+            <div class="phrase-industry ind-a">Carbon Steel Service Center</div>
+            <div class="phrase-meaning">"Fast turnaround" means <strong>same-day or next-day shipping</strong>. A36 plate is in stock in most thicknesses. The saw runs, the order ships. Fast is measured in hours. A 3-day lead is considered slow in this context. Will-call pickup is common.</div>
+            <div class="phrase-reality real-a">Fast = same-day to 48 hours</div>
+          </div>
+          <div class="phrase-side phrase-side-b">
+            <div class="phrase-industry ind-b">Inconel 718 Distributor</div>
+            <div class="phrase-meaning">"Fast turnaround" means <strong>6–10 weeks</strong> instead of the standard 16–26 week mill lead time. The distributor is expediting from the mill or pulling from a premium-priced distribution stock. A 10-week delivery on a 718 bar order is legitimately fast and worth paying a premium for.</div>
+            <div class="phrase-reality real-b">Fast = 6–10 weeks (vs. 16–26 standard)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phrase-split">
+        <div class="phrase-header">
+          <div class="phrase-header-text">"PRECISION MACHINING CAPABILITIES"</div>
+          <div class="phrase-header-sub">Same phrase — completely different tolerances</div>
+        </div>
+        <div class="phrase-body">
+          <div class="phrase-side phrase-side-a">
+            <div class="phrase-industry ind-a">General Job Shop</div>
+            <div class="phrase-meaning">"Precision" means holding <strong>±0.002" to ±0.005"</strong> routinely, with ±0.001" achievable on critical features. This is precision relative to structural fabrication (±1/8") — but would be rejected outright by an aerospace buyer who expects ±0.0002".</div>
+            <div class="phrase-reality real-a">Precision = ±0.001" to ±0.005"</div>
+          </div>
+          <div class="phrase-side phrase-side-b">
+            <div class="phrase-industry ind-b">Aerospace / Medical Machinist</div>
+            <div class="phrase-meaning">"Precision" means <strong>±0.0001" to ±0.0002"</strong> on critical dimensions, verified by CMM with full FAIR (First Article Inspection Report) documentation. Temperature-controlled machining environment. The word "precision" without this context is meaningless to this buyer.</div>
+            <div class="phrase-reality real-b">Precision = ±0.0001" to ±0.0002" CMM verified</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout p8">
+      <div class="callout-label">The Rule That Follows From This</div>
+      <p><strong>Every relative term must be immediately followed by a specific number, range, or defined context.</strong> Not "large orders welcome" — but "orders from 500 lbs to full truckload (40,000 lbs)." Not "custom work available" — but "custom cut-to-length, custom profiling, and custom saw tolerance available." Not "fast turnaround" — but "in-stock items ship same day; special orders 3–5 business days." Specificity is not optional — it is the product.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 2 — HIGH VOLUME
+══════════════════════════════ -->
+<section class="sec-light" id="volume">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2 — Quantity Relativity</div>
+      <h2 class="sh-title">"High Volume" Across Industries</h2>
+      <p class="sh-desc">Production quantity is the most context-dependent term in industrial manufacturing. The same number of pieces that represents a massive, facility-filling run at one shop is a tiny prototype order at another. Before writing any volume-related content for a client, you need to understand where their definition of "volume" sits in the industrial spectrum.</p>
+    </div>
+
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-p8" style="min-width:200px">Industry / Process</th>
+            <th class="th-p8" style="min-width:130px">Minimum Order</th>
+            <th class="th-p8" style="min-width:130px">"Normal" Order</th>
+            <th class="th-p8" style="min-width:130px">"High Volume"</th>
+            <th class="th-p8" style="min-width:120px">Unit</th>
+            <th class="th-p8" style="min-width:240px">Context &amp; Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Carbon Steel Service Center</strong></td>
+            <td><span class="size-badge sb-xs">~500 lbs</span></td>
+            <td><span class="size-badge sb-md">5,000–20,000 lbs</span></td>
+            <td><span class="size-badge sb-xl">40,000 lbs+</span></td>
+            <td>Pounds / Tons</td>
+            <td>40,000 lbs = one full truckload (FTL). High-volume accounts place weekly or daily FTL orders. Annual tonnage is the account health metric.</td>
+          </tr>
+          <tr>
+            <td><strong>Stainless Steel Distributor</strong></td>
+            <td><span class="size-badge sb-xs">~200 lbs</span></td>
+            <td><span class="size-badge sb-sm">2,000–8,000 lbs</span></td>
+            <td><span class="size-badge sb-lg">15,000 lbs+</span></td>
+            <td>Pounds</td>
+            <td>Premium per-pound pricing vs. carbon steel — smaller weight orders but much higher dollar value. "High volume" in dollars may be similar to carbon steel.</td>
+          </tr>
+          <tr>
+            <td><strong>Aluminum Distributor</strong></td>
+            <td><span class="size-badge sb-xs">~100 lbs</span></td>
+            <td><span class="size-badge sb-sm">1,000–5,000 lbs</span></td>
+            <td><span class="size-badge sb-lg">10,000 lbs+</span></td>
+            <td>Pounds</td>
+            <td>Aluminum is roughly 1/3 the density of steel — weight-for-weight comparisons mislead. A 5,000 lb aluminum order takes more physical space than a 5,000 lb steel order.</td>
+          </tr>
+          <tr>
+            <td><strong>Titanium Distributor</strong></td>
+            <td><span class="size-badge sb-xs">~10 lbs</span></td>
+            <td><span class="size-badge sb-sm">100–500 lbs</span></td>
+            <td><span class="size-badge sb-md">1,000 lbs+</span></td>
+            <td>Pounds</td>
+            <td>At $15–$40/lb for Ti-6Al-4V, a 500 lb order represents $7,500–$20,000. "High volume" is defined by dollar value as much as weight. DFARS requirements add complexity.</td>
+          </tr>
+          <tr>
+            <td><strong>Inconel / Superalloy Distributor</strong></td>
+            <td><span class="size-badge sb-xs">~5 lbs</span></td>
+            <td><span class="size-badge sb-sm">25–100 lbs</span></td>
+            <td><span class="size-badge sb-md">200 lbs+</span></td>
+            <td>Pounds</td>
+            <td>Inconel 718 bar runs $50–$120/lb. A 50 lb order = $2,500–$6,000. A "high volume" 200 lb order = $10,000–$24,000. Volume is measured in purchase orders, not tons.</td>
+          </tr>
+          <tr>
+            <td><strong>General CNC Machine Shop</strong></td>
+            <td><span class="size-badge sb-xs">1–5 pieces</span></td>
+            <td><span class="size-badge sb-sm">10–500 pieces</span></td>
+            <td><span class="size-badge sb-md">1,000–10,000 / yr</span></td>
+            <td>Pieces / Year</td>
+            <td>"High volume" CNC means repeat blanket orders: 500 pieces/quarter on a standing PO. Most CNC shops define their capacity in machine-hours, not piece counts.</td>
+          </tr>
+          <tr>
+            <td><strong>Screw Machine / Automatic Lathe</strong></td>
+            <td><span class="size-badge sb-sm">500–1,000 pieces</span></td>
+            <td><span class="size-badge sb-md">10,000–100,000</span></td>
+            <td><span class="size-badge sb-xl">500,000–5M+ / run</span></td>
+            <td>Pieces / Run</td>
+            <td>The original high-volume machining process. Multi-spindle screw machines run lights-out. Tooling is amortized over millions of pieces. Under 10,000 pieces is barely worth the setup cost.</td>
+          </tr>
+          <tr>
+            <td><strong>Swiss-Turn Machining</strong></td>
+            <td><span class="size-badge sb-xs">1 piece (prototype)</span></td>
+            <td><span class="size-badge sb-sm">100–5,000 pieces</span></td>
+            <td><span class="size-badge sb-lg">50,000–500,000</span></td>
+            <td>Pieces / Year</td>
+            <td>Swiss machining bridges prototype and high volume. Ideal for small-diameter precision parts. High volume means long-running programs with annual blanket releases.</td>
+          </tr>
+          <tr>
+            <td><strong>Aerospace CNC Machining</strong></td>
+            <td><span class="size-badge sb-xs">1–3 pieces (FAIR)</span></td>
+            <td><span class="size-badge sb-sm">5–50 pieces / run</span></td>
+            <td><span class="size-badge sb-md">100–500 / year</span></td>
+            <td>Pieces / Year</td>
+            <td>Aerospace production parts run in small batches with extensive inspection between runs. AS9100 documentation requirements make "high volume" very different from automotive.</td>
+          </tr>
+          <tr>
+            <td><strong>Plastic Injection Molding</strong></td>
+            <td><span class="size-badge sb-xs">500–1,000 pieces</span></td>
+            <td><span class="size-badge sb-md">10,000–100,000</span></td>
+            <td><span class="size-badge sb-xl">500,000–millions</span></td>
+            <td>Pieces / Run</td>
+            <td>Injection molding only makes economic sense at volume. The mold itself costs $5K–$200K+. Per-piece costs drop dramatically above 10,000 units. "High volume" justifies multi-cavity tooling.</td>
+          </tr>
+          <tr>
+            <td><strong>Precision Plastic Machining (PEEK, Vespel)</strong></td>
+            <td><span class="size-badge sb-xs">1 piece</span></td>
+            <td><span class="size-badge sb-xs">2–20 pieces</span></td>
+            <td><span class="size-badge sb-sm">20–100 pieces</span></td>
+            <td>Pieces</td>
+            <td>Vespel costs $500–$2,500 per pound raw stock. PEEK is $100–$400/lb. Each piece is individually programmed and inspected. A 50-piece "run" is a major engagement.</td>
+          </tr>
+          <tr>
+            <td><strong>Investment Casting</strong></td>
+            <td><span class="size-badge sb-xs">10–50 pieces</span></td>
+            <td><span class="size-badge sb-sm">100–2,000 pieces</span></td>
+            <td><span class="size-badge sb-md">5,000–50,000 / yr</span></td>
+            <td>Pieces / Year</td>
+            <td>Lost-wax casting allows complex near-net-shape parts. Tooling cost is moderate ($2K–$20K). High volume justifies automated wax injection and robotic tree assembly.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="scenario">
+      <div class="scenario-label">🚨 Real-World Scenario — Volume Mismatch</div>
+      <h4>The "High Volume" Mistake</h4>
+      <p>An account manager writes website copy for a Vespel and PEEK machining client that reads: <em>"We are a high-volume machining partner for mission-critical applications."</em> A procurement manager at a consumer electronics company sees the page while searching for a source for 500,000 PEEK connector housings per year for a new product launch. They submit a quote request. The machining shop, which produces 20–80 pieces per year of Vespel bushings, receives the inquiry and can't fulfill it. The sales team spends two hours on a dead-end call.</p>
+      <div class="s-outcome">❌ Outcome: Wasted sales time, no conversion, buyer frustrated, wrong expectation set by content</div>
+      <div class="s-fix">✓ Fix: "We specialize in low-to-medium volume precision machining of advanced engineering polymers including PEEK, Vespel, and Torlon — typically 1 to 100 pieces per order. For volume requirements over 500 pieces, injection molding may be the more appropriate process."</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 3 — SIZE & DIMENSION
+══════════════════════════════ -->
+<section class="sec-white" id="size">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 3 — Dimensional Relativity</div>
+      <h2 class="sh-title">"Large," "Big," &amp; Dimensional Context</h2>
+      <p class="sh-desc">The word "large" in industrial manufacturing spans from 0.100 inches (micro-machining) to 500 feet (offshore structures). The process, material, and equipment define what "large" means for any given client. Misusing dimensional language is one of the fastest ways to lose credibility with a technical buyer.</p>
+    </div>
+
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-navy" style="min-width:200px">Industry / Process</th>
+            <th class="th-navy" style="min-width:130px">"Small" = </th>
+            <th class="th-navy" style="min-width:150px">"Standard" = </th>
+            <th class="th-navy" style="min-width:150px">"Large" = </th>
+            <th class="th-navy" style="min-width:160px">"Oversized/Heavy" = </th>
+            <th class="th-navy" style="min-width:220px">What Drives the Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Structural Steel Fabrication</strong></td>
+            <td><span class="size-badge sb-xs">Under 1 ton</span></td>
+            <td><span class="size-badge sb-sm">5–50 tons</span></td>
+            <td><span class="size-badge sb-md">100–500 tons</span></td>
+            <td><span class="size-badge sb-xl">500+ tons</span></td>
+            <td>Crane capacity, shop floor square footage, transport permits, AWS D1.1 weld procedures by joint category</td>
+          </tr>
+          <tr>
+            <td><strong>Heavy Plate Processing</strong></td>
+            <td><span class="size-badge sb-xs">Under 1/2" thick</span></td>
+            <td><span class="size-badge sb-sm">1/2"–2" thick</span></td>
+            <td><span class="size-badge sb-md">2"–6" thick</span></td>
+            <td><span class="size-badge sb-xl">6"+ thick</span></td>
+            <td>Mill rolling capacity, cutting equipment capability (plasma vs. flame vs. waterjet), forklift/crane limits</td>
+          </tr>
+          <tr>
+            <td><strong>Sheet Metal / Laser Cutting</strong></td>
+            <td><span class="size-badge sb-xs">Under 12" × 12"</span></td>
+            <td><span class="size-badge sb-sm">24"–48" × 48"–96"</span></td>
+            <td><span class="size-badge sb-md">60"–96" × 120"–240"</span></td>
+            <td><span class="size-badge sb-xl">Over 10 ft in any dim.</span></td>
+            <td>Laser bed size (typically 5'×10' or 6'×12'), material handling, nest efficiency, part weight for operator handling</td>
+          </tr>
+          <tr>
+            <td><strong>CNC Milling (VMC)</strong></td>
+            <td><span class="size-badge sb-xs">Under 6" × 6" × 3"</span></td>
+            <td><span class="size-badge sb-sm">6"–18" × 6"–18"</span></td>
+            <td><span class="size-badge sb-md">18"–36" × 18"–36"</span></td>
+            <td><span class="size-badge sb-xl">Over 36" in any dim.</span></td>
+            <td>Machine table travel (X/Y/Z), spindle taper (BT30/40/50), spindle HP, fixturing complexity, chip management</td>
+          </tr>
+          <tr>
+            <td><strong>CNC Horizontal Machining (HMC)</strong></td>
+            <td><span class="size-badge sb-xs">Under 10" cube</span></td>
+            <td><span class="size-badge sb-sm">10"–24" cube</span></td>
+            <td><span class="size-badge sb-md">24"–48" cube</span></td>
+            <td><span class="size-badge sb-xl">Over 48" cube</span></td>
+            <td>Pallet size, rotary table capacity, tombstone fixturing, boring bar reach for deep bores</td>
+          </tr>
+          <tr>
+            <td><strong>CNC Turning (Lathe)</strong></td>
+            <td><span class="size-badge sb-xs">Under 2" OD</span></td>
+            <td><span class="size-badge sb-sm">2"–10" OD</span></td>
+            <td><span class="size-badge sb-md">10"–30" OD</span></td>
+            <td><span class="size-badge sb-xl">30"+ OD / 10'+ length</span></td>
+            <td>Chuck capacity (3-jaw, 4-jaw, collet), between-centers length, spindle bore, steady rest capability</td>
+          </tr>
+          <tr>
+            <td><strong>Swiss Screw Machining</strong></td>
+            <td><span class="size-badge sb-xs">Under 0.060" OD</span></td>
+            <td><span class="size-badge sb-sm">0.060"–0.625" OD</span></td>
+            <td><span class="size-badge sb-md">0.625"–1.25" OD</span></td>
+            <td><span class="size-badge sb-xl">Over 1.25" OD</span></td>
+            <td>Guide bushing bore size, collet capacity, bar feeder capacity. "Large" here is under 1.5 inches — a size most machinists would call tiny.</td>
+          </tr>
+          <tr>
+            <td><strong>Wire EDM</strong></td>
+            <td><span class="size-badge sb-xs">Under 1" tall stack</span></td>
+            <td><span class="size-badge sb-sm">1"–6" tall</span></td>
+            <td><span class="size-badge sb-md">6"–16" tall</span></td>
+            <td><span class="size-badge sb-xl">Over 16" tall</span></td>
+            <td>Z-axis travel (tall workpieces require taper cutting or multiple passes), wire flush pressure for deep cuts</td>
+          </tr>
+          <tr>
+            <td><strong>Injection Mold (Plastic)</strong></td>
+            <td><span class="size-badge sb-xs">Under 50-ton clamp</span></td>
+            <td><span class="size-badge sb-sm">100–500 ton</span></td>
+            <td><span class="size-badge sb-md">500–2,000 ton</span></td>
+            <td><span class="size-badge sb-xl">2,000+ ton</span></td>
+            <td>Clamp tonnage is the defining size spec. Mold weight (500 lb to 50,000 lb) determines crane requirements, tie-bar spacing, and platen size.</td>
+          </tr>
+          <tr>
+            <td><strong>Open-Die Forging</strong></td>
+            <td><span class="size-badge sb-xs">Under 100 lbs</span></td>
+            <td><span class="size-badge sb-sm">100–5,000 lbs</span></td>
+            <td><span class="size-badge sb-md">5,000–50,000 lbs</span></td>
+            <td><span class="size-badge sb-xl">50,000+ lbs (ingot forge)</span></td>
+            <td>Press tonnage (500 to 50,000+ ton presses), furnace capacity, handling equipment. Large open-die forgings become shafts, rings, and vessel heads for power generation.</td>
+          </tr>
+          <tr>
+            <td><strong>Aluminum Extrusion</strong></td>
+            <td><span class="size-badge sb-xs">Under 2" circle size</span></td>
+            <td><span class="size-badge sb-sm">2"–8" circle size</span></td>
+            <td><span class="size-badge sb-md">8"–20" circle size</span></td>
+            <td><span class="size-badge sb-xl">Over 20" circle size</span></td>
+            <td>"Circle size" = the diameter of the smallest circle that inscribes the cross-section profile. Press capacity in tons determines maximum circle size and wall thickness achievable.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-label">⚠️ The Swiss Machining Trap</div>
+      <p>This is the most common dimensional mismatch in agency-written content. A Swiss screw machine shop's entire product line fits within a 1.5-inch diameter. If you write that the client "machines both small and large components," a buyer searching for machining of a 6-inch diameter housing will waste their time — and the shop's time — on an inquiry that doesn't fit their equipment. <strong>Always write in the client's scale, using their actual equipment limits as the boundary.</strong></p>
+    </div>
+
+    <div class="g2 mt24">
+      <div class="scenario">
+        <div class="scenario-label">🚨 Real-World Scenario — Size Mismatch</div>
+        <h4>The "Large Parts" Problem</h4>
+        <p>Content written for a precision grinding shop says: "We grind both small and large components for the automotive and aerospace industries." A buyer searching for a supplier to grind the OD of a 24-inch diameter aerospace housing submits a quote. The grinding shop's largest chuck is 8 inches. They don't have the equipment, and the inquiry is a dead end.</p>
+        <div class="s-outcome">❌ Outcome: Wrong buyer, wasted engineering time, zero conversion</div>
+        <div class="s-fix">✓ Fix: "We grind OD and ID dimensions from 0.250" to 8.000" on components up to 18" between centers. Tolerances to ±0.0001" held routinely."</div>
+      </div>
+      <div class="scenario">
+        <div class="scenario-label">🚨 Real-World Scenario — Small Parts Confusion</div>
+        <h4>The "Miniature" Problem</h4>
+        <p>Content for a macro CNC machine shop (milling 24"×24" aerospace bulkheads) says "we machine components of all sizes." A watchmaker's parts supplier calls looking for someone to machine 0.012"-diameter pivot pins. The shop's smallest spindle collet is ½ inch. Their minimum setup charge is $500. There's no possible fit.</p>
+        <div class="s-outcome">❌ Outcome: Wrong buyer, credibility gap, time lost</div>
+        <div class="s-fix">✓ Fix: "We specialize in medium-to-large aluminum and titanium aerospace structures — components typically ranging from 4" to 96" in the largest dimension, machined from solid billet or plate."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 4 — "CUSTOM" RELATIVITY
+══════════════════════════════ -->
+<section class="sec-light" id="custom">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 4 — Process Relativity</div>
+      <h2 class="sh-title">"Custom" — What It Costs and Commits To</h2>
+      <p class="sh-desc">The word "custom" is one of the most abused terms in industrial marketing content. Its meaning ranges from a $15 saw setup charge at a steel service center to a $250,000 forging die investment at a closed-die forge shop. The commitment, timeline, tooling investment, and buyer relationship it implies are entirely different depending on the industry. Using "custom" without context sets the wrong expectation every time.</p>
+    </div>
+
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-p8" style="min-width:200px">Industry / Operation</th>
+            <th class="th-p8" style="min-width:200px">What "Custom" Actually Means</th>
+            <th class="th-p8" style="min-width:150px">Tooling / Setup Cost</th>
+            <th class="th-p8" style="min-width:130px">Lead Time to First Part</th>
+            <th class="th-p8" style="min-width:130px">Minimum Order</th>
+            <th class="th-p8" style="min-width:200px">What the Buyer Commits To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Steel Service Center</strong></td>
+            <td>Non-standard cut length, non-catalog width, or non-standard processing (edge prep, hole punch, paint)</td>
+            <td><span class="size-badge sb-xs">$15–$200 saw setup</span></td>
+            <td><span class="size-badge sb-xs">Same day to 24 hrs</span></td>
+            <td>Single piece acceptable</td>
+            <td>A single order with a cutting charge. No ongoing commitment. No tooling cost. Re-order at any time for the same cut.</td>
+          </tr>
+          <tr>
+            <td><strong>Aluminum Extrusion</strong></td>
+            <td>Non-standard cross-section profile requiring a new extrusion die to be designed, manufactured, and qualified</td>
+            <td><span class="size-badge sb-sm">$1,500–$8,000 die</span></td>
+            <td><span class="size-badge sb-md">4–8 weeks after approval</span></td>
+            <td>Typically 500–2,000 lbs per run</td>
+            <td>Tooling investment upfront, volume commitment per run, lead time to approve die, long-term supply relationship assumed</td>
+          </tr>
+          <tr>
+            <td><strong>CNC Machine Shop</strong></td>
+            <td>Any part machined to customer-supplied print or 3D model. "Custom" is the standard mode of operation.</td>
+            <td><span class="size-badge sb-sm">$150–$1,500 fixturing</span></td>
+            <td><span class="size-badge sb-sm">1–6 weeks (prototype)</span></td>
+            <td>1 piece (prototype run)</td>
+            <td>Provide a complete print or model with GD&amp;T. Expect a DFM review. Prototype pricing is higher than production pricing — volume discounts apply at sustained quantities.</td>
+          </tr>
+          <tr>
+            <td><strong>Roll Forming</strong></td>
+            <td>Non-standard cross-section profile requiring a custom set of forming rolls to be machined</td>
+            <td><span class="size-badge sb-md">$5,000–$25,000 rolls</span></td>
+            <td><span class="size-badge sb-md">6–12 weeks</span></td>
+            <td>1,000–5,000 linear feet per run</td>
+            <td>Tooling ownership (may be customer-owned or mill-owned depending on agreement). Minimum run lengths to justify setup.</td>
+          </tr>
+          <tr>
+            <td><strong>Investment Casting</strong></td>
+            <td>Wax injection die designed and manufactured for the customer's specific part geometry</td>
+            <td><span class="size-badge sb-md">$2,000–$20,000 tooling</span></td>
+            <td><span class="size-badge sb-md">8–16 weeks to first cast</span></td>
+            <td>Typically 25–100 pieces first run</td>
+            <td>Tooling investment + first article approval process. Design changes after tooling approval require new tooling or significant modification cost.</td>
+          </tr>
+          <tr>
+            <td><strong>Closed-Die Forging</strong></td>
+            <td>New forging die set (blocker and finisher dies) designed and machined in H13 tool steel for the customer's part</td>
+            <td><span class="size-badge sb-xl">$15,000–$250,000</span></td>
+            <td><span class="size-badge sb-xl">12–26 weeks</span></td>
+            <td>500–2,000 pieces first run (to amortize tooling)</td>
+            <td>Major capital commitment. Die ownership agreement. Long-term supply relationship implied. Engineering collaboration required for DFM. Tooling lives for ~50,000–200,000 strikes.</td>
+          </tr>
+          <tr>
+            <td><strong>Plastic Injection Molding</strong></td>
+            <td>New injection mold (single or multi-cavity) designed and manufactured in P20 or H13 tool steel</td>
+            <td><span class="size-badge sb-xl">$5,000–$200,000+</span></td>
+            <td><span class="size-badge sb-lg">4–16 weeks to T1 sample</span></td>
+            <td>500–1,000 pieces to justify mold amortization</td>
+            <td>Tooling ownership (customer owns the mold). T1, T2, T3 approval trials. Design for manufacturability review critical. Mold may have 1–5 cavities depending on volume.</td>
+          </tr>
+          <tr>
+            <td><strong>Steel Mill — Special Heat Order</strong></td>
+            <td>Non-standard chemistry, grain size, or mechanical property specification outside the mill's standard product catalog</td>
+            <td><span class="size-badge sb-xl">No tooling — but heat minimum applies</span></td>
+            <td><span class="size-badge sb-xl">16–52 weeks</span></td>
+            <td>Typically 50–200+ tons per heat</td>
+            <td>Massive volume commitment. Full heat quantity purchased. Mill chemistry testing and certification. Entire heat may take 6–12 months from order to delivery. Not for small buyers.</td>
+          </tr>
+          <tr>
+            <td><strong>Wire Drawing</strong></td>
+            <td>Non-standard diameter outside the standard commercial size range, or special alloy in wire form</td>
+            <td><span class="size-badge sb-sm">$500–$3,000 die</span></td>
+            <td><span class="size-badge sb-sm">3–8 weeks</span></td>
+            <td>Typically 100–500 lbs minimum</td>
+            <td>Volume minimum per spool or coil. Minimum diameter achievable depends on alloy. Non-standard sizes require dedicated die and setup.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout p8">
+      <div class="callout-label">How to Write "Custom" Correctly</div>
+      <p>Instead of "custom orders welcome," define the type of custom work and what it requires. For a CNC shop: <em>"Custom machined components to your print or 3D model. Prototype quantities from 1 piece. Contact us for DFM review and fixturing estimate."</em> For a steel service center: <em>"Custom cut-to-length, shear, and edge prep available. No minimum order — standard cutting charges apply."</em> For a forging shop: <em>"Custom forged components to customer print. Tooling investment required. Contact our engineering team for DFM evaluation and tooling estimate."</em> Each version sets an accurate expectation and attracts the right buyer.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 5 — LEAD TIME RELATIVITY
+══════════════════════════════ -->
+<section class="sec-white" id="lead-time">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 5 — Time Relativity</div>
+      <h2 class="sh-title">"Quick Turnaround" — Lead Time Reality</h2>
+      <p class="sh-desc">Lead time expectations are shaped almost entirely by the buyer's prior experience in their material category. A buyer accustomed to ordering A36 plate and getting it delivered next day will be shocked by an 8-week lead on Inconel 718. That same buyer's aerospace colleague considers 8 weeks "remarkably fast" for 718. The reference frame defines the expectation. Your content must establish the correct reference frame.</p>
+    </div>
+
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-navy" style="min-width:220px">Material / Item</th>
+            <th class="th-navy" style="min-width:130px">In-Stock Lead Time</th>
+            <th class="th-navy" style="min-width:150px">Standard Lead Time</th>
+            <th class="th-navy" style="min-width:150px">"Rush" Lead Time</th>
+            <th class="th-navy" style="min-width:220px">What Drives Lead Time</th>
+            <th class="th-navy" style="min-width:200px">How to Write It</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>A36 Carbon Steel Plate</strong></td>
+            <td><span class="size-badge sb-xs">Same day / 24 hrs</span></td>
+            <td><span class="size-badge sb-xs">1–3 business days</span></td>
+            <td><span class="size-badge sb-xs">Will-call pickup</span></td>
+            <td>Always in stock at service centers. Saw processing is 30 minutes. Domestic network of service centers covers most regions.</td>
+            <td>"In stock. Ships same day for orders placed before 2 PM. Will-call pickup available."</td>
+          </tr>
+          <tr>
+            <td><strong>Cold Rolled Steel Sheet (1008/1010)</strong></td>
+            <td><span class="size-badge sb-xs">1–3 days</span></td>
+            <td><span class="size-badge sb-xs">3–7 days</span></td>
+            <td><span class="size-badge sb-xs">Same day (if in stock)</span></td>
+            <td>Broader inventory depth needed for gauge/finish combinations. Some gauges may be on order from mill.</td>
+            <td>"Standard gauges ship 1–3 days. Non-stock gauges 7–14 days from mill."</td>
+          </tr>
+          <tr>
+            <td><strong>304/316 Stainless Sheet &amp; Plate</strong></td>
+            <td><span class="size-badge sb-xs">1–5 days</span></td>
+            <td><span class="size-badge sb-sm">1–3 weeks</span></td>
+            <td><span class="size-badge sb-xs">1–3 days</span></td>
+            <td>Common sizes in stock; heavy gauge or unusual size requires mill order. Domestic mills vs. import availability affects timing.</td>
+            <td>"Common sizes in stock 1–5 days. Special sizes 2–4 weeks mill order."</td>
+          </tr>
+          <tr>
+            <td><strong>6061-T6 Aluminum Plate</strong></td>
+            <td><span class="size-badge sb-xs">1–5 days</span></td>
+            <td><span class="size-badge sb-sm">1–3 weeks</span></td>
+            <td><span class="size-badge sb-xs">1–3 days</span></td>
+            <td>Wide inventory at aluminum service centers. Very thick plate (&gt;6") or large format may require mill run.</td>
+            <td>"Standard thicknesses to 4" in stock. Heavy plate over 6" thick — 4–8 week mill lead."</td>
+          </tr>
+          <tr>
+            <td><strong>4140 Alloy Steel Round Bar</strong></td>
+            <td><span class="size-badge sb-xs">1–5 days</span></td>
+            <td><span class="size-badge sb-sm">1–4 weeks</span></td>
+            <td><span class="size-badge sb-xs">1–3 days</span></td>
+            <td>Common diameters widely stocked. Large diameters (&gt;8") and pre-hardened grades less common.</td>
+            <td>"Sizes to 8" OD in stock. Pre-hardened and large diameters 2–6 weeks."</td>
+          </tr>
+          <tr>
+            <td><strong>17-4PH Stainless Bar</strong></td>
+            <td><span class="size-badge sb-sm">1–3 weeks (condition H900)</span></td>
+            <td><span class="size-badge sb-md">4–12 weeks</span></td>
+            <td><span class="size-badge sb-sm">1–2 weeks (if available)</span></td>
+            <td>PH grades require special mill scheduling. Solution-annealed stock more common; aged condition (H900, H1025) may require heat treating after delivery.</td>
+            <td>"H900 bar typically 2–4 weeks. Other conditions 6–12 weeks. Contact us for current availability."</td>
+          </tr>
+          <tr>
+            <td><strong>Inconel 718 Bar Stock</strong></td>
+            <td><span class="size-badge sb-sm">4–8 weeks (distrib. stock)</span></td>
+            <td><span class="size-badge sb-lg">16–26 weeks (mill)</span></td>
+            <td><span class="size-badge sb-md">8–12 weeks (premium)</span></td>
+            <td>Highly constrained supply chain. Mill orders require full heat minimums. Distributor stock commands significant premium. AMS 5663/5664 certification required for aerospace.</td>
+            <td>"AMS 5663 certified 718 bar available from stock in select sizes — 4–8 week delivery. Mill order lead times are 16–26 weeks. Contact us for current distributor stock availability."</td>
+          </tr>
+          <tr>
+            <td><strong>Ti-6Al-4V Plate (DFARS)</strong></td>
+            <td><span class="size-badge sb-sm">2–6 weeks (distrib. stock)</span></td>
+            <td><span class="size-badge sb-lg">12–20 weeks (mill)</span></td>
+            <td><span class="size-badge sb-md">6–10 weeks</span></td>
+            <td>DFARS compliance (domestic melt requirement) limits supply sources. Aerospace grades (AMS 4911) require specific certifications. Thick plate (&gt;2") is particularly constrained.</td>
+            <td>"DFARS-compliant Ti-6Al-4V plate in select sizes from stock — 2–6 weeks. Full DFARS mill order: 12–20 weeks."</td>
+          </tr>
+          <tr>
+            <td><strong>Hastelloy C-276 Sheet</strong></td>
+            <td><span class="size-badge sb-sm">3–8 weeks (distrib.)</span></td>
+            <td><span class="size-badge sb-lg">16–30 weeks (mill)</span></td>
+            <td><span class="size-badge sb-md">8–14 weeks</span></td>
+            <td>Niche alloy with limited mill production slots. Sheet is more available than plate. Smaller distributors may not stock — verify availability before quoting lead times in content.</td>
+            <td>"C-276 sheet available from distributor stock. Current lead times vary — contact us for up-to-date availability before committing to project timelines."</td>
+          </tr>
+          <tr>
+            <td><strong>Custom Aluminum Extrusion (New Die)</strong></td>
+            <td>N/A — always requires die</td>
+            <td><span class="size-badge sb-md">6–10 weeks after PO</span></td>
+            <td><span class="size-badge sb-sm">3–5 weeks (rush die)</span></td>
+            <td>Die design and manufacturing adds 2–4 weeks before extrusion can begin. Die trials and approval add time. Rush die programs exist at premium cost.</td>
+            <td>"Custom extrusion profiles: 6–10 weeks from PO to first shipment (includes die manufacturing). Standard profile lengths available for sample: 3–4 weeks with rush die program."</td>
+          </tr>
+          <tr>
+            <td><strong>Custom Forging (New Tooling)</strong></td>
+            <td>N/A — always requires tooling</td>
+            <td><span class="size-badge sb-xl">20–40 weeks first article</span></td>
+            <td><span class="size-badge sb-lg">14–20 weeks (rush)</span></td>
+            <td>Die design + manufacturing + heat schedules + trimming die + first article inspection. Reorder on existing dies: 8–14 weeks.</td>
+            <td>"New forging programs: 20–40 weeks to first article. Established programs with existing dies: 8–14 weeks."</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout gold">
+      <div class="callout-label">The Lead Time Anchoring Rule</div>
+      <p>Always anchor "fast" or "quick" to a specific number with context. <strong>Never let the buyer supply their own definition.</strong> "We offer quick turnaround" will be interpreted through the buyer's prior experience — which may be completely different from yours. The phrase <em>"In-stock items ship same day; non-stock items 3–5 business days"</em> is infinitely more useful than <em>"quick turnaround available."</em> For exotic alloys especially, context is critical: state your typical lead time, then note the industry benchmark it compares against.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 6 — TOLERANCE / PRECISION
+══════════════════════════════ -->
+<section class="sec-light" id="tolerance">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 6 — Accuracy Relativity</div>
+      <h2 class="sh-title">"Tight Tolerance" &amp; "Precision" — The Accuracy Spectrum</h2>
+      <p class="sh-desc">The word "precision" is used by everyone from structural steel fabricators to medical implant manufacturers. But the tolerances they hold are separated by three orders of magnitude. ±1/8 inch is acceptable for structural steel. ±0.0001 inch is the floor for medical device machining. Writing "precision machining" without context is meaningless — and potentially misleading to the wrong buyer.</p>
+    </div>
+
+    <div class="tol-scale mb32">
+      <div class="tol-row hdr">
+        <div class="tol-label">Industry / Process</div>
+        <div class="tol-bar-cell">Relative Precision (tighter = longer bar)</div>
+        <div class="tol-value-cell">Typical Tolerance</div>
+      </div>
+      <div class="tol-row">
+        <div class="tol-label"><strong>Structural Steel Fabrication</strong><br><span style="font-size:0.73rem;color:var(--text-light)">Beams, plates, weldments</span></div>
+        <div class="tol-bar-cell"><div class="tol-bar-bg"><div class="tol-bar-fill" style="width:5%;background:#DDE3EA"></div></div></div>
+        <div class="tol-value-cell" style="color:var(--text-light)">± 1/8" to ±1/4"</div>
+      </div>
+      <div class="tol-row">
+        <div class="tol-label"><strong>Press Brake / Forming</strong><br><span style="font-size:0.73rem;color:var(--text-light)">Bent sheet metal parts</span></div>
+        <div class="tol-bar-cell"><div class="tol-bar-bg"><div class="tol-bar-fill" style="width:10%;background:#C5D5DE"></div></div></div>
+        <div class="tol-value-cell" style="color:var(--slate)">± 0.030" to ±0.060"</div>
+      </div>
+      <div class="tol-row">
+        <div class="tol-label"><strong>Laser / Plasma Cutting</strong><br><span style="font-size:0.73rem;color:var(--text-light)">2D flat profiles</span></div>
+        <div class="tol-bar-cell"><div class="tol-bar-bg"><div class="tol-bar-fill" style="width:18%;background:#A8C4D0"></div></div></div>
+        <div class="tol-value-cell" style="color:var(--slate)">± 0.005" to ±0.015"</div>
+      </div>
+      <div class="tol-row">
+        <div class="tol-label"><strong>General CNC Machining</strong><br><span style="font-size:0.73rem;color:var(--text-light)">Standard commercial tolerances</span></div>
+        <div class="tol-bar-cell"><div class="tol-bar-bg"><div class="tol-bar-fill" style="width:33%;background:var(--blue)"></div></div></div>
+        <div class="tol-value-cell" style="color:var(--blue)">± 0.002" to ±0.005"</div>
+      </div>
+      <div class="tol-row">
+        <div class="tol-label"><strong>Precision CNC Machining</strong><br><span style="font-size:0.73rem;color:var(--text-light)">Industrial equipment, tooling</span></div>
+        <div class="tol-bar-cell"><div class="tol-bar-bg"><div class="tol-bar-fill" style="width:52%;background:var(--p5)"></div></div></div>
+        <div class="tol-value-cell" style="color:var(--p5)">± 0.0005" to ±0.001"</div>
+      </div>
+      <div class="tol-row">
+        <div class="tol-label"><strong>Surface / Cylindrical Grinding</strong><br><span style="font-size:0.73rem;color:var(--text-light)">Ground dimensions and bores</span></div>
+        <div class="tol-bar-cell"><div class="tol-bar-bg"><div class="tol-bar-fill" style="width:67%;background:var(--p8)"></div></div></div>
+        <div class="tol-value-cell" style="color:var(--p8-dark)">± 0.0002" to ±0.0005"</div>
+      </div>
+      <div class="tol-row">
+        <div class="tol-label"><strong>Aerospace CNC Machining</strong><br><span style="font-size:0.73rem;color:var(--text-light)">AS9100 / NADCAP environments</span></div>
+        <div class="tol-bar-cell"><div class="tol-bar-bg"><div class="tol-bar-fill" style="width:80%;background:var(--p4)"></div></div></div>
+        <div class="tol-value-cell" style="color:var(--p4)">± 0.0002" to ±0.0005"</div>
+      </div>
+      <div class="tol-row">
+        <div class="tol-label"><strong>Medical Device Machining</strong><br><span style="font-size:0.73rem;color:var(--text-light)">ISO 13485 / implantable</span></div>
+        <div class="tol-bar-cell"><div class="tol-bar-bg"><div class="tol-bar-fill" style="width:91%;background:var(--p6)"></div></div></div>
+        <div class="tol-value-cell" style="color:var(--p6)">± 0.0001" to ±0.0002"</div>
+      </div>
+      <div class="tol-row">
+        <div class="tol-label"><strong>Gauge / Metrology Standards</strong><br><span style="font-size:0.73rem;color:var(--text-light)">Precision masters and gages</span></div>
+        <div class="tol-bar-cell"><div class="tol-bar-bg"><div class="tol-bar-fill" style="width:100%;background:var(--navy)"></div></div></div>
+        <div class="tol-value-cell" style="color:var(--navy)">± 0.00005" or better</div>
+      </div>
+    </div>
+
+    <div class="g2 mb24">
+      <div>
+        <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--error)"></div>What NOT to Write</div>
+        <div class="card">
+          <ul class="plain">
+            <li>"Precision machining available" — precision relative to what?</li>
+            <li>"We hold tight tolerances" — how tight? Tighter than a structural welder? That's a low bar for a machinist.</li>
+            <li>"Close tolerance work accepted" — this phrase means nothing without a number.</li>
+            <li>"We produce precision components for demanding industries" — every shop says this.</li>
+            <li>"Tolerances per customer specification" — a dodge. Buyers want to know if you can hold their requirement before they call.</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--p2)"></div>What TO Write Instead</div>
+        <div class="card">
+          <ul class="plain">
+            <li>"We routinely hold ±0.0005" on milled features; ±0.0002" on ground bores."</li>
+            <li>"Our standard commercial tolerance is ±0.002". Critical features to ±0.0005" with engineering approval."</li>
+            <li>"CMM-verified dimensional inspection. All aerospace features documented per AS9100 Rev D."</li>
+            <li>"We machine to ASME Y14.5 GD&amp;T standards. First Article Inspection Reports available for all new programs."</li>
+            <li>"Surface grinding to Ra 16 or better on mating faces. Cylindrical grinding to within 0.0002" TIR on bearing journals."</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 7 — ORDER VALUE RELATIVITY
+══════════════════════════════ -->
+<section class="sec-white" id="order-value">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 7 — Value Relativity</div>
+      <h2 class="sh-title">"Significant Order" — What a "Big Account" Is Worth</h2>
+      <p class="sh-desc">The dollar value of a "typical" or "large" order varies by orders of magnitude across industrial markets. Understanding where your client sits on the value spectrum helps you write content that attracts the right buyers, set the right tone for the sales conversation, and avoid the mismatch of high-cost sales effort on low-margin orders.</p>
+    </div>
+
+    <div class="value-grid mb32">
+
+      <div class="value-card">
+        <div class="vc-header" style="background:var(--slate)">
+          <div class="vc-industry">Carbon Steel Service Center</div>
+          <div class="vc-type">High-volume commodity distribution</div>
+        </div>
+        <div class="vc-body">
+          <div class="vc-row"><span class="vc-label">Minimum order</span><span class="vc-amount">$150–$500</span></div>
+          <div class="vc-row"><span class="vc-label">Typical PO</span><span class="vc-amount">$1,000–$15,000</span></div>
+          <div class="vc-row"><span class="vc-label">"Good" account / yr</span><span class="vc-amount">$100K–$500K</span></div>
+          <div class="vc-row"><span class="vc-label">"Large" account / yr</span><span class="vc-amount">$1M–$10M+</span></div>
+          <div class="vc-row"><span class="vc-label">Margin profile</span><span class="vc-amount">5–15% gross</span></div>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="vc-header" style="background:var(--p5)">
+          <div class="vc-industry">Stainless / Aluminum Distributor</div>
+          <div class="vc-type">Specialty metals distribution</div>
+        </div>
+        <div class="vc-body">
+          <div class="vc-row"><span class="vc-label">Minimum order</span><span class="vc-amount">$300–$1,000</span></div>
+          <div class="vc-row"><span class="vc-label">Typical PO</span><span class="vc-amount">$2,000–$25,000</span></div>
+          <div class="vc-row"><span class="vc-label">"Good" account / yr</span><span class="vc-amount">$200K–$1M</span></div>
+          <div class="vc-row"><span class="vc-label">"Large" account / yr</span><span class="vc-amount">$2M–$10M+</span></div>
+          <div class="vc-row"><span class="vc-label">Margin profile</span><span class="vc-amount">12–25% gross</span></div>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="vc-header" style="background:var(--p4)">
+          <div class="vc-industry">Exotic Alloy / Titanium Distributor</div>
+          <div class="vc-type">High-value specialty metals</div>
+        </div>
+        <div class="vc-body">
+          <div class="vc-row"><span class="vc-label">Minimum order</span><span class="vc-amount">$500–$2,500</span></div>
+          <div class="vc-row"><span class="vc-label">Typical PO</span><span class="vc-amount">$5,000–$75,000</span></div>
+          <div class="vc-row"><span class="vc-label">"Good" account / yr</span><span class="vc-amount">$250K–$2M</span></div>
+          <div class="vc-row"><span class="vc-label">"Large" account / yr</span><span class="vc-amount">$5M–$30M+</span></div>
+          <div class="vc-row"><span class="vc-label">Margin profile</span><span class="vc-amount">15–35% gross</span></div>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="vc-header" style="background:var(--p2)">
+          <div class="vc-industry">General CNC Job Shop</div>
+          <div class="vc-type">Custom machining, contract manufacturing</div>
+        </div>
+        <div class="vc-body">
+          <div class="vc-row"><span class="vc-label">Minimum job</span><span class="vc-amount">$200–$500</span></div>
+          <div class="vc-row"><span class="vc-label">Typical job</span><span class="vc-amount">$1,500–$15,000</span></div>
+          <div class="vc-row"><span class="vc-label">"Good" program / yr</span><span class="vc-amount">$50K–$250K</span></div>
+          <div class="vc-row"><span class="vc-label">"Large" program / yr</span><span class="vc-amount">$500K–$3M</span></div>
+          <div class="vc-row"><span class="vc-label">Margin profile</span><span class="vc-amount">30–55% gross</span></div>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="vc-header" style="background:var(--p3)">
+          <div class="vc-industry">Aerospace Tier-2 Machining</div>
+          <div class="vc-type">AS9100 precision machined components</div>
+        </div>
+        <div class="vc-body">
+          <div class="vc-row"><span class="vc-label">Minimum job</span><span class="vc-amount">$2,500–$10,000</span></div>
+          <div class="vc-row"><span class="vc-label">Typical program</span><span class="vc-amount">$25,000–$250,000</span></div>
+          <div class="vc-row"><span class="vc-label">"Good" program / yr</span><span class="vc-amount">$500K–$2M</span></div>
+          <div class="vc-row"><span class="vc-label">"Large" program / yr</span><span class="vc-amount">$5M–$50M+</span></div>
+          <div class="vc-row"><span class="vc-label">Margin profile</span><span class="vc-amount">35–60% gross</span></div>
+        </div>
+      </div>
+
+      <div class="value-card">
+        <div class="vc-header" style="background:var(--p8)">
+          <div class="vc-industry">Exotic Plastic Machining (PEEK/Vespel)</div>
+          <div class="vc-type">High-performance polymer components</div>
+        </div>
+        <div class="vc-body">
+          <div class="vc-row"><span class="vc-label">Minimum job</span><span class="vc-amount">$500–$2,000</span></div>
+          <div class="vc-row"><span class="vc-label">Typical order</span><span class="vc-amount">$3,000–$30,000</span></div>
+          <div class="vc-row"><span class="vc-label">"Good" account / yr</span><span class="vc-amount">$50K–$250K</span></div>
+          <div class="vc-row"><span class="vc-label">"Large" account / yr</span><span class="vc-amount">$500K–$2M</span></div>
+          <div class="vc-row"><span class="vc-label">Margin profile</span><span class="vc-amount">50–75% gross</span></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout navy">
+      <div class="callout-label">💡 Why This Matters for Agency Work</div>
+      <p style="margin-bottom:10px">Understanding the value profile of your client's business changes how you write content, what CTAs you use, and how you frame the sales process. <strong style="color:var(--gold)">A carbon steel service center with 8% gross margins needs high transaction volume — their content should reduce friction, emphasize availability and speed, and make quoting effortless.</strong> An exotic plastic machining shop with 65% gross margins on 2 orders a week needs content that establishes extreme technical credibility — every word should signal deep expertise. The same generic "request a quote" CTA serves both purposes only superficially.</p>
+      <p>The value profile also changes lead scoring priorities in LOOP and CallRail. A $500 inquiry at a carbon steel service center is a normal transaction. A $500 inquiry at an aerospace Tier-2 machinist may be a first test order from a Tier-1 OEM that could become a $5M program. Context determines urgency.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 8 — SEO IMPLICATIONS
+══════════════════════════════ -->
+<section class="sec-p8" id="seo-impact">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag gold">Section 8 — SEO &amp; Content Impact</div>
+      <h2 class="sh-title">How Relative Language Hurts Search Performance</h2>
+      <p class="sh-desc">Vague relative terms are not just credibility problems — they're keyword voids. Nobody searches for "large metal orders available." They search for <em>exactly</em> what they need. The specificity that makes content credible to a technical buyer is the same specificity that makes it discoverable in search. These two goals are the same goal.</p>
+    </div>
+
+    <div class="mistake-pair mb16">
+      <div class="mbox dont">
+        <div class="mbox-label">✗ Vague — No Search Value</div>
+        <p>Uses relative terms that no buyer searches for. Generic enough to attract everyone, specific enough to convert no one. Google has no idea what product or service is being offered.</p>
+        <code>"We offer high-quality metal products in large and small quantities with fast turnaround and competitive pricing. Custom orders welcome."</code>
+      </div>
+      <div class="mbox do">
+        <div class="mbox-label">✓ Specific — Searchable &amp; Credible</div>
+        <p>Every phrase is a potential search query. The buyer knows immediately whether this supplier fits. Google understands the page's purpose and can rank it appropriately.</p>
+        <code>"A36, A572 Gr50, and A514 carbon steel plate in stock — 3/16" through 4" thick. Cut to length same day. Truckload and LTL shipping available. ASTM mill certs with every order."</code>
+      </div>
+    </div>
+
+    <div class="mistake-pair mb16">
+      <div class="mbox dont">
+        <div class="mbox-label">✗ Vague CTA — Low Conversion Intent</div>
+        <p>Relative terms in CTAs don't communicate what the buyer gets or what happens next. "Large" and "small" orders don't anchor the buyer's expectation.</p>
+        <code>"Whether you need a large order or a small quantity, we can help. Contact us for more information about our capabilities."</code>
+      </div>
+      <div class="mbox do">
+        <div class="mbox-label">✓ Specific CTA — Converts the Right Buyer</div>
+        <p>The buyer knows exactly what to do and what they'll receive. The minimum and maximum order context self-qualifies the inquiry before it arrives.</p>
+        <code>"Request a quote for orders from 10 lbs to full-truckload (40,000 lbs). In-stock items quote within 2 hours. Mill-order items quote within 24 hours."</code>
+      </div>
+    </div>
+
+    <div class="mistake-pair mb16">
+      <div class="mbox dont">
+        <div class="mbox-label">✗ Vague Lead Time — Wrong Expectation</div>
+        <p>Interpreted through the buyer's prior experience. A buyer from a carbon steel background will expect next-day. An aerospace buyer may misread this as a capability claim.</p>
+        <code>"We offer fast turnaround on most orders. Rush service available."</code>
+      </div>
+      <div class="mbox do">
+        <div class="mbox-label">✓ Specific Lead Time — Sets Correct Expectation</div>
+        <p>Buyers self-qualify based on their project timeline. No mismatch. No misleading expectation. Search engines can index the specific time commitment.</p>
+        <code>"In-stock 17-4PH bar ships 2–3 weeks. Mill orders 8–16 weeks. Rush expedite available — contact us for current availability before quoting your customer."</code>
+      </div>
+    </div>
+
+    <div class="mistake-pair mb32">
+      <div class="mbox dont">
+        <div class="mbox-label">✗ Vague Tolerance — Attracts Wrong Buyer</div>
+        <p>"Precision" without a number attracts every buyer who needs precision work — including buyers whose requirements the shop cannot meet. This generates unqualified inquiries.</p>
+        <code>"Our precision machining capabilities handle tight tolerance work for demanding applications across multiple industries."</code>
+      </div>
+      <div class="mbox do">
+        <div class="mbox-label">✓ Specific Tolerance — Qualifies the Inquiry</div>
+        <p>An aerospace buyer can immediately assess whether this shop meets their requirements. A structural fabrication buyer self-selects out. Every inquiry is pre-qualified.</p>
+        <code>"We routinely hold ±0.0005" on milled features, ±0.0002" on ground bores. CMM-verified FAIR documentation for all new programs. AS9100 Rev D certified."</code>
+      </div>
+    </div>
+
+    <div class="callout p8">
+      <div class="callout-label">The Double Benefit of Specificity</div>
+      <p>Every specific number, every concrete range, every defined term serves two masters simultaneously. It tells the buyer exactly whether you can serve them — self-qualifying the inquiry and saving everyone's time. And it tells search engines exactly what the page is about — improving relevance matching for the exact searches that represent real purchase intent. <strong>Specificity is the only content strategy where SEO performance and buyer trust are perfectly aligned.</strong></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 9 — QUESTIONS TO ASK
+══════════════════════════════ -->
+<section class="sec-white" id="questions">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 9 — Before You Write Anything</div>
+      <h2 class="sh-title">The Right Questions to Ask a New Industrial Client</h2>
+      <p class="sh-desc">Before writing a single line of content for an industrial client — before keyword research, before content planning, before anything — you need to understand their definitions of the relative terms that will appear in that content. These questions extract the specifics that make the difference between generic content and credible, converting content.</p>
+    </div>
+
+    <div class="q-grid mb32">
+
+      <div class="q-card">
+        <div class="q-num">1</div>
+        <div class="q-content">
+          <h4>What is your minimum order quantity or value?</h4>
+          <p>Do you have a minimum order? Is it expressed in pounds, pieces, dollars, or linear feet? Is there a setup charge for small orders, or is there a hard minimum below which you won't accept an order?</p>
+          <div class="q-why">→ This defines the floor of "volume" for this client and prevents content that attracts buyers below their profitable threshold.</div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-num">2</div>
+        <div class="q-content">
+          <h4>What do you consider a "large" or "significant" order?</h4>
+          <p>Where does your sweet spot begin — the order size that your operation is optimally built to handle? What's the largest single order you've ever fulfilled? What makes an account a "key account" for your business?</p>
+          <div class="q-why">→ This defines the ceiling of "volume" and helps write content that attracts the right-size buyer, not just any buyer.</div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-num">3</div>
+        <div class="q-content">
+          <h4>What does "custom" mean in your operation?</h4>
+          <p>When a customer asks for "custom work," what are you actually doing? Is it as simple as cutting to a non-standard length? Or does it involve new tooling, programming, or an engineering review? What's the lead time and cost implication of a custom request?</p>
+          <div class="q-why">→ Sets accurate buyer expectations and prevents inquiries for custom work that exceeds the client's actual capability or pricing.</div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-num">4</div>
+        <div class="q-content">
+          <h4>What is your typical lead time from order to delivery?</h4>
+          <p>Separate in-stock from non-stock. What's the lead time for your most common products when they're on the shelf? What's the lead time when you have to order from your supplier? What does "rush" mean to you, and does it come with a premium?</p>
+          <div class="q-why">→ Prevents the "fast turnaround" mismatch. A buyer with a 2-day project need won't call a shop where "fast" is 6 weeks.</div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-num">5</div>
+        <div class="q-content">
+          <h4>What tolerances do you routinely hold — and what's the limit?</h4>
+          <p>What's your standard commercial tolerance? What's the tightest tolerance you can reliably hold with your current equipment? Do you have CMM inspection capability? What certification standards govern your dimensional verification?</p>
+          <div class="q-why">→ Prevents attracting aerospace buyers to a general job shop — or underselling a precision shop to general fabrication buyers.</div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-num">6</div>
+        <div class="q-content">
+          <h4>What is the physical size range of parts or materials you handle?</h4>
+          <p>What's the smallest piece you can hold and machine effectively? What's the largest piece your equipment, cranes, and facility can handle? Are there weight limits? Do you have specific equipment limits (max chuck size, max table travel, max crane capacity)?</p>
+          <div class="q-why">→ Prevents dimensional mismatch inquiries. A Swiss machinist attracts a very different buyer than a heavy equipment fabricator.</div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-num">7</div>
+        <div class="q-content">
+          <h4>What certifications or standards govern your work?</h4>
+          <p>Are you ISO 9001, AS9100, ISO 13485, ITAR registered? Do you hold NADCAP approvals? AWS-certified welders? Do customers require specific material certifications (DFARS, AMS, ASTM)? What's the documentation package you provide with shipments?</p>
+          <div class="q-why">→ Compliance-driven content has the highest conversion rates in industrial B2B. Certifications are filters, not footnotes.</div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-num">8</div>
+        <div class="q-content">
+          <h4>Who is your ideal customer — and who is NOT a good fit?</h4>
+          <p>Describe your best customer. What industry are they in? How often do they order? What do they typically order? Now describe the inquiries you don't want — the buyers who come in but never convert, or who convert but drain your resources. What pattern do those bad-fit buyers share?</p>
+          <div class="q-why">→ This is the most important question. It directly shapes what content to write, what terms to use, and what to exclude.</div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-num">9</div>
+        <div class="q-content">
+          <h4>What are the most common mismatches in your inbound inquiries today?</h4>
+          <p>What do buyers ask for that you can't do? What's the most common reason you have to turn a buyer away after their first call? Are there repeat patterns — people who consistently misunderstand what you offer based on how your current website is written?</p>
+          <div class="q-why">→ Existing mismatches are evidence of specific content problems. Fix those first — they're already costing the client time and money.</div>
+        </div>
+      </div>
+
+      <div class="q-card">
+        <div class="q-num">10</div>
+        <div class="q-content">
+          <h4>What does your best customer say when they describe why they chose you?</h4>
+          <p>When a repeat buyer refers a colleague, what do they say? What specific value proposition — speed, quality, certifications, expertise, proximity, minimum order flexibility — do your best customers cite when explaining why they keep coming back?</p>
+          <div class="q-why">→ This is the differentiator that belongs in your content. Not "high quality" — but the specific, verifiable thing that makes buyers choose this client over competitors.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout p2">
+      <div class="callout-label">The Underlying Principle</div>
+      <p>These questions have a single goal: <strong>replace every relative term in your future content with a specific one.</strong> "Large orders" becomes "orders over 10,000 lbs." "Quick turnaround" becomes "ships same day before 2 PM." "Custom work available" becomes "custom cut to any length — no minimum, standard cutting charges apply." Every answer to every question above is a specific phrase that makes content better — more accurate, more searchable, and more credible to the exactly-right buyer.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     RECAP
+══════════════════════════════ -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag wht">Part 8 Recap</div>
+      <h2 class="sh-title wht">The Relativity Problem — Solved</h2>
+      <p class="sh-desc wht">After completing Part 8, you should be able to identify vague relative language in industrial content, understand why it fails both SEO and buyer trust, and replace it with specific, accurate terms that attract the right buyer and convert them.</p>
+    </div>
+    <div class="recap-grid">
+      <div class="recap-item">
+        <div class="recap-num">01</div>
+        <div class="recap-title">Same Word, Different World</div>
+        <div class="recap-desc">"High volume," "large," "custom," and "quick turnaround" mean completely different things in different industrial contexts. Never use them without an immediate, specific definition attached.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">02</div>
+        <div class="recap-title">Volume Spans Orders of Magnitude</div>
+        <div class="recap-desc">50 Vespel pieces is a major engagement. 50 pieces on a screw machine is not worth the setup cost. The same number describes opposite ends of the volume spectrum depending on the process.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">03</div>
+        <div class="recap-title">"Large" Is Defined by Equipment</div>
+        <div class="recap-desc">A Swiss machinist's largest part fits in your palm. A structural fabricator's smallest project fills a flatbed truck. Always write size in the client's reference frame, using their equipment limits as anchors.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">04</div>
+        <div class="recap-title">"Custom" Has a Price Tag</div>
+        <div class="recap-desc">Custom at a steel service center is a $50 saw charge. Custom at a forging shop is a $250,000 die investment. Define the type of custom work, the cost implication, and the lead time before using the word.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">05</div>
+        <div class="recap-title">Lead Time Reference Frames Differ</div>
+        <div class="recap-desc">8 weeks is agonizingly slow for carbon steel. 8 weeks is remarkably fast for Inconel 718. Always state lead times with context — name the industry benchmark the timeline compares against.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">06</div>
+        <div class="recap-title">"Precision" Needs a Number</div>
+        <div class="recap-desc">±1/8" and ±0.0001" are both "precision" relative to someone. Never write "precision machining" without specifying the tolerance range — it attracts every buyer including those whose requirements you cannot meet.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">07</div>
+        <div class="recap-title">Specificity Serves SEO and Trust</div>
+        <div class="recap-desc">Nobody searches for "large metal orders." They search for "A36 plate 4 inch thick cut to size." Specific content is both more credible to buyers AND more rankable in search. The two goals are the same goal.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">08</div>
+        <div class="recap-title">Ask Before You Write</div>
+        <div class="recap-desc">Ten questions answered before content creation replace a month of revisions afterward. The client's definitions of volume, size, custom, and turnaround are the foundation of every content decision that follows.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">09</div>
+        <div class="recap-title">Mismatches Cost Real Money</div>
+        <div class="recap-desc">A wrong-fit inquiry from vague content costs the client's sales team hours. Multiply that by dozens of inquiries per month and the cost of content inaccuracy becomes significant — in time, in credibility, and in missed conversions from the right buyers.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SERIES COMPLETE CTA
+══════════════════════════════ -->
+<div class="next-part-cta">
+  <div class="npc-inner">
+    <div class="npc-label">Series Complete</div>
+    <div class="npc-title">Industrial &amp; B2B Training — All 8 Parts</div>
+    <div class="npc-desc">You've completed the full OBx Industrial &amp; B2B training series — from buyer psychology and SEO architecture, through PPC, communication, LOOP &amp; CallRail integration, retention strategy, materials vocabulary, and now the relativity problem that ties every other part together. Apply specificity in everything you write for these clients.</div>
+    <a href="industrial-b2b-part1.html" class="npc-btn">← Return to Part 1: Foundations</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Industrial &amp; B2B Training — Part 8 of 8: The Relativity Problem</span>
+    <span>April 2026</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+
+</body>
+</html>
