@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Industrial B2B — Part 7: Materials Reference Guide</title>
+<style>
+:root {
+  --navy: #1B4F72; --navy-dark: #154360; --orange: #D4551A; --gold: #F5A623;
+  --blue: #2980B9; --slate: #4A6375; --light-gray: #F0F2F5; --border: #DDE3EA;
+  --text: #2C3E50; --text-light: #7F8C8D; --success: #27AE60; --error: #E74C3C;
+  --p2: #0E7C5C; --p2-dark: #0A5C43; --p2-light: rgba(14,124,92,0.08);
+  --p3: #D4551A; --p4: #5B3FA8; --p5: #0A7B8E; --p6: #8B1A4A;
+  --p7: #2C5F7A; --p7-dark: #1E4558; --p7-light: rgba(44,95,122,0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Segoe UI', -apple-system, Arial, sans-serif; background: var(--light-gray); color: var(--text); line-height: 1.65; }
+
+.top-nav { position: sticky; top: 0; z-index: 300; background: var(--navy); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; box-shadow: 0 2px 12px rgba(0,0,0,0.25); }
+.brand { display: flex; align-items: center; }
+.brand-main { color: #fff; font-size: 1.3rem; font-weight: 900; letter-spacing: -0.5px; }
+.brand-main em { color: var(--gold); font-style: normal; }
+.brand-school { color: var(--gold); font-size: 0.65rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; border-left: 2px solid rgba(245,166,35,0.35); margin-left: 12px; padding-left: 12px; }
+.nav-badge { background: rgba(44,95,122,0.3); color: #7EC8E3; border: 1px solid rgba(44,95,122,0.45); padding: 3px 12px; border-radius: 20px; font-size: 0.71rem; font-weight: 600; }
+
+.series-nav { background: var(--navy-dark); border-bottom: 2px solid rgba(245,166,35,0.15); display: flex; align-items: center; padding: 0 48px; gap: 4px; overflow-x: auto; position: sticky; top: 56px; z-index: 190; }
+.snav-label { color: rgba(255,255,255,0.28); font-size: 0.67rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding-right: 14px; border-right: 1px solid rgba(255,255,255,0.08); margin-right: 8px; white-space: nowrap; flex-shrink: 0; }
+.snav-link { display: flex; align-items: center; gap: 7px; color: rgba(255,255,255,0.42); text-decoration: none; font-size: 0.76rem; font-weight: 600; padding: 13px 14px; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.15s; white-space: nowrap; }
+.snav-link:hover { color: rgba(255,255,255,0.8); }
+.snav-link.active { color: #fff; border-bottom-color: var(--p7); }
+.snav-num { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+.sn-1{background:var(--slate);} .sn-2{background:var(--p2);} .sn-3{background:var(--p3);}
+.sn-4{background:var(--p4);} .sn-5{background:var(--p5);} .sn-6{background:var(--p6);} .sn-7{background:var(--p7);}
+
+.part-header { background: linear-gradient(135deg, #1E4558 0%, #2C5F7A 55%, #264D66 100%); padding: 72px 48px 64px; position: relative; overflow: hidden; }
+.ph-blob { position: absolute; border-radius: 50%; pointer-events: none; top: -80px; right: -80px; width: 420px; height: 420px; background: rgba(255,255,255,0.03); }
+.ph-s1 { position: absolute; top: 36px; right: 72px; width: 20px; height: 20px; background: rgba(255,255,255,0.12); pointer-events: none; }
+.ph-s2 { position: absolute; top: 60px; right: 50px; width: 13px; height: 13px; background: rgba(245,166,35,0.35); pointer-events: none; }
+.ph-s3 { position: absolute; top: 48px; right: 100px; width: 10px; height: 10px; background: rgba(255,255,255,0.08); pointer-events: none; }
+.ph-inner { max-width: 1060px; margin: 0 auto; position: relative; z-index: 1; }
+.ph-series { font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.ph-series::before { content: ''; display: block; width: 24px; height: 2px; background: rgba(255,255,255,0.4); }
+.ph-badge { display: inline-flex; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 5px 12px; color: rgba(255,255,255,0.75); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 16px; }
+.ph-title { color: #fff; font-size: 2.8rem; font-weight: 900; line-height: 1.12; margin-bottom: 16px; }
+.ph-sub { color: rgba(255,255,255,0.65); font-size: 0.98rem; max-width: 640px; line-height: 1.72; margin-bottom: 30px; }
+.ph-objectives { display: flex; flex-wrap: wrap; gap: 9px; }
+.ph-obj { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.13); border-radius: 7px; padding: 7px 13px; color: rgba(255,255,255,0.78); font-size: 0.77rem; }
+.ph-obj::before { content: '✓ '; color: rgba(255,255,255,0.45); font-size: 0.72rem; }
+
+.accent-bar { height: 4px; background: linear-gradient(90deg, var(--p7) 0%, var(--gold) 60%, var(--navy) 100%); }
+.container { max-width: 1060px; margin: 0 auto; padding: 0 48px; }
+section.sec-light { background: var(--light-gray); padding: 64px 0; }
+section.sec-white { background: #fff; padding: 64px 0; }
+section.sec-dark  { background: var(--navy); padding: 64px 0; }
+
+.sh { margin-bottom: 36px; }
+.sh-tag { font-size: 0.72rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; color: var(--p7); }
+.sh-tag.wht { color: rgba(255,255,255,0.5); }
+.sh-tag.org { color: var(--orange); }
+.sh-tag.p2  { color: var(--p2); }
+.sh-tag.p4  { color: var(--p4); }
+.sh-tag.p5  { color: var(--p5); }
+.sh-tag.p6  { color: var(--p6); }
+.sh-title { font-size: 1.9rem; font-weight: 800; color: var(--navy); line-height: 1.2; margin-bottom: 12px; }
+.sh-title.wht { color: #fff; }
+.sh-desc { color: var(--text-light); font-size: 0.91rem; max-width: 700px; line-height: 1.7; }
+.sh-desc.wht { color: rgba(255,255,255,0.62); }
+
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 26px; transition: box-shadow 0.15s, transform 0.15s; }
+.card:hover { box-shadow: 0 6px 22px rgba(0,0,0,0.07); transform: translateY(-2px); }
+.card.gray  { background: var(--light-gray); }
+.card.navy  { background: var(--navy); }
+.card h3 { font-size: 0.97rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.card.navy h3 { color: var(--gold); }
+.card p  { font-size: 0.86rem; color: var(--text-light); line-height: 1.65; }
+.card.navy p { color: rgba(255,255,255,0.72); }
+.card-icon { font-size: 1.8rem; margin-bottom: 12px; }
+
+/* ─── scrollable table wrapper ─── */
+.tbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.05); margin-bottom: 24px; }
+.tbl-wrap .tbl { border-radius: 0; box-shadow: none; margin-bottom: 0; }
+
+/* ─── tables ─── */
+.tbl { width: 100%; border-collapse: collapse; background: #fff; }
+.tbl th { padding: 12px 15px; text-align: left; font-size: 0.73rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #fff; }
+.tbl td { padding: 11px 15px; font-size: 0.83rem; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; line-height: 1.52; }
+.tbl tr:last-child td { border-bottom: none; }
+.tbl tr:nth-child(even) td { background: #F8FAFB; }
+.tbl td strong { color: var(--navy); }
+
+/* th colour bands */
+.th-navy  { background: var(--navy); }
+.th-slate { background: var(--slate); }
+.th-p2    { background: var(--p2); }
+.th-p3    { background: var(--p3); }
+.th-p4    { background: var(--p4); }
+.th-p5    { background: var(--p5); }
+.th-p6    { background: var(--p6); }
+.th-p7    { background: var(--p7); }
+.th-blue  { background: var(--blue); }
+.th-copper{ background: #A0522D; }
+.th-brass { background: #B8860B; }
+.th-bronze{ background: #6B4226; }
+
+/* grade monospace badge */
+.gbadge { font-family: 'Courier New', monospace; font-weight: 700; color: var(--navy); font-size: 0.86rem; white-space: nowrap; }
+
+/* inline form/shape tags */
+.ftag { display: inline-block; background: rgba(27,79,114,0.08); color: #1A4F72; border-radius: 3px; padding: 1px 6px; font-size: 0.68rem; font-weight: 600; margin: 2px 1px; white-space: nowrap; }
+
+/* machinability badges */
+.mrate { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.71rem; font-weight: 700; white-space: nowrap; }
+.mrate-ex { background: rgba(39,174,96,0.13);  color: #1E8449; }
+.mrate-gd { background: rgba(41,128,185,0.12); color: #1A6FA8; }
+.mrate-fr { background: rgba(245,166,35,0.15); color: #8A5F00; }
+.mrate-df { background: rgba(231,76,60,0.13);  color: #B03A2E; }
+
+/* temperature badges */
+.tmpbadge { display: inline-block; padding: 2px 9px; border-radius: 4px; font-size: 0.71rem; font-weight: 700; white-space: nowrap; }
+.tmp-std  { background: rgba(41,128,185,0.12); color: #1A6FA8; }
+.tmp-mid  { background: rgba(245,166,35,0.15); color: #8A5F00; }
+.tmp-high { background: rgba(212,85,26,0.14);  color: #A84214; }
+.tmp-xhigh{ background: rgba(139,26,74,0.13);  color: #6B1538; }
+
+/* sub-section header */
+.sub-sh { font-size: 0.97rem; font-weight: 800; color: var(--navy); margin: 32px 0 13px; padding-bottom: 9px; border-bottom: 2px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.sub-sh-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+/* callouts */
+.callout { border-radius: 10px; padding: 20px 24px; margin: 24px 0; border-left: 4px solid; }
+.callout.p2    { background: rgba(14,124,92,0.07);  border-color: var(--p2); }
+.callout.orange{ background: rgba(212,85,26,0.06);  border-color: var(--orange); }
+.callout.navy  { background: var(--navy);            border-color: var(--gold); }
+.callout.gold  { background: rgba(245,166,35,0.08); border-color: var(--gold); }
+.callout.p4    { background: rgba(91,63,168,0.07);  border-color: var(--p4); }
+.callout.p5    { background: rgba(10,123,142,0.07); border-color: var(--p5); }
+.callout.p6    { background: rgba(139,26,74,0.07);  border-color: var(--p6); }
+.callout.p7    { background: rgba(44,95,122,0.07);  border-color: var(--p7); }
+.callout.copper{ background: rgba(160,82,45,0.07);  border-color: #A0522D; }
+.callout-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.callout.p2     .callout-label { color: var(--p2-dark); }
+.callout.orange .callout-label { color: var(--orange); }
+.callout.navy   .callout-label { color: var(--gold); }
+.callout.gold   .callout-label { color: #8A5F00; }
+.callout.p4     .callout-label { color: var(--p4); }
+.callout.p5     .callout-label { color: var(--p5); }
+.callout.p6     .callout-label { color: var(--p6); }
+.callout.p7     .callout-label { color: var(--p7-dark); }
+.callout.copper .callout-label { color: #7A3B1E; }
+.callout p { font-size: 0.88rem; line-height: 1.68; }
+.callout.navy p { color: rgba(255,255,255,0.82); }
+
+ul.plain { list-style: none; padding: 0; }
+ul.plain li { font-size: 0.85rem; color: var(--text); padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 9px; align-items: flex-start; line-height: 1.55; }
+ul.plain li:last-child { border-bottom: none; }
+ul.plain li::before { content: '▸'; color: var(--p7); flex-shrink: 0; font-size: 0.8rem; margin-top: 1px; }
+
+/* forms card grid */
+.forms-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+.fcard { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 17px 15px; transition: box-shadow 0.15s; }
+.fcard:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.07); }
+.fcard-icon { font-size: 1.4rem; margin-bottom: 7px; }
+.fcard-name { font-size: 0.88rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.fcard-mats { font-size: 0.71rem; color: var(--p7); font-weight: 600; margin-bottom: 5px; }
+.fcard-dim  { font-family: 'Courier New', monospace; font-size: 0.69rem; color: var(--p7-dark); background: var(--p7-light); padding: 2px 6px; border-radius: 3px; display: inline-block; margin-bottom: 6px; }
+.fcard p { font-size: 0.75rem; color: var(--text-light); line-height: 1.48; }
+
+/* machining services card grid */
+.svc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+.svc-card { background: #fff; border: 1px solid var(--border); border-radius: 10px; padding: 20px; transition: box-shadow 0.15s; }
+.svc-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.07); }
+.svc-icon { font-size: 1.4rem; margin-bottom: 7px; }
+.svc-name { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 5px; }
+.svc-desc { font-size: 0.78rem; color: var(--text-light); line-height: 1.5; margin-bottom: 9px; }
+.svc-mats { display: flex; flex-wrap: wrap; gap: 4px; }
+.svc-mat  { background: var(--p7-light); color: var(--p7-dark); border-radius: 3px; padding: 1px 7px; font-size: 0.68rem; font-weight: 600; }
+
+/* recap */
+.recap-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.recap-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 22px; }
+.recap-num   { font-size: 2rem; font-weight: 900; color: var(--gold); opacity: 0.3; line-height: 1; margin-bottom: 4px; }
+.recap-title { color: var(--gold); font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; }
+.recap-desc  { color: rgba(255,255,255,0.62); font-size: 0.81rem; line-height: 1.6; }
+
+.next-part-cta { background: var(--navy-dark); padding: 52px 48px; text-align: center; }
+.npc-inner  { max-width: 560px; margin: 0 auto; }
+.npc-label  { color: rgba(255,255,255,0.35); font-size: 0.68rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.npc-title  { color: #fff; font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+.npc-desc   { color: rgba(255,255,255,0.52); font-size: 0.87rem; margin-bottom: 24px; line-height: 1.65; }
+.npc-btn    { display: inline-flex; align-items: center; gap: 10px; background: var(--p7); color: #fff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; transition: all 0.15s; }
+.npc-btn:hover { background: var(--p7-dark); transform: translateY(-1px); }
+
+.footer { background: #0D1C2B; padding: 42px 48px; text-align: center; }
+.footer-brand  { color: #fff; font-size: 1.4rem; font-weight: 900; margin-bottom: 5px; }
+.footer-brand em { color: var(--gold); font-style: normal; }
+.footer-school { color: var(--gold); font-size: 0.7rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.footer-meta   { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.footer-meta span { color: rgba(255,255,255,0.28); font-size: 0.73rem; }
+
+.mt16{margin-top:16px;} .mt24{margin-top:24px;} .mt32{margin-top:32px;}
+.mb8{margin-bottom:8px;} .mb16{margin-bottom:16px;} .mb24{margin-bottom:24px;} .mb32{margin-bottom:32px;}
+[id]::before { content: ''; display: block; height: 80px; margin-top: -80px; pointer-events: none; }
+
+@media (max-width: 1020px) { .forms-grid { grid-template-columns: repeat(2,1fr); } .svc-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 860px) {
+  .g2,.g3 { grid-template-columns: 1fr; }
+  .container { padding: 0 24px; }
+  .top-nav,.series-nav { padding: 0 24px; }
+  .part-header { padding: 52px 24px 48px; }
+  .ph-title { font-size: 2rem; }
+  .recap-grid { grid-template-columns: 1fr; }
+  .next-part-cta { padding: 40px 24px; }
+}
+@media (max-width: 560px) { .forms-grid,.svc-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP NAV ═══ -->
+<nav class="top-nav">
+  <div class="brand"><span class="brand-main">Outer<em>Box</em></span><span class="brand-school">B·SCHOOL</span></div>
+  <span class="nav-badge">Part 7 of 7 · Industrial &amp; B2B</span>
+</nav>
+
+<!-- ═══ SERIES NAV ═══ -->
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="industrial-b2b-part1.html" class="snav-link"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="industrial-b2b-part2.html" class="snav-link"><span class="snav-num sn-2">2</span>SEO Strategy</a>
+  <a href="industrial-b2b-part3.html" class="snav-link"><span class="snav-num sn-3">3</span>PPC Strategy</a>
+  <a href="industrial-b2b-part4.html" class="snav-link"><span class="snav-num sn-4">4</span>Communication</a>
+  <a href="industrial-b2b-part5.html" class="snav-link"><span class="snav-num sn-5">5</span>Loop &amp; CallRail</a>
+  <a href="industrial-b2b-part6.html" class="snav-link"><span class="snav-num sn-6">6</span>Retention &amp; Heartbeat</a>
+  <a href="industrial-b2b-part7.html" class="snav-link active"><span class="snav-num sn-7">7</span>Materials Guide</a>
+</div>
+
+<!-- ═══ PART HEADER ═══ -->
+<div class="part-header">
+  <div class="ph-blob"></div>
+  <div class="ph-s1"></div><div class="ph-s2"></div><div class="ph-s3"></div>
+  <div class="ph-inner">
+    <div class="ph-series">Industrial &amp; B2B Training Series</div>
+    <div class="ph-badge">Part 7 of 7 — Materials Reference Guide</div>
+    <h1 class="ph-title">Industrial Materials:<br>Metals, Plastics &amp;<br>Machining Reference</h1>
+    <p class="ph-sub">A field reference for agency staff working with metals distributors, fabricators, and machine shops. Know the grades, the industries, the forms, and the services — so you can write content that speaks the buyer's language and earns the trust of technical clients.</p>
+    <div class="ph-objectives">
+      <span class="ph-obj">Identify stainless steel grades &amp; applications</span>
+      <span class="ph-obj">Understand carbon &amp; alloy steel by use case</span>
+      <span class="ph-obj">Recognize copper &amp; copper alloy families</span>
+      <span class="ph-obj">Map aluminum grades to industries</span>
+      <span class="ph-obj">Know exotic &amp; specialty alloys</span>
+      <span class="ph-obj">Understand engineering plastics by trade name</span>
+      <span class="ph-obj">Reference high-temp plastics by temperature rating</span>
+      <span class="ph-obj">Identify common forms, shapes &amp; machining services</span>
+    </div>
+  </div>
+</div>
+<div class="accent-bar"></div>
+
+
+<!-- ══════════════════════════════
+     SECTION 1 — STAINLESS STEEL
+══════════════════════════════ -->
+<section class="sec-white" id="stainless-steel">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1 — Metals</div>
+      <h2 class="sh-title">Stainless Steel</h2>
+      <p class="sh-desc">Defined by a minimum 10.5% chromium content that forms a self-healing passive oxide layer. The four main families — austenitic (300 series), martensitic/ferritic (400 series), precipitation hardening (PH), and duplex — each target distinctly different applications and buyer profiles.</p>
+    </div>
+
+    <div class="callout p7 mb32">
+      <div class="callout-label">🔎 SEO Connection</div>
+      <p>Industrial buyers searching for stainless steel almost always include the grade. <strong>"316L stainless plate"</strong>, <strong>"17-4PH bar stock"</strong>, and <strong>"2205 duplex tube"</strong> are high-intent, purchase-ready keywords. Build a dedicated page for each grade a client stocks or processes — generic "stainless steel" category pages serve as hubs, but grade-level pages are where conversions happen.</p>
+    </div>
+
+    <!-- 300 Series -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--navy)"></div>300 Series — Austenitic (Most Common Family)</div>
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-navy" style="min-width:110px">Grade</th>
+            <th class="th-navy" style="min-width:220px">Key Properties</th>
+            <th class="th-navy" style="min-width:200px">Primary Industries</th>
+            <th class="th-navy" style="min-width:230px">Common Applications</th>
+            <th class="th-navy" style="min-width:200px">Common Forms</th>
+            <th class="th-navy" style="min-width:110px">Machinability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">303</span></td>
+            <td>Free-machining via sulfur/selenium addition; non-magnetic; good corrosion resistance</td>
+            <td>Aerospace, automotive, electronics, fastener mfg.</td>
+            <td>Bolts, nuts, shafts, fittings, valve stems, screw machine parts</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Hex Bar</span></td>
+            <td><span class="mrate mrate-ex">Excellent</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">304 / 304L</span></td>
+            <td>Most widely used SS; excellent corrosion resistance; 304L low-carbon for welded assemblies — eliminates sensitization risk</td>
+            <td>Food processing, dairy, chemical, pharmaceutical, architectural</td>
+            <td>Tanks, piping, sanitary fittings, kitchen equipment, sinks, food-handling hardware</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Sheet</span><span class="ftag">Bar</span><span class="ftag">Tube</span><span class="ftag">Pipe</span><span class="ftag">Coil</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">316 / 316L</span></td>
+            <td>Molybdenum addition improves pitting &amp; crevice corrosion resistance vs. 304; 316L preferred for welds</td>
+            <td>Marine, pharmaceutical, medical devices, chemical processing, offshore oil &amp; gas</td>
+            <td>Marine hardware, heat exchangers, medical implants, chemical tanks, pharmaceutical equipment</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Sheet</span><span class="ftag">Bar</span><span class="ftag">Tube</span><span class="ftag">Pipe</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">321</span></td>
+            <td>Titanium-stabilized; resists sensitization at elevated temperatures; used where repeated heat cycling occurs</td>
+            <td>Aerospace, oil &amp; gas, power generation, heat treating</td>
+            <td>Exhaust systems, manifolds, heat exchanger tubes, aircraft repair, furnace components</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Tube</span><span class="ftag">Bar</span><span class="ftag">Plate</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">347</span></td>
+            <td>Niobium-stabilized; superior to 321 under repeated severe thermal cycling; slightly higher strength</td>
+            <td>Aerospace, petroleum refining, chemical processing, power generation</td>
+            <td>High-temp pressure vessels, refinery piping, boiler superheaters, aerospace structures</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Bar</span><span class="ftag">Tube</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">310 / 310S</span></td>
+            <td>High chromium &amp; nickel (25Cr/20Ni); excellent high-temperature oxidation resistance up to 2100°F</td>
+            <td>Industrial furnaces, heat treating, petrochemical</td>
+            <td>Furnace parts, radiant tubes, heat treating fixtures, high-temp applications</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Bar</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 400 Series -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--slate)"></div>400 Series — Martensitic &amp; Ferritic</div>
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-slate" style="min-width:110px">Grade</th>
+            <th class="th-slate" style="min-width:220px">Key Properties</th>
+            <th class="th-slate" style="min-width:200px">Primary Industries</th>
+            <th class="th-slate" style="min-width:230px">Common Applications</th>
+            <th class="th-slate" style="min-width:200px">Common Forms</th>
+            <th class="th-slate" style="min-width:110px">Machinability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">410</span></td>
+            <td>Martensitic; heat-treatable to high hardness; magnetic; moderate corrosion resistance; lowest cost heat-treatable SS</td>
+            <td>Oil &amp; gas, valves, pumps, steam turbines</td>
+            <td>Valve trim, pump shafts, turbine blades, compressor components, fasteners</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Plate</span><span class="ftag">Sheet</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">420</span></td>
+            <td>Higher carbon than 410; achieves highest hardness in 400 series after heat treatment; good wear resistance</td>
+            <td>Medical, dental, cutlery, mold making</td>
+            <td>Surgical instruments, dental tools, knife blades, plastic injection molds</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Plate</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">430</span></td>
+            <td>Ferritic; non-hardenable; magnetic; good formability and polishability; lower cost than 304</td>
+            <td>Automotive trim, appliances, architectural, food service</td>
+            <td>Automotive trim, kitchen appliances, building panels, decorative components, dishwasher linings</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Strip</span><span class="ftag">Bar</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">440C</span></td>
+            <td>Highest attainable hardness of any stainless after heat treat; excellent wear resistance; very high carbon content</td>
+            <td>Bearings, cutting instruments, valves, aerospace, precision gauging</td>
+            <td>Ball bearings, valve seats, cutting instruments, bushings, nozzles, gauge blocks</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Plate</span><span class="ftag">Sheet</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PH + Duplex -->
+    <div class="g2">
+      <div>
+        <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--p3)"></div>Precipitation Hardening (PH) Grades</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th class="th-p3" style="min-width:100px">Grade</th>
+                <th class="th-p3" style="min-width:200px">Key Properties</th>
+                <th class="th-p3" style="min-width:160px">Industries</th>
+                <th class="th-p3" style="min-width:180px">Applications</th>
+                <th class="th-p3" style="min-width:140px">Forms</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="gbadge">17-4PH</span></td>
+                <td>Very high strength &amp; hardness; better corrosion resistance than 410; heat-treated to H900–H1150 conditions</td>
+                <td>Aerospace, defense, oil &amp; gas, medical</td>
+                <td>Airframe fittings, gears, shafts, surgical instruments, nuclear waste casks, pump shafts</td>
+                <td><span class="ftag">Bar</span><span class="ftag">Plate</span><span class="ftag">Sheet</span><span class="ftag">Tube</span></td>
+              </tr>
+              <tr>
+                <td><span class="gbadge">15-5PH</span></td>
+                <td>Similar to 17-4PH; improved toughness in transverse direction; typically forged rather than rolled</td>
+                <td>Aerospace, chemical processing, defense</td>
+                <td>Aerospace structural parts, valves, gears, chemical process components</td>
+                <td><span class="ftag">Bar</span><span class="ftag">Forgings</span></td>
+              </tr>
+              <tr>
+                <td><span class="gbadge">13-8Mo</span></td>
+                <td>Highest strength of PH grades; excellent transverse toughness; good corrosion resistance including SCC</td>
+                <td>Aerospace, defense, petrochemical</td>
+                <td>High-performance aerospace fittings, pins, fasteners, sour gas service valves</td>
+                <td><span class="ftag">Bar</span><span class="ftag">Forgings</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+	  <br>
+      <div>
+        <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--p5)"></div>Duplex Grades</div>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th class="th-p5" style="min-width:100px">Grade</th>
+                <th class="th-p5" style="min-width:200px">Key Properties</th>
+                <th class="th-p5" style="min-width:160px">Industries</th>
+                <th class="th-p5" style="min-width:180px">Applications</th>
+                <th class="th-p5" style="min-width:140px">Forms</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="gbadge">2205</span></td>
+                <td>Mixed austenitic/ferritic; ~2× strength of 304/316; excellent chloride &amp; SCC resistance; most common duplex grade</td>
+                <td>Oil &amp; gas, chemical, desalination, marine</td>
+                <td>Pressure vessels, heat exchangers, offshore piping, desalination equipment, pump impellers</td>
+                <td><span class="ftag">Plate</span><span class="ftag">Bar</span><span class="ftag">Tube</span><span class="ftag">Pipe</span></td>
+              </tr>
+              <tr>
+                <td><span class="gbadge">2507</span></td>
+                <td>Super duplex; higher Cr, Mo, N than 2205; exceptional corrosion resistance in highly aggressive environments</td>
+                <td>Offshore oil &amp; gas, chemical processing, seawater handling</td>
+                <td>Subsea equipment, seawater piping, FGD systems, aggressive chemical process equipment</td>
+                <td><span class="ftag">Plate</span><span class="ftag">Bar</span><span class="ftag">Tube</span><span class="ftag">Pipe</span></td>
+              </tr>
+              <tr>
+                <td><span class="gbadge">LDX 2101</span></td>
+                <td>Lean duplex; lower Ni/Mo than 2205; good strength &amp; corrosion resistance at lower cost; excellent formability</td>
+                <td>Construction, storage tanks, water treatment</td>
+                <td>Storage tanks, structural components, water treatment vessels, bridges</td>
+                <td><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Bar</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 2 — CARBON & ALLOY STEEL
+══════════════════════════════ -->
+<section class="sec-light" id="carbon-steel">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2 — Metals</div>
+      <h2 class="sh-title">Carbon Steel, Alloy Steel &amp; Tool Steels</h2>
+      <p class="sh-desc">The backbone of industrial manufacturing. Carbon steels are defined by carbon content — low, medium, and high. Alloy steels add chromium, molybdenum, or nickel for enhanced strength and hardenability. Tool steels are engineered specifically for cutting, forming, and die work.</p>
+    </div>
+
+    <div class="callout navy mb32">
+      <div class="callout-label">💡 Keyword Insight</div>
+      <p>Carbon steel searches are almost always specification-driven: <strong>"A36 steel plate cut to size"</strong>, <strong>"4140 round bar annealed"</strong>, <strong>"H13 tool steel block"</strong>. ASTM designations (A36, A572, A514) dominate structural keywords. SAE/AISI numbers (1018, 4140, 8620) dominate machining and bar stock searches. Tool steel grades are often searched with condition (annealed, hardened) as a qualifier — build pages that include the condition.</p>
+    </div>
+
+    <!-- Structural & Carbon Steels -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--slate)"></div>Structural &amp; Low-to-Medium Carbon Steels</div>
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-slate" style="min-width:110px">Grade</th>
+            <th class="th-slate" style="min-width:200px">Key Properties</th>
+            <th class="th-slate" style="min-width:200px">Primary Industries</th>
+            <th class="th-slate" style="min-width:230px">Common Applications</th>
+            <th class="th-slate" style="min-width:200px">Common Forms</th>
+            <th class="th-slate" style="min-width:110px">Machinability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">A36</span></td>
+            <td>36 ksi min yield; most widely used structural steel; excellent weldability; low cost</td>
+            <td>Construction, structural fabrication, general manufacturing</td>
+            <td>Structural beams, columns, base plates, frames, bridges, weldments, general fabrication</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Bar</span><span class="ftag">Angle</span><span class="ftag">Channel</span><span class="ftag">Beam</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">A572 Gr50</span></td>
+            <td>50 ksi min yield; higher strength than A36 at similar weldability; HSLA steel</td>
+            <td>Construction, heavy equipment, bridges, pressure vessels</td>
+            <td>Bridge components, heavy equipment frames, structural columns, crane booms</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Structural Shapes</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">A514 / T-1</span></td>
+            <td>100 ksi min yield; quenched &amp; tempered; excellent toughness; wear-resistant plate</td>
+            <td>Mining, construction equipment, lifting &amp; rigging, pressure vessels</td>
+            <td>Crane booms, mining equipment, dump truck beds, high-strength structural members</td>
+            <td><span class="ftag">Plate</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">1018</span></td>
+            <td>Low carbon (0.18% C); excellent weldability &amp; machinability; can be case-hardened; reliable dimensional consistency</td>
+            <td>General machining, automotive, agricultural equipment, fasteners</td>
+            <td>Shafts, pins, axles, rods, keys, dowels, fixtures, general machined parts</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Flat Bar</span><span class="ftag">Square Bar</span><span class="ftag">Hex Bar</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">1020</span></td>
+            <td>Slightly higher strength than 1018; good machinability; suitable for case hardening; cold-drawn or hot-rolled</td>
+            <td>Automotive, machinery, general manufacturing</td>
+            <td>Shafts, bolts, rods, machine components, case-hardened gears</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Flat Bar</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">1045</span></td>
+            <td>Medium carbon (0.45% C); higher strength &amp; hardness than 1018; can be heat-treated; good machinability</td>
+            <td>Oil &amp; gas, agricultural, automotive, industrial machinery</td>
+            <td>Shafts, gears, axles, spindles, bolts, studs, crankshafts, hydraulic cylinders</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Flat Bar</span><span class="ftag">Hex Bar</span><span class="ftag">Plate</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">1144</span></td>
+            <td>Free-machining resulfurized steel; excellent surface finish; twice the machinability of 1045; stress-proof when cold-drawn</td>
+            <td>Screw machining, automated machining, high-volume parts production</td>
+            <td>Studs, fasteners, precision shafts, hydraulic fittings, screw machine products</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Hex Bar</span></td>
+            <td><span class="mrate mrate-ex">Excellent</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Alloy Steels (Chromoly) -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--navy)"></div>Alloy Steels (Chromoly &amp; Nickel-Alloy)</div>
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-navy" style="min-width:110px">Grade</th>
+            <th class="th-navy" style="min-width:200px">Key Properties</th>
+            <th class="th-navy" style="min-width:200px">Primary Industries</th>
+            <th class="th-navy" style="min-width:230px">Common Applications</th>
+            <th class="th-navy" style="min-width:200px">Common Forms</th>
+            <th class="th-navy" style="min-width:110px">Machinability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">4130</span></td>
+            <td>Chromoly (Cr-Mo); excellent weldability among alloy steels; good strength &amp; toughness; aerospace-popular</td>
+            <td>Aerospace, motorsports, oil &amp; gas, bicycles, pressure vessels</td>
+            <td>Aircraft frames, roll cages, pressure vessels, drill collars, connecting rods, bicycle frames</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Tube</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Forgings</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">4140</span></td>
+            <td>Chromoly; most widely used alloy steel; excellent strength, toughness, hardenability; versatile heat-treat response</td>
+            <td>Oil &amp; gas, heavy machinery, automotive, tooling, mining</td>
+            <td>Crankshafts, gears, axle shafts, drill collars, mold bases, tool holders, die holders</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Flat Bar</span><span class="ftag">Plate</span><span class="ftag">Tube</span><span class="ftag">Forgings</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">4340</span></td>
+            <td>Ni-Cr-Mo alloy; very high strength; excellent hardenability &amp; toughness; used in heaviest-duty structural applications</td>
+            <td>Aerospace, defense, automotive, heavy machinery</td>
+            <td>Aircraft landing gear, main rotor shafts, high-strength fasteners, heavy-duty gears &amp; axles</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Flat Bar</span><span class="ftag">Forgings</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">8620</span></td>
+            <td>Case-hardening alloy steel; tough core + hard case after carburizing; excellent impact resistance</td>
+            <td>Automotive, heavy equipment, gearboxes, mining</td>
+            <td>Gears, pinions, camshafts, piston pins, transmission parts, kingpins</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Flat Bar</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tool Steels -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--p4)"></div>Tool Steels</div>
+    <div class="tbl-wrap mb24">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-p4" style="min-width:90px">Grade</th>
+            <th class="th-p4" style="min-width:70px">Type</th>
+            <th class="th-p4" style="min-width:200px">Key Properties</th>
+            <th class="th-p4" style="min-width:200px">Primary Industries</th>
+            <th class="th-p4" style="min-width:230px">Common Applications</th>
+            <th class="th-p4" style="min-width:150px">Common Forms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">A2</span></td>
+            <td>Air-Hardening Cold Work</td>
+            <td>Good toughness &amp; wear resistance; minimal distortion on heat treat; versatile cold-work tool steel</td>
+            <td>Stamping, die making, general tooling</td>
+            <td>Punches, dies, shear blades, forming tools, thread rolling dies</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Plate</span><span class="ftag">Ground Flat Stock</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">D2</span></td>
+            <td>High-Cr Cold Work</td>
+            <td>High carbon/chromium; excellent wear resistance; semi-stainless; good edge retention; less tough than A2</td>
+            <td>Stamping, blanking, forming, wear parts</td>
+            <td>Blanking dies, forming dies, slitter knives, draw dies, wear plates, long-run production tooling</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Plate</span><span class="ftag">Ground Flat Stock</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">O1</span></td>
+            <td>Oil-Hardening Cold Work</td>
+            <td>Excellent machinability in annealed condition; good toughness; lower dimensional stability vs. A2</td>
+            <td>Precision gauging, tooling, jigs &amp; fixtures</td>
+            <td>Gauges, drills, taps, reamers, blanking dies, forming tools, jig boring components</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Ground Flat Stock</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">M2</span></td>
+            <td>High-Speed Steel</td>
+            <td>Retains hardness at elevated temperatures during cutting; excellent wear &amp; red hardness</td>
+            <td>Cutting tool manufacturing, machining, metalworking</td>
+            <td>Drill bits, end mills, taps, reamers, saw blades, broaches, hobs, milling cutters</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Plate</span><span class="ftag">Round</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">H13</span></td>
+            <td>Hot Work</td>
+            <td>Excellent thermal shock &amp; heat-checking resistance; good toughness at elevated temps; industry-standard hot work grade</td>
+            <td>Die casting, forging, extrusion, injection molding</td>
+            <td>Die casting dies (Al, Mg, Zn), forging dies, extrusion tooling, hot shear blades, core pins</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Plate</span><span class="ftag">Flat Bar</span><span class="ftag">Forgings</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">P20</span></td>
+            <td>Plastic Mold Steel</td>
+            <td>Pre-hardened to ~30 HRC; excellent polishability; no post-machining heat treat required; industry standard for plastic molds</td>
+            <td>Plastic injection molding, blow molding, die casting (low-pressure)</td>
+            <td>Injection mold cavities &amp; cores, mold bases, blow mold tooling, structural foam molds</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Block</span><span class="ftag">Bar</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 3 — ALUMINUM
+══════════════════════════════ -->
+<section class="sec-white" id="aluminum">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag p7">Section 3 — Metals</div>
+      <h2 class="sh-title">Aluminum Alloys</h2>
+      <p class="sh-desc">Aluminum alloys are organized into series by primary alloying element. The designation system includes a 4-digit series number plus temper designation (e.g., -T6, -O, -H32). Temper is critical to understanding the material's actual strength and formability — always include it in content and keyword targeting.</p>
+    </div>
+
+    <div class="callout p7 mb32">
+      <div class="callout-label">🔎 SEO Connection</div>
+      <p>Aluminum searches include both the series and the temper: <strong>"6061-T6 aluminum bar"</strong>, <strong>"7075-T651 aluminum plate"</strong>, <strong>"5052-H32 aluminum sheet"</strong>. The temper is not optional from an SEO standpoint — it's a differentiator that signals exactly which buyer you're targeting. A page titled "6061 Aluminum" is weaker than "6061-T6 Aluminum Bar Stock" for converting a procurement buyer comparing vendors.</p>
+    </div>
+
+    <div class="tbl-wrap mb24">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-blue" style="min-width:120px">Grade / Temper</th>
+            <th class="th-blue" style="min-width:90px">Series</th>
+            <th class="th-blue" style="min-width:200px">Key Properties</th>
+            <th class="th-blue" style="min-width:200px">Primary Industries</th>
+            <th class="th-blue" style="min-width:230px">Common Applications</th>
+            <th class="th-blue" style="min-width:200px">Common Forms</th>
+            <th class="th-blue" style="min-width:110px">Machinability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">1100-O / H14</span></td>
+            <td>1xxx (Pure Al)</td>
+            <td>99%+ Al; excellent corrosion resistance &amp; electrical/thermal conductivity; highly formable; low strength</td>
+            <td>Chemical processing, electrical, food equipment, packaging</td>
+            <td>Chemical tanks, heat exchangers, electrical busbars, foil, food service equipment, nameplates</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Coil</span><span class="ftag">Foil</span><span class="ftag">Bar</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">2011-T3</span></td>
+            <td>2xxx (Cu alloy)</td>
+            <td>Highest machinability of all aluminum alloys; excellent surface finish; lower corrosion resistance</td>
+            <td>Precision screw machine parts, electronics, automotive</td>
+            <td>Screw machine products, fittings, connectors, precision turned parts, threaded components</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Hex Bar</span></td>
+            <td><span class="mrate mrate-ex">Excellent</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">2024-T3 / T351</span></td>
+            <td>2xxx (Cu alloy)</td>
+            <td>High strength-to-weight; excellent fatigue resistance; good machinability; lower corrosion resistance (often clad)</td>
+            <td>Aerospace, defense, motorsports</td>
+            <td>Aircraft fuselage skins, wing structures, aerospace structural components, race car panels</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Bar</span><span class="ftag">Tube</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">5052-H32</span></td>
+            <td>5xxx (Mg alloy)</td>
+            <td>Excellent corrosion resistance (esp. saltwater); best formability in 5xxx series; non-heat-treatable; good weldability</td>
+            <td>Marine, transportation, HVAC, automotive</td>
+            <td>Boat panels, fuel tanks, marine hardware, HVAC components, automotive body panels, pressure vessels</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Coil</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">5083-H116 / H321</span></td>
+            <td>5xxx (Mg alloy)</td>
+            <td>Highest strength non-heat-treatable Al; excellent weldability; superior marine &amp; cryogenic performance</td>
+            <td>Marine, shipbuilding, cryogenics, pressure vessels, LNG</td>
+            <td>Ship hulls, pressure vessels, cryogenic tanks, offshore platforms, armored vehicles</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Sheet</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">6061-T6 / T651</span></td>
+            <td>6xxx (Mg-Si alloy)</td>
+            <td>Most versatile aluminum alloy; excellent strength, corrosion resistance, weldability, and machinability; workhorse grade</td>
+            <td>Aerospace, structural, transportation, marine, consumer products, machining</td>
+            <td>Structural frames, bicycle frames, aircraft fittings, marine structures, machined components, anodized parts</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Sheet</span><span class="ftag">Bar</span><span class="ftag">Tube</span><span class="ftag">Pipe</span><span class="ftag">Extrusions</span></td>
+            <td><span class="mrate mrate-ex">Excellent</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">6063-T5 / T52</span></td>
+            <td>6xxx (Mg-Si alloy)</td>
+            <td>Superior extrudability; excellent surface finish after anodizing; lower strength than 6061; ideal for complex shapes</td>
+            <td>Architecture, construction, consumer products, electrical</td>
+            <td>Window frames, door frames, railings, curtain wall, T-slot framing, electrical conduit, trim</td>
+            <td><span class="ftag">Extrusions</span><span class="ftag">Tube</span><span class="ftag">Pipe</span><span class="ftag">Bar</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">7050-T7451</span></td>
+            <td>7xxx (Zn alloy)</td>
+            <td>High strength; better SCC resistance than 7075; excellent fracture toughness; preferred for thick plate applications</td>
+            <td>Aerospace (primary), defense</td>
+            <td>Fuselage frames, bulkheads, wing spars, thick structural aerospace plate, aircraft tooling</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Bar</span><span class="ftag">Forgings</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">7075-T6 / T651</span></td>
+            <td>7xxx (Zn alloy)</td>
+            <td>Highest strength of common Al alloys; excellent machinability; lower corrosion resistance; widely used in aerospace &amp; defense</td>
+            <td>Aerospace, defense, motorsports, high-performance sporting goods</td>
+            <td>Aircraft structures, missile components, race car components, firearms parts, bicycle parts, high-stress machined parts</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Sheet</span><span class="ftag">Bar</span><span class="ftag">Tube</span><span class="ftag">Forgings</span></td>
+            <td><span class="mrate mrate-ex">Excellent</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 4 — COPPER & COPPER ALLOYS
+══════════════════════════════ -->
+<section class="sec-light" id="copper">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag org">Section 4 — Metals</div>
+      <h2 class="sh-title">Copper &amp; Copper Alloys</h2>
+      <p class="sh-desc">Copper alloys encompass pure copper, brasses (copper-zinc), bronzes (copper-tin and others), and specialty alloys like beryllium copper. They are distinguished by thermal and electrical conductivity, corrosion resistance, antimicrobial properties, and bearing characteristics. UNS designations (C110, C360, etc.) are the standard reference system.</p>
+    </div>
+
+    <div class="callout copper mb32">
+      <div class="callout-label">🔎 SEO Connection</div>
+      <p>Copper alloy buyers search by UNS designation, common name, and application. <strong>"C360 free machining brass bar"</strong>, <strong>"C110 copper sheet"</strong>, <strong>"C932 bearing bronze bushing"</strong>, and <strong>"beryllium copper strip"</strong> are all high-intent searches. Note that buyers often mix common names and UNS numbers in searches — build content that bridges both. A page for "Naval Brass (C464)" captures both search formats.</p>
+    </div>
+
+    <!-- Pure Copper -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:#A0522D"></div>Pure Copper</div>
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-copper" style="min-width:110px">Grade / UNS</th>
+            <th class="th-copper" style="min-width:200px">Key Properties</th>
+            <th class="th-copper" style="min-width:190px">Primary Industries</th>
+            <th class="th-copper" style="min-width:230px">Common Applications</th>
+            <th class="th-copper" style="min-width:190px">Common Forms</th>
+            <th class="th-copper" style="min-width:110px">Machinability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">C110 / ETP</span></td>
+            <td>Electrolytic Tough Pitch; 99.9% Cu; highest electrical conductivity of any copper alloy (101% IACS); excellent thermal conductivity</td>
+            <td>Electrical, electronics, power generation, HVAC, plumbing</td>
+            <td>Electrical busbars, wire, power distribution, transformer coils, heat sinks, plumbing fittings, roofing</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Strip</span><span class="ftag">Bar</span><span class="ftag">Tube</span><span class="ftag">Wire</span><span class="ftag">Plate</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">C101 / OFHC</span></td>
+            <td>Oxygen-Free High Conductivity; 99.99% Cu; very low oxygen content prevents embrittlement in H₂ environments; highest purity</td>
+            <td>Electronics, semiconductor, RF/microwave, vacuum equipment</td>
+            <td>Semiconductor components, waveguides, RF connectors, vacuum furnace components, scientific instruments, superconductor wire</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Strip</span><span class="ftag">Tube</span><span class="ftag">Wire</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Brass -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:#B8860B"></div>Brass (Copper-Zinc Alloys)</div>
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-brass" style="min-width:130px">Grade / UNS</th>
+            <th class="th-brass" style="min-width:200px">Key Properties</th>
+            <th class="th-brass" style="min-width:190px">Primary Industries</th>
+            <th class="th-brass" style="min-width:230px">Common Applications</th>
+            <th class="th-brass" style="min-width:190px">Common Forms</th>
+            <th class="th-brass" style="min-width:110px">Machinability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">C260 — Cartridge Brass</span></td>
+            <td>70% Cu / 30% Zn; highest cold-working ductility of any brass; excellent deep-drawing capability</td>
+            <td>Ammunition, automotive, consumer products, radiators</td>
+            <td>Cartridge cases, radiator cores, lamp fixtures, automotive springs, musical instruments, fasteners</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Strip</span><span class="ftag">Coil</span><span class="ftag">Tube</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">C360 — Free-Cutting Brass</span></td>
+            <td>61.5% Cu / 35.5% Zn / 3% Pb; highest machinability of any copper alloy (100% relative machinability rating); excellent chip breaking</td>
+            <td>Plumbing, valves, fasteners, electronics, instrumentation</td>
+            <td>Screw machine products, valve bodies, fittings, connectors, gears, pinions, threaded parts, hose fittings</td>
+            <td><span class="ftag">Round Bar</span><span class="ftag">Hex Bar</span><span class="ftag">Square Bar</span><span class="ftag">Flat Bar</span></td>
+            <td><span class="mrate mrate-ex">Excellent</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">C464 — Naval Brass</span></td>
+            <td>60% Cu / 39% Zn / 1% Sn; excellent seawater corrosion resistance; good strength &amp; machinability</td>
+            <td>Marine, shipbuilding, offshore</td>
+            <td>Marine hardware, propeller shafts, condenser plates, heat exchanger components, valve stems</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Plate</span><span class="ftag">Sheet</span><span class="ftag">Tube</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">C220 — Commercial Bronze</span></td>
+            <td>90% Cu / 10% Zn; warm reddish color; excellent corrosion resistance; highly formable</td>
+            <td>Architecture, jewelry, coins, decorative applications</td>
+            <td>Architectural panels, grillwork, screen cloth, coins, jewelry, hardware, name plates</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Strip</span><span class="ftag">Wire</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Bronze & Specialty -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:#6B4226"></div>Bronze &amp; Specialty Copper Alloys</div>
+    <div class="tbl-wrap mb24">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-bronze" style="min-width:130px">Grade / UNS</th>
+            <th class="th-bronze" style="min-width:200px">Key Properties</th>
+            <th class="th-bronze" style="min-width:190px">Primary Industries</th>
+            <th class="th-bronze" style="min-width:230px">Common Applications</th>
+            <th class="th-bronze" style="min-width:190px">Common Forms</th>
+            <th class="th-bronze" style="min-width:110px">Machinability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">C544 — Phosphor Bronze</span></td>
+            <td>Cu-Sn-P; excellent spring properties, fatigue resistance &amp; wear resistance; good electrical conductivity; resists fretting</td>
+            <td>Electrical/electronics, springs, industrial</td>
+            <td>Electrical connectors, springs, bellows, diaphragms, fasteners, bushings, thrust washers, switch contacts</td>
+            <td><span class="ftag">Strip</span><span class="ftag">Sheet</span><span class="ftag">Bar</span><span class="ftag">Wire</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">C630 — Aluminum Bronze</span></td>
+            <td>Cu-Al alloy; higher strength than tin bronzes; excellent resistance to seawater, acids, and wear; gold appearance</td>
+            <td>Marine, oil &amp; gas, chemical, heavy industry</td>
+            <td>Propellers, pump impellers, marine shafting, valve components, wear plates, bushings, non-sparking tools</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Plate</span><span class="ftag">Tube</span><span class="ftag">Forgings</span><span class="ftag">Castings</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">C932 — Bearing Bronze (SAE 660)</span></td>
+            <td>Cu-Sn-Pb cast alloy; industry-standard bearing bronze; excellent conformability, embeddability, and anti-galling properties</td>
+            <td>General industrial, heavy equipment, pumps, motors</td>
+            <td>Sleeve bearings, bushings, thrust washers, worm gears, bridge plates, hydraulic cylinder bushings</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Tube</span><span class="ftag">Plate</span><span class="ftag">Castings</span><span class="ftag">Continuous Cast</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">C172 — Beryllium Copper</span></td>
+            <td>Highest strength of all copper alloys; excellent spring properties; non-magnetic; non-sparking; good electrical conductivity</td>
+            <td>Aerospace, electronics, oil &amp; gas, defense, medical</td>
+            <td>Precision springs, electrical connectors, surgical instruments, non-sparking tools, molds (injection &amp; blow), relay components</td>
+            <td><span class="ftag">Strip</span><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Wire</span><span class="ftag">Plate</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">C510 — Phosphor Bronze 5%A</span></td>
+            <td>5% tin + phosphorus; harder and stronger than C544; excellent corrosion resistance; great for electrical contacts</td>
+            <td>Electronics, automotive, industrial</td>
+            <td>Electrical contacts, connectors, springs, snap switches, fuse clips, flexible hose</td>
+            <td><span class="ftag">Strip</span><span class="ftag">Sheet</span><span class="ftag">Wire</span></td>
+            <td><span class="mrate mrate-gd">Good</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 5 — EXOTIC & SPECIALTY ALLOYS
+══════════════════════════════ -->
+<section class="sec-white" id="exotic-alloys">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag p4">Section 5 — Metals</div>
+      <h2 class="sh-title">Exotic &amp; Specialty Alloys</h2>
+      <p class="sh-desc">Exotic alloys are specified when standard steels and aluminum fall short — primarily in demanding environments involving extreme heat, severe corrosion, radiation, or ultra-high strength-to-weight requirements. They command premium pricing and are procured through specialized distributors. Buyers searching for these materials are almost always engineers or procurement specialists with an active project need.</p>
+    </div>
+
+    <div class="callout p4 mb32">
+      <div class="callout-label">🔎 SEO Connection</div>
+      <p>These are the highest-value, lowest-volume keywords in the industrial search landscape. <strong>"Inconel 718 bar stock"</strong>, <strong>"Ti-6Al-4V plate DFARS compliant"</strong>, and <strong>"Hastelloy C-276 sheet"</strong> represent buyers with large-budget, time-sensitive procurement needs. If a client stocks or distributes these materials, these pages should be the first content investments — not afterthoughts. The intent-to-value ratio is exceptional.</p>
+    </div>
+
+    <!-- Nickel Superalloys -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--p4)"></div>Nickel-Base Superalloys</div>
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-p4" style="min-width:120px">Alloy</th>
+            <th class="th-p4" style="min-width:200px">Key Properties</th>
+            <th class="th-p4" style="min-width:190px">Primary Industries</th>
+            <th class="th-p4" style="min-width:240px">Common Applications</th>
+            <th class="th-p4" style="min-width:190px">Common Forms</th>
+            <th class="th-p4" style="min-width:110px">Machinability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">Inconel 600</span></td>
+            <td>Ni-Cr; excellent oxidation &amp; corrosion resistance to 2000°F; good strength at elevated temperatures</td>
+            <td>Heat treating, chemical, nuclear</td>
+            <td>Furnace fixtures, heat treating retorts, chemical processing equipment, nuclear reactor components</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Tube</span></td>
+            <td><span class="mrate mrate-df">Difficult</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Inconel 625</span></td>
+            <td>Ni-Cr-Mo-Nb; excellent fatigue &amp; thermal fatigue strength; outstanding corrosion resistance in seawater &amp; acids</td>
+            <td>Aerospace, marine, chemical, offshore oil &amp; gas</td>
+            <td>Jet engine exhaust systems, marine propulsion, chemical process equipment, subsea umbilicals, weld overlay</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Tube</span><span class="ftag">Wire</span></td>
+            <td><span class="mrate mrate-df">Difficult</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Inconel 718</span></td>
+            <td>Ni-Cr-Mo; precipitation-hardenable; highest strength nickel alloy at cryogenic through 1300°F; most widely used superalloy</td>
+            <td>Aerospace (primary), defense, oil &amp; gas, power generation</td>
+            <td>Jet engine discs, rings, &amp; cases; gas turbine blades; rocket motor components; downhole tools; fasteners</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Tube</span><span class="ftag">Forgings</span><span class="ftag">Wire</span></td>
+            <td><span class="mrate mrate-df">Difficult</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Hastelloy C-276</span></td>
+            <td>Ni-Mo-Cr; exceptional resistance to a wide variety of chemical process environments; resistant to pitting &amp; SCC</td>
+            <td>Chemical processing, pharmaceutical, pollution control, waste treatment</td>
+            <td>Chemical reactors, heat exchangers, evaporators, FGD scrubbers, pharmaceutical vessels, waste treatment equipment</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Tube</span><span class="ftag">Pipe</span></td>
+            <td><span class="mrate mrate-df">Difficult</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Monel 400</span></td>
+            <td>Ni-Cu (67Ni/23Cu); excellent corrosion resistance in seawater, HF acid, and alkaline conditions; good mechanical properties</td>
+            <td>Marine, chemical, oil &amp; gas, electrical</td>
+            <td>Propeller shafts, pump shafts, valves, heat exchangers, HF alkylation equipment, marine hardware</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Tube</span><span class="ftag">Pipe</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Monel K-500</span></td>
+            <td>Monel + Al + Ti; age-hardenable; 3× higher yield strength than Monel 400; non-magnetic; excellent corrosion resistance</td>
+            <td>Oil &amp; gas, marine, defense</td>
+            <td>Pump shafts for seawater service, oil well instrumentation, marine propeller shafts, fasteners, valve stems</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Forgings</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Titanium -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--p5)"></div>Titanium Alloys</div>
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-p5" style="min-width:130px">Grade</th>
+            <th class="th-p5" style="min-width:190px">Key Properties</th>
+            <th class="th-p5" style="min-width:190px">Primary Industries</th>
+            <th class="th-p5" style="min-width:230px">Common Applications</th>
+            <th class="th-p5" style="min-width:190px">Common Forms</th>
+            <th class="th-p5" style="min-width:110px">Machinability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">Grade 1 (CP Ti)</span></td>
+            <td>Commercially pure; lowest strength Ti; highest formability &amp; ductility; excellent corrosion resistance</td>
+            <td>Chemical processing, medical, architectural</td>
+            <td>Chemical process vessels, heat exchangers, cladding, medical implants, marine hardware</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Bar</span><span class="ftag">Tube</span><span class="ftag">Wire</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Grade 2 (CP Ti)</span></td>
+            <td>Most commonly used CP Ti; balance of strength and formability; excellent corrosion resistance in most media; ASTM B265</td>
+            <td>Chemical, medical, aerospace, marine, oil &amp; gas</td>
+            <td>Heat exchangers, desalination, medical devices, aircraft skins, marine applications, exhaust systems</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Sheet</span><span class="ftag">Bar</span><span class="ftag">Tube</span><span class="ftag">Pipe</span><span class="ftag">Wire</span></td>
+            <td><span class="mrate mrate-fr">Fair</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Grade 5 / Ti-6Al-4V</span></td>
+            <td>Most widely used Ti alloy (50%+ of all Ti use); excellent strength-to-weight ratio; good fatigue &amp; corrosion resistance</td>
+            <td>Aerospace (primary), medical, defense, motorsports</td>
+            <td>Jet engine components, airframe structures, medical implants (hips, knees, spinal), missile bodies, race car components</td>
+            <td><span class="ftag">Plate</span><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Tube</span><span class="ftag">Forgings</span><span class="ftag">Wire</span></td>
+            <td><span class="mrate mrate-df">Difficult</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Grade 23 / Ti-6Al-4V ELI</span></td>
+            <td>Extra Low Interstitials version of Grade 5; enhanced fracture toughness &amp; ductility; preferred for implantable medical devices</td>
+            <td>Medical (primary), dental</td>
+            <td>Orthopedic implants (hips, knees, bone screws), dental implants, surgical staples, cardiovascular devices</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Wire</span><span class="ftag">Sheet</span><span class="ftag">Forgings</span></td>
+            <td><span class="mrate mrate-df">Difficult</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Refractory & Specialty Metals -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--navy-dark)"></div>Refractory &amp; Other Specialty Metals</div>
+    <div class="tbl-wrap mb24">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-navy" style="min-width:120px">Material</th>
+            <th class="th-navy" style="min-width:190px">Key Properties</th>
+            <th class="th-navy" style="min-width:190px">Primary Industries</th>
+            <th class="th-navy" style="min-width:230px">Common Applications</th>
+            <th class="th-navy" style="min-width:190px">Common Forms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="gbadge">Tungsten (W)</span></td>
+            <td>Highest melting point of all metals (6170°F); highest density of common metals; excellent x-ray shielding; very hard</td>
+            <td>Electronics, defense, medical, tooling</td>
+            <td>Electrical contacts, TIG welding electrodes, x-ray shielding, radiation shielding, high-temp furnace components, counterweights</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Wire</span><span class="ftag">Rod</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Molybdenum (Mo)</span></td>
+            <td>Very high melting point (4753°F); excellent high-temp strength; low thermal expansion; good electrical conductivity</td>
+            <td>Electronics, furnace manufacturing, glass production, aerospace</td>
+            <td>Furnace heating elements &amp; support structures, glass melt electrodes, TFT-LCD sputtering targets, EDM electrodes</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Wire</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Niobium (Nb/Columbium)</span></td>
+            <td>Superconducting at cryogenic temperatures; good corrosion resistance; used in steel microalloying and superconducting magnets</td>
+            <td>Nuclear, medical (MRI), particle physics, steel microalloying</td>
+            <td>MRI superconducting magnets, particle accelerator magnets, nuclear reactor components, sodium vapor lamps</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Tube</span><span class="ftag">Wire</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Tantalum (Ta)</span></td>
+            <td>Exceptional corrosion resistance (comparable to glass); high melting point (5463°F); biocompatible; excellent acid resistance</td>
+            <td>Chemical processing, electronics, medical, aerospace</td>
+            <td>Chemical reactor lining, heat exchangers for corrosive media, capacitor anodes, medical implants, sputtering targets</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Wire</span><span class="ftag">Tube</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Kovar</span></td>
+            <td>Fe-Ni-Co alloy; thermal expansion matches borosilicate glass &amp; certain ceramics from -75°F to 850°F; non-magnetic</td>
+            <td>Electronics, aerospace, telecommunications, microelectronics</td>
+            <td>Glass-to-metal seals, electronic package headers, microwave packaging, hermetic connectors, transistor bases</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Strip</span><span class="ftag">Tube</span><span class="ftag">Wire</span></td>
+          </tr>
+          <tr>
+            <td><span class="gbadge">Invar (Alloy 36)</span></td>
+            <td>Fe-36% Ni; near-zero thermal expansion coefficient near room temperature; maintains dimensional stability</td>
+            <td>Precision instruments, aerospace tooling, optics, metrology</td>
+            <td>Metrology masters, telescope structures, tooling for composite layup, optical mounts, LNG tank linings, clock pendulums</td>
+            <td><span class="ftag">Bar</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Strip</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 6 — ENGINEERING PLASTICS
+══════════════════════════════ -->
+<section class="sec-light" id="plastics">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag p2">Section 6 — Plastics</div>
+      <h2 class="sh-title">Engineering Plastics</h2>
+      <p class="sh-desc">Engineering plastics replace metals in applications requiring corrosion resistance, electrical insulation, weight reduction, or self-lubrication. Buyers typically search by trade name (Delrin, Teflon, UHMW) as well as generic name (acetal, PTFE, polyethylene). Industrial plastic suppliers stock these in standard plate, rod, and tube forms that are then machined to specification.</p>
+    </div>
+
+    <div class="callout p2 mb32">
+      <div class="callout-label">🔎 SEO Connection</div>
+      <p>Plastic material searches blend trade names and generic names in equal measure. Build content that bridges both: <strong>"Delrin (Acetal) Rod"</strong>, <strong>"UHMW Polyethylene Sheet"</strong>, <strong>"Teflon (PTFE) Bar Stock"</strong>. Industrial buyers searching for machinable plastics frequently include the form (rod, sheet, plate, tube) and sometimes the size or color (white, black, natural). FDA-compliant and USP Class VI plastics have very specific compliance-driven search terms that convert at extremely high rates.</p>
+    </div>
+
+    <div class="tbl-wrap mb24">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-p2" style="min-width:120px">Material</th>
+            <th class="th-p2" style="min-width:130px">Trade Names</th>
+            <th class="th-p2" style="min-width:200px">Key Properties</th>
+            <th class="th-p2" style="min-width:100px">Max Cont. Temp</th>
+            <th class="th-p2" style="min-width:190px">Primary Industries</th>
+            <th class="th-p2" style="min-width:230px">Common Applications</th>
+            <th class="th-p2" style="min-width:160px">Common Forms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>UHMW-PE</strong></td>
+            <td>Tivar, Selar</td>
+            <td>Ultra-high molecular weight PE; best impact resistance of any thermoplastic; excellent wear &amp; abrasion resistance; self-lubricating; FDA-compliant</td>
+            <td><span class="tmpbadge tmp-std">180°F / 82°C</span></td>
+            <td>Food processing, mining, packaging, marine, bulk material handling</td>
+            <td>Wear liners, chute liners, conveyor guides, cutting boards, dock fenders, star wheels, chain guides, wear plates</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Rod</span><span class="ftag">Tube</span></td>
+          </tr>
+          <tr>
+            <td><strong>HDPE</strong></td>
+            <td>Hostalen, Lupolen</td>
+            <td>High-density PE; good chemical resistance; lightweight; FDA-compliant; lower wear resistance than UHMW</td>
+            <td><span class="tmpbadge tmp-std">180°F / 82°C</span></td>
+            <td>Chemical, food processing, marine, outdoor</td>
+            <td>Chemical tanks, cutting boards, marine components, playgrounds, piping, secondary containment</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Rod</span><span class="ftag">Pipe</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nylon 6 / PA6</strong></td>
+            <td>Ertalon, Nylatron</td>
+            <td>Good mechanical strength; excellent abrasion resistance; absorbs moisture (affects dims); oil &amp; grease resistant</td>
+            <td><span class="tmpbadge tmp-std">185°F / 85°C</span></td>
+            <td>Automotive, machinery, food processing, general industrial</td>
+            <td>Gears, bearings, bushings, rollers, wear pads, cams, valves, food processing components</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Rod</span><span class="ftag">Tube</span><span class="ftag">Profiles</span></td>
+          </tr>
+          <tr>
+            <td><strong>Nylon 6/6 / PA66</strong></td>
+            <td>Zytel, Vydyne</td>
+            <td>Higher strength &amp; stiffness than Nylon 6; better creep resistance; slightly less impact strength; lower moisture absorption</td>
+            <td><span class="tmpbadge tmp-std">210°F / 99°C</span></td>
+            <td>Automotive, electrical, consumer products, industrial</td>
+            <td>Engine components, electrical connectors, gears, zip ties, valves, structural parts</td>
+            <td><span class="ftag">Rod</span><span class="ftag">Sheet</span><span class="ftag">Tube</span></td>
+          </tr>
+          <tr>
+            <td><strong>Acetal / POM</strong></td>
+            <td>Delrin (homopolymer), Celcon, Kepital</td>
+            <td>Excellent dimensional stability; low moisture absorption; very good machinability; good fatigue &amp; creep resistance; self-lubricating</td>
+            <td><span class="tmpbadge tmp-std">212°F / 100°C</span></td>
+            <td>Precision machining, automotive, food processing, electronics, medical</td>
+            <td>Gears, cams, bushings, rollers, valves, fittings, pump components, conveyor parts, electrical insulators</td>
+            <td><span class="ftag">Rod</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Tube</span></td>
+          </tr>
+          <tr>
+            <td><strong>Polycarbonate / PC</strong></td>
+            <td>Lexan, Makrolon</td>
+            <td>Outstanding impact resistance (250× glass); optical clarity; good temperature range; can be machined and formed; UV-sensitive</td>
+            <td><span class="tmpbadge tmp-std">240°F / 115°C</span></td>
+            <td>Electronics, safety equipment, medical, optical, construction</td>
+            <td>Machine guards, sight glasses, lighting lenses, medical devices, bullet-resistant glazing, instrument panels</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Rod</span><span class="ftag">Tube</span><span class="ftag">Film</span></td>
+          </tr>
+          <tr>
+            <td><strong>PVC — Type I &amp; II</strong></td>
+            <td>Kydex (sheet), Corzan (Type II)</td>
+            <td>Excellent chemical resistance; good electrical insulation; rigid &amp; self-extinguishing; low cost; Type II has improved impact &amp; chem resistance</td>
+            <td><span class="tmpbadge tmp-std">140°F / 60°C</span></td>
+            <td>Chemical processing, water treatment, electrical, industrial</td>
+            <td>Chemical tanks &amp; ductwork, pipe &amp; fittings, electrical enclosures, industrial guards, semiconductor equipment</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Rod</span><span class="ftag">Tube</span><span class="ftag">Pipe</span></td>
+          </tr>
+          <tr>
+            <td><strong>Polypropylene / PP</strong></td>
+            <td>Propylux, Marlex</td>
+            <td>Excellent chemical resistance including acids &amp; bases; lightweight; FDA-compliant grades available; living-hinge capability</td>
+            <td><span class="tmpbadge tmp-std">200°F / 93°C</span></td>
+            <td>Chemical, food processing, medical, automotive</td>
+            <td>Chemical tanks &amp; vessels, medical packaging, laboratory equipment, food containers, automotive battery cases</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Rod</span><span class="ftag">Tube</span></td>
+          </tr>
+          <tr>
+            <td><strong>ABS</strong></td>
+            <td>Cycolac, Novodur</td>
+            <td>Good impact resistance; easy to machine, paint, and bond; dimensional stability; flame-retardant grades available</td>
+            <td><span class="tmpbadge tmp-std">175°F / 80°C</span></td>
+            <td>Consumer products, automotive, electronics, prototyping</td>
+            <td>Enclosures, housings, consumer electronics, prototype parts, automotive interior trim, pipe fittings</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Rod</span><span class="ftag">Tube</span></td>
+          </tr>
+          <tr>
+            <td><strong>PVDF</strong></td>
+            <td>Kynar, Solef</td>
+            <td>Excellent chemical resistance to most acids &amp; solvents; good UV &amp; radiation resistance; piezoelectric properties; FDA-compliant</td>
+            <td><span class="tmpbadge tmp-mid">284°F / 140°C</span></td>
+            <td>Chemical, semiconductor, nuclear, food processing, oil &amp; gas</td>
+            <td>Chemical piping, semiconductor components, wire insulation, pump components, architectural coatings, nuclear applications</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Rod</span><span class="ftag">Tube</span><span class="ftag">Pipe</span><span class="ftag">Film</span></td>
+          </tr>
+          <tr>
+            <td><strong>G10 / FR4 / Garolite</strong></td>
+            <td>Garolite G-10, FR4</td>
+            <td>Glass-reinforced epoxy laminate; excellent electrical insulation; high strength-to-weight; dimensionally stable; FR4 is flame-retardant</td>
+            <td><span class="tmpbadge tmp-mid">285°F / 140°C</span></td>
+            <td>Electrical, electronics, aerospace, industrial</td>
+            <td>Printed circuit board substrate, electrical insulator plates, arc shields, test fixtures, spacers, structural panels</td>
+            <td><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Rod</span><span class="ftag">Tube</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 7 — HIGH-TEMP PLASTICS
+══════════════════════════════ -->
+<section class="sec-white" id="high-temp-plastics">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag p6">Section 7 — Plastics</div>
+      <h2 class="sh-title">High-Temperature Plastics</h2>
+      <p class="sh-desc">High-performance thermoplastics and thermosets capable of continuous service above 300°F (150°C). These materials are specified in demanding environments where standard engineering plastics fail — particularly aerospace, semiconductor, chemical processing, and medical sterilization. They carry significant price premiums over standard engineering plastics and are almost exclusively used in precision-machined applications.</p>
+    </div>
+
+    <div class="callout p6 mb32">
+      <div class="callout-label">🔎 SEO Connection</div>
+      <p>Buyers searching for high-performance plastics are highly specialized — <strong>"PEEK rod for autoclave"</strong>, <strong>"Torlon bar stock"</strong>, <strong>"Vespel bushing"</strong>, and <strong>"Ultem sheet FDA"</strong> are all examples of high-intent, expert-buyer searches. Trade names dominate over generic chemical names in search. If a client machines or distributes these materials, the investment in specific grade + form pages pays back disproportionately relative to the content effort required.</p>
+    </div>
+
+    <div class="tbl-wrap mb24">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-p6" style="min-width:130px">Material</th>
+            <th class="th-p6" style="min-width:140px">Trade Names</th>
+            <th class="th-p6" style="min-width:180px">Key Properties</th>
+            <th class="th-p6" style="min-width:130px">Max Cont. Temp</th>
+            <th class="th-p6" style="min-width:190px">Primary Industries</th>
+            <th class="th-p6" style="min-width:230px">Common Applications</th>
+            <th class="th-p6" style="min-width:160px">Common Forms</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>PTFE</strong></td>
+            <td>Teflon (Chemours), Fluon</td>
+            <td>Lowest coefficient of friction of any solid; chemically inert to nearly all substances; excellent electrical insulation; non-stick</td>
+            <td><span class="tmpbadge tmp-high">500°F / 260°C</span></td>
+            <td>Chemical, pharmaceutical, food, semiconductor, electrical</td>
+            <td>Seals, gaskets, bearings, liners, valve seats, laboratory equipment, heat shrink tubing, non-stick coatings, electrical insulation</td>
+            <td><span class="ftag">Rod</span><span class="ftag">Sheet</span><span class="ftag">Tube</span><span class="ftag">Film</span><span class="ftag">Tape</span></td>
+          </tr>
+          <tr>
+            <td><strong>PEEK</strong></td>
+            <td>Victrex PEEK, Ketron, Aptiv</td>
+            <td>Outstanding mechanical strength retained to 480°F; excellent chemical resistance; sterilizable; semi-crystalline; low outgassing</td>
+            <td><span class="tmpbadge tmp-high">480°F / 250°C</span></td>
+            <td>Aerospace, medical, semiconductor, oil &amp; gas, food processing</td>
+            <td>Bearing cages, bushings, pump rotors, semiconductor wafer carriers, surgical instruments, implantable devices, downhole tools</td>
+            <td><span class="ftag">Rod</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Tube</span><span class="ftag">Film</span></td>
+          </tr>
+          <tr>
+            <td><strong>PPS</strong></td>
+            <td>Ryton (Solvay), Fortron</td>
+            <td>Excellent chemical resistance; inherently flame-retardant; good dimensional stability; suitable for precision tight-tolerance parts</td>
+            <td><span class="tmpbadge tmp-high">430°F / 220°C</span></td>
+            <td>Automotive, chemical, electrical, aerospace</td>
+            <td>Pump components, valve seats, electrical connectors, under-hood automotive parts, chemical process equipment, filter media</td>
+            <td><span class="ftag">Rod</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Tube</span></td>
+          </tr>
+          <tr>
+            <td><strong>PEI</strong></td>
+            <td>Ultem (SABIC)</td>
+            <td>Amber-colored; excellent electrical properties; good chemical resistance; sterilizable (autoclave &amp; ETO); FDA-compliant; moderate cost among high-perf plastics</td>
+            <td><span class="tmpbadge tmp-high">338°F / 170°C</span></td>
+            <td>Medical, aerospace, food service, electrical</td>
+            <td>Medical sterilization trays, aircraft interior components, electrical burn-in sockets, food service equipment, analytical instruments</td>
+            <td><span class="ftag">Rod</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Tube</span><span class="ftag">Film</span></td>
+          </tr>
+          <tr>
+            <td><strong>PAI</strong></td>
+            <td>Torlon (Solvay)</td>
+            <td>Highest strength &amp; stiffness of any unreinforced thermoplastic; best creep resistance; excellent dimensional stability; very low CTE</td>
+            <td><span class="tmpbadge tmp-high">500°F / 260°C</span></td>
+            <td>Aerospace, oil &amp; gas, semiconductor, automotive</td>
+            <td>Bearings, bushings, thrust washers, downhole tools, jet engine bushings, semiconductor wafer guides, compressor valve plates</td>
+            <td><span class="ftag">Rod</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Tube</span></td>
+          </tr>
+          <tr>
+            <td><strong>PI — Polyimide</strong></td>
+            <td>Vespel (DuPont), Meldin, Kapton (film)</td>
+            <td>Highest service temperature of any thermoplastic; excellent properties in vacuum and radiation environments; no melting point; extremely low outgassing</td>
+            <td><span class="tmpbadge tmp-xhigh">550°F+ / 288°C+</span></td>
+            <td>Aerospace, semiconductor, nuclear, defense</td>
+            <td>Jet engine bushings &amp; seals, semiconductor handling components, vacuum system parts, nuclear reactor bushings, spacecraft components</td>
+            <td><span class="ftag">Rod</span><span class="ftag">Sheet</span><span class="ftag">Plate</span><span class="ftag">Custom Shapes</span></td>
+          </tr>
+          <tr>
+            <td><strong>LCP</strong></td>
+            <td>Vectra (Celanese), Zenite</td>
+            <td>Liquid crystal polymer; extremely low warpage; excellent chemical resistance; very thin-wall moldability; high flow</td>
+            <td><span class="tmpbadge tmp-high">500°F / 260°C</span></td>
+            <td>Electronics (primary), telecom, medical</td>
+            <td>Miniature electrical connectors, 5G antenna components, SMT components, medical probes, fiber-optic connectors</td>
+            <td><span class="ftag">Molded Parts</span><span class="ftag">Sheet</span><span class="ftag">Film</span></td>
+          </tr>
+          <tr>
+            <td><strong>PCTFE</strong></td>
+            <td>Kel-F, Neoflon</td>
+            <td>Near-zero moisture vapor transmission rate; excellent low-temperature properties to -400°F; good transparency; superior barrier properties</td>
+            <td><span class="tmpbadge tmp-high">380°F / 193°C</span></td>
+            <td>Aerospace, cryogenics, semiconductor, military</td>
+            <td>Cryogenic seals &amp; valve seats, LOX-compatible components, pharmaceutical packaging film, semiconductor wet bench components</td>
+            <td><span class="ftag">Rod</span><span class="ftag">Sheet</span><span class="ftag">Film</span><span class="ftag">Tube</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout gold">
+      <div class="callout-label">Temperature Rating Context</div>
+      <p>Temperature ratings listed are <strong>continuous service temperatures</strong> — the maximum for long-term structural use. Short-term exposure limits are typically 15–25% higher. Always clarify with clients whether their application is continuous-duty or intermittent, as this changes the appropriate material selection. For content writing: note that buyers often search by application environment (<em>"plastic for autoclave"</em>, <em>"LOX-compatible seal material"</em>) rather than by specific grade.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 8 — COMMON FORMS & SHAPES
+══════════════════════════════ -->
+<section class="sec-light" id="forms-shapes">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 8 — Reference</div>
+      <h2 class="sh-title">Common Forms &amp; Shapes</h2>
+      <p class="sh-desc">Industrial buyers search by material <em>and</em> form. Understanding the difference between a plate and a sheet, a seamless pipe and a welded tube, or a hot-rolled bar and a cold-drawn bar is essential for writing accurate content. These distinctions are not interchangeable — using the wrong term signals to a technical buyer that the content isn't credible.</p>
+    </div>
+
+    <div class="forms-grid mb32">
+
+      <div class="fcard">
+        <div class="fcard-icon">📐</div>
+        <div class="fcard-name">Plate</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum · Copper</div>
+        <div class="fcard-dim">Typically ≥ 3/16" thick</div>
+        <p>Flat product in heavier gauges. Used for structural, pressure vessel, and fabricated component applications. Ordered by thickness × width × length.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">📄</div>
+        <div class="fcard-name">Sheet</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum · Copper</div>
+        <div class="fcard-dim">Typically &lt; 3/16" thick</div>
+        <p>Flat product in lighter gauges. Used for stamping, forming, enclosures, and architectural panels. May be cut-to-size or supplied in coils.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">🔄</div>
+        <div class="fcard-name">Coil / Strip</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum · Copper</div>
+        <div class="fcard-dim">Continuous roll form</div>
+        <p>High-volume continuous sheet product supplied in roll form. Used for roll forming, stamping presses, and slitting operations.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">⚫</div>
+        <div class="fcard-name">Round Bar / Rod</div>
+        <div class="fcard-mats">All Metals · Plastics</div>
+        <div class="fcard-dim">OD specified in inches or mm</div>
+        <p>Most common bar form. Foundation of turned/machined parts — shafts, pins, fasteners. Available hot-rolled (HR) or cold-drawn (CD); CD offers tighter tolerances.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">⬛</div>
+        <div class="fcard-name">Flat Bar</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum</div>
+        <div class="fcard-dim">Width × Thickness specified</div>
+        <p>Rectangular cross-section bar. Used for brackets, keys, weld fixtures, and structural members. Distinct from plate in that it is supplied in bar lengths.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">🔷</div>
+        <div class="fcard-name">Hex Bar</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum · Brass</div>
+        <div class="fcard-dim">Across-flats dimension</div>
+        <p>Hexagonal cross-section. Preferred for fasteners, valve stems, and fittings that require wrench-flat surfaces. Across-flats (AF) dimension is the key spec.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">⬜</div>
+        <div class="fcard-name">Square Bar</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum</div>
+        <div class="fcard-dim">Side dimension specified</div>
+        <p>Square cross-section bar stock. Used for keys, tool holders, structural members, and machined components requiring a square profile.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">⭕</div>
+        <div class="fcard-name">Round Tube</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum · Copper</div>
+        <div class="fcard-dim">OD × Wall or OD × ID</div>
+        <p>Hollow cylindrical product. Structural tube (HREW, DOM) vs. mechanical tube — specify the end use. Also available as hydraulic tubing with tighter tolerances.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">🟦</div>
+        <div class="fcard-name">Square / Rect. Tube</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum</div>
+        <div class="fcard-dim">OD × OD × Wall</div>
+        <p>Hollow square or rectangular section. Widely used in structural fabrication, frames, equipment guards, and architectural applications (HSS — hollow structural section).</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">🔵</div>
+        <div class="fcard-name">Pipe (Seamless &amp; Welded)</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum</div>
+        <div class="fcard-dim">Nominal Pipe Size (NPS) + Schedule</div>
+        <p>Dimensioned by nominal pipe size and schedule (wall thickness). Seamless for pressure applications; welded for general use. Specify ASTM grade, schedule, and end finish.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">📐</div>
+        <div class="fcard-name">Angle (L-Shape)</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum</div>
+        <div class="fcard-dim">Leg × Leg × Thickness</div>
+        <p>L-shaped structural section. Available equal and unequal leg. Ubiquitous in structural fabrication, frames, brackets, and supports. Steel angles are among the highest-volume structural shapes.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">🔲</div>
+        <div class="fcard-name">Channel (C / U-Shape)</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum</div>
+        <div class="fcard-dim">Depth × Width × Web thickness</div>
+        <p>C-shaped structural section. Used for frames, structural tracks, conveyor supports, and machine bases. Standard channel (C) vs. MC channel (taper-flange) — distinguish in content.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">🏗️</div>
+        <div class="fcard-name">Wide Flange Beam (W-Shape)</div>
+        <div class="fcard-mats">Steel</div>
+        <div class="fcard-dim">Depth × Weight per foot</div>
+        <p>I-shaped structural beam with near-parallel flanges. The primary structural member in steel construction. Specified by nominal depth and weight per linear foot (e.g., W8×31).</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">〰️</div>
+        <div class="fcard-name">Extrusion (Custom &amp; Standard)</div>
+        <div class="fcard-mats">Aluminum (primary) · Copper</div>
+        <div class="fcard-dim">Custom or standard cross-section</div>
+        <p>Aluminum extrusions can achieve nearly any consistent cross-section. Standard shapes (angles, channels, T-slots) are stocked; custom shapes require tooling. 6063 is the extrusion workhorse alloy.</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">🔩</div>
+        <div class="fcard-name">Forgings</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum · Ti · Ni Alloys</div>
+        <div class="fcard-dim">Near-net-shape or rough forging</div>
+        <p>Compressive forming at elevated temperature. Produces superior grain structure, strength, and reliability vs. castings. Open-die (large/custom shapes) or closed-die (high-volume, near-net-shape).</p>
+      </div>
+
+      <div class="fcard">
+        <div class="fcard-icon">🪛</div>
+        <div class="fcard-name">Wire &amp; Welding Products</div>
+        <div class="fcard-mats">Steel · Stainless · Aluminum · Copper · Ni Alloys</div>
+        <div class="fcard-dim">Diameter in inches or AWG</div>
+        <p>Wire for springs, fasteners, fencing, and electrical. Welding wire/rod (MIG, TIG, stick) is a distinct product line — specified by AWS classification, diameter, and packaging.</p>
+      </div>
+
+    </div>
+
+    <div class="callout p7">
+      <div class="callout-label">Form-Specific Keywords</div>
+      <p>The form is a critical keyword modifier. <strong>"4140 steel round bar"</strong>, <strong>"6061 aluminum plate"</strong>, and <strong>"316L stainless tube"</strong> are different pages with different buyers. A buyer searching for bar stock is not the same buyer searching for plate — their application, order quantity, and processing needs differ. Always build pages at the material-grade-form intersection when the client stocks that specific combination.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     SECTION 9 — MACHINING SERVICES
+══════════════════════════════ -->
+<section class="sec-white" id="machining-services">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag p7">Section 9 — Reference</div>
+      <h2 class="sh-title">Common Machining Services</h2>
+      <p class="sh-desc">Understanding machining processes is essential for writing accurate capability pages and service descriptions. Buyers searching for a machine shop almost always specify the process, material, and often a certification. Each service below represents a distinct page opportunity for a machining client — and a distinct set of buyer intent signals to target.</p>
+    </div>
+
+    <div class="svc-grid mb32">
+
+      <div class="svc-card">
+        <div class="svc-icon">🔄</div>
+        <div class="svc-name">CNC Turning / Lathe</div>
+        <div class="svc-desc">Rotating workpiece machined by a stationary cutting tool. Produces cylindrical, conical, and threaded features. Multi-axis turning centers handle complex geometries in one setup.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">All Metals</span><span class="svc-mat">Engineering Plastics</span><span class="svc-mat">PEEK</span><span class="svc-mat">Nylon</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">⚙️</div>
+        <div class="svc-name">CNC Milling (3, 4 &amp; 5-Axis)</div>
+        <div class="svc-desc">Rotating cutting tool removes material from a stationary (or indexed) workpiece. Produces prismatic parts with pockets, slots, profiles, and complex 3D contours. 5-axis allows complex geometries in one setup.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">All Metals</span><span class="svc-mat">Composites</span><span class="svc-mat">Plastics</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">⚡</div>
+        <div class="svc-name">Wire EDM</div>
+        <div class="svc-desc">Electrical discharge machining using a thin wire electrode. Cuts hardened tool steels and exotic alloys with extreme precision. No cutting forces — ideal for fragile or thin cross-sections. Tolerances to ±0.0001".</div>
+        <div class="svc-mats">
+          <span class="svc-mat">All Conductive Metals</span><span class="svc-mat">Tool Steels</span><span class="svc-mat">Carbide</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🔷</div>
+        <div class="svc-name">Sinker / Ram EDM</div>
+        <div class="svc-desc">Shaped electrode (graphite or copper) sinks into workpiece to create cavity. Used for blind pockets, rib details, and complex die cavities that cannot be milled conventionally.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">Tool Steels</span><span class="svc-mat">Hardened Metals</span><span class="svc-mat">Carbide</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🔲</div>
+        <div class="svc-name">Surface Grinding</div>
+        <div class="svc-desc">Abrasive wheel removes material from flat surfaces to achieve very tight thickness tolerances and excellent surface finish (Ra). Commonly used for mold plates, gage blocks, and precision fixtures.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">Steel</span><span class="svc-mat">Stainless</span><span class="svc-mat">Tool Steels</span><span class="svc-mat">Hardened Parts</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">⭕</div>
+        <div class="svc-name">Cylindrical Grinding</div>
+        <div class="svc-desc">External (OD) or internal (ID) grinding of cylindrical features to achieve extremely tight diameter tolerances and fine surface finish. Used for shafts, bores, and mating precision fits.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">Shafts</span><span class="svc-mat">Hardened Parts</span><span class="svc-mat">Tool Steels</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">💧</div>
+        <div class="svc-name">Waterjet Cutting</div>
+        <div class="svc-desc">High-pressure water + abrasive garnet cuts virtually any material with no heat-affected zone (HAZ). Cuts stacks of material simultaneously. Excellent for heat-sensitive alloys, composites, and thick sections.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">All Metals</span><span class="svc-mat">Composites</span><span class="svc-mat">Plastics</span><span class="svc-mat">Glass</span><span class="svc-mat">Stone</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🔆</div>
+        <div class="svc-name">Laser Cutting</div>
+        <div class="svc-desc">High-powered laser beam cuts material with narrow kerf and high repeatability. Fiber laser for metals; CO₂ for non-metals. Excellent for thin-to-medium sheet. Fastest process for complex 2D profiles.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">Sheet Steel</span><span class="svc-mat">Stainless</span><span class="svc-mat">Aluminum</span><span class="svc-mat">Copper</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🔥</div>
+        <div class="svc-name">Plasma Cutting</div>
+        <div class="svc-desc">Ionized gas arc cuts electrically conductive metals at high speed. Well-suited for thicker plate where laser cutting becomes economically unfavorable. Wider kerf than laser; some HAZ.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">Structural Steel</span><span class="svc-mat">Stainless</span><span class="svc-mat">Aluminum</span><span class="svc-mat">Heavy Plate</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🔩</div>
+        <div class="svc-name">Threading &amp; Tapping</div>
+        <div class="svc-desc">Internal (tapping) and external (threading/thread milling) thread production. Specified by thread standard (UN, ISO Metric, ACME, NPT/NPTF), class of fit, and material hardness. Critical for fluid system fittings.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">All Metals</span><span class="svc-mat">Plastics</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🌡️</div>
+        <div class="svc-name">Heat Treatment</div>
+        <div class="svc-desc">Modifies mechanical properties through controlled heating and cooling. Common processes: annealing (soften), normalizing, quench &amp; temper (harden), stress relieve, carburizing/nitriding (case harden), solution anneal + age harden (PH alloys).</div>
+        <div class="svc-mats">
+          <span class="svc-mat">Carbon Steel</span><span class="svc-mat">Alloy Steel</span><span class="svc-mat">Tool Steel</span><span class="svc-mat">Stainless PH</span><span class="svc-mat">Ti Alloys</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">✨</div>
+        <div class="svc-name">Surface Finishing</div>
+        <div class="svc-desc">Post-machining finishes that enhance corrosion resistance, appearance, hardness, or dimensional accuracy. Key processes: anodizing (Al), passivation (SS), electropolishing (SS), black oxide (steel), hard chrome, nickel plating, powder coat.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">Aluminum (Anodize)</span><span class="svc-mat">Stainless (Passivate)</span><span class="svc-mat">Steel (Plate/Coat)</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">✂️</div>
+        <div class="svc-name">Sawing / Cut-to-Length</div>
+        <div class="svc-desc">Precision sawing of bar, tube, and structural shapes to customer-specified lengths. Band saw, cold saw, and circular saw each offer different combinations of speed, finish, and kerf. High-volume cut-to-length is a major service offering for metals service centers.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">All Metals</span><span class="svc-mat">Plastics</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🔨</div>
+        <div class="svc-name">Forming &amp; Bending</div>
+        <div class="svc-desc">Press brake bending, roll forming, and hydroforming change the geometry of flat or tubular stock without removing material. Tolerances depend on material springback properties — an important variable in aluminum and HSLA steels.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">Sheet Steel</span><span class="svc-mat">Stainless</span><span class="svc-mat">Aluminum</span><span class="svc-mat">Copper</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🔗</div>
+        <div class="svc-name">Welding &amp; Fabrication</div>
+        <div class="svc-desc">Joining processes including TIG (GTAW), MIG (GMAW), stick (SMAW), and resistance welding. AWS D1.1 (structural steel) and ASME Section IX (pressure vessel) are the most commonly cited weld qualifications in industrial procurement.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">Steel</span><span class="svc-mat">Stainless</span><span class="svc-mat">Aluminum</span><span class="svc-mat">Exotic Alloys</span>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">📋</div>
+        <div class="svc-name">Inspection &amp; Certification</div>
+        <div class="svc-desc">CMM (coordinate measuring machine) dimensional inspection, material certifications (MTRs / mill certs), hydrostatic testing, NDT (ultrasonic, x-ray, dye penetrant, magnetic particle). Certifications like AS9100, ISO 9001, and ITAR are page-level SEO topics.</div>
+        <div class="svc-mats">
+          <span class="svc-mat">All Materials</span><span class="svc-mat">Aerospace</span><span class="svc-mat">Defense</span><span class="svc-mat">Pressure Vessels</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════
+     RECAP
+══════════════════════════════ -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag wht">Part 7 Recap</div>
+      <h2 class="sh-title wht">What You Can Now Reference</h2>
+      <p class="sh-desc wht">After completing Part 7, you have a working reference for the materials, forms, and services that define the industrial metals and plastics market — and the vocabulary to write content that earns the trust of technical buyers.</p>
+    </div>
+    <div class="recap-grid">
+      <div class="recap-item">
+        <div class="recap-num">01</div>
+        <div class="recap-title">Stainless Steel Families</div>
+        <div class="recap-desc">Distinguish between 300, 400, PH, and duplex grades by their key properties, industries, and forms — and understand why grade-specific pages outperform generic category pages.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">02</div>
+        <div class="recap-title">Carbon, Alloy &amp; Tool Steels</div>
+        <div class="recap-desc">Reference structural grades (A36, A572), machining grades (1018, 1045, 1144), chromoly alloys (4130, 4140, 4340), and tool steels (A2, D2, H13, P20) by use case and machinability.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">03</div>
+        <div class="recap-title">Copper &amp; Copper Alloys</div>
+        <div class="recap-desc">Know the difference between ETP copper, free-cutting brass (C360), naval brass (C464), bearing bronze (C932), and beryllium copper (C172) — and the industries that demand each.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">04</div>
+        <div class="recap-title">Aluminum by Series</div>
+        <div class="recap-desc">Map aluminum grades to their series, temper designations, and industries — from the workhorse 6061-T6 to aerospace-critical 7075 and 2024, plus marine-grade 5052 and 5083.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">05</div>
+        <div class="recap-title">Exotic &amp; Specialty Alloys</div>
+        <div class="recap-desc">Recognize Inconel, Hastelloy, Monel, titanium grades, and refractory metals (tungsten, molybdenum, Kovar, Invar) by their applications and why these keywords have exceptional conversion value.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">06</div>
+        <div class="recap-title">Engineering &amp; High-Temp Plastics</div>
+        <div class="recap-desc">Bridge trade names (Delrin, Teflon, Torlon, Vespel) to generic chemical names and temperature ratings — and understand why high-performance plastics generate high-conversion, low-competition keyword opportunities.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">07</div>
+        <div class="recap-title">Forms &amp; Shapes Vocabulary</div>
+        <div class="recap-desc">Distinguish plate from sheet, seamless pipe from welded tube, and hot-rolled from cold-drawn bar stock — the vocabulary that separates credible content from generic copy in the eyes of industrial buyers.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">08</div>
+        <div class="recap-title">Machining Services Language</div>
+        <div class="recap-desc">Reference CNC turning, milling, wire EDM, surface grinding, waterjet, laser, plasma, heat treatment, and finishing processes — giving you the vocabulary to write accurate capability pages for machine shop clients.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">09</div>
+        <div class="recap-title">Apply It to SEO &amp; Content</div>
+        <div class="recap-desc">Every table in this guide is a keyword map. Grade + Form + Service = a high-intent, low-competition page opportunity. Use this reference alongside B-SMART (Part 2) to build content architecture that captures real industrial buyers.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════
+     CTA — BACK TO SERIES
+══════════════════════════════ -->
+<div class="next-part-cta">
+  <div class="npc-inner">
+    <div class="npc-label">You've Completed the Series</div>
+    <div class="npc-title">Industrial &amp; B2B Training — Complete</div>
+    <div class="npc-desc">You've covered foundations, SEO, PPC, client communication, LOOP &amp; CallRail, retention strategy, and now the materials language that makes it all credible. Return to Part 1 to review any section, or apply what you've learned on your next industrial client engagement.</div>
+    <a href="industrial-b2b-part1.html" class="npc-btn">← Return to Part 1: Foundations</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Industrial &amp; B2B Training — Part 7 of 7: Materials Reference Guide</span>
+    <span>April 2026</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+
+</body>
+</html>
