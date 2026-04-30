@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OBx B-School | Industrial B2B — Part 9: Supply Chain</title>
+<style>
+:root {
+  --navy:#1B4F72; --navy-dark:#154360; --orange:#D4551A; --gold:#F5A623;
+  --blue:#2980B9; --slate:#4A6375; --light-gray:#F0F2F5; --border:#DDE3EA;
+  --text:#2C3E50; --text-light:#7F8C8D; --success:#27AE60; --error:#E74C3C;
+  --p2:#0E7C5C; --p2-dark:#0A5C43; --p2-light:rgba(14,124,92,0.08);
+  --p3:#D4551A; --p4:#5B3FA8; --p5:#0A7B8E; --p6:#8B1A4A;
+  --p7:#2C5F7A; --p8:#7A4A00;
+  --p9:#0F7070; --p9-dark:#0A5050; --p9-light:rgba(15,112,112,0.08);
+  --t0:#4A1A6E; --t1:#7A3B00; --t2:#0A5C43; --t3:#1A4F72;
+  --t4:#5B3FA8; --t5:#0A7B8E; --t6:#4A6375;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Segoe UI',-apple-system,Arial,sans-serif;background:var(--light-gray);color:var(--text);line-height:1.65;}
+
+/* NAV */
+.top-nav{position:sticky;top:0;z-index:300;background:var(--navy);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;box-shadow:0 2px 12px rgba(0,0,0,.25);}
+.brand{display:flex;align-items:center;}
+.brand-main{color:#fff;font-size:1.3rem;font-weight:900;letter-spacing:-.5px;}
+.brand-main em{color:var(--gold);font-style:normal;}
+.brand-school{color:var(--gold);font-size:.65rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;border-left:2px solid rgba(245,166,35,.35);margin-left:12px;padding-left:12px;}
+.nav-badge{background:rgba(15,112,112,.28);color:#6EE0E0;border:1px solid rgba(15,112,112,.45);padding:3px 12px;border-radius:20px;font-size:.71rem;font-weight:600;}
+
+.series-nav{background:var(--navy-dark);border-bottom:2px solid rgba(245,166,35,.15);display:flex;align-items:center;padding:0 48px;gap:4px;overflow-x:auto;position:sticky;top:56px;z-index:190;}
+.snav-label{color:rgba(255,255,255,.28);font-size:.67rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding-right:14px;border-right:1px solid rgba(255,255,255,.08);margin-right:8px;white-space:nowrap;flex-shrink:0;}
+.snav-link{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.42);text-decoration:none;font-size:.73rem;font-weight:600;padding:13px 11px;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s;white-space:nowrap;}
+.snav-link:hover{color:rgba(255,255,255,.8);}
+.snav-link.active{color:#fff;border-bottom-color:var(--p9);}
+.snav-num{width:19px;height:19px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:800;color:#fff;flex-shrink:0;}
+.sn-1{background:var(--slate);}.sn-2{background:var(--p2);}.sn-3{background:var(--p3);}
+.sn-4{background:var(--p4);}.sn-5{background:var(--p5);}.sn-6{background:var(--p6);}
+.sn-7{background:var(--p7);}.sn-8{background:var(--p8);}.sn-9{background:var(--p9);}
+
+/* HEADER */
+.part-header{background:linear-gradient(135deg,#0A3D3D 0%,#0F7070 55%,#0C5A5A 100%);padding:72px 48px 64px;position:relative;overflow:hidden;}
+.ph-blob{position:absolute;border-radius:50%;pointer-events:none;top:-80px;right:-80px;width:420px;height:420px;background:rgba(255,255,255,.03);}
+.ph-s1{position:absolute;top:36px;right:72px;width:20px;height:20px;background:rgba(255,255,255,.12);pointer-events:none;}
+.ph-s2{position:absolute;top:60px;right:50px;width:13px;height:13px;background:rgba(245,166,35,.35);pointer-events:none;}
+.ph-s3{position:absolute;top:48px;right:100px;width:10px;height:10px;background:rgba(255,255,255,.08);pointer-events:none;}
+.ph-inner{max-width:1060px;margin:0 auto;position:relative;z-index:1;}
+.ph-series{font-size:.7rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.ph-series::before{content:'';display:block;width:24px;height:2px;background:rgba(255,255,255,.4);}
+.ph-badge{display:inline-flex;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:6px;padding:5px 12px;color:rgba(255,255,255,.75);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px;}
+.ph-title{color:#fff;font-size:2.8rem;font-weight:900;line-height:1.12;margin-bottom:16px;}
+.ph-sub{color:rgba(255,255,255,.65);font-size:.98rem;max-width:640px;line-height:1.72;margin-bottom:30px;}
+.ph-objectives{display:flex;flex-wrap:wrap;gap:9px;}
+.ph-obj{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.13);border-radius:7px;padding:7px 13px;color:rgba(255,255,255,.78);font-size:.77rem;}
+.ph-obj::before{content:'✓ ';color:rgba(255,255,255,.45);font-size:.72rem;}
+
+.accent-bar{height:4px;background:linear-gradient(90deg,var(--p9) 0%,var(--gold) 60%,var(--navy) 100%);}
+
+/* LAYOUT */
+.container{max-width:1060px;margin:0 auto;padding:0 48px;}
+section.sec-light{background:var(--light-gray);padding:64px 0;}
+section.sec-white{background:#fff;padding:64px 0;}
+section.sec-dark{background:var(--navy);padding:64px 0;}
+section.sec-p9{background:var(--p9-light);padding:64px 0;border-top:1px solid rgba(15,112,112,.12);border-bottom:1px solid rgba(15,112,112,.12);}
+
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+
+/* SECTION HEADERS */
+.sh{margin-bottom:36px;}
+.sh-tag{font-size:.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;color:var(--p9);}
+.sh-tag.wht{color:rgba(255,255,255,.5);}
+.sh-tag.gold{color:var(--gold);}
+.sh-tag.org{color:var(--orange);}
+.sh-title{font-size:1.9rem;font-weight:800;color:var(--navy);line-height:1.2;margin-bottom:12px;}
+.sh-title.wht{color:#fff;}
+.sh-desc{color:var(--text-light);font-size:.91rem;max-width:720px;line-height:1.7;}
+.sh-desc.wht{color:rgba(255,255,255,.62);}
+
+.sub-sh{font-size:.97rem;font-weight:800;color:var(--navy);margin:32px 0 14px;padding-bottom:9px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:10px;}
+.sub-sh-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;transition:box-shadow .15s,transform .15s;}
+.card:hover{box-shadow:0 6px 22px rgba(0,0,0,.07);transform:translateY(-2px);}
+.card.gray{background:var(--light-gray);}
+.card.navy{background:var(--navy);}
+.card h3{font-size:.95rem;font-weight:700;color:var(--navy);margin-bottom:9px;}
+.card.navy h3{color:var(--gold);}
+.card p{font-size:.85rem;color:var(--text-light);line-height:1.65;}
+.card.navy p{color:rgba(255,255,255,.72);}
+.card-icon{font-size:1.7rem;margin-bottom:11px;}
+
+/* TABLES */
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:12px;box-shadow:0 1px 6px rgba(0,0,0,.05);margin-bottom:24px;}
+.tbl-wrap .tbl{border-radius:0;box-shadow:none;margin-bottom:0;}
+.tbl{width:100%;border-collapse:collapse;background:#fff;}
+.tbl th{padding:11px 14px;text-align:left;font-size:.71rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;}
+.tbl td{padding:11px 14px;font-size:.82rem;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top;line-height:1.5;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:nth-child(even) td{background:#F8FAFB;}
+.tbl td strong{color:var(--navy);}
+.th-navy{background:var(--navy);}.th-slate{background:var(--slate);}
+.th-p2{background:var(--p2);}.th-p3{background:var(--p3);}
+.th-p9{background:var(--p9);}.th-p4{background:var(--p4);}
+
+/* CALLOUTS */
+.callout{border-radius:10px;padding:20px 24px;margin:24px 0;border-left:4px solid;}
+.callout.p2{background:rgba(14,124,92,.07);border-color:var(--p2);}
+.callout.orange{background:rgba(212,85,26,.06);border-color:var(--orange);}
+.callout.navy{background:var(--navy);border-color:var(--gold);}
+.callout.gold{background:rgba(245,166,35,.08);border-color:var(--gold);}
+.callout.p9{background:var(--p9-light);border-color:var(--p9);}
+.callout.error{background:rgba(231,76,60,.06);border-color:var(--error);}
+.callout.success{background:rgba(39,174,96,.07);border-color:var(--success);}
+.callout-label{font-size:.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.callout.p2 .callout-label{color:var(--p2-dark);}
+.callout.orange .callout-label{color:var(--orange);}
+.callout.navy .callout-label{color:var(--gold);}
+.callout.gold .callout-label{color:#8A5F00;}
+.callout.p9 .callout-label{color:var(--p9-dark);}
+.callout.error .callout-label{color:var(--error);}
+.callout.success .callout-label{color:var(--success);}
+.callout p{font-size:.88rem;line-height:1.68;}
+.callout.navy p{color:rgba(255,255,255,.82);}
+
+ul.plain{list-style:none;padding:0;}
+ul.plain li{font-size:.84rem;color:var(--text);padding:6px 0;border-bottom:1px solid var(--border);display:flex;gap:9px;align-items:flex-start;line-height:1.55;}
+ul.plain li:last-child{border-bottom:none;}
+ul.plain li::before{content:'▸';color:var(--p9);flex-shrink:0;font-size:.8rem;margin-top:1px;}
+
+/* TIER BADGE */
+.tb{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:700;color:#fff;white-space:nowrap;}
+.tb-0{background:var(--t0);}.tb-1{background:var(--t1);}.tb-2{background:var(--t2);}
+.tb-3{background:var(--t3);}.tb-4{background:var(--t4);}.tb-5{background:var(--t5);}
+.tb-6{background:var(--t6);}
+
+/* SEVERITY BADGES */
+.sev{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.68rem;font-weight:700;white-space:nowrap;}
+.sev-crit{background:rgba(139,26,74,.15);color:#6B1538;}
+.sev-high{background:rgba(231,76,60,.14);color:#B03A2E;}
+.sev-med{background:rgba(245,166,35,.16);color:#8A5F00;}
+.sev-low{background:rgba(41,128,185,.14);color:#1A6FA8;}
+.sev-win{background:rgba(39,174,96,.14);color:#1E8449;}
+.sev-bigwin{background:rgba(14,124,92,.15);color:#0A5C43;}
+
+/* CHAIN FLOW */
+.chain-scroll{overflow-x:auto;padding:4px 0 16px;margin-bottom:32px;}
+.chain-flow{display:flex;align-items:stretch;gap:0;min-width:900px;}
+.chain-tier{display:flex;flex-direction:column;flex:1;min-width:110px;}
+.chain-box{border-radius:10px;padding:14px 11px;flex:1;display:flex;flex-direction:column;}
+.chain-tier-num{font-size:.58rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:4px;}
+.chain-tier-name{font-size:.78rem;font-weight:800;color:#fff;margin-bottom:7px;line-height:1.25;}
+.chain-tier-ex{font-size:.66rem;color:rgba(255,255,255,.68);line-height:1.5;}
+.chain-arrow-wrap{display:flex;align-items:center;justify-content:center;padding:0 4px;flex-shrink:0;margin-top:-20px;}
+.chain-arrow{color:rgba(74,99,117,.6);font-size:1.4rem;line-height:1;}
+.chain-label{text-align:center;font-size:.62rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-top:7px;}
+.ct0{background:var(--t0);}.ct1{background:var(--t1);}.ct2{background:var(--t2);}
+.ct3{background:var(--t3);}.ct4{background:var(--t4);}.ct5{background:var(--t5);}.ct6{background:var(--t6);}
+
+/* WINNER/LOSER SPLIT */
+.wl-wrap{border-radius:12px;overflow:hidden;margin-bottom:24px;box-shadow:0 1px 6px rgba(0,0,0,.06);}
+.wl-header{display:grid;grid-template-columns:1fr 1fr;}
+.wl-head{padding:14px 20px;}
+.wl-head.win{background:var(--success);}
+.wl-head.lose{background:var(--error);}
+.wl-head-label{font-size:.66rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:3px;}
+.wl-head-title{font-size:.98rem;font-weight:900;color:#fff;}
+.wl-body{background:#fff;border:1px solid var(--border);border-top:none;}
+.wl-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);}
+.wl-row:last-child{border-bottom:none;}
+.wl-cell{padding:12px 18px;font-size:.82rem;line-height:1.52;}
+.wl-cell.win-side{border-right:1px solid var(--border);background:rgba(39,174,96,.03);}
+.wl-cell.lose-side{background:rgba(231,76,60,.03);}
+.wl-cell strong{display:block;margin-bottom:3px;font-size:.84rem;}
+.wl-cell.win-side strong{color:var(--success);}
+.wl-cell.lose-side strong{color:var(--error);}
+.wl-cell span{color:var(--text-light);font-size:.77rem;}
+
+/* DISRUPTION CARD GRID */
+.dis-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:32px;}
+.dis-card{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:box-shadow .15s;}
+.dis-card:hover{box-shadow:0 4px 14px rgba(0,0,0,.08);}
+.dis-header{padding:12px 14px;}
+.dis-icon{font-size:1.3rem;margin-bottom:4px;}
+.dis-name{font-size:.8rem;font-weight:700;color:#fff;line-height:1.3;}
+.dis-body{padding:12px 14px;}
+.dis-body p{font-size:.76rem;color:var(--text-light);line-height:1.55;margin-bottom:7px;}
+.dis-body p:last-child{margin-bottom:0;}
+.dis-body strong{color:var(--navy);}
+
+/* SQUEEZE VISUAL */
+.squeeze-wrap{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px;}
+.sq-row{display:grid;grid-template-columns:48px 170px 1fr 1fr;align-items:stretch;border-bottom:1px solid var(--border);}
+.sq-row:last-child{border-bottom:none;}
+.sq-row.hdr{background:var(--navy);}
+.sq-num{display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.75rem;color:#fff;}
+.sq-row.hdr .sq-num{color:rgba(255,255,255,.35);font-size:.62rem;letter-spacing:1px;text-transform:uppercase;}
+.sq-cell{padding:12px 14px;font-size:.81rem;color:var(--text);line-height:1.5;border-left:1px solid var(--border);vertical-align:top;}
+.sq-row.hdr .sq-cell{color:rgba(255,255,255,.65);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-left:1px solid rgba(255,255,255,.1);display:flex;align-items:center;}
+.sq-cell strong{color:var(--navy);display:block;margin-bottom:2px;}
+.sq-cell span{color:var(--text-light);font-size:.74rem;}
+.sq-highlight{background:rgba(245,166,35,.07);border-left:3px solid var(--gold) !important;}
+.sq-hl-label{font-size:.66rem;font-weight:800;color:#8A5F00;text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:3px;}
+
+/* CASE STUDY */
+.cs-block{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px;}
+.cs-header{padding:18px 22px;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;}
+.cs-header-left{flex:1;}
+.cs-event-tag{font-size:.66rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:5px;}
+.cs-title{font-size:1.05rem;font-weight:800;color:#fff;line-height:1.3;margin-bottom:3px;}
+.cs-subtitle{font-size:.77rem;color:rgba(255,255,255,.62);}
+.cs-year{font-size:2.2rem;font-weight:900;color:rgba(255,255,255,.15);line-height:1;flex-shrink:0;font-family:'Courier New',monospace;}
+.cs-body{padding:18px 22px;}
+.cs-what{font-size:.85rem;color:var(--text);line-height:1.65;margin-bottom:16px;}
+.cs-impact{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
+.cs-win-box{background:rgba(39,174,96,.07);border:1px solid rgba(39,174,96,.2);border-radius:8px;padding:13px;}
+.cs-lose-box{background:rgba(231,76,60,.07);border:1px solid rgba(231,76,60,.2);border-radius:8px;padding:13px;}
+.cs-box-label{font-size:.66rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px;}
+.cs-win-box .cs-box-label{color:var(--success);}
+.cs-lose-box .cs-box-label{color:var(--error);}
+.cs-list{list-style:none;padding:0;}
+.cs-list li{font-size:.8rem;color:var(--text);padding:4px 0;border-bottom:1px solid rgba(0,0,0,.06);display:flex;gap:7px;line-height:1.5;}
+.cs-list li:last-child{border-bottom:none;}
+.cs-list.win li::before{content:'↑';color:var(--success);font-weight:800;flex-shrink:0;}
+.cs-list.lose li::before{content:'↓';color:var(--error);font-weight:800;flex-shrink:0;}
+.cs-lesson{background:var(--navy);border-radius:8px;padding:12px 16px;}
+.cs-lesson-label{font-size:.66rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.cs-lesson p{font-size:.81rem;color:rgba(255,255,255,.78);line-height:1.6;}
+
+/* ── RECENT EVENTS (2024–2025) ─────────────────────────────── */
+.recent-divider{display:flex;align-items:center;gap:16px;margin:48px 0 32px;}
+.recent-divider-line{flex:1;height:2px;background:linear-gradient(90deg,var(--gold),rgba(245,166,35,.15));}
+.recent-divider-line.right{background:linear-gradient(270deg,var(--gold),rgba(245,166,35,.15));}
+.recent-divider-badge{background:var(--gold);color:var(--navy-dark);font-size:.7rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;padding:6px 16px;border-radius:20px;white-space:nowrap;display:flex;align-items:center;gap:7px;}
+
+.cs-recent-badge{display:inline-flex;align-items:center;gap:5px;background:var(--gold);color:var(--navy-dark);font-size:.6rem;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:4px;margin-bottom:6px;}
+
+.cs-stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.cs-stat-pill{background:rgba(15,112,112,.07);border:1px solid rgba(15,112,112,.18);border-radius:6px;padding:5px 12px;font-size:.73rem;color:var(--p9-dark);font-weight:700;display:flex;align-items:center;gap:5px;}
+.cs-stat-pill.warn{background:rgba(245,166,35,.1);border-color:rgba(245,166,35,.3);color:#7A5200;}
+.cs-stat-pill.danger{background:rgba(231,76,60,.08);border-color:rgba(231,76,60,.2);color:#A93226;}
+/* ──────────────────────────────────────────────────────────── */
+
+/* STRATEGY CARDS */
+.ps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px;}
+.ps-card{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.ps-header{padding:13px 16px;}
+.ps-tier-label{font-size:.63rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:3px;}
+.ps-name{font-size:.85rem;font-weight:800;color:#fff;}
+.ps-body{padding:13px 16px;}
+.ps-section{padding:7px 0;border-bottom:1px solid var(--border);}
+.ps-section:last-child{border-bottom:none;}
+.ps-section-label{font-size:.64rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-light);margin-bottom:3px;}
+.ps-section-text{font-size:.79rem;color:var(--text);line-height:1.5;}
+
+/* Q GRID */
+.q-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:24px;}
+.q-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;gap:14px;align-items:flex-start;transition:box-shadow .15s;}
+.q-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.07);}
+.q-num{width:34px;height:34px;border-radius:50%;background:var(--p9);color:#fff;font-weight:800;font-size:.82rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.q-content h4{font-size:.9rem;font-weight:700;color:var(--navy);margin-bottom:6px;}
+.q-content p{font-size:.81rem;color:var(--text-light);line-height:1.58;}
+.q-why{margin-top:9px;background:var(--p9-light);border-radius:6px;padding:7px 11px;font-size:.76rem;color:var(--p9-dark);font-weight:600;}
+
+/* RECAP */
+.recap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.recap-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:22px;}
+.recap-num{font-size:2rem;font-weight:900;color:var(--gold);opacity:.3;line-height:1;margin-bottom:4px;}
+.recap-title{color:var(--gold);font-weight:700;font-size:.88rem;margin-bottom:8px;}
+.recap-desc{color:rgba(255,255,255,.62);font-size:.81rem;line-height:1.6;}
+
+.next-part-cta{background:var(--navy-dark);padding:52px 48px;text-align:center;}
+.npc-inner{max-width:560px;margin:0 auto;}
+.npc-label{color:rgba(255,255,255,.35);font-size:.68rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;}
+.npc-title{color:#fff;font-size:1.5rem;font-weight:800;margin-bottom:10px;}
+.npc-desc{color:rgba(255,255,255,.52);font-size:.87rem;margin-bottom:24px;line-height:1.65;}
+.npc-btn{display:inline-flex;align-items:center;gap:10px;background:var(--p9);color:#fff;text-decoration:none;padding:14px 28px;border-radius:8px;font-weight:700;font-size:.9rem;transition:all .15s;}
+.npc-btn:hover{background:var(--p9-dark);transform:translateY(-1px);}
+
+.footer{background:#0D1C2B;padding:42px 48px;text-align:center;}
+.footer-brand{color:#fff;font-size:1.4rem;font-weight:900;margin-bottom:5px;}
+.footer-brand em{color:var(--gold);font-style:normal;}
+.footer-school{color:var(--gold);font-size:.7rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;}
+.footer-meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;}
+.footer-meta span{color:rgba(255,255,255,.28);font-size:.73rem;}
+
+.mt16{margin-top:16px;}.mt24{margin-top:24px;}.mt32{margin-top:32px;}
+.mb8{margin-bottom:8px;}.mb16{margin-bottom:16px;}.mb24{margin-bottom:24px;}.mb32{margin-bottom:32px;}
+[id]::before{content:'';display:block;height:80px;margin-top:-80px;pointer-events:none;}
+
+@media(max-width:1020px){.dis-grid{grid-template-columns:repeat(2,1fr);}.ps-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:860px){
+  .g2,.g3,.g4{grid-template-columns:1fr;}
+  .dis-grid,.ps-grid,.q-grid{grid-template-columns:1fr;}
+  .wl-header,.wl-row,.cs-impact{grid-template-columns:1fr;}
+  .wl-cell.win-side{border-right:none;border-bottom:1px solid var(--border);}
+  .sq-row{grid-template-columns:1fr;}
+  .recap-grid{grid-template-columns:1fr;}
+  .container{padding:0 24px;}
+  .top-nav,.series-nav{padding:0 24px;}
+  .part-header{padding:52px 24px 48px;}
+  .ph-title{font-size:2rem;}
+  .next-part-cta{padding:40px 24px;}
+  .cs-stats{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ TOP NAV ═══ -->
+<nav class="top-nav">
+  <div class="brand"><span class="brand-main">Outer<em>Box</em></span><span class="brand-school">B·SCHOOL</span></div>
+  <span class="nav-badge">Part 9 of 9 · Industrial &amp; B2B</span>
+</nav>
+
+<!-- ═══ SERIES NAV ═══ -->
+<div class="series-nav">
+  <span class="snav-label">Series</span>
+  <a href="industrial-b2b-part1.html" class="snav-link"><span class="snav-num sn-1">1</span>Foundations</a>
+  <a href="industrial-b2b-part2.html" class="snav-link"><span class="snav-num sn-2">2</span>SEO Strategy</a>
+  <a href="industrial-b2b-part3.html" class="snav-link"><span class="snav-num sn-3">3</span>PPC Strategy</a>
+  <a href="industrial-b2b-part4.html" class="snav-link"><span class="snav-num sn-4">4</span>Communication</a>
+  <a href="industrial-b2b-part5.html" class="snav-link"><span class="snav-num sn-5">5</span>Loop &amp; CallRail</a>
+  <a href="industrial-b2b-part6.html" class="snav-link"><span class="snav-num sn-6">6</span>Retention</a>
+  <a href="industrial-b2b-part7.html" class="snav-link"><span class="snav-num sn-7">7</span>Materials</a>
+  <a href="industrial-b2b-part8.html" class="snav-link"><span class="snav-num sn-8">8</span>Relativity</a>
+  <a href="industrial-b2b-part9.html" class="snav-link active"><span class="snav-num sn-9">9</span>Supply Chain</a>
+</div>
+
+<!-- ═══ HEADER ═══ -->
+<div class="part-header">
+  <div class="ph-blob"></div><div class="ph-s1"></div><div class="ph-s2"></div><div class="ph-s3"></div>
+  <div class="ph-inner">
+    <div class="ph-series">Industrial &amp; B2B Training Series</div>
+    <div class="ph-badge">Part 9 of 9 — Supply Chain Intelligence</div>
+    <h1 class="ph-title">Industrial Supply Chain:<br>How It Works, Who Gets<br>Hurt &amp; Who Benefits</h1>
+    <p class="ph-sub">Raw material leaves the ground as ore and arrives at a job site as a precision-machined component. Every business in between is part of the supply chain — and when that chain breaks, the shockwaves travel in both directions simultaneously. Understanding where a client sits in the chain tells you who their buyer is, what that buyer fears, and how disruption reshapes their market opportunity.</p>
+    <div class="ph-objectives">
+      <span class="ph-obj">Understand the industrial supply chain tier model</span>
+      <span class="ph-obj">Map common business types to chain position</span>
+      <span class="ph-obj">Know who benefits vs. who is hurt by disruption</span>
+      <span class="ph-obj">Understand the "middle squeeze" dynamic</span>
+      <span class="ph-obj">Learn from 7 real disruption events including 2024–2025</span>
+      <span class="ph-obj">Apply chain position to content strategy</span>
+    </div>
+  </div>
+</div>
+<div class="accent-bar"></div>
+
+
+<!-- ═══════════════════════════
+     SECTION 1 — ANATOMY
+═══════════════════════════ -->
+<section class="sec-white" id="anatomy">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 1 — The Foundation</div>
+      <h2 class="sh-title">Supply Chain Anatomy: The 7-Tier Industrial Model</h2>
+      <p class="sh-desc">The industrial supply chain runs from raw material extraction all the way to the end user who puts the finished product to work. Each tier has its own buyer relationship, pricing dynamic, margin profile, and disruption vulnerability. Knowing your client's tier is foundational to understanding their business.</p>
+    </div>
+
+    <div class="callout navy mb32">
+      <div class="callout-label">🔑 Why Tier Position Shapes Everything</div>
+      <p><strong style="color:var(--gold)">A steel mill and a CNC machine shop both "touch steel" — but they are separated by four tiers, serve different buyers, face different disruption risks, and need completely different content strategies.</strong> Tier position determines pricing power, margin profile, customer relationships, inventory risk, and what opportunities disruption creates or destroys. Before you write a single word of content for an industrial client, you need to know where in the chain they live.</p>
+    </div>
+
+    <!-- CHAIN FLOW VISUAL -->
+    <div class="chain-scroll">
+      <div class="chain-flow">
+        <div class="chain-tier">
+          <div class="chain-box ct0">
+            <div class="chain-tier-num">Tier 0</div>
+            <div class="chain-tier-name">Raw Material Extraction</div>
+            <div class="chain-tier-ex">Iron ore · Coal · Bauxite · Copper mines · Oil &amp; gas wells · Rare earth mining</div>
+          </div>
+          <div class="chain-label" style="color:var(--t0)">Extraction</div>
+        </div>
+        <div class="chain-arrow-wrap"><div class="chain-arrow">→</div></div>
+        <div class="chain-tier">
+          <div class="chain-box ct1">
+            <div class="chain-tier-num">Tier 1</div>
+            <div class="chain-tier-name">Primary Production</div>
+            <div class="chain-tier-ex">Steel mills · Aluminum smelters · Copper refiners · Polymer producers · Specialty alloy mills</div>
+          </div>
+          <div class="chain-label" style="color:var(--t1)">Production</div>
+        </div>
+        <div class="chain-arrow-wrap"><div class="chain-arrow">→</div></div>
+        <div class="chain-tier">
+          <div class="chain-box ct2">
+            <div class="chain-tier-num">Tier 2</div>
+            <div class="chain-tier-name">Distribution &amp; Service Centers</div>
+            <div class="chain-tier-ex">National distributors · Regional service centers · Specialty metals distrib. · Plastic distrib. · MRO</div>
+          </div>
+          <div class="chain-label" style="color:var(--t2)">Distribution</div>
+        </div>
+        <div class="chain-arrow-wrap"><div class="chain-arrow">→</div></div>
+        <div class="chain-tier">
+          <div class="chain-box ct3">
+            <div class="chain-tier-num">Tier 3</div>
+            <div class="chain-tier-name">Processing &amp; Fabrication</div>
+            <div class="chain-tier-ex">Machine shops · Fabricators · Forges · Foundries · Stamping · Toll processors · Heat treaters</div>
+          </div>
+          <div class="chain-label" style="color:var(--t3)">Processing</div>
+        </div>
+        <div class="chain-arrow-wrap"><div class="chain-arrow">→</div></div>
+        <div class="chain-tier">
+          <div class="chain-box ct4">
+            <div class="chain-tier-num">Tier 4</div>
+            <div class="chain-tier-name">Component Mfg. &amp; Sub-Assembly</div>
+            <div class="chain-tier-ex">Contract manufacturers · Component suppliers · Specialty fabricators · Plating &amp; finishing shops</div>
+          </div>
+          <div class="chain-label" style="color:var(--t4)">Components</div>
+        </div>
+        <div class="chain-arrow-wrap"><div class="chain-arrow">→</div></div>
+        <div class="chain-tier">
+          <div class="chain-box ct5">
+            <div class="chain-tier-num">Tier 5</div>
+            <div class="chain-tier-name">OEM &amp; System Integration</div>
+            <div class="chain-tier-ex">Industrial OEMs · Aerospace primes · Auto OEMs · Defense contractors · Energy equipment builders</div>
+          </div>
+          <div class="chain-label" style="color:var(--t5)">OEM</div>
+        </div>
+        <div class="chain-arrow-wrap"><div class="chain-arrow">→</div></div>
+        <div class="chain-tier">
+          <div class="chain-box ct6">
+            <div class="chain-tier-num">Tier 6</div>
+            <div class="chain-tier-name">End User</div>
+            <div class="chain-tier-ex">Manufacturing plants · Construction · Military · Infrastructure operators · Government agencies</div>
+          </div>
+          <div class="chain-label" style="color:var(--t6)">End User</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FULL BUSINESS TYPE MAP TABLE -->
+    <div class="sub-sh"><div class="sub-sh-dot" style="background:var(--p9)"></div>All Common Industrial Business Types — Mapped to Their Chain Position</div>
+    <div class="tbl-wrap mb32">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="th-navy" style="min-width:190px">Business Type</th>
+            <th class="th-navy" style="min-width:70px">Tier</th>
+            <th class="th-navy" style="min-width:160px">Buys From</th>
+            <th class="th-navy" style="min-width:160px">Sells To</th>
+            <th class="th-navy" style="min-width:200px">Core Function</th>
+            <th class="th-navy" style="min-width:130px">Disruption Risk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mining / Extraction Companies</strong></td>
+            <td><span class="tb tb-0">Tier 0</span></td>
+            <td>Energy, equipment, labor markets</td>
+            <td>Mills, smelters, chemical producers</td>
+            <td>Extract raw ores, minerals, fossil fuels. Supply all feedstock for primary production downstream.</td>
+            <td><span class="sev sev-med">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><strong>Integrated Steel Mills</strong></td>
+            <td><span class="tb tb-1">Tier 1</span></td>
+            <td>Iron ore, scrap, coking coal, energy</td>
+            <td>Service centers, large OEMs</td>
+            <td>Convert ore/scrap to hot-rolled coil, plate, structural shapes. Set the baseline market price for steel.</td>
+            <td><span class="sev sev-low">Low — Price Setters</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mini-Mills (EAF)</strong></td>
+            <td><span class="tb tb-1">Tier 1</span></td>
+            <td>Scrap steel, DRI, energy</td>
+            <td>Service centers, distributors</td>
+            <td>Melt scrap in electric arc furnaces. More flexible than blast furnace mills. Produce long products and flat rolled.</td>
+            <td><span class="sev sev-med">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><strong>Aluminum Smelters</strong></td>
+            <td><span class="tb tb-1">Tier 1</span></td>
+            <td>Bauxite/alumina, massive electricity supply</td>
+            <td>Rolling mills, extrusion billets, foundries</td>
+            <td>Reduce alumina to primary aluminum via electrolytic process. Energy is 30–40% of production cost.</td>
+            <td><span class="sev sev-high">High — Energy Exposure</span></td>
+          </tr>
+          <tr>
+            <td><strong>Specialty Alloy Producers</strong></td>
+            <td><span class="tb tb-1">Tier 1</span></td>
+            <td>Ni, Co, Cr, Ti, Mo concentrates</td>
+            <td>Aerospace/defense distributors &amp; OEMs</td>
+            <td>Produce Inconel, Hastelloy, titanium alloys, cobalt alloys. Long mill lead times. Geopolitical exposure to alloying element supply.</td>
+            <td><span class="sev sev-crit">Critical — Geo Risk</span></td>
+          </tr>
+          <tr>
+            <td><strong>Polymer / Resin Producers</strong></td>
+            <td><span class="tb tb-1">Tier 1</span></td>
+            <td>Crude oil/natural gas (naphtha, ethylene)</td>
+            <td>Plastic distributors, compounders, molders</td>
+            <td>Produce base polymers (PE, PP, PVC, nylon, ABS, PEEK) from petrochemical feedstocks via polymerization.</td>
+            <td><span class="sev sev-high">High — Oil + Weather</span></td>
+          </tr>
+          <tr>
+            <td><strong>National / Master Distributors</strong></td>
+            <td><span class="tb tb-2">Tier 2</span></td>
+            <td>Directly from mills at mill pricing</td>
+            <td>Regional service centers, large OEMs</td>
+            <td>Buy large-volume mill orders, break into smaller lots, distribute regionally. Hold significant inventory positions.</td>
+            <td><span class="sev sev-med">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><strong>Regional Service Centers</strong></td>
+            <td><span class="tb tb-2">Tier 2</span></td>
+            <td>National distributors or direct mill</td>
+            <td>Fabricators, machine shops, contractors</td>
+            <td>Stock common grades and forms. Provide cut-to-length, shearing, basic processing. Most common OBx industrial B2B client type.</td>
+            <td><span class="sev sev-high">High — Margin Squeeze</span></td>
+          </tr>
+          <tr>
+            <td><strong>Specialty Metals Distributors</strong></td>
+            <td><span class="tb tb-2">Tier 2</span></td>
+            <td>Specialty alloy producers, import mills</td>
+            <td>Aerospace shops, medical OEMs, defense</td>
+            <td>Carry titanium, nickel alloys, duplex SS, refractory metals. Provide AMS, DFARS, ASTM certifications.</td>
+            <td><span class="sev sev-crit">Critical — Allocation Risk</span></td>
+          </tr>
+          <tr>
+            <td><strong>Plastic Sheet / Rod Distributors</strong></td>
+            <td><span class="tb tb-2">Tier 2</span></td>
+            <td>Resin producers, sheet extruders</td>
+            <td>Machine shops, industrial fabricators</td>
+            <td>Stock engineering and high-performance plastics in rod, sheet, tube. Cut-to-size common. Trade names dominate buyer searches.</td>
+            <td><span class="sev sev-med">Moderate</span></td>
+          </tr>
+          <tr>
+            <td><strong>MRO Distributors</strong></td>
+            <td><span class="tb tb-2">Tier 2</span></td>
+            <td>Hundreds of industrial product suppliers</td>
+            <td>Maintenance teams, plant facilities</td>
+            <td>Maintenance, Repair &amp; Operations supplies — fasteners, bearings, safety, tooling. Keep production lines running.</td>
+            <td><span class="sev sev-low">Low — Demand Always Exists</span></td>
+          </tr>
+          <tr>
+            <td><strong>Toll Processors (Slitting / Cut-to-Length)</strong></td>
+            <td><span class="tb tb-3">Tier 3</span></td>
+            <td>Mills or distributors (coil, plate)</td>
+            <td>Stamping shops, fabricators, OEMs</td>
+            <td>Convert coil to cut lengths, slit wide coil to narrow strip, level/flatten. Process customer-owned material. No material ownership.</td>
+            <td><span class="sev sev-low">Low — Process Only</span></td>
+          </tr>
+          <tr>
+            <td><strong>Metal Fabricators</strong></td>
+            <td><span class="tb tb-3">Tier 3</span></td>
+            <td>Regional service centers, distributors</td>
+            <td>OEMs, sub-assemblers, contractors</td>
+            <td>Laser cutting, plasma cutting, press brake forming, welding. Produce structural assemblies and fabricated components to print.</td>
+            <td><span class="sev sev-high">High — Material Cost + Lead Time</span></td>
+          </tr>
+          <tr>
+            <td><strong>CNC Machine Shops</strong></td>
+            <td><span class="tb tb-3">Tier 3</span></td>
+            <td>Service centers, specialty distributors</td>
+            <td>OEMs, component assemblers, Tier 4</td>
+            <td>CNC turning, milling, grinding, EDM. Convert raw stock into precision machined components. Value is in labor and equipment, not material.</td>
+            <td><span class="sev sev-high">High — Material Availability</span></td>
+          </tr>
+          <tr>
+            <td><strong>Forges &amp; Foundries</strong></td>
+            <td><span class="tb tb-3">Tier 3</span></td>
+            <td>Specialty distributors, raw ingot suppliers</td>
+            <td>OEMs, Tier 4 component suppliers</td>
+            <td>Open/closed-die forging and metal casting. Produce near-net-shape parts with superior grain structure. Long lead times standard.</td>
+            <td><span class="sev sev-high">High — Alloy Availability</span></td>
+          </tr>
+          <tr>
+            <td><strong>Heat Treaters</strong></td>
+            <td><span class="tb tb-3">Tier 3</span></td>
+            <td>Energy, atmosphere gases, equipment</td>
+            <td>Machine shops, fabricators, OEMs</td>
+            <td>Harden, temper, anneal, carburize, nitride, and stress relieve metals. Often process customer-owned parts for a service fee.</td>
+            <td><span class="sev sev-low">Low — Always Needed</span></td>
+          </tr>
+          <tr>
+            <td><strong>Surface Finishing / Plating Shops</strong></td>
+            <td><span class="tb tb-3">Tier 3</span></td>
+            <td>Chemical suppliers, energy</td>
+            <td>Machine shops, OEMs, defense primes</td>
+            <td>Anodize, plate, passivate, coat, and polish machined parts. Often a required step in aerospace and defense supply chains.</td>
+            <td><span class="sev sev-low">Low — Always Needed</span></td>
+          </tr>
+          <tr>
+            <td><strong>Stamping Houses</strong></td>
+            <td><span class="tb tb-3">Tier 3</span></td>
+            <td>Service centers, toll processors (strip)</td>
+            <td>Automotive OEMs, appliance manufacturers</td>
+            <td>Progressive die stamping of sheet metal into high-volume components. Tooling investment required. Automotive drives the largest stamping volumes.</td>
+            <td><span class="sev sev-crit">Critical — Automotive Demand-Driven</span></td>
+          </tr>
+          <tr>
+            <td><strong>Contract Manufacturers (CM)</strong></td>
+            <td><span class="tb tb-4">Tier 4</span></td>
+            <td>Multiple Tier 2 &amp; 3 suppliers</td>
+            <td>OEMs, branded product companies</td>
+            <td>Full-service manufacturing — sourcing, machining, assembly, testing, packaging. OEM outsources entire product manufacturing.</td>
+            <td><span class="sev sev-high">High — Multi-Source Risk</span></td>
+          </tr>
+          <tr>
+            <td><strong>Injection Molding Shops</strong></td>
+            <td><span class="tb tb-4">Tier 4</span></td>
+            <td>Resin distributors, compounders</td>
+            <td>OEMs, consumer goods brands, medical</td>
+            <td>Injection mold plastic components in high volume. Tooling (mold) owned by customer. High volume = low per-piece cost.</td>
+            <td><span class="sev sev-high">High — Resin Supply + Tooling Lead</span></td>
+          </tr>
+          <tr>
+            <td><strong>Industrial Equipment OEMs</strong></td>
+            <td><span class="tb tb-5">Tier 5</span></td>
+            <td>Tiers 3 &amp; 4 component suppliers</td>
+            <td>End users, industrial plants</td>
+            <td>Design, integrate, and sell complete industrial systems — pumps, conveyors, presses, compressors. Buy components; sell capability.</td>
+            <td><span class="sev sev-high">High — Component Availability</span></td>
+          </tr>
+          <tr>
+            <td><strong>Aerospace Primes (Boeing, Airbus, Lockheed)</strong></td>
+            <td><span class="tb tb-5">Tier 5</span></td>
+            <td>Tier 2 specialty distributors, Tier 3/4 shops</td>
+            <td>Airlines, military, government</td>
+            <td>Final aircraft or defense system assembly. Extremely long supply chains with strict certification requirements throughout.</td>
+            <td><span class="sev sev-crit">Critical — Cascading Multi-Tier</span></td>
+          </tr>
+          <tr>
+            <td><strong>General Contractors / Construction</strong></td>
+            <td><span class="tb tb-5">Tier 5</span></td>
+            <td>Regional service centers, fab shops</td>
+            <td>Building owners, government, developers</td>
+            <td>Purchase structural steel, mechanical, and electrical materials for construction projects. Highly sensitive to material lead time and price.</td>
+            <td><span class="sev sev-high">High — Project Schedule Risk</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════
+     SECTION 2 — DISRUPTION TYPES
+═══════════════════════════ -->
+<section class="sec-light" id="disruption-types">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 2 — What Causes Disruption</div>
+      <h2 class="sh-title">The 8 Most Common Supply Chain Disruptions</h2>
+      <p class="sh-desc">Disruption is not a single event — it is a category of events that stress or break the normal flow of materials, information, or money through the supply chain. Each disruption type travels differently through the tiers and impacts some businesses far more than others. Understanding the disruption type is the first step in understanding who wins and who loses.</p>
+    </div>
+
+    <div class="dis-grid">
+      <div class="dis-card">
+        <div class="dis-header" style="background:var(--p6)">
+          <div class="dis-icon">🌐</div>
+          <div class="dis-name">Geopolitical Events</div>
+        </div>
+        <div class="dis-body">
+          <p><strong>What happens:</strong> Tariffs, trade sanctions, export controls, or armed conflict restrict the flow of raw materials or finished goods across borders.</p>
+          <p><strong>Classic examples:</strong> US Section 232 steel tariffs (2018), Russia-Ukraine conflict limiting titanium and nickel supply (2022), US-China trade war limiting rare earth exports, 2025 global tariff wave.</p>
+          <p><strong>Where it hits hardest:</strong> Specialty alloy distributors, aerospace supply chains, any business dependent on single-source geographies.</p>
+        </div>
+      </div>
+      <div class="dis-card">
+        <div class="dis-header" style="background:var(--error)">
+          <div class="dis-icon">🏭</div>
+          <div class="dis-name">Production Shutdowns</div>
+        </div>
+        <div class="dis-body">
+          <p><strong>What happens:</strong> A mill, smelter, or major producer goes offline — planned (maintenance) or unplanned (equipment failure, fire, labor strike, weather damage).</p>
+          <p><strong>Classic examples:</strong> Nucor mill fires, Gulf Coast aluminum smelter shutdowns from hurricanes, COVID-related automotive plant closures (2020–2021).</p>
+          <p><strong>Where it hits hardest:</strong> Distributors with thin inventory buffers, fabricators mid-project, OEMs with single-source supplier agreements.</p>
+        </div>
+      </div>
+      <div class="dis-card">
+        <div class="dis-header" style="background:var(--p8)">
+          <div class="dis-icon">📈</div>
+          <div class="dis-name">Price Spikes</div>
+        </div>
+        <div class="dis-body">
+          <p><strong>What happens:</strong> Raw material prices spike rapidly, compressing margins for mid-chain businesses who have already quoted fixed prices to their customers.</p>
+          <p><strong>Classic examples:</strong> Steel HRC price doubling in 2021, nickel price spike to $100,000/ton in 2022, HDPE price +80% in 2021 following Hurricane Ida, domestic steel prices surging after 2025 tariff wave.</p>
+          <p><strong>Where it hits hardest:</strong> Service centers and fabricators operating on fixed-price quotes, OEMs with long-term supply contracts at pre-disruption pricing.</p>
+        </div>
+      </div>
+      <div class="dis-card">
+        <div class="dis-header" style="background:var(--p5)">
+          <div class="dis-icon">🚢</div>
+          <div class="dis-name">Logistics Breakdowns</div>
+        </div>
+        <div class="dis-body">
+          <p><strong>What happens:</strong> Ports clog, freight capacity shrinks, transit times extend, and shipping costs spike. Materials are physically stranded or delayed by weeks or months.</p>
+          <p><strong>Classic examples:</strong> COVID port congestion (2021–2022), Ever Given Suez Canal blockage (2021), Red Sea / Houthi shipping reroute (2024), Baltimore Bridge port closure (2024), intermodal container shortages.</p>
+          <p><strong>Where it hits hardest:</strong> Importers of steel and aluminum, distributors with offshore inventory, any business that relies on JIT delivery from overseas sources.</p>
+        </div>
+      </div>
+      <div class="dis-card">
+        <div class="dis-header" style="background:var(--p4)">
+          <div class="dis-icon">🔬</div>
+          <div class="dis-name">Demand Shocks (Up or Down)</div>
+        </div>
+        <div class="dis-body">
+          <p><strong>What happens:</strong> Demand collapses suddenly (recession, sector downturn) or surges unexpectedly (stimulus, reshoring wave, defense buildup), catching the supply chain incorrectly positioned.</p>
+          <p><strong>Classic examples:</strong> 2008–2009 construction collapse eliminating structural steel demand, COVID-era home improvement boom overwhelming lumber and hardware supply, 2022 defense buildup straining specialty steel supply.</p>
+          <p><strong>Where it hits hardest:</strong> Both ends of the chain simultaneously — upstream producers with excess/insufficient capacity; downstream OEMs unable to get materials or moving unsold inventory.</p>
+        </div>
+      </div>
+      <div class="dis-card">
+        <div class="dis-header" style="background:var(--p2)">
+          <div class="dis-icon">🌪️</div>
+          <div class="dis-name">Natural Disasters / Climate Events</div>
+        </div>
+        <div class="dis-body">
+          <p><strong>What happens:</strong> Hurricanes, floods, earthquakes, or extreme weather events damage production facilities, logistics infrastructure, or regional supply concentration.</p>
+          <p><strong>Classic examples:</strong> Hurricane Katrina disrupting Gulf Coast petrochemicals (2005), Japan earthquake/tsunami damaging specialty steel and auto part supply (2011), Hurricane Harvey disrupting resin production (2017).</p>
+          <p><strong>Where it hits hardest:</strong> Industries concentrated in specific geographic regions — Gulf Coast chemical/polymer, Pacific Rim electronics and specialty metals.</p>
+        </div>
+      </div>
+      <div class="dis-card">
+        <div class="dis-header" style="background:var(--slate)">
+          <div class="dis-icon">👷</div>
+          <div class="dis-name">Labor Shortages &amp; Strikes</div>
+        </div>
+        <div class="dis-body">
+          <p><strong>What happens:</strong> Skilled labor shortages, union strikes, or workforce attrition slow or stop production at critical points in the chain.</p>
+          <p><strong>Classic examples:</strong> Skilled machinist and welder shortage (ongoing post-2015), UAW strikes affecting automotive OEMs, dock worker slowdowns affecting West Coast port throughput.</p>
+          <p><strong>Where it hits hardest:</strong> Processing tiers (Tiers 3–4) most dependent on skilled trades. Machine shops and fabricators cannot simply hire untrained labor to fill gaps.</p>
+        </div>
+      </div>
+      <div class="dis-card">
+        <div class="dis-header" style="background:var(--navy)">
+          <div class="dis-icon">📋</div>
+          <div class="dis-name">Regulatory &amp; Compliance Changes</div>
+        </div>
+        <div class="dis-body">
+          <p><strong>What happens:</strong> New environmental regulations, import/export controls, defense sourcing requirements (DFARS, ITAR), or quality standard changes eliminate previously compliant suppliers.</p>
+          <p><strong>Classic examples:</strong> DFARS expansion requiring domestic melt for defense titanium, EPA regulations forcing closure of certain surface finishing operations, EU REACH regulations restricting certain plating chemistries.</p>
+          <p><strong>Where it hits hardest:</strong> Specialty distributors serving aerospace/defense who must suddenly demonstrate compliance; finishing shops using now-prohibited chemistries.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout p9">
+      <div class="callout-label">The Ripple Effect Rule</div>
+      <p>Disruptions almost never stay within a single tier. A production shutdown at Tier 1 creates inventory shortfalls at Tier 2 within weeks, delivery failures at Tier 3 within months, and missed OEM production targets at Tier 5 within a quarter. The further downstream you are from the disruption source, <strong>the more delayed — but also the more severe — the impact.</strong> Upstream businesses often benefit first; downstream businesses often suffer last but longest.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════
+     SECTION 3 — WHO WINS / WHO LOSES
+═══════════════════════════ -->
+<section class="sec-white" id="winners-losers">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 3 — The Impact Map</div>
+      <h2 class="sh-title">Who Benefits &amp; Who Gets Hurt — By Business Type</h2>
+      <p class="sh-desc">Supply chain disruption is not universally harmful — it creates significant winners alongside the losers. The same price spike that destroys a fabricator's margin may double the profits of a distributor sitting on pre-bought inventory. Understanding this asymmetry is critical for positioning clients during volatile market conditions.</p>
+    </div>
+
+    <!-- WINNERS VS LOSERS SPLIT TABLE -->
+    <div class="wl-wrap mb32">
+      <div class="wl-header">
+        <div class="wl-head win">
+          <div class="wl-head-label">When Disruption Hits</div>
+          <div class="wl-head-title">✅ Businesses That Benefit</div>
+        </div>
+        <div class="wl-head lose">
+          <div class="wl-head-label">When Disruption Hits</div>
+          <div class="wl-head-title">❌ Businesses That Suffer</div>
+        </div>
+      </div>
+      <div class="wl-body">
+        <div class="wl-row">
+          <div class="wl-cell win-side">
+            <strong>Domestic Mills &amp; Primary Producers</strong>
+            <span>Tariffs and import restrictions on foreign steel, aluminum, or specialty alloys immediately improve pricing power for domestic producers. They face less competition and can raise prices. Section 232 tariffs in 2018 and again in 2025 each created significant windfalls for US steel mills.</span>
+          </div>
+          <div class="wl-cell lose-side">
+            <strong>Importers &amp; Import-Dependent Distributors</strong>
+            <span>Businesses built on importing lower-cost foreign material are immediately impacted by tariffs, port delays, and geopolitical restrictions. Their cost advantage disappears overnight while domestic competitors gain ground.</span>
+          </div>
+        </div>
+        <div class="wl-row">
+          <div class="wl-cell win-side">
+            <strong>Well-Stocked Distributors (Pre-Disruption Inventory)</strong>
+            <span>A service center or distributor sitting on 90–180 days of inventory at pre-disruption pricing when a price spike hits becomes an instant winner. They can hold inventory and sell at elevated market prices while competitors are waiting on mill orders. Gross margins can double or triple temporarily.</span>
+          </div>
+          <div class="wl-cell lose-side">
+            <strong>Lean-Inventory or JIT Distributors</strong>
+            <span>Businesses operating on just-in-time restocking with minimal safety stock are left without product when disruption hits. They must buy on the spot market at premium prices — often selling at a loss if they've already quoted customers at pre-disruption pricing.</span>
+          </div>
+        </div>
+        <div class="wl-row">
+          <div class="wl-cell win-side">
+            <strong>Domestic Specialty Machining Shops (Reshoring Wave)</strong>
+            <span>When offshore manufacturing becomes unreliable (as happened broadly during COVID, the Red Sea shipping crisis, and 2025 tariff escalation), domestic machine shops experience surges in demand from OEMs and contract manufacturers looking to re-source domestically.</span>
+          </div>
+          <div class="wl-cell lose-side">
+            <strong>Fabricators &amp; Machine Shops with Fixed-Price Quotes Outstanding</strong>
+            <span>A fabricator who quoted a large project at $85/cwt for A36 plate and then watches the market go to $130/cwt is locked in a losing position. Fixed-price contracts become loss contracts when material prices spike after the quote is submitted.</span>
+          </div>
+        </div>
+        <div class="wl-row">
+          <div class="wl-cell win-side">
+            <strong>Secondary / Scrap Metal Processors</strong>
+            <span>When primary production is constrained, scrap metal dealers and secondary processors see demand surge. Mini-mills running on scrap can scale up more quickly than integrated mills, and scrap prices rise as competition for the feedstock increases.</span>
+          </div>
+          <div class="wl-cell lose-side">
+            <strong>OEMs with Single-Source Supplier Agreements</strong>
+            <span>An OEM with a sole-source agreement for a critical forging or casting component faces a production halt if that supplier goes offline. Long-term single-source relationships — though efficient in normal times — create catastrophic vulnerability during supply disruptions.</span>
+          </div>
+        </div>
+        <div class="wl-row">
+          <div class="wl-cell win-side">
+            <strong>MRO Distributors &amp; Maintenance Service Providers</strong>
+            <span>When new equipment or materials are unavailable, industrial plants extend the life of existing equipment — dramatically increasing demand for maintenance parts, bearings, seals, lubricants, and repair services. MRO demand tends to be counter-cyclical or disruption-resistant.</span>
+          </div>
+          <div class="wl-cell lose-side">
+            <strong>Stamping Shops &amp; Automotive Suppliers</strong>
+            <span>Automotive supply chains are particularly vulnerable to cascading disruption. The 2021 semiconductor shortage halted auto production plants — and the 2025 Canada/Mexico tariffs threatened the deeply integrated North American auto supply chain — stamping shops and fabricators with heavy automotive exposure faced revenue volatility while fixed overhead continued.</span>
+          </div>
+        </div>
+        <div class="wl-row">
+          <div class="wl-cell win-side">
+            <strong>Alternative Material Distributors &amp; Substitution Specialists</strong>
+            <span>When a primary material becomes unavailable or unaffordable, buyers look for alternatives. Distributors who can offer substitute alloys, materials, or forms — and who have the technical knowledge to recommend them credibly — gain new customers who never called them before disruption.</span>
+          </div>
+          <div class="wl-cell lose-side">
+            <strong>Small Fabricators Without Mill-Direct Relationships</strong>
+            <span>During allocation periods at mills and large distributors, smaller service centers and fabricators buying in smaller quantities get de-prioritized. Large accounts with annual volume commitments get their allocations; smaller buyers get told to wait — or to pay spot market premiums.</span>
+          </div>
+        </div>
+        <div class="wl-row">
+          <div class="wl-cell win-side">
+            <strong>Certified Domestic Specialty Distributors (DFARS, AMS)</strong>
+            <span>Aerospace and defense distributors who maintain DFARS compliance documentation and domestic-source certifications become indispensable when foreign-source material is embargoed or sanctioned. Their compliance infrastructure — viewed as overhead in normal times — becomes a competitive moat during every new round of trade policy disruption.</span>
+          </div>
+          <div class="wl-cell lose-side">
+            <strong>Contract Manufacturers with Multi-Tier Dependency</strong>
+            <span>A contract manufacturer managing 50+ suppliers faces compounding risk. When multiple tiers are disrupted simultaneously, a CM may find that a $10 casting is holding up a $50,000 assembly. The smallest disrupted component determines the delivery date of the entire program.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout gold">
+      <div class="callout-label">💡 The Content Strategy Implication</div>
+      <p>When your industrial client is a <strong>winner</strong> during disruption — a well-stocked distributor, a domestic specialty machinist, a DFARS-certified aerospace supplier — the content strategy should lean into availability, reliability, and domestic sourcing. These are the messages buyers are actively searching for when their existing supply chain is failing. When your client is <strong>vulnerable</strong> to disruption, content strategy should emphasize long-term partnership, transparent lead times, and pricing protection mechanisms — building trust before the next disruption arrives.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════
+     SECTION 4 — THE MIDDLE SQUEEZE
+═══════════════════════════ -->
+<section class="sec-p9" id="middle-squeeze">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag gold">Section 4 — The Most Dangerous Position</div>
+      <h2 class="sh-title">The Middle Squeeze: Why Tier 2–3 Gets Crushed</h2>
+      <p class="sh-desc">The most vulnerable businesses in any supply chain disruption are those caught in the middle — distributors and processors who buy from producers at rising prices but sell to OEMs and fabricators who refuse to absorb the full increase. This "middle squeeze" is the defining financial dynamic of industrial supply chain disruption.</p>
+    </div>
+
+    <div class="squeeze-wrap mb32">
+      <div class="sq-row hdr">
+        <div class="sq-num">Tier</div>
+        <div class="sq-cell">Business Type</div>
+        <div class="sq-cell">Cost Pressure (Upstream)</div>
+        <div class="sq-cell">Revenue Pressure (Downstream)</div>
+      </div>
+      <div class="sq-row">
+        <div class="sq-num" style="background:var(--t1)">T1</div>
+        <div class="sq-cell"><strong>Steel Mill / Primary Producer</strong><span>Sets the market price. Controls the upstream tap.</span></div>
+        <div class="sq-cell">Raw material and energy costs rise with disruption — but they pass increases through immediately via price announcements to distributors.</div>
+        <div class="sq-cell" style="background:rgba(39,174,96,.05)">Strong pricing power. Buyers must accept increases or wait for an alternative that may not exist. Margin typically expands during price spikes.</div>
+      </div>
+      <div class="sq-row">
+        <div class="sq-num" style="background:var(--t2)">T2</div>
+        <div class="sq-cell sq-highlight"><span class="sq-hl-label">⚠ Squeeze Zone</span><strong>Regional Service Center / Distributor</strong><span>Caught between mill and buyer.</span></div>
+        <div class="sq-cell sq-highlight">Pays the mill's new elevated price to replenish inventory. Mill announced a $150/ton surcharge effective Monday. The service center's existing stock was bought at the old price — but new stock costs dramatically more.</div>
+        <div class="sq-cell sq-highlight">Cannot immediately pass full increases to fabricators and OEMs who have quoted their customers at pre-disruption pricing. Must negotiate increases on each account individually. Some customers walk. Margins compress severely.</div>
+      </div>
+      <div class="sq-row">
+        <div class="sq-num" style="background:var(--t3)">T3</div>
+        <div class="sq-cell sq-highlight"><span class="sq-hl-label">⚠ Squeeze Zone</span><strong>Metal Fabricator / CNC Machine Shop</strong><span>Committed to quotes, facing cost overruns.</span></div>
+        <div class="sq-cell sq-highlight">Has already purchased material at elevated prices from the service center. Every new purchase order for raw stock costs more than the last. For long projects, material cost can increase 2–3× from quote to project completion.</div>
+        <div class="sq-cell sq-highlight">Locked into fixed-price quotes submitted to OEM customers before disruption. The OEM customer will not renegotiate. The fabricator absorbs the difference — which may turn a profitable job into a loss.</div>
+      </div>
+      <div class="sq-row">
+        <div class="sq-num" style="background:var(--t5)">T5</div>
+        <div class="sq-cell"><strong>OEM / Integrator</strong><span>Downstream buyer with contract commitments.</span></div>
+        <div class="sq-cell">Its suppliers (Tier 3–4) are trying to pass material increases through. The OEM resists, knowing it has its own customers and contracts to honor. It uses purchasing power and volume leverage to push back on price increases.</div>
+        <div class="sq-cell" style="background:rgba(39,174,96,.05)">Has contractual protection from many price increases in the short term. Uses volume leverage to delay or limit increases. Often outlasts mid-chain businesses in price negotiation standoffs — the middle tier has less staying power.</div>
+      </div>
+    </div>
+
+    <div class="g2 mb24">
+      <div class="card navy">
+        <div class="card-icon">🗜️</div>
+        <h3>Why the Squeeze is Structurally Inevitable</h3>
+        <p>Mills announce price increases immediately and unilaterally — a letter goes to all distributors on Tuesday morning. OEM customers resist price increases through contract language, purchasing power, and the threat to multi-source. The distributor and fabricator in between have no one to quickly transfer pressure to. They absorb the gap for weeks or months until contracts can be renegotiated or customers accept reality.</p>
+      </div>
+      <div class="card navy">
+        <div class="card-icon">📊</div>
+        <h3>The Inventory Position Matters Enormously</h3>
+        <p>A service center with 90 days of pre-bought inventory at the old price is temporarily in an excellent position — they can sell at the new market price while their cost of goods remains at the old price. But once that buffer sells through, they face the full weight of the new pricing. The pain is delayed, not eliminated. Inventory position is the single most important variable in Tier 2 disruption resilience.</p>
+      </div>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-label">Content Strategy for Squeezed Clients</div>
+      <p>If your client is a Tier 2–3 business experiencing the squeeze, their buyers are also feeling it and actively searching for relief. Content that addresses <strong>price transparency, lead time reliability, and supply security</strong> directly speaks to what their buyers fear most. This is the moment to publish content around what you <em>do have in stock</em>, what your current lead times actually are, and what material escalation clauses or pricing policies you offer. The clients who communicate clearly through disruption win accounts from competitors who go silent.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════
+     SECTION 5 — CASE STUDIES
+═══════════════════════════ -->
+<section class="sec-white" id="case-studies">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 5 — Real Disruption Events</div>
+      <h2 class="sh-title">7 Major Disruptions — What Happened &amp; Who Won</h2>
+      <p class="sh-desc">Abstract supply chain concepts become immediately clear when mapped to specific events. These seven disruptions — spanning 2018 through 2025 — illustrate how different disruption types travel through the chain, and how chain position determined who capitalized and who was damaged. The most recent 2024–2025 examples are particularly relevant because the conditions they created are still shaping buyer behavior today.</p>
+    </div>
+
+    <!-- CASE STUDY 1 -->
+    <div class="cs-block">
+      <div class="cs-header" style="background:var(--navy)">
+        <div class="cs-header-left">
+          <div class="cs-event-tag">Geopolitical — Trade Policy</div>
+          <div class="cs-title">US Section 232 Steel &amp; Aluminum Tariffs</div>
+          <div class="cs-subtitle">25% tariff on steel imports, 10% on aluminum — affecting virtually all US industrial supply chains</div>
+        </div>
+        <div class="cs-year">2018</div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-what">The Trump administration invoked Section 232 of the Trade Expansion Act to impose broad tariffs on steel (25%) and aluminum (10%) imports, citing national security. The announcement triggered immediate market movement — domestic steel prices spiked 30–50% within months. Import-dependent buyers scrambled. Domestic mills filled their order books. Some exemptions were negotiated; most were not. The tariffs reshaped sourcing patterns for years and are still partially in effect.</div>
+        <div class="cs-impact">
+          <div class="cs-win-box">
+            <div class="cs-box-label">Winners</div>
+            <ul class="cs-list win">
+              <li>US domestic steel mills (Nucor, US Steel, AK Steel) — pricing power surged, utilization rates improved significantly</li>
+              <li>Service centers holding pre-tariff imported inventory — sold at elevated post-tariff domestic pricing</li>
+              <li>Domestic specialty alloy distributors — import-sourced competitors became immediately cost-disadvantaged</li>
+              <li>Scrap metal dealers — mini-mill demand for domestic scrap surged as imports dried up</li>
+              <li>DFARS-compliant domestic titanium distributors — defense buyers accelerated domestic sourcing shift</li>
+            </ul>
+          </div>
+          <div class="cs-lose-box">
+            <div class="cs-box-label">Losers</div>
+            <ul class="cs-list lose">
+              <li>Steel-consuming manufacturers (auto, appliance, construction equipment) — input costs rose 25–40%, margin compressed</li>
+              <li>Import-dependent service centers — lost their cost advantage; had to rapidly requalify domestic suppliers</li>
+              <li>Fabricators with fixed-price OEM contracts — material cost increases could not be passed through</li>
+              <li>Agricultural equipment OEMs — steel-intensive products faced significant margin erosion</li>
+              <li>Small fabricators without mill-direct allocation relationships — deprioritized by overwhelmed domestic mills</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs-lesson">
+          <div class="cs-lesson-label">Agency Lesson</div>
+          <p>This was the moment domestic sourcing and "Made in USA" steel messaging became genuinely powerful for content strategy. Service centers and distributors who published content around DFARS compliance, domestic mill certifications, and domestic-source availability saw inbound inquiries surge. Clients who were already positioned with this content captured new accounts; clients with generic content missed the wave entirely.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 2 -->
+    <div class="cs-block">
+      <div class="cs-header" style="background:#6B1538">
+        <div class="cs-header-left">
+          <div class="cs-event-tag">Global Pandemic — Multi-Tier Cascading Disruption</div>
+          <div class="cs-title">COVID-19 Supply Chain Collapse &amp; Surge</div>
+          <div class="cs-subtitle">Simultaneous demand collapse and recovery across all industrial sectors, combined with logistics system failure</div>
+        </div>
+        <div class="cs-year">2020–22</div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-what">COVID-19 created the most complex supply chain disruption in modern industrial history — not a single event but a sequence. Phase 1 (Spring 2020): demand collapsed across automotive, aerospace, and oil &amp; gas simultaneously. Distributors canceled mill orders. Phase 2 (Summer 2020): residential construction, home improvement, and PPE demand surged unexpectedly. Phase 3 (2021): demand recovered faster than supply could respond. Lead times exploded. Prices doubled. Semiconductor shortages halted auto plants. Port congestion stranded billions in inventory. Phase 4 (2022–2023): correction and normalization at different speeds across different sectors.</div>
+        <div class="cs-impact">
+          <div class="cs-win-box">
+            <div class="cs-box-label">Winners</div>
+            <ul class="cs-list win">
+              <li>Domestic machine shops and fabricators — reshoring inquiries surged as offshore manufacturing proved unreliable</li>
+              <li>Distributors who maintained inventory through Phase 1 — could sell at Phase 3 elevated prices</li>
+              <li>MRO distributors and maintenance service providers — plants extended equipment life, driving repair demand</li>
+              <li>E-commerce-enabled industrial distributors — digital-native ordering platforms outperformed phone/fax competitors</li>
+              <li>Domestic specialty alloy distributors — offshore-sourced alternatives became unavailable, driving buyers to domestic stock</li>
+            </ul>
+          </div>
+          <div class="cs-lose-box">
+            <div class="cs-box-label">Losers</div>
+            <ul class="cs-list lose">
+              <li>Automotive stamping shops and Tier-2 suppliers — assembly plants halted, demand evaporated for months</li>
+              <li>Aerospace component manufacturers — commercial aerospace (Boeing 737 MAX + COVID) compounded into a catastrophic demand collapse</li>
+              <li>Oil &amp; gas equipment suppliers — exploration and production spending collapsed with oil prices</li>
+              <li>Import-dependent service centers — logistics collapse made import timelines completely unpredictable</li>
+              <li>Fabricators with long-lead fixed-price contracts — material prices doubled after contracts were signed</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs-lesson">
+          <div class="cs-lesson-label">Agency Lesson</div>
+          <p>COVID demonstrated that digital presence became a direct competitive advantage during disruption. Industrial buyers who could not visit suppliers, attend trade shows, or rely on their rep networks turned to Google to find alternative sources. Clients with robust, specific, SEO-optimized content for their actual capabilities captured inbound leads from buyers whose existing suppliers had failed them. Clients with thin or generic websites were invisible in their most important sales moment.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 3 -->
+    <div class="cs-block">
+      <div class="cs-header" style="background:var(--p5)">
+        <div class="cs-header-left">
+          <div class="cs-event-tag">Geopolitical — Armed Conflict &amp; Sanctions</div>
+          <div class="cs-title">Russia-Ukraine Conflict — Titanium &amp; Nickel Supply Crisis</div>
+          <div class="cs-subtitle">Russia supplied ~30% of global palladium, significant nickel, and was a major titanium feedstock source for Boeing and Airbus</div>
+        </div>
+        <div class="cs-year">2022</div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-what">Russia's invasion of Ukraine in February 2022 immediately triggered Western sanctions and voluntary sourcing restrictions. Russia had been a significant supplier of titanium sponge (used in aerospace-grade titanium alloys), nickel (critical for superalloys like Inconel 718), and palladium (used in catalytic converters and electronics). The aerospace industry — already weakened by COVID — scrambled to qualify alternative sources. Nickel prices briefly spiked to $100,000 per ton on the London Metal Exchange before trading was suspended.</div>
+        <div class="cs-impact">
+          <div class="cs-win-box">
+            <div class="cs-box-label">Winners</div>
+            <ul class="cs-list win">
+              <li>DFARS-compliant US and allied-nation titanium distributors — demand surged as defense primes required domestic-source material</li>
+              <li>Kazakhstan and Japanese titanium producers — qualified as alternative sources, saw demand surge</li>
+              <li>Non-Russian nickel producers (Indonesia, Philippines, Canada) — dramatic pricing power improvement</li>
+              <li>Recyclers and secondary processors of titanium and nickel alloy scrap — scrap value and demand surged</li>
+              <li>Specialty alloy distributors with large pre-crisis inventory positions — sold at significantly elevated market pricing</li>
+            </ul>
+          </div>
+          <div class="cs-lose-box">
+            <div class="cs-box-label">Losers</div>
+            <ul class="cs-list lose">
+              <li>Aerospace OEMs (Boeing, Airbus) — had to rapidly qualify alternative titanium sources and absorb cost increases</li>
+              <li>Nickel superalloy end-users — Inconel pricing surged, impacting gas turbine and aerospace component costs</li>
+              <li>Stainless steel producers using nickel — input costs rose dramatically, forcing price increases throughout the chain</li>
+              <li>Automotive catalytic converter manufacturers — palladium prices spiked, forcing accelerated transition to platinum alternatives</li>
+              <li>Machine shops with outstanding aerospace quotes — material cost component of quotes immediately became uneconomical</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs-lesson">
+          <div class="cs-lesson-label">Agency Lesson</div>
+          <p>DFARS compliance content became one of the highest-converting page types in aerospace and defense distribution overnight. Buyers who had always sourced titanium from low-cost import sources suddenly needed to demonstrate domestic-source compliance to their prime contractor customers. Distributors who already had "DFARS compliant titanium" pages ranking in search captured this demand wave immediately. Those without it missed the moment entirely and had to play catch-up after the peak had passed.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 4 -->
+    <div class="cs-block">
+      <div class="cs-header" style="background:var(--p4)">
+        <div class="cs-header-left">
+          <div class="cs-event-tag">Natural Disaster — Petrochemical Cluster Disruption</div>
+          <div class="cs-title">Hurricane Ida — Gulf Coast Resin &amp; Polymer Shortage</div>
+          <div class="cs-subtitle">A single storm event disrupted 30–40% of US polymer production capacity, driving resin prices up 60–80% within 60 days</div>
+        </div>
+        <div class="cs-year">2021</div>
+      </div>
+      <div class="cs-body">
+        <div class="cs-what">Hurricane Ida made landfall in Louisiana in August 2021, striking directly through the heart of the US Gulf Coast petrochemical complex. The region produces roughly 40% of US polyethylene, 35% of US polypropylene, and significant volumes of PVC, nylon, and other engineering polymer feedstocks. Multiple facilities declared force majeure simultaneously. Resin prices — already elevated from COVID-era supply-demand imbalance — surged 60–80% within 60 days. The shortage cascaded through plastic distributors, injection molders, and ultimately into consumer and industrial product shortages.</div>
+        <div class="cs-impact">
+          <div class="cs-win-box">
+            <div class="cs-box-label">Winners</div>
+            <ul class="cs-list win">
+              <li>Plastic sheet and rod distributors with large pre-storm inventory — sold at dramatically elevated spot pricing</li>
+              <li>Non-Gulf Coast domestic resin producers — immediate pricing power as Gulf supply disappeared</li>
+              <li>European and Asian resin importers — logistics challenges aside, import economics suddenly made sense</li>
+              <li>Distributors of alternative engineering materials (metals, composites) — buyers sought substitutes</li>
+              <li>Resin brokers and spot market traders — volume and margin opportunity during allocation periods</li>
+            </ul>
+          </div>
+          <div class="cs-lose-box">
+            <div class="cs-box-label">Losers</div>
+            <ul class="cs-list lose">
+              <li>Injection molding shops — production lines halted without resin; customers missed delivery commitments</li>
+              <li>Plastic pipe and fitting manufacturers — HDPE and PVC shortages hit construction and infrastructure projects</li>
+              <li>Packaging manufacturers — PE film and sheet availability collapsed, impacting food and consumer goods supply</li>
+              <li>Automotive plastics suppliers — already stressed from semiconductor shortage, now facing resin shortage simultaneously</li>
+              <li>Small distributors without allocation relationships with producers — large buyers were protected; small buyers were cut off</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs-lesson">
+          <div class="cs-lesson-label">Agency Lesson</div>
+          <p>This disruption is the clearest example of geographic concentration risk — and why content that highlights geographic supply diversity is a genuine competitive differentiator. Distributors sourcing from multiple production regions (not solely Gulf Coast) could credibly claim supply resilience. The content angle of "multiple supplier relationships" and "allocation priority" — typically invisible to buyers during normal conditions — became the most compelling value proposition in the market for 6+ months after Ida.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ RECENT DISRUPTIONS DIVIDER ═══ -->
+    <div class="recent-divider">
+      <div class="recent-divider-line"></div>
+      <div class="recent-divider-badge">
+        🕐 2024–2025 &mdash; Recent Major Disruptions
+      </div>
+      <div class="recent-divider-line right"></div>
+    </div>
+
+    <div class="callout gold mb32">
+      <div class="callout-label">Why 2024–2025 Matters Right Now</div>
+      <p>The three disruptions below are not historical footnotes — they are <strong>active market conditions that continue to shape buyer behavior, sourcing decisions, and search intent today.</strong> The Red Sea shipping crisis fundamentally altered import economics. The Baltimore Bridge collapse demonstrated how a single infrastructure failure can close a top-five US port in hours. The 2025 tariff wave is the most significant trade policy reshaping of industrial supply chains since 2018 — and its effects are still being absorbed across every tier. Clients navigating these events right now need content that speaks directly to what their buyers are searching for in response to them.</p>
+    </div>
+
+    <!-- CASE STUDY 5 — RED SEA 2024 -->
+    <div class="cs-block">
+      <div class="cs-header" style="background:#0A5A7A">
+        <div class="cs-header-left">
+          <div class="cs-recent-badge">🔴 Recent — 2024</div>
+          <div class="cs-event-tag">Geopolitical — Maritime Security / Logistics Breakdown</div>
+          <div class="cs-title">Red Sea Shipping Crisis — Houthi Attacks Force Global Reroute</div>
+          <div class="cs-subtitle">~15% of global trade rerouted away from Suez Canal, adding 10–14 days and thousands of dollars per container to Asia-US and Asia-Europe shipping</div>
+        </div>
+        <div class="cs-year">2024</div>
+      </div>
+      <div class="cs-body">
+
+        <div class="cs-stats">
+          <div class="cs-stat-pill">📦 Container rates: $1,500 → $10,000+ / 40ft</div>
+          <div class="cs-stat-pill warn">🗓 +10–14 days per voyage via Cape of Good Hope</div>
+          <div class="cs-stat-pill danger">🌍 ~15% of global trade rerouted</div>
+          <div class="cs-stat-pill">🚢 All major carriers suspended Red Sea routes by Jan 2024</div>
+        </div>
+
+        <div class="cs-what">Starting in late 2023 and escalating sharply through 2024, Houthi rebel forces in Yemen began attacking commercial shipping vessels transiting the Red Sea and Bab-el-Mandeb Strait — one of the world's most critical shipping chokepoints. By January 2024, every major container shipping carrier (Maersk, MSC, CMA CGM, Hapag-Lloyd, Evergreen) had suspended Red Sea operations and rerouted vessels around the Cape of Good Hope, adding approximately 3,500–4,000 additional nautical miles and 10–14 days to every Asia-to-Europe or Asia-to-East Coast US voyage. Container spot rates surged from roughly $1,500 per 40ft container in late 2023 to over $8,000–$10,000 by Q2 2024. Industrial importers relying on Asian-origin components, tooling, consumables, and sub-assemblies faced cascading schedule delays and freight cost explosions throughout most of 2024. US and allied military operations (Operation Prosperity Guardian) provided some convoy escort but did not restore safe commercial transit. The disruption persisted through the full year, making it one of the longest sustained global logistics disruptions outside of COVID.</div>
+        <div class="cs-impact">
+          <div class="cs-win-box">
+            <div class="cs-box-label">Winners</div>
+            <ul class="cs-list win">
+              <li>Domestic and near-shore manufacturers — reshoring and nearshoring economics improved dramatically as ocean freight costs and lead time uncertainty made Asian-source alternatives far less attractive</li>
+              <li>Air freight providers — urgent industrial cargo shifted to air; rates spiked but capacity filled for time-sensitive components</li>
+              <li>US domestic distributors with local inventory depth — buyers burned by import delays urgently sought domestic stock, often paying premium pricing for immediate availability</li>
+              <li>Gulf Coast and East Coast port operators (Savannah, Houston, NY/NJ) — rerouted Cape of Good Hope voyages created new port relationships and volume at alternate East Coast ports</li>
+              <li>Rail intermodal and domestic 3PL operators — domestic distribution of near-shored inventory drove significant demand for inland logistics</li>
+              <li>Mexican and Canadian nearshore manufacturers — tariff-free proximity sourcing became dramatically more competitive vs. Asian imports with $10,000 freight bills and 8-week lead times</li>
+            </ul>
+          </div>
+          <div class="cs-lose-box">
+            <div class="cs-box-label">Losers</div>
+            <ul class="cs-list lose">
+              <li>Importers of Asian-manufactured components, tooling, CNC consumables, and sub-assemblies — lead times extended 3–6 weeks, JIT schedules collapsed entirely</li>
+              <li>Industrial distributors carrying Asian-origin product lines — pipeline inventory depleted; spot purchasing at $10,000 freight premiums made margins unsustainable</li>
+              <li>Manufacturers with single-source Asian suppliers for electronic controls, sensors, or specialty fasteners — production schedules missed, customer commitments broken</li>
+              <li>Auto and equipment OEMs with Asian-sourced drivetrain components — delivery commitments missed; expensive production buffers exhausted</li>
+              <li>Small machine shops and fabricators dependent on Asian import tooling — lead times for CNC inserts, toolholders, and carbide consumables stretched by months</li>
+              <li>Contract manufacturers managing global Tier 2–3 supplier networks — coordinating dozens of delayed Asian-source suppliers simultaneously became operationally unsustainable</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs-lesson">
+          <div class="cs-lesson-label">Agency Lesson</div>
+          <p>The Red Sea crisis was the most powerful reminder since COVID that geographic concentration in a single logistics route creates systemic vulnerability — and that buyers know it. Industrial clients who could credibly communicate "domestic stock," "US-sourced inventory," or "no import dependency" had their value proposition reinforced by a global logistics failure visible on the front page of every business publication. Content emphasizing domestic inventory depth, same-week availability, and supply chain independence from offshore logistics converted at dramatically higher rates throughout 2024. For any client who imports material or components from Asia, this disruption created a permanent SEO opportunity: "US domestic [material/component] available now" pages that speak directly to buyers who will never fully trust single-route import supply chains again.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 6 — BALTIMORE BRIDGE 2024 -->
+    <div class="cs-block">
+      <div class="cs-header" style="background:#7A3B1A">
+        <div class="cs-header-left">
+          <div class="cs-recent-badge">🔴 Recent — 2024</div>
+          <div class="cs-event-tag">Infrastructure Failure — Major Port Closure</div>
+          <div class="cs-title">Francis Scott Key Bridge Collapse — Port of Baltimore Shutdown</div>
+          <div class="cs-subtitle">America's top vehicle import/export port closed for 11+ weeks, disrupting automotive OEMs, heavy equipment exporters, and regional steel supply chains</div>
+        </div>
+        <div class="cs-year">2024</div>
+      </div>
+      <div class="cs-body">
+
+        <div class="cs-stats">
+          <div class="cs-stat-pill danger">🌉 Bridge collapsed: March 26, 2024</div>
+          <div class="cs-stat-pill">🚗 847,000 vehicles/year — #1 US vehicle port</div>
+          <div class="cs-stat-pill warn">⏱ Full channel closure: 11+ weeks</div>
+          <div class="cs-stat-pill">📦 ~55M tons of annual cargo disrupted</div>
+        </div>
+
+        <div class="cs-what">On March 26, 2024, the container ship MV Dali suffered a sudden loss of power and struck the Francis Scott Key Bridge in Baltimore, Maryland, causing its catastrophic collapse in seconds. Six construction workers died in the accident. The collapse immediately closed the Port of Baltimore's shipping channel — the only deep-water access to the port — triggering the largest US port disruption since Hurricane Katrina. The Port of Baltimore handled approximately 847,000 vehicles per year — more than any other US port — making it the central hub for imported vehicle distribution and US car and agricultural/construction equipment exports. The partial channel (for smaller vessels) did not reopen until late April, the main deep-water channel was not restored until June 2024, and full operations were not normalized until August 2024. During the closure, auto importers, coal exporters, and steel coil importers rerouted to ports in Brunswick (GA), Jacksonville (FL), and New York/New Jersey — adding significant transport costs, delays, and capacity strains at receiving ports not built for the sudden volume surge.</div>
+        <div class="cs-impact">
+          <div class="cs-win-box">
+            <div class="cs-box-label">Winners</div>
+            <ul class="cs-list win">
+              <li>Competing auto-capable ports (Brunswick GA, Jacksonville FL, NY/NJ) — vehicle throughput surged, creating new volume relationships and infrastructure investment that outlasted the crisis</li>
+              <li>Heavy trucking and inland transport companies — redirected cargo from alternate ports to final destinations created substantial new trucking demand and premium pricing power</li>
+              <li>Auto dealers with existing deep new-vehicle inventory — scarcity dynamics improved transaction pricing while competitors waited weeks for diverted shipments</li>
+              <li>Third-party logistics (3PL) and freight forwarding companies — surging complexity and rerouting needs created exceptional demand for logistics expertise</li>
+              <li>Domestic steel service centers not dependent on Baltimore port imports — regional competitors lost their import cost advantage during the closure period</li>
+            </ul>
+          </div>
+          <div class="cs-lose-box">
+            <div class="cs-box-label">Losers</div>
+            <ul class="cs-list lose">
+              <li>Auto OEMs (BMW, Mercedes, Volkswagen, Volvo) — Baltimore was the primary US entry point for many European vehicle brands; delivery timelines to dealers disrupted for months</li>
+              <li>Heavy equipment and agricultural machinery exporters — Baltimore was a major export hub for Caterpillar, John Deere, and CNH equipment; shipments delayed by weeks and re-routed at significant additional cost</li>
+              <li>Steel coil importers — Baltimore receives significant volumes of imported steel coil; regional service centers dependent on this source faced supply interruptions and spot-market premiums</li>
+              <li>Baltimore-region fabricators and distributors — longstanding supply relationships built on port proximity became unreliable overnight with no warning</li>
+              <li>Small importers without pre-existing relationships at alternate ports — large-volume customers got priority at alternate ports; smaller shippers faced spot-rate premiums, capacity limitations, and extended wait times</li>
+              <li>Construction material importers (lumber, stone, gypsum) — Baltimore handles significant non-vehicle cargo; construction project schedules in the Mid-Atlantic region were affected</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs-lesson">
+          <div class="cs-lesson-label">Agency Lesson</div>
+          <p>A single infrastructure failure eliminated a top-five US cargo port in under two minutes — with zero warning, on a Tuesday morning. No amount of supplier diversification protects a business if all of its suppliers ship through the same port. The Baltimore closure is the clearest argument for content that communicates multi-port sourcing, alternate logistics routes, and supply chain independence from single infrastructure nodes. For industrial clients in the Mid-Atlantic region, "domestic stock available now" and "no port dependency" messaging became immediately relevant in a way it had never been. Buyers who had never thought about port vulnerability now understood it viscerally — and they were searching for suppliers who could credibly say they weren't exposed to the same risk.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE STUDY 7 — 2025 TARIFF WAVE -->
+    <div class="cs-block">
+      <div class="cs-header" style="background:#1A3C5E">
+        <div class="cs-header-left">
+          <div class="cs-recent-badge">🔴 Recent — 2025</div>
+          <div class="cs-event-tag">Geopolitical — Sweeping Trade Policy / Multi-Country Tariff Wave</div>
+          <div class="cs-title">2025 US Tariff Wave — Steel, Aluminum, Canada/Mexico &amp; China Escalation</div>
+          <div class="cs-subtitle">The most sweeping trade policy action since 2018 — 25% steel &amp; aluminum globally, 25% on Canada &amp; Mexico, 145% on China — restructuring industrial sourcing across every tier</div>
+        </div>
+        <div class="cs-year">2025</div>
+      </div>
+      <div class="cs-body">
+
+        <div class="cs-stats">
+          <div class="cs-stat-pill danger">🏭 25% steel &amp; aluminum — all countries, no exemptions (Mar 2025)</div>
+          <div class="cs-stat-pill warn">🇨🇦🇲🇽 25% tariff on Canada &amp; Mexico goods (Feb 2025)</div>
+          <div class="cs-stat-pill danger">🇨🇳 China tariffs escalated to 145% (Apr 2025)</div>
+          <div class="cs-stat-pill">📅 "Liberation Day" global tariffs announced Apr 2, 2025</div>
+        </div>
+
+        <div class="cs-what">Beginning in January 2025 and escalating in waves through Q2 2025, the Trump administration initiated the most sweeping multi-front trade tariff action in modern US industrial history. Key actions included: (1) <strong>March 2025:</strong> 25% tariffs on all steel and aluminum imports reinstated with no country exceptions — removing prior exemptions previously granted to the EU, UK, Canada, Japan, South Korea, and Australia. This was a direct escalation beyond the 2018 Section 232 action. (2) <strong>February 2025:</strong> 25% tariffs announced on all imports from Canada and Mexico, threatening deeply integrated North American automotive and industrial supply chains — a particular shock given Canada and Mexico had been exempted from Section 232 since 2019. (3) <strong>April 2, 2025 ("Liberation Day"):</strong> Sweeping tariffs announced on most US trading partners, followed by a 90-day pause for most countries — but not China. China tariffs escalated to 145%, with China retaliating at 125% on US exports. Industrial markets responded immediately: domestic steel prices spiked, importers rushed to front-load purchases before effective dates, and procurement teams across every tier scrambled to model cost impacts and re-evaluate sourcing strategies that had been built over decades of normalized trade.</div>
+        <div class="cs-impact">
+          <div class="cs-win-box">
+            <div class="cs-box-label">Winners</div>
+            <ul class="cs-list win">
+              <li>US domestic steel mills and aluminum producers — removed import competition, improved pricing power, drove significant capacity utilization improvement; a near-exact replay and amplification of the 2018 Section 232 windfall</li>
+              <li>Domestic specialty metals distributors — import-sourced competitors faced dramatic cost disadvantages; buyers prioritized domestic stock and domestic-certified suppliers almost overnight</li>
+              <li>US-based contract manufacturers and job shops — reshoring urgency accelerated sharply as tariff economics fundamentally changed the offshore vs. domestic cost calculation for OEMs across multiple industries</li>
+              <li>Domestic scrap metal processors and recyclers — mini-mill demand for domestic scrap surged as import feedstocks became cost-prohibitive; scrap pricing improved significantly</li>
+              <li>DFARS-compliant aerospace and defense distributors — defense procurement acceleration + domestic-source requirements + tariff-driven sourcing shift created a powerful convergence of demand</li>
+              <li>Mexican and Canadian manufacturers of non-tariffed goods — businesses that qualified under USMCA exemptions maintained their trade advantages over fully-tariffed Asian competitors</li>
+            </ul>
+          </div>
+          <div class="cs-lose-box">
+            <div class="cs-box-label">Losers</div>
+            <ul class="cs-list lose">
+              <li>North American automotive OEMs and Tier suppliers — Canada and Mexico tariffs threatened highly integrated just-in-time supply chains; a single vehicle crosses the US-Canada or US-Mexico border multiple times before assembly completion</li>
+              <li>Importers of Chinese industrial components, tooling, bearings, and sub-assemblies — 145% tariffs made Chinese-origin products economically non-viable for most industrial applications overnight</li>
+              <li>US manufacturers dependent on Canadian steel and aluminum — despite being close allies with integrated supply chains, Canadian and Mexican material initially faced the same 25% treatment as any other import</li>
+              <li>Fabricators and machine shops with fixed-price contracts — material cost increases arrived before contracts could be renegotiated; the 2018 playbook repeated with even higher stakes</li>
+              <li>Industrial distributors carrying high volumes of Chinese-origin product — existing inventory was stranded at pre-tariff cost; replacement inventory would arrive at 145% higher landed cost, making entire product categories economically unviable</li>
+              <li>Agricultural equipment manufacturers (John Deere, CNH, AGCO) — steel-intensive products plus cross-border supply chains created compounding tariff exposure on both input costs and export markets</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cs-lesson">
+          <div class="cs-lesson-label">Agency Lesson</div>
+          <p>The 2025 tariff wave confirmed what 2018 first demonstrated: tariff-driven supply chain disruption is now a recurring, predictable feature of industrial market life — not a once-a-decade anomaly. The businesses best positioned to capture opportunity during the 2025 wave were those who had already invested in domestic sourcing content, DFARS compliance pages, "Made in USA" product messaging, and reshoring capability pages — not because they specifically predicted the 2025 policy, but because they had built the <strong>content infrastructure that buyers search for every time policy creates urgency.</strong> For every industrial client you work with today, ask this question: if a 25% tariff hit their primary import source tomorrow morning, would they be invisible or highly visible in search? That answer is the strategic content roadmap.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════
+     SECTION 6 — CONTENT STRATEGY BY TIER
+═══════════════════════════ -->
+<section class="sec-light" id="content-strategy">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 6 — Apply It to Your Clients</div>
+      <h2 class="sh-title">Content &amp; SEO Strategy by Supply Chain Position</h2>
+      <p class="sh-desc">A client's tier position determines almost everything about how their content should be written — what buyer they're talking to, what that buyer fears, what they're searching for, and what messaging will convert them. The same generic "request a quote" strategy fails differently at every tier. Here's how to tailor it.</p>
+    </div>
+
+    <div class="ps-grid mb32">
+
+      <div class="ps-card">
+        <div class="ps-header" style="background:var(--t1)">
+          <div class="ps-tier-label">Tier 1</div>
+          <div class="ps-name">Primary Producers — Mills &amp; Smelters</div>
+        </div>
+        <div class="ps-body">
+          <div class="ps-section">
+            <div class="ps-section-label">Buyer</div>
+            <div class="ps-section-text">Service centers, national distributors, large OEMs. These are sophisticated procurement teams buying in volume.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">What They Search For</div>
+            <div class="ps-section-text">"Steel mill lead times," "domestic aluminum smelter," "specialty alloy producer," "ASTM A36 mill certification"</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Content Priority</div>
+            <div class="ps-section-text">Mill capabilities, product range, certifications, capacity announcements, pricing transparency, allocation policies, sustainability credentials.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Disruption Messaging</div>
+            <div class="ps-section-text">Emphasize domestic production reliability, price stability programs, strategic inventory partnerships.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ps-card">
+        <div class="ps-header" style="background:var(--t2)">
+          <div class="ps-tier-label">Tier 2</div>
+          <div class="ps-name">Distributors &amp; Service Centers</div>
+        </div>
+        <div class="ps-body">
+          <div class="ps-section">
+            <div class="ps-section-label">Buyer</div>
+            <div class="ps-section-text">Fabricators, machine shops, OEM purchasing teams, maintenance buyers. High-frequency, specification-driven purchasing.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">What They Search For</div>
+            <div class="ps-section-text">"A36 plate in stock," "6061 aluminum same day," "316 stainless distributor," "cut to length steel Ohio," "DFARS titanium stock"</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Content Priority</div>
+            <div class="ps-section-text">In-stock availability, grade breadth, cut-to-size capabilities, lead times, certifications, geographic reach, online quoting.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Disruption Messaging</div>
+            <div class="ps-section-text">Inventory depth, multiple supplier relationships, allocation priority, domestic-source certifications, price transparency, no import dependency.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ps-card">
+        <div class="ps-header" style="background:var(--t3)">
+          <div class="ps-tier-label">Tier 3</div>
+          <div class="ps-name">Fabricators, Machine Shops &amp; Processors</div>
+        </div>
+        <div class="ps-body">
+          <div class="ps-section">
+            <div class="ps-section-label">Buyer</div>
+            <div class="ps-section-text">OEM engineers and procurement teams, Tier 4 assemblers, construction contractors. Technical, specification-driven buyers.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">What They Search For</div>
+            <div class="ps-section-text">"CNC machining 4140 steel," "custom aluminum fabrication Ohio," "AS9100 machine shop," "laser cutting stainless steel"</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Content Priority</div>
+            <div class="ps-section-text">Capability pages by process and material, certifications, equipment list, tolerances, quality documentation, industries served.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Disruption Messaging</div>
+            <div class="ps-section-text">Existing material relationships, ability to source alternatives, capacity availability, domestic sourcing, reshoring capability, US-only supply chain.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ps-card">
+        <div class="ps-header" style="background:var(--t4)">
+          <div class="ps-tier-label">Tier 4</div>
+          <div class="ps-name">Component Manufacturers &amp; Contract Mfrs.</div>
+        </div>
+        <div class="ps-body">
+          <div class="ps-section">
+            <div class="ps-section-label">Buyer</div>
+            <div class="ps-section-text">OEM program managers, product engineers, sourcing teams. Long-term program relationships, NDA-driven, trust-intensive.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">What They Search For</div>
+            <div class="ps-section-text">"Contract manufacturing partner," "aerospace component supplier," "ISO 13485 contract manufacturer," "full-service machining and assembly"</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Content Priority</div>
+            <div class="ps-section-text">Full-service capability, program management, certifications, verticals served, quality systems, supply chain management capability.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Disruption Messaging</div>
+            <div class="ps-section-text">Multi-supplier redundancy, domestic reshoring capability, program continuity, proactive communication, risk mitigation practices, tariff-proof US domestic sourcing.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ps-card">
+        <div class="ps-header" style="background:var(--t5)">
+          <div class="ps-tier-label">Tier 5</div>
+          <div class="ps-name">OEMs &amp; System Integrators</div>
+        </div>
+        <div class="ps-body">
+          <div class="ps-section">
+            <div class="ps-section-label">Buyer</div>
+            <div class="ps-section-text">End users, institutional purchasers, government agencies, infrastructure operators. Buying capability, not components.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">What They Search For</div>
+            <div class="ps-section-text">"Industrial conveyor manufacturer," "custom pump OEM," "aerospace defense supplier," "heat treatment equipment"</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Content Priority</div>
+            <div class="ps-section-text">Application pages, case studies, systems capabilities, delivery track record, after-sales support, certifications, lead times.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Disruption Messaging</div>
+            <div class="ps-section-text">Supply chain resilience programs, domestic manufacturing advantage, reduced lead times vs. offshore alternatives, program guarantees, tariff-immune domestic sourcing.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ps-card">
+        <div class="ps-header" style="background:var(--p9)">
+          <div class="ps-tier-label">Multi-Tier Context</div>
+          <div class="ps-name">Disruption-Specific Content Opportunities</div>
+        </div>
+        <div class="ps-body">
+          <div class="ps-section">
+            <div class="ps-section-label">During Active Disruption</div>
+            <div class="ps-section-text">Publish real-time availability updates. Create "alternative to [scarce material]" content. Highlight in-stock items prominently. Make quoting frictionless. Reference the active disruption event by name — buyers are searching for it.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Post-Disruption Opportunity</div>
+            <div class="ps-section-text">Buyers who experienced supply failure are actively looking for new, more reliable partners. This is the highest-intent buyer window — be visible with supply resilience messaging. The 2024–2025 disruptions created thousands of buyers who switched suppliers and never switched back.</div>
+          </div>
+          <div class="ps-section">
+            <div class="ps-section-label">Before Disruption (Evergreen)</div>
+            <div class="ps-section-text">Domestic sourcing certifications, allocation priority programs, price protection policies, lead time transparency, and multi-route logistics are always valuable — and far more credible when published before a crisis validates them.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════
+     SECTION 7 — QUESTIONS TO ASK
+═══════════════════════════ -->
+<section class="sec-white" id="questions">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag">Section 7 — Before You Write Anything</div>
+      <h2 class="sh-title">Supply Chain Questions to Ask Every New Industrial Client</h2>
+      <p class="sh-desc">Understanding a client's supply chain position, their upstream dependencies, and their vulnerability profile shapes every content decision you'll make. These questions surface the information that separates generic industrial content from supply-chain-intelligent content that earns buyer trust.</p>
+    </div>
+
+    <div class="q-grid mb32">
+      <div class="q-card">
+        <div class="q-num">1</div>
+        <div class="q-content">
+          <h4>Where in the supply chain do you sit — who do you buy from, and who do you sell to?</h4>
+          <p>Identify their exact tier. Are they buying direct from mills, or from distributors? Are they selling to OEMs, or to Tier 2 buyers? This single answer shapes the entire content strategy.</p>
+          <div class="q-why">→ Tier position determines the buyer persona, the content type, and the disruption profile for all future work.</div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">2</div>
+        <div class="q-content">
+          <h4>How many suppliers do you source from — and is any one supplier more than 30% of your supply?</h4>
+          <p>Single-source concentration is both a business risk and a content opportunity. If they have diverse supply relationships, that's a competitive differentiator to communicate. If they're single-sourced, that's a vulnerability to plan around.</p>
+          <div class="q-why">→ Supply concentration informs resilience messaging and risk disclosure to buyers.</div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">3</div>
+        <div class="q-content">
+          <h4>Are you domestic-source certified (DFARS, Buy American Act)? Do your customers require it?</h4>
+          <p>DFARS and domestic sourcing certifications are high-converting content topics for any client serving aerospace, defense, or government markets. If they have it, it needs to be prominently featured. If they don't, it may be limiting their market.</p>
+          <div class="q-why">→ Compliance certifications are page-level SEO opportunities with high buyer intent.</div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">4</div>
+        <div class="q-content">
+          <h4>What happened to your business during COVID / 2018 tariffs / Red Sea crisis / 2025 tariff wave?</h4>
+          <p>Their answer reveals whether they're a disruption winner or loser — and what narrative they can credibly tell. A distributor who maintained supply through the Red Sea crisis while competitors were waiting on delayed imports has an exceptionally powerful and current story to tell buyers.</p>
+          <div class="q-why">→ Real disruption experience — especially 2024–2025 events buyers still remember — is the most credible supply chain content you can publish.</div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">5</div>
+        <div class="q-content">
+          <h4>Do you carry safety stock — and how many days of inventory do you typically hold?</h4>
+          <p>Inventory depth is one of the most powerful differentiators a distributor can communicate — but most don't publish it because they're not aware it matters to buyers. A well-stocked distributor communicating specific inventory depth wins trust from buyers burned by lean-inventory competitors.</p>
+          <div class="q-why">→ Inventory depth content directly addresses the buyer's supply security fear.</div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">6</div>
+        <div class="q-content">
+          <h4>What's your policy on price escalation — do you offer fixed pricing, or pass through changes?</h4>
+          <p>Buyers who have been burned by mid-project price increases are actively looking for suppliers with price protection mechanisms. If the client offers anything resembling price stability — index pricing, fixed-period quotes, material escalation clauses — this should be in the content.</p>
+          <div class="q-why">→ Pricing transparency and protection are top buyer concerns during volatile markets.</div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">7</div>
+        <div class="q-content">
+          <h4>Which industries and markets does your revenue depend on — and how concentrated is it?</h4>
+          <p>A shop doing 80% aerospace and 20% general industrial has completely different disruption exposure than a shop evenly split across automotive, industrial, and defense. Industry concentration shapes both the risk profile and the content strategy — over-concentration in one sector is a vulnerability to plan around.</p>
+          <div class="q-why">→ Industry diversification is both a content theme and a business health indicator for the client relationship.</div>
+        </div>
+      </div>
+      <div class="q-card">
+        <div class="q-num">8</div>
+        <div class="q-content">
+          <h4>Have you gained new customers because a competitor failed to deliver during a disruption event?</h4>
+          <p>If yes, this is your most powerful content case study — and it's real. A buyer who switched to your client because their previous supplier failed during the Red Sea crisis, the 2025 tariff wave, or COVID is the living proof of your client's supply chain resilience value. These stories are more compelling than ever because the disruptions are still fresh.</p>
+          <div class="q-why">→ Disruption capture stories — especially from 2024–2025 — are the most credible content available for supply resilience positioning.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout p9">
+      <div class="callout-label">The Underlying Goal of Every Question</div>
+      <p>Every question above is designed to surface one of three things: <strong>a competitive advantage to amplify in content</strong> (domestic sourcing, inventory depth, supplier diversity, tariff-proof supply), <strong>a vulnerability to communicate transparently</strong> (limited inventory, single-source material, long lead times, import dependency), or <strong>a story that proves resilience under pressure</strong> (customers gained through competitor failure during the Red Sea crisis or 2025 tariff wave, supply maintained through COVID or Ida). The industrial buyer has been burned by supply chain failure before — and after 2024–2025, most of them have been burned recently. Content that directly addresses their specific, current fear — with credible, specific answers — converts at dramatically higher rates than content that pretends supply chains always work perfectly.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════
+     RECAP
+═══════════════════════════ -->
+<section class="sec-dark" id="recap">
+  <div class="container">
+    <div class="sh">
+      <div class="sh-tag wht">Part 9 Recap</div>
+      <h2 class="sh-title wht">What You Can Now Do</h2>
+      <p class="sh-desc wht">After completing Part 9, you should be able to map any industrial client to their supply chain position, understand their disruption exposure, identify their competitive opportunities, and write content that speaks directly to the supply chain fears of their specific buyers — including the very real and recent disruptions of 2024 and 2025.</p>
+    </div>
+    <div class="recap-grid">
+      <div class="recap-item">
+        <div class="recap-num">01</div>
+        <div class="recap-title">Map Any Client to Their Tier</div>
+        <div class="recap-desc">Use the 7-tier model to immediately identify where any industrial client sits — who they buy from, who they sell to, and what that means for their content strategy and buyer relationships.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">02</div>
+        <div class="recap-title">Identify Disruption Winners vs. Losers</div>
+        <div class="recap-desc">Recognize which position in the chain benefits from price spikes, shortages, tariffs, or logistics failures — and which positions are exposed. This changes the marketing message entirely.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">03</div>
+        <div class="recap-title">Understand the Middle Squeeze</div>
+        <div class="recap-desc">Tier 2–3 businesses are structurally most vulnerable to disruption — caught between rising upstream costs and resistant downstream buyers. Recognize the squeeze and help clients communicate through it.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">04</div>
+        <div class="recap-title">Apply Real Disruption Lessons (2018–2025)</div>
+        <div class="recap-desc">Seven disruptions — the 2018 tariffs, COVID supply collapse, Russia-Ukraine alloy crisis, Hurricane Ida, the 2024 Red Sea shipping crisis, the Baltimore Bridge port closure, and the 2025 tariff wave — each demonstrated the same truth: visible, specific, credible content captures buyers when existing supply chains fail them. The 2024–2025 events are still shaping buyer behavior right now.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">05</div>
+        <div class="recap-title">Write Tier-Appropriate Content</div>
+        <div class="recap-desc">A Tier 1 mill and a Tier 3 machine shop need completely different content — different buyers, different fears, different search behavior, different competitive differentiators. Match content strategy to chain position.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">06</div>
+        <div class="recap-title">Ask the Right Discovery Questions</div>
+        <div class="recap-desc">Eight supply chain questions surface the competitive advantages, vulnerabilities, and resilience stories that form the foundation of credible industrial content. Ask them before writing anything — and specifically ask about 2024–2025 events.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">07</div>
+        <div class="recap-title">Turn Disruption Into Opportunity</div>
+        <div class="recap-desc">Supply chain disruption is when industrial buyers most actively search for new partners. Clients who are visible, specific, and credible during a disruption capture accounts that stay for years. After 2024–2025, this is not theoretical — it's proven market behavior.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">08</div>
+        <div class="recap-title">Recognize the SEO Opportunity</div>
+        <div class="recap-desc">Disruption-driven searches — "domestic titanium distributor," "in-stock steel no import delay," "US source alternative to Chinese components," "tariff-exempt materials" — spike during supply crises and remain elevated long after. Pre-published, specific content captures this traffic; generic content is invisible to it.</div>
+      </div>
+      <div class="recap-item">
+        <div class="recap-num">09</div>
+        <div class="recap-title">Connect Supply Chain to Every Other Part</div>
+        <div class="recap-desc">Chain position informs B-SMART keyword strategy (Part 2), PPC audience targeting (Part 3), LOOP lead qualification (Part 5), materials vocabulary (Part 7), and the relativity of "volume" and "lead time" (Part 8). It's the context that ties the entire series together.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════
+     CTA
+═══════════════════════════ -->
+<div class="next-part-cta">
+  <div class="npc-inner">
+    <div class="npc-label">You've Completed the Full Series</div>
+    <div class="npc-title">Industrial &amp; B2B Training — All 9 Parts Complete</div>
+    <div class="npc-desc">From buyer psychology and SEO architecture, through PPC, client communication, LOOP &amp; CallRail, retention strategy, materials vocabulary, the relativity problem, and now the supply chain intelligence that ties it all together — you have the complete framework for industrial B2B client work. Return to any part to review, or bring what you've learned to your next client engagement.</div>
+    <a href="industrial-b2b-part1.html" class="npc-btn">← Return to Part 1: Foundations</a>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Outer<em>Box</em></div>
+  <div class="footer-school">B · S C H O O L</div>
+  <div class="footer-meta">
+    <span>Industrial &amp; B2B Training — Part 9 of 9: Supply Chain Intelligence</span>
+    <span>April 2026</span>
+    <span>Confidential · Employee Training Use Only</span>
+  </div>
+</footer>
+
+</body>
+</html>
