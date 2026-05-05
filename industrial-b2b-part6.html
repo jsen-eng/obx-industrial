@@ -245,6 +245,14 @@ ul.plain li::before { content: '▸'; color: var(--p6); flex-shrink: 0; font-siz
 .mb16{margin-bottom:16px;} .mb24{margin-bottom:24px;} .mb32{margin-bottom:32px;}
 [id]::before { content: ''; display: block; height: 80px; margin-top: -80px; pointer-events: none; }
 
+.next-part-cta { background: var(--navy-dark); padding: 52px 48px; text-align: center; }
+.npc-inner { max-width: 560px; margin: 0 auto; }
+.npc-label { color: rgba(255,255,255,0.35); font-size: 0.68rem; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 14px; }
+.npc-title { color: #fff; font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+.npc-desc { color: rgba(255,255,255,0.52); font-size: 0.87rem; margin-bottom: 24px; line-height: 1.65; }
+.npc-btn { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; transition: all 0.15s; }
+.npc-btn:hover { transform: translateY(-1px); opacity: 0.88; }
+
 @media (max-width: 860px) {
   .g2,.g3,.hb-scores,.ret-calc-grid,.interaction-grid,.perf-grid,.sc-parts { grid-template-columns: 1fr; }
   .container { padding: 0 24px; }
@@ -260,7 +268,7 @@ ul.plain li::before { content: '▸'; color: var(--p6); flex-shrink: 0; font-siz
 
 <nav class="top-nav">
   <div class="brand"><span class="brand-main">Outer<em>Box</em></span><span class="brand-school">B·SCHOOL</span></div>
-  <span class="nav-badge">Part 6 of 6 · Industrial & B2B</span>
+  <span class="nav-badge">Part 6 of 9 · Industrial & B2B</span>
 </nav>
 
 <div class="series-nav">
@@ -756,26 +764,22 @@ ul.plain li::before { content: '▸'; color: var(--p6); flex-shrink: 0; font-siz
   </div>
 </section>
 
-<!-- SERIES COMPLETE -->
-<div class="series-complete">
-  <div class="sc-label">🎓 Series Complete</div>
-  <h2 class="sc-title">Industrial & B2B Training Series</h2>
-  <p class="sc-desc">You've completed all 6 parts of the OBx B-School Industrial & B2B Training Series. You now have everything you need to work confidently in this vertical — from understanding the buyer to winning, serving, and retaining the client.</p>
-  <div class="sc-parts">
-    <a href="industrial-b2b-part1.html" class="sc-part"><span class="sc-p-num" style="background:var(--slate)">1</span><span class="sc-p-label">Foundations</span></a>
-    <a href="industrial-b2b-part2.html" class="sc-part"><span class="sc-p-num" style="background:var(--p2)">2</span><span class="sc-p-label">SEO Strategy</span></a>
-    <a href="industrial-b2b-part3.html" class="sc-part"><span class="sc-p-num" style="background:var(--p3)">3</span><span class="sc-p-label">PPC Strategy</span></a>
-    <a href="industrial-b2b-part4.html" class="sc-part"><span class="sc-p-num" style="background:var(--p4)">4</span><span class="sc-p-label">Communication</span></a>
-    <a href="industrial-b2b-part5.html" class="sc-part"><span class="sc-p-num" style="background:var(--p5)">5</span><span class="sc-p-label">Loop & CallRail</span></a>
-    <a href="industrial-b2b-part6.html" class="sc-part"><span class="sc-p-num" style="background:var(--p6)">6</span><span class="sc-p-label">Retention & Heartbeat</span></a>
+<!-- NEXT PART -->
+<div class="next-part-cta">
+  <div class="npc-inner">
+    <div class="npc-label">Up Next in the Series</div>
+    <div class="npc-title">Part 7: Materials Reference Guide</div>
+    <div class="npc-desc">The vocabulary of industrial materials is the vocabulary of credibility. Part 7 gives you a complete reference for steel grades, aluminum alloys, copper alloys, exotic metals, engineering plastics, high-temp polymers, and the machining services that bring them to spec.</div>
+    <a href="industrial-b2b-part7.html" class="npc-btn" style="background:var(--p7)">Start Part 7 →</a>
   </div>
 </div>
 
+<!-- Standardized footer — same structure for all 9 parts -->
 <footer class="footer">
   <div class="footer-brand">Outer<em>Box</em></div>
   <div class="footer-school">B · S C H O O L</div>
   <div class="footer-meta">
-    <span>Industrial & B2B Training — Part 6: Client Retention & Heartbeat</span>
+    <span><!-- Part-specific text — see table below --></span>
     <span>April 2026</span>
     <span>Confidential · Employee Training Use Only</span>
   </div>
