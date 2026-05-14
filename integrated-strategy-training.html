@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B·School | Integrated Strategy Playbook</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --card: #161616;
+      --card-hover: #1e1e1e;
+      --border: rgba(255,255,255,0.07);
+      --gold: #F5A623;
+      --gold-light: #FFD07A;
+      --gold-dim: rgba(245,166,35,0.12);
+      --blue: #3B82F6;
+      --blue-dim: rgba(59,130,246,0.12);
+      --green: #22C55E;
+      --green-dim: rgba(34,197,94,0.12);
+      --purple: #A855F7;
+      --purple-dim: rgba(168,85,247,0.12);
+      --red: #EF4444;
+      --red-dim: rgba(239,68,68,0.12);
+      --teal: #14B8A6;
+      --teal-dim: rgba(20,184,166,0.12);
+      --orange: #F97316;
+      --orange-dim: rgba(249,115,22,0.12);
+      --pink: #EC4899;
+      --pink-dim: rgba(236,72,153,0.12);
+      --white: #FFFFFF;
+      --gray-300: #D1D5DB;
+      --gray-400: #9CA3AF;
+      --gray-500: #6B7280;
+      --gray-600: #374151;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ====== NAV ====== */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,10,0.93);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem; height: 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-badge { background: var(--gold); color: var(--black); font-weight: 800; font-size: 11px; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; }
+    .nav-title { font-size: 13px; font-weight: 500; color: var(--gray-400); }
+    .nav-links { display: flex; gap: 1.4rem; list-style: none; }
+    .nav-links a { font-size: 11px; font-weight: 600; color: var(--gray-400); text-decoration: none; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    @media (max-width: 900px) { .nav-links { display: none; } }
+
+    /* ====== HERO ====== */
+    .hero { position: relative; padding: 100px 2rem 90px; text-align: center; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 900px; height: 500px; background: radial-gradient(ellipse, rgba(245,166,35,0.13) 0%, transparent 70%); pointer-events: none; }
+    .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid rgba(245,166,35,0.3); border-radius: 100px; padding: 5px 14px; font-size: 12px; font-weight: 600; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 28px; }
+    .hero-eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .hero h1 { font-family: 'DM Serif Display', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; max-width: 800px; margin: 0 auto 24px; }
+    .hero h1 em { font-style: italic; color: var(--gold); }
+    .hero-sub { max-width: 620px; margin: 0 auto 40px; color: var(--gray-400); font-size: 16px; line-height: 1.75; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .hero-chip { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--gray-500); font-weight: 500; }
+    .hero-chip span { color: var(--gray-300); }
+    .hero-divider { width: 4px; height: 4px; border-radius: 50%; background: var(--gray-600); }
+
+    /* ====== LAYOUT ====== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 80px 0; border-top: 1px solid var(--border); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    @media (max-width: 800px) { .three-col { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 500px) { .three-col { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* ====== SECTION LABELS ====== */
+    .section-label { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+    .section-label-dot { width: 5px; height: 5px; border-radius: 50%; }
+    .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 400; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .section-desc { color: var(--gray-400); font-size: 15px; max-width: 640px; line-height: 1.8; margin-bottom: 48px; }
+
+    /* ====== PHILOSOPHY ====== */
+    .philosophy-banner { background: linear-gradient(135deg, rgba(245,166,35,0.08) 0%, rgba(245,166,35,0.03) 100%); border: 1px solid rgba(245,166,35,0.2); border-radius: 16px; padding: 48px; text-align: center; position: relative; overflow: hidden; margin-bottom: 60px; }
+    .philosophy-banner::before { content: '"'; position: absolute; top: -20px; left: 24px; font-family: 'DM Serif Display', serif; font-size: 180px; color: rgba(245,166,35,0.08); line-height: 1; pointer-events: none; }
+    .philosophy-quote { font-family: 'DM Serif Display', serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 400; font-style: italic; color: var(--gold-light); line-height: 1.4; margin-bottom: 16px; }
+    .philosophy-attr { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); }
+
+    /* ====== STAT ROW ====== */
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 40px 0; }
+    @media (max-width: 700px) { .stat-row { grid-template-columns: 1fr 1fr; } }
+    .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 20px; text-align: center; }
+    .stat-number { font-family: 'DM Serif Display', serif; font-size: 2.4rem; font-weight: 400; line-height: 1; margin-bottom: 6px; }
+    .stat-label { font-size: 12px; font-weight: 500; color: var(--gray-500); line-height: 1.4; }
+
+    /* ====== SERVICE CARDS ====== */
+    .service-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 24px; transition: border-color 0.2s, background 0.2s; }
+    .service-card:hover { background: var(--card-hover); border-color: rgba(255,255,255,0.14); }
+    .service-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; }
+    .service-card h3 { font-size: 14px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 8px; }
+    .service-card p { font-size: 13px; color: var(--gray-400); line-height: 1.6; }
+    .service-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; margin-top: 14px; }
+
+    /* ====== FLUENCY ====== */
+    .principle-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; border-radius: 14px; overflow: hidden; margin-bottom: 48px; border: 1px solid var(--border); }
+    @media (max-width: 680px) { .principle-strip { grid-template-columns: 1fr; } }
+    .principle-block { background: var(--card); padding: 28px 24px; transition: background 0.2s; }
+    .principle-block:hover { background: var(--card-hover); }
+    .principle-block:not(:last-child) { border-right: 1px solid var(--border); }
+    @media (max-width: 680px) { .principle-block:not(:last-child) { border-right: none; border-bottom: 1px solid var(--border); } }
+    .principle-num { font-family: 'DM Serif Display', serif; font-size: 3rem; line-height: 1; color: var(--gold); opacity: 0.2; margin-bottom: 12px; }
+    .principle-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .principle-body { font-size: 13px; color: var(--gray-400); line-height: 1.65; }
+
+    .questions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 40px; }
+    @media (max-width: 680px) { .questions-grid { grid-template-columns: 1fr; } }
+    .question-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; transition: border-color 0.2s; }
+    .question-card:hover { border-color: rgba(255,255,255,0.14); }
+    .question-num { font-family: 'DM Serif Display', serif; font-size: 3.5rem; line-height: 1; position: absolute; top: 8px; right: 16px; color: var(--gold); opacity: 0.07; }
+    .question-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .question-text { font-size: 15px; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
+    .question-context { font-size: 13px; color: var(--gray-400); line-height: 1.65; }
+
+    .not-this-this { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 20px; }
+    @media (max-width: 600px) { .not-this-this { grid-template-columns: 1fr; } }
+    .not-this, .this-block { border-radius: 10px; padding: 18px 20px; }
+    .not-this { background: var(--red-dim); border: 1px solid rgba(239,68,68,0.2); }
+    .this-block { background: var(--green-dim); border: 1px solid rgba(34,197,94,0.2); }
+    .not-this-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+    .this-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+    .not-this p { font-size: 13px; color: rgba(255,200,200,0.85); line-height: 1.6; }
+    .this-block p { font-size: 13px; color: rgba(190,255,220,0.85); line-height: 1.6; }
+    .speak-integrated { background: linear-gradient(135deg, rgba(59,130,246,0.06) 0%, rgba(59,130,246,0.02) 100%); border: 1px solid rgba(59,130,246,0.18); border-radius: 14px; padding: 36px; }
+    .speak-integrated h3 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; margin-bottom: 12px; }
+    .speak-integrated p { font-size: 14px; color: var(--gray-300); line-height: 1.75; margin-bottom: 16px; }
+
+    /* ====== CALLOUT ====== */
+    .callout { border-radius: 12px; padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start; margin: 24px 0; }
+    .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .callout-body { flex: 1; }
+    .callout-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .callout-text { font-size: 13px; line-height: 1.7; }
+    .callout-gold { background: var(--gold-dim); border: 1px solid rgba(245,166,35,0.2); }
+    .callout-gold .callout-title { color: var(--gold); }
+    .callout-gold .callout-text { color: rgba(245,166,35,0.85); }
+    .callout-blue { background: var(--blue-dim); border: 1px solid rgba(59,130,246,0.2); }
+    .callout-blue .callout-title { color: var(--blue); }
+    .callout-blue .callout-text { color: rgba(180,207,255,0.9); }
+    .callout-red { background: var(--red-dim); border: 1px solid rgba(239,68,68,0.2); }
+    .callout-red .callout-title { color: var(--red); }
+    .callout-red .callout-text { color: rgba(255,180,180,0.9); }
+    .callout-green { background: var(--green-dim); border: 1px solid rgba(34,197,94,0.2); }
+    .callout-green .callout-title { color: var(--green); }
+    .callout-green .callout-text { color: rgba(170,255,210,0.9); }
+    .callout-orange { background: var(--orange-dim); border: 1px solid rgba(249,115,22,0.2); }
+    .callout-orange .callout-title { color: var(--orange); }
+    .callout-orange .callout-text { color: rgba(255,210,175,0.9); }
+    .callout-purple { background: var(--purple-dim); border: 1px solid rgba(168,85,247,0.2); }
+    .callout-purple .callout-title { color: var(--purple); }
+    .callout-purple .callout-text { color: rgba(220,180,255,0.9); }
+
+    /* ====== TABLE ====== */
+    .table-wrapper { background: var(--card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .fancy-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .fancy-table thead tr { border-bottom: 1px solid var(--border); }
+    .fancy-table th { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); padding: 12px 16px; }
+    .fancy-table td { padding: 14px 16px; border-bottom: 1px solid var(--border); color: var(--gray-300); vertical-align: top; }
+    .fancy-table tr:last-child td { border-bottom: none; }
+    .fancy-table tr:hover td { background: rgba(255,255,255,0.015); }
+    .pill { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+
+    /* ====== DO / DON'T ====== */
+    .dos-donts { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+    @media (max-width: 680px) { .dos-donts { grid-template-columns: 1fr; } }
+    .do-block, .dont-block { background: var(--card); border-radius: 12px; padding: 24px; border: 1px solid var(--border); }
+    .do-block { border-top: 3px solid var(--green); }
+    .dont-block { border-top: 3px solid var(--red); }
+    .do-block h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--green); margin-bottom: 16px; }
+    .dont-block h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--red); margin-bottom: 16px; }
+    .do-dont-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .do-dont-list li { display: flex; gap: 10px; font-size: 13px; color: var(--gray-300); line-height: 1.5; }
+
+    /* ====== B-SMART ====== */
+    .bsmart-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 40px; }
+    @media (max-width: 700px) { .bsmart-grid { grid-template-columns: 1fr 1fr; } }
+    .bsmart-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 20px; position: relative; overflow: hidden; }
+    .bsmart-letter { font-family: 'DM Serif Display', serif; font-size: 52px; font-weight: 400; line-height: 1; opacity: 0.15; position: absolute; top: 12px; right: 16px; }
+    .bsmart-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+    .bsmart-name { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .bsmart-body { font-size: 12px; color: var(--gray-400); line-height: 1.6; }
+
+    /* ====== STRATEGY LOOP ====== */
+    .loop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 48px; }
+    @media (max-width: 800px) { .loop-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 500px) { .loop-grid { grid-template-columns: 1fr; } }
+    .loop-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 26px 22px;
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .loop-card:hover { background: var(--card-hover); border-color: rgba(255,255,255,0.13); }
+    .loop-card-accent {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; border-radius: 14px 14px 0 0;
+    }
+    .loop-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem; line-height: 1;
+      opacity: 0.1; margin-bottom: 10px;
+    }
+    .loop-emoji { font-size: 22px; margin-bottom: 12px; }
+    .loop-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .loop-body { font-size: 12px; color: var(--gray-400); line-height: 1.65; }
+    .loop-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; margin-top: 12px; }
+
+    .arc-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-bottom: 32px; position: relative; }
+    @media (max-width: 680px) { .arc-row { grid-template-columns: 1fr; } }
+    .arc-row::before { content: ''; position: absolute; top: 36px; left: 16.67%; right: 16.67%; height: 1px; background: linear-gradient(90deg, var(--gold), rgba(245,166,35,0.2)); pointer-events: none; }
+    @media (max-width: 680px) { .arc-row::before { display: none; } }
+    .arc-node {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px 20px; text-align: center;
+      position: relative;
+    }
+    .arc-node:not(:first-child):not(:last-child) { border-radius: 0; border-left: none; }
+    .arc-node:first-child { border-radius: 12px 0 0 12px; }
+    .arc-node:last-child { border-radius: 0 12px 12px 0; }
+    @media (max-width: 680px) {
+      .arc-node { border-radius: 12px !important; border: 1px solid var(--border) !important; }
+    }
+    .arc-dot { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 18px; }
+    .arc-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 4px; }
+    .arc-title { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .arc-body { font-size: 12px; color: var(--gray-400); line-height: 1.6; }
+
+    .strategy-insight-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+    @media (max-width: 680px) { .strategy-insight-row { grid-template-columns: 1fr; } }
+    .insight-block { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+    .insight-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .insight-icon { font-size: 20px; }
+    .insight-title { font-size: 14px; font-weight: 700; }
+    .insight-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .insight-list li { display: flex; gap: 10px; font-size: 13px; color: var(--gray-300); line-height: 1.55; align-items: flex-start; }
+    .insight-list li::before { content: '→'; color: var(--gold); flex-shrink: 0; font-size: 12px; margin-top: 2px; }
+
+    /* ====== AI LANDSCAPE — Special Treatment ====== */
+    .ai-section-intro {
+      background: linear-gradient(135deg, rgba(249,115,22,0.07) 0%, rgba(168,85,247,0.07) 60%, rgba(59,130,246,0.05) 100%);
+      border: 1px solid rgba(249,115,22,0.2);
+      border-radius: 16px; padding: 48px;
+      text-align: center; position: relative; overflow: hidden; margin-bottom: 56px;
+    }
+    .ai-section-intro::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(249,115,22,0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .ai-intro-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: var(--orange-dim); border: 1px solid rgba(249,115,22,0.3); border-radius: 100px; padding: 4px 12px; font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+    .ai-intro-heading { font-family: 'DM Serif Display', serif; font-size: clamp(1.3rem, 2.5vw, 1.9rem); font-weight: 400; font-style: italic; color: var(--white); line-height: 1.4; margin-bottom: 16px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .ai-intro-body { font-size: 14px; color: var(--gray-400); line-height: 1.8; max-width: 620px; margin: 0 auto; }
+
+    .ai-stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 48px; }
+    @media (max-width: 800px) { .ai-stat-row { grid-template-columns: 1fr 1fr; } }
+    .ai-stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px 18px; text-align: center; position: relative; overflow: hidden; }
+    .ai-stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+    .ai-stat-num { font-family: 'DM Serif Display', serif; font-size: 2.2rem; line-height: 1; margin-bottom: 6px; }
+    .ai-stat-label { font-size: 11px; color: var(--gray-500); line-height: 1.5; font-weight: 500; }
+    .ai-stat-source { font-size: 10px; color: var(--gray-600); margin-top: 6px; font-weight: 500; letter-spacing: 0.03em; }
+
+    .search-layer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 48px; }
+    @media (max-width: 680px) { .search-layer-grid { grid-template-columns: 1fr; } }
+    .layer-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 28px 24px; position: relative; overflow: hidden; }
+    .layer-num { font-family: 'DM Serif Display', serif; font-size: 1rem; font-weight: 400; position: absolute; top: 16px; right: 18px; opacity: 0.3; }
+    .layer-badge { display: inline-flex; font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 14px; }
+    .layer-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .layer-body { font-size: 13px; color: var(--gray-400); line-height: 1.65; margin-bottom: 14px; }
+    .layer-items { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .layer-items li { display: flex; gap: 8px; font-size: 12px; color: var(--gray-400); line-height: 1.5; }
+    .layer-items li::before { content: '·'; opacity: 0.5; flex-shrink: 0; }
+
+    .ai-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px; }
+    @media (max-width: 768px) { .ai-two-col { grid-template-columns: 1fr; } }
+    .ai-channel-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+    .ai-channel-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
+    .ai-channel-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .ai-channel-title { font-size: 15px; font-weight: 700; }
+    .ai-channel-sub { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+    .ai-item-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .ai-item { display: flex; gap: 12px; align-items: flex-start; }
+    .ai-item-dot { width: 20px; height: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+    .ai-item-content { flex: 1; }
+    .ai-item-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+    .ai-item-body { font-size: 12px; color: var(--gray-400); line-height: 1.6; }
+
+    .ai-max-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 24px 0; }
+    @media (max-width: 700px) { .ai-max-features { grid-template-columns: 1fr 1fr; } }
+    .ai-feature-chip { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.18); border-radius: 10px; padding: 14px 16px; }
+    .ai-feature-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); margin-bottom: 5px; }
+    .ai-feature-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .ai-feature-body { font-size: 12px; color: var(--gray-500); line-height: 1.5; }
+
+    .ga4-tracking-block { background: var(--card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 32px; }
+    .ga4-row { display: grid; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 680px) { .ga4-row { grid-template-columns: 1fr; } }
+    .ga4-col { padding: 28px; }
+    .ga4-col:first-child { border-right: 1px solid var(--border); }
+    @media (max-width: 680px) { .ga4-col:first-child { border-right: none; border-bottom: 1px solid var(--border); } }
+    .ga4-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+    .ga4-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+    .ga4-title { font-size: 14px; font-weight: 700; }
+    .ga4-body { font-size: 13px; color: var(--gray-400); line-height: 1.65; margin-bottom: 14px; }
+    .ga4-status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 100px; }
+    .code-block { background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 14px 16px; font-family: monospace; font-size: 11px; color: var(--green); line-height: 1.6; margin-top: 12px; word-break: break-all; }
+
+    .ai-speak-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 32px; }
+    @media (max-width: 680px) { .ai-speak-grid { grid-template-columns: 1fr; } }
+    .ai-speak-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+    .ai-speak-q { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+    .ai-speak-question { font-size: 14px; font-weight: 700; margin-bottom: 10px; line-height: 1.4; color: var(--gray-300); font-style: italic; }
+    .ai-speak-answer { font-size: 13px; color: var(--gray-400); line-height: 1.7; }
+    .ai-speak-answer strong { color: var(--white); }
+
+    /* ====== STANDARDS / RULES ====== */
+    .rule-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 700px) { .rule-grid { grid-template-columns: 1fr; } }
+    .rule-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+    .rule-number { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--gold); opacity: 0.4; line-height: 1; margin-bottom: 8px; }
+    .rule-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .rule-body { font-size: 13px; color: var(--gray-400); line-height: 1.7; }
+
+    /* ====== CHECKLIST ====== */
+    .checklist { display: flex; flex-direction: column; gap: 10px; }
+    .check-item { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--gray-300); }
+    .check-box { width: 18px; height: 18px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; flex-shrink: 0; margin-top: 2px; }
+
+    /* ====== EXTENDED SERVICES ====== */
+    .role-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 28px; }
+    .role-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .role-avatar { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .role-title { font-size: 14px; font-weight: 700; }
+    .role-subtitle { font-size: 12px; color: var(--gray-500); }
+    .responsibility-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .responsibility-list li { display: flex; gap: 10px; font-size: 13px; color: var(--gray-300); align-items: flex-start; }
+    .resp-icon { width: 18px; height: 18px; flex-shrink: 0; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; margin-top: 1px; }
+
+    /* ====== INTEGRATION VISUAL ====== */
+    .integration-center { display: flex; flex-direction: column; align-items: center; padding: 32px 0; }
+    .integration-hub { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), #e8900d); display: flex; align-items: center; justify-content: center; font-size: 26px; margin-bottom: 20px; box-shadow: 0 0 40px rgba(245,166,35,0.2); }
+    .integration-spokes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; width: 100%; max-width: 700px; }
+    @media (max-width: 600px) { .integration-spokes { grid-template-columns: 1fr 1fr; } }
+    .spoke-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+    .spoke-emoji { font-size: 20px; margin-bottom: 6px; }
+    .spoke-name { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+    .spoke-role { font-size: 11px; color: var(--gray-500); line-height: 1.4; }
+
+    /* ====== TOOLS ====== */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+    .tool-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; transition: border-color 0.2s; }
+    .tool-card:hover { border-color: rgba(255,255,255,0.15); }
+    .tool-emoji { font-size: 24px; margin-bottom: 10px; }
+    .tool-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+    .tool-use { font-size: 12px; color: var(--gray-500); line-height: 1.5; }
+
+    /* ====== HIGHLIGHT STRIP ====== */
+    .highlight-strip { background: linear-gradient(90deg, var(--gold-dim), transparent); border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px; color: var(--gray-300); margin: 16px 0; line-height: 1.6; }
+    .highlight-strip.orange { background: linear-gradient(90deg, var(--orange-dim), transparent); border-left-color: var(--orange); }
+    .highlight-strip.blue { background: linear-gradient(90deg, var(--blue-dim), transparent); border-left-color: var(--blue); }
+    .highlight-strip strong { color: var(--white); }
+
+    /* ====== FOOTER ====== */
+    footer { border-top: 1px solid var(--border); padding: 40px 2rem; text-align: center; }
+    .footer-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--gold-dim); border: 1px solid rgba(245,166,35,0.2); border-radius: 100px; padding: 6px 16px; font-size: 12px; font-weight: 700; color: var(--gold); letter-spacing: 0.06em; margin-bottom: 16px; }
+    .footer-text { font-size: 13px; color: var(--gray-600); }
+
+    /* ====== UTILITY ====== */
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-32 { margin-top: 32px; }
+    .mb-0 { margin-bottom: 0; }
+    .mb-16 { margin-bottom: 16px; }
+    .mb-24 { margin-bottom: 24px; }
+    .mb-32 { margin-bottom: 32px; }
+    .mb-40 { margin-bottom: 40px; }
+    .mb-48 { margin-bottom: 48px; }
+    .text-gold { color: var(--gold); }
+    .text-blue { color: var(--blue); }
+    .text-green { color: var(--green); }
+    .text-purple { color: var(--purple); }
+    .text-teal { color: var(--teal); }
+    .text-red { color: var(--red); }
+    .text-orange { color: var(--orange); }
+    .text-gray { color: var(--gray-400); }
+    strong { color: var(--white); font-weight: 600; }
+    code { background: rgba(255,255,255,0.06); padding: 2px 6px; border-radius: 4px; font-size: 12px; font-family: monospace; }
+  </style>
+</head>
+<body>
+
+<!-- ====== NAV ====== -->
+<nav>
+  <a href="#" class="nav-brand">
+    <span class="nav-badge">B·School</span>
+    <span class="nav-title">Integrated Strategy Playbook</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#fluency">Fluency</a></li>
+    <li><a href="#collaboration">Collaboration</a></li>
+    <li><a href="#strategy-loop">Strategy Loop</a></li>
+    <li><a href="#bsmart">B-SMART®</a></li>
+    <li><a href="#ai-landscape">AI & Search</a></li>
+    <li><a href="#standards">Standards</a></li>
+    <li><a href="#extended">Extended</a></li>
+    <li><a href="#tools">Tools</a></li>
+  </ul>
+</nav>
+
+<!-- ====== HERO ====== -->
+<div class="hero">
+  <div class="hero-eyebrow">
+    <div class="hero-eyebrow-dot"></div>
+    B·School — Integrated Strategy Series
+  </div>
+  <h1>Strategy Is <em>Everyone's</em><br />Language</h1>
+  <p class="hero-sub">Channel specialization is where you execute. Integrated strategy is where you show up. Every person on this team — regardless of primary service — should be able to speak confidently to the full picture of how we're winning for a client.</p>
+  <div class="hero-meta">
+    <div class="hero-chip">📅 <span>2026 Edition</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-chip">🎯 <span>Core: SEO + Paid</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-chip">🔧 <span>+ UX & Email</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-chip">🤖 <span>AI / GEO / AEO</span></div>
+    <div class="hero-divider"></div>
+    <div class="hero-chip">⏱ <span>~25 min read</span></div>
+  </div>
+</div>
+
+<!-- ====== 01: PHILOSOPHY ====== -->
+<section id="philosophy">
+  <div class="container">
+    <div class="section-label text-gold"><div class="section-label-dot" style="background:var(--gold)"></div>01 — Foundation</div>
+    <h2 class="section-title">The Integrated Philosophy</h2>
+    <p class="section-desc">Before tactics, before tools — this is the belief system the entire team operates from. The channels don't compete for credit. They compound each other's results.</p>
+
+    <div class="philosophy-banner">
+      <p class="philosophy-quote">"Never an 'or' — always an 'and.'"</p>
+      <p class="philosophy-attr">— OBx Integrated Marketing Principle</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-number text-gold">2×</div><div class="stat-label">More signal when SEO & Paid share keyword intent data</div></div>
+      <div class="stat-card"><div class="stat-number text-blue">90+</div><div class="stat-label">Day average B2B sales cycle — cross-channel attribution is essential</div></div>
+      <div class="stat-card"><div class="stat-number text-green">1</div><div class="stat-label">Unified client voice — regardless of how many channels are active</div></div>
+      <div class="stat-card"><div class="stat-number text-purple">∞</div><div class="stat-label">Compounding returns when channels reinforce each other's strategy</div></div>
+    </div>
+
+    <div class="three-col">
+      <div class="service-card"><div class="service-icon" style="background:var(--blue-dim)">🔍</div><h3>SEO Strategy</h3><p>Long-term organic visibility through technical health, content architecture, and keyword authority. Builds the foundation every other channel depends on.</p><div class="service-tag" style="background:var(--blue-dim); color:var(--blue)">CORE SERVICE</div></div>
+      <div class="service-card"><div class="service-icon" style="background:var(--gold-dim)">💰</div><h3>Paid Search</h3><p>Precision bottom-of-funnel targeting. Every click has a budget attached — intent, relevancy, and negative keyword discipline are non-negotiable.</p><div class="service-tag" style="background:var(--gold-dim); color:var(--gold)">CORE SERVICE</div></div>
+      <div class="service-card"><div class="service-icon" style="background:var(--purple-dim)">🎨</div><h3>UX Strategy</h3><p>Conversion rate optimization, landing page architecture, and user journey mapping. Maximizes the value of traffic SEO and Paid work to earn.</p><div class="service-tag" style="background:var(--purple-dim); color:var(--purple)">ENHANCED</div></div>
+      <div class="service-card"><div class="service-icon" style="background:var(--teal-dim)">✉️</div><h3>Email Marketing</h3><p>Nurture sequences, retention campaigns, and lifecycle messaging. Closes the loop on leads that didn't convert on the first touch.</p><div class="service-tag" style="background:var(--teal-dim); color:var(--teal)">ENHANCED</div></div>
+      <div class="service-card"><div class="service-icon" style="background:var(--green-dim)">📞</div><h3>CallRail + LOOP</h3><p>Intent signals from transcribed calls layered with structured form data. The most underused competitive intelligence layer in B2B digital marketing.</p><div class="service-tag" style="background:var(--green-dim); color:var(--green)">INTEL LAYER</div></div>
+      <div class="service-card"><div class="service-icon" style="background:var(--red-dim)">📊</div><h3>Analytics & Reporting</h3><p>GA4, Looker Studio, and ClickUp create one shared performance view across all active channels — delivered as a single, cohesive story.</p><div class="service-tag" style="background:var(--red-dim); color:var(--red)">SHARED LAYER</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 02: INTEGRATED FLUENCY ====== -->
+<section id="fluency">
+  <div class="container">
+    <div class="section-label text-blue"><div class="section-label-dot" style="background:var(--blue)"></div>02 — Integrated Fluency</div>
+    <h2 class="section-title">Every Teammate<br /><em>Speaks Strategy</em></h2>
+    <p class="section-desc">You don't need to execute across all channels to understand them. Integrated fluency isn't about doing everything — it's about knowing how your work connects to everything else. Channel specialization lives in execution. Strategic understanding belongs to everyone.</p>
+
+    <div class="principle-strip mb-32" style="margin-bottom:48px;">
+      <div class="principle-block"><div class="principle-num">01</div><div class="principle-title">Know Who You're Serving</div><div class="principle-body">Every team member should be able to articulate the client's ICP, what they sell, who buys it, and why. B-SMART® is the shared vocabulary — use it regardless of your channel.</div></div>
+      <div class="principle-block"><div class="principle-num">02</div><div class="principle-title">Know What's Active & Why</div><div class="principle-body">Understand what each active channel is doing for this client and how it ladders to the broader business goal — even the channels you don't personally execute in.</div></div>
+      <div class="principle-block"><div class="principle-num">03</div><div class="principle-title">Know the Current Story</div><div class="principle-body">Be ready to speak to what's working, what's at risk, and what's coming next. The performance story is shared property — not siloed by channel.</div></div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:8px;">🎯 The 6 Account Questions</h3>
+    <p style="font-size:14px; color:var(--gray-400); margin-bottom:28px; line-height:1.7;">For any active account, every person on the team should be able to answer these — not from memory, but from staying engaged with the work.</p>
+
+    <div class="questions-grid">
+      <div class="question-card"><div class="question-num">1</div><div class="question-label">Buyer Intelligence</div><div class="question-text">Who is this client's buyer and what does their search journey look like?</div><div class="question-context">What are they searching, when, why, and with what intent? An engineer requesting a quote searches very differently than an ops manager checking availability. This context shapes every channel's strategy.</div></div>
+      <div class="question-card"><div class="question-num">2</div><div class="question-label">Channel Awareness</div><div class="question-text">What channels are active on this account, and what role is each one playing?</div><div class="question-context">Not just "we run SEO and Paid" — but what is SEO building right now, what is Paid targeting, and how are they covering different parts of the funnel together?</div></div>
+      <div class="question-card"><div class="question-num">3</div><div class="question-label">Performance Story</div><div class="question-text">What's the current performance status — where are we winning, and where are the gaps?</div><div class="question-context">"Organic is climbing in positions but conversions are lagging. Paid is converting well but pacing tight." That's the level of fluency expected from everyone on the account.</div></div>
+      <div class="question-card"><div class="question-num">4</div><div class="question-label">Strategic Direction</div><div class="question-text">What are we prioritizing this period and what's the reasoning behind it?</div><div class="question-context">Priorities should have a "why" the whole team understands. If a channel is focusing on bottom-funnel keywords this quarter, everyone should know the business reason behind that decision.</div></div>
+      <div class="question-card"><div class="question-num">5</div><div class="question-label">Cross-Channel Impact</div><div class="question-text">How does your channel's work affect the other active channels on this account?</div><div class="question-context">A landing page rewrite affects Paid Quality Scores. A content calendar affects Paid's ability to front-run launches. A new negative keyword list informs what SEO shouldn't be building toward. Know the ripple.</div></div>
+      <div class="question-card"><div class="question-num">6</div><div class="question-label">The Integrated Brief</div><div class="question-text">How would you explain our integrated approach to this client in 60 seconds?</div><div class="question-context">Not a feature list — a coherent story about how the channels work together to drive the outcome the client cares about. This is the most important test of integrated fluency.</div></div>
+    </div>
+
+    <div class="speak-integrated mt-32">
+      <h3>How to Speak Integrated</h3>
+      <p>When a client asks about a channel you don't directly execute in, you have two options. One builds trust. One erodes it.</p>
+      <div class="not-this-this">
+        <div class="not-this"><div class="not-this-label">🚫 Don't Say This</div><p>"That's more of a Paid Search question — you'd want to talk to whoever handles that side."</p></div>
+        <div class="this-block"><div class="this-label">✅ Say This Instead</div><p>"Great question — our SEO and Paid strategies are intentionally aligned here. What we're building organically around X is designed to complement the terms we're bidding on. Want me to walk you through how they connect?"</p></div>
+      </div>
+      <div class="not-this-this">
+        <div class="not-this"><div class="not-this-label">🚫 Don't Say This</div><p>"I'm not sure what the Paid team is doing with the budget right now — I'd have to check."</p></div>
+        <div class="this-block"><div class="this-label">✅ Say This Instead</div><p>"We're pacing well on Paid this month — the focus has been on high-intent [material/product] terms that convert fastest. On the SEO side, we're building organic content that will eventually reduce reliance on that spend."</p></div>
+      </div>
+    </div>
+
+    <div class="callout callout-gold mt-24">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <div class="callout-title">No One Arrives Cold</div>
+        <div class="callout-text">Every person attending a kickoff, strategy call, or client check-in must review the website, analytics, active channel performance, and recent communications <strong>before</strong> joining. Showing up without context isn't neutral — it signals to the client that their account isn't a priority.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 03: INTELLIGENCE LOOP ====== -->
+<section id="collaboration">
+  <div class="container">
+    <div class="section-label text-green"><div class="section-label-dot" style="background:var(--green)"></div>03 — Working Together</div>
+    <h2 class="section-title">The SEO × Paid Search<br />Intelligence Loop</h2>
+    <p class="section-desc">The most powerful competitive advantages come from channels that actively feed each other. This is the expected two-way exchange of intelligence — not a nice-to-have, but a standard operating practice on every integrated account.</p>
+
+    <div class="callout callout-blue mb-32">
+      <div class="callout-icon">🔁</div>
+      <div class="callout-body">
+        <div class="callout-title">Cross-Channel Collaboration Is Required When:</div>
+        <div class="callout-text">Strategy spans multiple channels · Budget decisions affect more than one channel · A client POV requires full-team alignment · Pacing requests come in · A client question touches more than one service — even if they only tag one person. <strong>When in doubt, assume collaboration is needed.</strong></div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:24px;">🔄 What SEO Contributes to Paid</h3>
+    <div class="table-wrapper mb-40">
+      <table class="fancy-table">
+        <thead><tr><th>Signal / Asset</th><th>What It Looks Like</th><th>Why Paid Needs It</th></tr></thead>
+        <tbody>
+          <tr><td><strong>High-intent keyword map</strong></td><td>Ahrefs keyword export filtered by transactional intent and position</td><td>Surfaces proven commercial terms — avoids spending on broad, unqualified queries</td></tr>
+          <tr><td><strong>Organic CTR data</strong></td><td>GSC title/description performance by page</td><td>Ad copy inspiration — language users already click in organic results converts in paid</td></tr>
+          <tr><td><strong>Top organic landing pages</strong></td><td>GA4 landing page report filtered by organic source</td><td>Identifies proven content assets to use or mirror as paid landing pages</td></tr>
+          <tr><td><strong>Content gap analysis</strong></td><td>Competitor keyword gap from Ahrefs</td><td>Paid can capture gap terms immediately while SEO builds long-term authority</td></tr>
+          <tr><td><strong>SERP intent mapping</strong></td><td>Intent classification for all target keywords</td><td>Informs negative keyword strategy — informational terms go on the exclusion list</td></tr>
+          <tr><td><strong>Seasonal content calendar</strong></td><td>Planned topics and publish cadence by month</td><td>Allows Paid to front-run content launches with campaigns before organic rankings build</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:24px;">🔄 What Paid Contributes to SEO</h3>
+    <div class="table-wrapper mb-40">
+      <table class="fancy-table">
+        <thead><tr><th>Signal / Asset</th><th>What It Looks Like</th><th>Why SEO Needs It</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Search term report</strong></td><td>Google Ads — actual queries that triggered paid ads</td><td>Uncovers long-tail, natural-language queries that are converting — organic content gold</td></tr>
+          <tr><td><strong>Top converting ad copy</strong></td><td>Highest CTR/conversion headlines from Responsive Search Ads</td><td>Informs title tags, H1s, and meta descriptions with language proven to resonate</td></tr>
+          <tr><td><strong>Negative keyword learnings</strong></td><td>Full negative list with reasoning</td><td>Tells SEO what <em>not</em> to rank for — prevents attracting the wrong audience organically</td></tr>
+          <tr><td><strong>Landing page conversion data</strong></td><td>Page-level conversion rate from paid campaigns</td><td>Shows which content formats and CTAs drive the most leads</td></tr>
+          <tr><td><strong>Auction insights</strong></td><td>Impression share, overlap rate by competitor</td><td>Identifies competitive threats who may also be overtaking organic positions</td></tr>
+          <tr><td><strong>Budget priority shifts</strong></td><td>Monthly budget reallocation decisions</td><td>When Paid pulls back from a keyword area, SEO should accelerate organic coverage there</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="dos-donts">
+      <div class="do-block">
+        <h4>✅ Do This</h4>
+        <ul class="do-dont-list">
+          <li><span>✅</span> Share search term reports monthly — even if no one asks</li>
+          <li><span>✅</span> Tag the other channel in ClickUp when decisions create a ripple</li>
+          <li><span>✅</span> Use the same B-SMART® vocabulary across all channels</li>
+          <li><span>✅</span> Align on landing pages — SEO and Paid point to the same URL for the same intent</li>
+          <li><span>✅</span> Share negative keyword rationale so SEO avoids ranking for the same junk terms</li>
+          <li><span>✅</span> Contribute channel notes to the team before any client check-in</li>
+          <li><span>✅</span> Review the integrated audit together before any channel presents separately</li>
+        </ul>
+      </div>
+      <div class="dont-block">
+        <h4>🚫 Never Do This</h4>
+        <ul class="do-dont-list">
+          <li><span>🚫</span> Send a channel-specific POV without checking if it contradicts another channel's strategy</li>
+          <li><span>🚫</span> Make unilateral landing page changes without notifying the Paid team</li>
+          <li><span>🚫</span> Optimize for a keyword Paid is spending on without aligning the page strategy first</li>
+          <li><span>🚫</span> Let a client question about one channel expose ignorance about another</li>
+          <li><span>🚫</span> Publish content that Paid should have been informed about post-launch</li>
+          <li><span>🚫</span> Present conflicting KPIs to the same client in the same reporting period</li>
+          <li><span>🚫</span> Use the 90-day sales cycle as a reason not to analyze cross-channel attribution</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 04: THE STRATEGY LOOP ====== -->
+<section id="strategy-loop">
+  <div class="container">
+    <div class="section-label text-purple"><div class="section-label-dot" style="background:var(--purple)"></div>04 — Strategy Development & Execution</div>
+    <h2 class="section-title">The Strategy Loop</h2>
+    <p class="section-desc">Strategy isn't a document you write at kickoff and revisit at renewal. It's a continuous loop — built from real data, refined through collaboration, and expressed through every tactical decision made on behalf of the client. Here's how it works at OBx.</p>
+
+    <div class="callout callout-purple mb-40">
+      <div class="callout-icon">🔄</div>
+      <div class="callout-body">
+        <div class="callout-title">Strategy vs. Execution — Know the Difference</div>
+        <div class="callout-text">Execution is completing a task. Strategy is knowing <em>why that task matters</em> and how it connects to the client's goals. Every team member should be able to speak to both layers of the work — not just what got done, but <strong>what it was designed to accomplish and what we're learning from it.</strong></div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:8px;">🗂️ The Account Development Arc</h3>
+    <p style="font-size:14px; color:var(--gray-400); margin-bottom:28px; line-height:1.7;">Every account moves through a predictable development arc. Strategy conversations at each phase look different — but the integrated mindset stays consistent.</p>
+
+    <div class="arc-row mb-40">
+      <div class="arc-node">
+        <div class="arc-dot" style="background:var(--gold-dim)">🏗️</div>
+        <div class="arc-label">Month 1</div>
+        <div class="arc-title">Foundation & Discovery</div>
+        <div class="arc-body">Keyword research, keyword mapping, technical audit, analytics setup, homepage optimizations, and strategy creation. The conversations here center on understanding the client's ICP, competitive landscape, and establishing performance baselines.</div>
+      </div>
+      <div class="arc-node">
+        <div class="arc-dot" style="background:var(--blue-dim)">⚡</div>
+        <div class="arc-label">Month 2–3</div>
+        <div class="arc-title">Activation & Optimization</div>
+        <div class="arc-body">Base optimizations for pages ranking positions 4–20, new landing pages from gap analysis, content development, full page optimizations, and top/bottom-of-page content. Strategy conversations shift to what the data is showing and how to push striking-distance opportunities.</div>
+      </div>
+      <div class="arc-node">
+        <div class="arc-dot" style="background:var(--green-dim)">📈</div>
+        <div class="arc-label">Quarterly+</div>
+        <div class="arc-title">Evolution & Expansion</div>
+        <div class="arc-body">Every 90 days, strategy is reviewed and rebuilt for the next quarter. Wins are scaled, gaps are addressed, new opportunities are surfaced. The conversation expands: what's the next phase of growth, and where should cross-channel energy be focused?</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:8px;">💬 The Six Types of Strategy Conversations</h3>
+    <p style="font-size:14px; color:var(--gray-400); margin-bottom:28px; line-height:1.7;">Strategy lives in conversations — not just documents. These are the six recurring types of strategic conversations every team member participates in, regardless of channel. Each one has a distinct purpose, and each one informs the next.</p>
+
+    <div class="loop-grid">
+      <div class="loop-card">
+        <div class="loop-card-accent" style="background: linear-gradient(90deg, var(--gold), transparent)"></div>
+        <div class="loop-emoji">🧭</div>
+        <div class="loop-title">Discovery Conversations</div>
+        <div class="loop-body">Understanding the client's market, buyers, competitors, and current position. This never fully ends — market conditions change, clients evolve, and new intelligence surfaces continuously. Every kickoff, audit, and onboarding starts here.</div>
+        <div class="loop-tag" style="background:var(--gold-dim); color:var(--gold)">FOUNDATION</div>
+      </div>
+      <div class="loop-card">
+        <div class="loop-card-accent" style="background: linear-gradient(90deg, var(--blue), transparent)"></div>
+        <div class="loop-emoji">🔁</div>
+        <div class="loop-title">Intelligence Exchange</div>
+        <div class="loop-body">The cross-channel signal sharing detailed in Section 03 — search term reports, keyword maps, SERP analysis, conversion data, auction insights. These aren't one-time handoffs. They're recurring exchanges that make both channels smarter over time.</div>
+        <div class="loop-tag" style="background:var(--blue-dim); color:var(--blue)">ONGOING</div>
+      </div>
+      <div class="loop-card">
+        <div class="loop-card-accent" style="background: linear-gradient(90deg, var(--purple), transparent)"></div>
+        <div class="loop-emoji">🧠</div>
+        <div class="loop-title">Strategy Development</div>
+        <div class="loop-body">Brainstorming and building the plan. For accounts above $7,500/mo, this includes a dedicated strategy brainstorm before execution begins. Key inputs: competitor insights, kick-off notes, keyword feedback, GA4/GSC/Ahrefs data, and SERP analysis.</div>
+        <div class="loop-tag" style="background:var(--purple-dim); color:var(--purple)">HIGH-LEVERAGE</div>
+      </div>
+      <div class="loop-card">
+        <div class="loop-card-accent" style="background: linear-gradient(90deg, var(--green), transparent)"></div>
+        <div class="loop-emoji">✅</div>
+        <div class="loop-title">Execution Alignment</div>
+        <div class="loop-body">Before work executes, the team ensures alignment on what's being built, why, and how it fits the integrated strategy. No one should be completing a task they can't connect to a strategic goal. ClickUp is where this alignment lives and stays current.</div>
+        <div class="loop-tag" style="background:var(--green-dim); color:var(--green)">PRE-LAUNCH</div>
+      </div>
+      <div class="loop-card">
+        <div class="loop-card-accent" style="background: linear-gradient(90deg, var(--teal), transparent)"></div>
+        <div class="loop-emoji">📊</div>
+        <div class="loop-title">Performance Narrative</div>
+        <div class="loop-body">Synthesizing data into insight — not a data dump, but a story. What moved, why it moved, what we're going to do about it. This happens bi-weekly internally and monthly in client reporting. Every channel contributes its thread; together they form the full picture.</div>
+        <div class="loop-tag" style="background:var(--teal-dim); color:var(--teal)">BI-WEEKLY</div>
+      </div>
+      <div class="loop-card">
+        <div class="loop-card-accent" style="background: linear-gradient(90deg, var(--orange), transparent)"></div>
+        <div class="loop-emoji">🎯</div>
+        <div class="loop-title">Quarterly Evolution</div>
+        <div class="loop-body">Every 90 days, the strategy is reviewed portfolio-wide and per account. What worked this quarter becomes the new baseline. What didn't gets redesigned. Cross-channel opportunities and gaps are surfaced in a brainstorm-style session — not a status update.</div>
+        <div class="loop-tag" style="background:var(--orange-dim); color:var(--orange)">QUARTERLY</div>
+      </div>
+    </div>
+
+    <div class="strategy-insight-row">
+      <div class="insight-block">
+        <div class="insight-header">
+          <div class="insight-icon">📋</div>
+          <div class="insight-title">Before Strategy Is Presented to the Client</div>
+        </div>
+        <ul class="insight-list">
+          <li>Keyword research and mapping is complete and reviewed internally</li>
+          <li>Technical audit findings are documented with prioritized remediation</li>
+          <li>Content gap analysis is presented to the team before going to the client</li>
+          <li>Competitors are identified and benchmarked across channels</li>
+          <li>Cross-channel alignment is confirmed — no channel presents contradictory direction</li>
+          <li>Client approval is secured on kickoff before tasking begins</li>
+          <li>Month 1 tasks are assigned with Month 2+ direction documented in ClickUp</li>
+        </ul>
+      </div>
+      <div class="insight-block">
+        <div class="insight-header">
+          <div class="insight-icon">🔍</div>
+          <div class="insight-title">Bi-Weekly Account Review — What the Conversation Covers</div>
+        </div>
+        <ul class="insight-list">
+          <li>SEO performance analysis — SERP position changes, traffic trends, GSC delta</li>
+          <li>Paid performance summary — CPL, conversion rate, search term report highlights</li>
+          <li>SERP and competitive movement — new threats, position shifts</li>
+          <li>Task status — what's done, what's at risk, what needs unblocking</li>
+          <li>Strategic adjustments — what's the data telling us we should change?</li>
+          <li>Cross-channel flags — anything each channel needs the other to know</li>
+          <li>Action items and ownership — who's doing what before the next review</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout callout-gold mt-32">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <div class="callout-title">The Quarterly Portfolio Review</div>
+        <div class="callout-text">Every 90 days, the team holds a portfolio-wide review covering aggregate traffic and conversion trends, top-performing accounts, at-risk accounts, and cross-portfolio patterns. These are brainstorm-style sessions focused on <strong>how the strategy is working</strong> and <strong>what the team needs</strong> — not a formal status report. Every team member should come with an observation and a question.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 05: B-SMART ====== -->
+<section id="bsmart">
+  <div class="container">
+    <div class="section-label text-gold"><div class="section-label-dot" style="background:var(--gold)"></div>05 — Shared Vocabulary</div>
+    <h2 class="section-title">The B-SMART® Method</h2>
+    <p class="section-desc">B-SMART® is OBx's proprietary keyword framework — and the shared language of every channel on every account. When SEO, Paid, UX, and Email all use the same taxonomy, strategy compounds instead of collides. If someone on the team doesn't know B-SMART®, they can't speak integrated.</p>
+
+    <div class="callout callout-gold mb-32">
+      <div class="callout-icon">🏭</div>
+      <div class="callout-body">
+        <div class="callout-title">Why B-SMART® Matters for Everyone</div>
+        <div class="callout-text">Industrial and B2B buyers search with <strong>specificity and intent</strong> — material grades, certifications, tolerances, dimensions, geographies. B-SMART® maps every dimension of how these buyers find what they need. If you can describe a client's product through this lens, you can contribute meaningfully to their strategy — regardless of which channel you execute in.</div>
+      </div>
+    </div>
+
+    <div class="bsmart-grid mb-32">
+      <div class="bsmart-card" style="border-top: 2px solid var(--blue)"><div class="bsmart-letter text-blue">B</div><div class="bsmart-label text-blue">Brand</div><div class="bsmart-name">Brand & Manufacturer</div><div class="bsmart-body">Brands the client carries, manufactures, or competes with. Capture branded intent before competitors do — in both organic and paid.</div></div>
+      <div class="bsmart-card" style="border-top: 2px solid var(--gold)"><div class="bsmart-letter text-gold">S</div><div class="bsmart-label text-gold">Size / Shape / SKU</div><div class="bsmart-name">Physical Specs</div><div class="bsmart-body">Exact dimensions, gauges, thicknesses, SKUs. High-intent, low-waste. "17-4ph bar" converts. "steel bar" doesn't.</div></div>
+      <div class="bsmart-card" style="border-top: 2px solid var(--purple)"><div class="bsmart-letter text-purple">M</div><div class="bsmart-label text-purple">Material / Grade</div><div class="bsmart-name">Material & Grade</div><div class="bsmart-body">Alloy grades, material types, quality specifications. A36, 316L, 6061 — specific grades dramatically reduce irrelevant traffic in both channels.</div></div>
+      <div class="bsmart-card" style="border-top: 2px solid var(--green)"><div class="bsmart-letter text-green">A</div><div class="bsmart-label text-green">Application / Area</div><div class="bsmart-name">Industry & Geography</div><div class="bsmart-body">Industry served, application context, and geographic targeting. Manufacturers tend national; regional distributors layer in location modifiers.</div></div>
+      <div class="bsmart-card" style="border-top: 2px solid var(--red)"><div class="bsmart-letter text-red">R</div><div class="bsmart-label text-red">Requirement</div><div class="bsmart-name">Certifications & Compliance</div><div class="bsmart-body">ISO 9001, ASTM, DFARS, MIL-SPEC. Filter out non-buyers instantly — in Paid, they save significant spend. In SEO, they attract exactly the right traffic.</div></div>
+      <div class="bsmart-card" style="border-top: 2px solid var(--teal)"><div class="bsmart-letter text-teal">T</div><div class="bsmart-label text-teal">Type</div><div class="bsmart-name">Product Type & Process</div><div class="bsmart-body">Process categories or product types: hot rolled, laser cut, CNC machined, cold drawn. Clarifies the buyer's need at the most granular level.</div></div>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="fancy-table">
+        <thead><tr><th>Context</th><th>✅ High Intent</th><th>🚫 Too Generic</th><th>Cross-Channel Application</th></tr></thead>
+        <tbody>
+          <tr><td><span class="pill" style="background:var(--blue-dim); color:var(--blue)">Metal Distributor</span></td><td><code>17-4ph stainless bar stock</code></td><td><code style="color:var(--red)">steel bar</code></td><td>SEO: target page · Paid: exact/phrase match · Email: subject line language</td></tr>
+          <tr><td><span class="pill" style="background:var(--green-dim); color:var(--green)">CNC Machinist</span></td><td><code>ISO 9001 certified CNC machining Ohio</code></td><td><code style="color:var(--red)">machining</code></td><td>SEO: service + local page · Paid: SKAG structure · UX: page headline hierarchy</td></tr>
+          <tr><td><span class="pill" style="background:var(--gold-dim); color:var(--gold)">Metal Buildings</span></td><td><code>commercial metal building kits 40x60</code></td><td><code style="color:var(--red)">metal building</code></td><td>SEO: spec-based content · Paid: neg. out DIY/residential · UX: product config flow</td></tr>
+          <tr><td><span class="pill" style="background:var(--purple-dim); color:var(--purple)">Die Casting</span></td><td><code>aluminum die casting manufacturer DFARS</code></td><td><code style="color:var(--red)">casting company</code></td><td>SEO: capability page · Paid: exact match w/ cert modifier · Email: nurture angle</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 06: AI / GEO / AEO / SEARCH LANDSCAPE ====== -->
+<section id="ai-landscape">
+  <div class="container">
+    <div class="section-label text-orange"><div class="section-label-dot" style="background:var(--orange)"></div>06 — AI, GEO & The Changing Search Landscape</div>
+    <h2 class="section-title">Search Has a<br /><em>New Layer.</em> Learn It.</h2>
+    <p class="section-desc">The search landscape every team member learned even two years ago has fundamentally changed. AI is no longer coming — it's the default search experience for hundreds of millions of users globally. Every team member needs to understand how this shifts what we build, how we measure it, and what we tell clients.</p>
+
+    <div class="ai-section-intro">
+      <div class="ai-intro-eyebrow">⚡ Landscape Shift</div>
+      <div class="ai-intro-heading">"The rapid decline in informational search traffic — the 'Great Decoupling' — has only just begun. Top-of-funnel content that was once a scalable tactic no longer looks like such an obvious win."</div>
+      <div class="ai-intro-body">— Kevin Indig, Organic Growth Advisor · State of SEO 2026</div>
+    </div>
+
+    <div class="ai-stat-row">
+      <div class="ai-stat-card">
+        <div class="ai-stat-card" style="padding:0"></div>
+        <div style="height:2px; background:linear-gradient(90deg, var(--orange), transparent); border-radius:12px 12px 0 0; margin:-0px"></div>
+        <div style="padding:22px 18px; text-align:center">
+          <div class="ai-stat-num text-orange">1.5B</div>
+          <div class="ai-stat-label">People using AI Overviews globally across 200+ countries</div>
+          <div class="ai-stat-source">Google I/O 2025</div>
+        </div>
+      </div>
+      <div class="ai-stat-card">
+        <div style="height:2px; background:linear-gradient(90deg, var(--blue), transparent); border-radius:12px 12px 0 0; margin:-0px"></div>
+        <div style="padding:22px 18px; text-align:center">
+          <div class="ai-stat-num text-blue">2–3×</div>
+          <div class="ai-stat-label">Longer queries from AI Mode users vs. traditional search</div>
+          <div class="ai-stat-source">Google Internal Data</div>
+        </div>
+      </div>
+      <div class="ai-stat-card">
+        <div style="height:2px; background:linear-gradient(90deg, var(--green), transparent); border-radius:12px 12px 0 0; margin:-0px"></div>
+        <div style="padding:22px 18px; text-align:center">
+          <div class="ai-stat-num text-green">94%</div>
+          <div class="ai-stat-label">Of frequent LLM users are also frequent Google Search users</div>
+          <div class="ai-stat-source">Google/Ipsos Dec 2025</div>
+        </div>
+      </div>
+      <div class="ai-stat-card">
+        <div style="height:2px; background:linear-gradient(90deg, var(--purple), transparent); border-radius:12px 12px 0 0; margin:-0px"></div>
+        <div style="padding:22px 18px; text-align:center">
+          <div class="ai-stat-num text-purple">77.9%</div>
+          <div class="ai-stat-label">Of SEO professionals fear AI answers will reduce website clicks</div>
+          <div class="ai-stat-source">State of SEO 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:8px;">🗺️ The Three Search Layers — 2026</h3>
+    <p style="font-size:14px; color:var(--gray-400); margin-bottom:24px; line-height:1.7;">Search is no longer one thing. Every strategy must account for all three layers — and the team should be able to speak to where a client lives in each of them.</p>
+
+    <div class="search-layer-grid mb-48">
+      <div class="layer-card">
+        <div class="layer-num">01</div>
+        <div class="layer-badge" style="background:var(--blue-dim); color:var(--blue)">Traditional Organic</div>
+        <div class="layer-title">Blue Links — Still Matters, Different Signals</div>
+        <div class="layer-body">The 10 blue links haven't disappeared — but their composition has changed. Keyword-only strategies are dying. What remains is topical authority, genuine E-E-A-T signals, and content that serves real users rather than algorithms.</div>
+        <ul class="layer-items">
+          <li>Keyword rankings still matter — but intent fit matters more</li>
+          <li>Technical health is table stakes — not a differentiator</li>
+          <li>Topical authority and depth beat volume</li>
+          <li>User behavior signals (CTR, engagement) heavily weighted</li>
+        </ul>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">02</div>
+        <div class="layer-badge" style="background:var(--orange-dim); color:var(--orange)">AI Search (AIO / AI Mode)</div>
+        <div class="layer-title">Google's AI Layer — In the SERP Itself</div>
+        <div class="layer-body">AI Overviews appear above organic results for informational queries. AI Mode is a full reimagining — users ask 2–3× longer questions and explore conversationally. Both are now active in 200+ countries. Ads appear in both placements.</div>
+        <ul class="layer-items">
+          <li>AIO eats top-of-funnel informational clicks — the Great Decoupling</li>
+          <li>Being cited in AIO = a new form of visibility worth optimizing for</li>
+          <li>AI Mode rewards depth, authority, and structured content</li>
+          <li>Ads above/below AIO and within AI Mode are live and expanding</li>
+        </ul>
+      </div>
+      <div class="layer-card">
+        <div class="layer-num">03</div>
+        <div class="layer-badge" style="background:var(--purple-dim); color:var(--purple)">LLM / AI Assistants</div>
+        <div class="layer-title">External AI Tools — ChatGPT, Perplexity, Gemini</div>
+        <div class="layer-body">Users are researching in AI chatbots before they ever open a browser. 40% of AI Mode users say they're using ChatGPT less — but this is still a real and growing discovery channel that requires a brand presence strategy.</div>
+        <ul class="layer-items">
+          <li>LLM citations favor authoritative, structured, well-sourced content</li>
+          <li>Brand mentions across Reddit, YouTube, and industry publications inform LLM outputs</li>
+          <li>IndexNow helps content get indexed faster — and picked up by AI tools sooner</li>
+          <li>Traffic from LLMs tracks as Referral/Unassigned in GA4 — must be custom segmented</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:8px;">🔍 GEO & AEO — What These Actually Mean</h3>
+    <p style="font-size:14px; color:var(--gray-400); margin-bottom:24px; line-height:1.7;">Two terms every team member should be able to define and apply — not as buzzwords, but as strategic lenses that inform how content is built and what constitutes visibility in 2026.</p>
+
+    <div class="ai-two-col mb-48">
+      <div class="ai-channel-card" style="border-top: 3px solid var(--orange)">
+        <div class="ai-channel-header">
+          <div class="ai-channel-icon" style="background:var(--orange-dim)">🤖</div>
+          <div>
+            <div class="ai-channel-title">GEO — Generative Engine Optimization</div>
+            <div class="ai-channel-sub">Optimizing content to be cited in AI-generated answers</div>
+          </div>
+        </div>
+        <ul class="ai-item-list">
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--orange-dim); color:var(--orange)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">E-E-A-T as the Citation Filter</div><div class="ai-item-body">AI systems — both Google's and external LLMs — surface content from brands that demonstrate Experience, Expertise, Authoritativeness, and Trust. Content built on first-hand experience and original insight gets cited. Generic content gets ignored. 49.6% of SEO professionals are already investing here.</div></div>
+          </li>
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--orange-dim); color:var(--orange)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">Brand Presence Beyond Google</div><div class="ai-item-body">LLMs learn who your brand is from third-party mentions — Reddit threads, YouTube, industry publications, trade press. A client with no presence in these channels is invisible to AI systems. Building genuine brand presence outside of owned properties is now a GEO strategy, not just a PR play.</div></div>
+          </li>
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--orange-dim); color:var(--orange)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">Content AI Cannot Replicate</div><div class="ai-item-body">Original data, first-hand walkthroughs, credible author bios, process documentation with real photos, expert opinions — these are the content types AI will cite rather than generate itself. This is the content our clients should be building. This is what the SEO strategy should prioritize in 2026.</div></div>
+          </li>
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--orange-dim); color:var(--orange)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">IndexNow as a GEO Tool</div><div class="ai-item-body">Quick indexing via Bing Webmaster Tools and IndexNow doesn't just help traditional search — it improves how content is picked up by AI tools like ChatGPT that rely on up-to-date indexed content. This is a standard recommendation on all accounts.</div></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="ai-channel-card" style="border-top: 3px solid var(--purple)">
+        <div class="ai-channel-header">
+          <div class="ai-channel-icon" style="background:var(--purple-dim)">💬</div>
+          <div>
+            <div class="ai-channel-title">AEO — Answer Engine Optimization</div>
+            <div class="ai-channel-sub">Structuring content to directly answer high-value questions</div>
+          </div>
+        </div>
+        <ul class="ai-item-list">
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--purple-dim); color:var(--purple)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">AI Mode Rewards Depth and Structure</div><div class="ai-item-body">AI Mode users ask 2–3× longer queries. They're researching, comparing, evaluating — not just looking for a quick answer. Content needs to be structured to satisfy multi-part, complex questions that traditional 300-word pages can't handle. Depth beats breadth in this environment.</div></div>
+          </li>
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--purple-dim); color:var(--purple)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">Featured Snippets & People Also Ask</div><div class="ai-item-body">Structured content that directly answers common questions — in clear, well-organized formats — wins Featured Snippets and PAA placements. These are also the content structures most frequently surfaced in AI Overviews. AEO and traditional on-page SEO reinforce each other.</div></div>
+          </li>
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--purple-dim); color:var(--purple)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">Schema Markup as Machine-Readable Context</div><div class="ai-item-body">Structured data tells both Google's AI and external LLMs exactly what a piece of content is about, who created it, and why it should be trusted. Schema markup is no longer optional for clients competing for AI visibility — it's foundational infrastructure.</div></div>
+          </li>
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--purple-dim); color:var(--purple)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">TOFU Is Not Dead — It's Shifted</div><div class="ai-item-body">Top-of-funnel informational content is losing organic click value as AI Overviews answer those queries in-SERP. The strategy shift: build TOFU content that earns AI citations (GEO), use it for brand awareness, and let bottom-funnel transactional content carry conversion weight in organic and paid.</div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:8px;">💰 AI in Paid Search — What's Changed and What's Available</h3>
+    <p style="font-size:14px; color:var(--gray-400); margin-bottom:24px; line-height:1.7;">The paid search landscape has been restructured around AI. Understanding these formats — even at a high level — is necessary for every team member to speak intelligently about a client's paid strategy.</p>
+
+    <div class="ai-two-col mb-32">
+      <div class="ai-channel-card" style="border-top: 3px solid var(--gold)">
+        <div class="ai-channel-header">
+          <div class="ai-channel-icon" style="background:var(--gold-dim)">⚡</div>
+          <div>
+            <div class="ai-channel-title">AI Max for Search Campaigns</div>
+            <div class="ai-channel-sub">Google's next evolution of Smart Bidding + Targeting</div>
+          </div>
+        </div>
+        <ul class="ai-item-list">
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--gold-dim); color:var(--gold)">+</div>
+            <div class="ai-item-content"><div class="ai-item-title">27% More Conversions</div><div class="ai-item-body">Campaigns using AI Max see 27% more conversions at a similar CPA/ROAS compared to campaigns running primarily on exact and phrase match keywords. The signal: keywordless targeting unlocks searches advertisers weren't reaching before.</div></div>
+          </li>
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--gold-dim); color:var(--gold)">+</div>
+            <div class="ai-item-content"><div class="ai-item-title">Three Core Features</div><div class="ai-item-body"><strong>Search Term Matching</strong> — captures demand based on intent, not just exact queries. <strong>Final URL Expansion</strong> — sends traffic to the most relevant page for the user's query. <strong>Automatically Created Assets</strong> — generates ad copy relevant to the specific search, improving relevance at scale.</div></div>
+          </li>
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--gold-dim); color:var(--gold)">+</div>
+            <div class="ai-item-content"><div class="ai-item-title">Controls Are Still Available</div><div class="ai-item-body">AI Max is not a black box. Negative keywords, brand inclusions/exclusions, text guidelines, URL inclusions/exclusions, and location targeting at ad group level are all available. The goal is to guide the AI — not override it at every turn. The search term report surfaces "AI Max" as the source column for keywordless matches.</div></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="ai-channel-card" style="border-top: 3px solid var(--orange)">
+        <div class="ai-channel-header">
+          <div class="ai-channel-icon" style="background:var(--orange-dim)">📍</div>
+          <div>
+            <div class="ai-channel-title">Ads in AI Overviews & AI Mode</div>
+            <div class="ai-channel-sub">New ad placements inside Google's AI search experiences</div>
+          </div>
+        </div>
+        <ul class="ai-item-list">
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--orange-dim); color:var(--orange)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">Ads in AI Overviews — Live in the US</div><div class="ai-item-body">Shopping Ads and Text Ads now appear above and below AI Overview responses, plus within the AIO itself. Launched in all 200+ countries where AI Overviews are available. Eligible campaign types: Search, Shopping, Performance Max, App, Local.</div></div>
+          </li>
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--orange-dim); color:var(--orange)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">Ads in AI Mode — Active Experiment</div><div class="ai-item-body">Shopping Ads and Text Ads are now appearing below the first AI Mode response — an active experiment in the US for desktop and mobile. AI Mode users ask significantly longer, more complex queries. Ads that appear here are answering deep research-phase questions — a higher-funnel opportunity than traditional paid.</div></div>
+          </li>
+          <li class="ai-item">
+            <div class="ai-item-dot" style="background:var(--orange-dim); color:var(--orange)">→</div>
+            <div class="ai-item-content"><div class="ai-item-title">Performance Max Evolution</div><div class="ai-item-body">63% of advertisers using both PMax and Meta Advantage+ rate PMax ROI higher. For every $1 spent on Google Search globally, advertisers get $6 back. Google Search drives 36% higher incremental ROAS than Meta in the US. PMax now has revived search term reports, negative keywords, brand controls, and device controls — the "blackboxing" era is largely behind us.</div></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:16px;">⚙️ AI Max — Key Controls Everyone Should Know</h3>
+    <div class="ai-max-features mb-40">
+      <div class="ai-feature-chip"><div class="ai-feature-label">Targeting</div><div class="ai-feature-title">Negative Keywords</div><div class="ai-feature-body">Still available — one-click add from Search Terms Report. Use aggressively for irrelevant keywordless matches.</div></div>
+      <div class="ai-feature-chip"><div class="ai-feature-label">Brand</div><div class="ai-feature-title">Brand Controls</div><div class="ai-feature-body">Include or exclude specific brands from matching. "Exclude all brands" pilot underway as of H1 2026.</div></div>
+      <div class="ai-feature-chip"><div class="ai-feature-label">Creative</div><div class="ai-feature-title">Text Guidelines</div><div class="ai-feature-body">Specify terms, phrases, concepts, or brand tone to exclude from auto-generated headlines and descriptions.</div></div>
+      <div class="ai-feature-chip"><div class="ai-feature-label">URLs</div><div class="ai-feature-title">URL Inclusions / Exclusions</div><div class="ai-feature-body">Control which pages on the site receive paid traffic. Prevent ads from serving on specific pages.</div></div>
+      <div class="ai-feature-chip"><div class="ai-feature-label">Location</div><div class="ai-feature-title">Locations of Interest</div><div class="ai-feature-body">Applied at ad group level — reach customers based on geographic intent even in keywordless matches.</div></div>
+      <div class="ai-feature-chip"><div class="ai-feature-label">Data</div><div class="ai-feature-title">First-Party Data Signals</div><div class="ai-feature-body">Custom labels, audience signals, ROAS targets — how you communicate your business intelligence to the AI. The better the inputs, the better the outputs.</div></div>
+    </div>
+
+    <div class="highlight-strip orange mb-32">
+      💡 <strong>The "Do the Search Four" Framework (Google):</strong> Set flexible, demand-led budgets · Align Smart Bidding to business goals · Build and activate Data Strength via Data Manager · Adopt AI-powered solutions (AI Max + PMax). These four levers, applied together, are how Google recommends advertisers maximize ROI in an AI-first search environment.
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:16px;">📊 Measuring AI Traffic in GA4 — What the Team Needs to Know</h3>
+
+    <div class="ga4-tracking-block">
+      <div class="ga4-row">
+        <div class="ga4-col">
+          <div class="ga4-header">
+            <div class="ga4-badge" style="background:var(--blue-dim); color:var(--blue)">AIO / AI Mode</div>
+            <div class="ga4-title">Google's AI Search Features</div>
+          </div>
+          <div class="ga4-body">Clicks from AI Overviews and AI Mode are classified as <strong>Organic Search</strong> in GA4. Google treats these as a natural extension of the search journey — a link from Google to your site, just in a new format.</div>
+          <div class="ga4-body">There is <strong>no way to segment AIO/AI Mode clicks</strong> from standard organic clicks in the current default view. To measure impact, monitor overall Organic Search performance for changes in traffic volume, engagement rate, and conversions.</div>
+          <div class="ga4-status" style="background:var(--red-dim); color:var(--red); border: 1px solid rgba(239,68,68,0.2)">⚠️ Cannot segment from organic — monitor holistically</div>
+        </div>
+        <div class="ga4-col">
+          <div class="ga4-header">
+            <div class="ga4-badge" style="background:var(--purple-dim); color:var(--purple)">AI Assistants</div>
+            <div class="ga4-title">ChatGPT, Gemini, Perplexity, Copilot</div>
+          </div>
+          <div class="ga4-body">Traffic from external AI tools lands in the <strong>Referral or Unassigned</strong> default channel in GA4. This <strong>can be segmented</strong> by creating a Custom Channel Group with an "AI Assistants" channel.</div>
+          <div class="ga4-body" style="margin-bottom:10px">Use this regex as the matching condition under Session Source:</div>
+          <div class="code-block">^.*ai|.*\.openai.*|.*chatgpt.*|.*gemini.*|.*gpt.*|.*copilot.*|.*perplexity.*|.*gemini.*google.*$</div>
+          <div class="ga4-status" style="background:var(--green-dim); color:var(--green); border: 1px solid rgba(34,197,94,0.2); margin-top:12px">✓ Custom channel group available now — native channel coming soon</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-blue mt-24 mb-40">
+      <div class="callout-icon">🔮</div>
+      <div class="callout-body">
+        <div class="callout-title">What's Coming in GA4</div>
+        <div class="callout-text">Google is building a native <strong>"AI Assistants"</strong> channel in the Default Channel Group that will automatically categorize traffic from top external AI tools — removing the need for manual custom setup. Until then, the custom channel group approach above is the recommended setup for all accounts where AI referral tracking is relevant.</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:8px;">🗣️ How to Answer Common Client Questions About AI Search</h3>
+    <p style="font-size:14px; color:var(--gray-400); margin-bottom:24px; line-height:1.7;">Every team member should be able to answer these with confidence — not with a hedge or a "let me check with the SEO team."</p>
+
+    <div class="ai-speak-grid">
+      <div class="ai-speak-card">
+        <div class="ai-speak-q">Client Question</div>
+        <div class="ai-speak-question">"Are we showing up in those AI Overview boxes in Google?"</div>
+        <div class="ai-speak-answer">AIO clicks track as organic in GA4 — we can't isolate them directly yet. What we <strong>can</strong> measure is whether organic traffic quality and conversion rates are holding as AIO expands. Our content strategy is built to earn citations in AI-generated answers: first-hand expertise, structured content, and schema markup. We're building for the citation, not just the click.</div>
+      </div>
+      <div class="ai-speak-card">
+        <div class="ai-speak-q">Client Question</div>
+        <div class="ai-speak-question">"Should I be worried about AI stealing all our organic traffic?"</div>
+        <div class="ai-speak-answer">It's a real shift — but it's not a cliff. AI Overviews primarily affect informational, top-of-funnel queries. Your buyers are searching for <strong>specific materials, certifications, and specs</strong> — that commercial intent still drives real clicks. Our strategy prioritizes bottom-funnel, B-SMART® targeted content that AI doesn't fully answer. We're also watching your organic traffic trend closely alongside Paid to ensure full-funnel coverage.</div>
+      </div>
+      <div class="ai-speak-card">
+        <div class="ai-speak-q">Client Question</div>
+        <div class="ai-speak-question">"What is AI Max and should we be using it?"</div>
+        <div class="ai-speak-answer">AI Max is Google's expanded matching and creative feature for Search campaigns. It uses keywordless targeting to find searches you're not currently reaching — and it's averaging <strong>27% more conversions</strong> at similar CPA for advertisers who've adopted it. The controls are robust: we can still manage negatives, brand settings, text guidelines, and URL targeting. We evaluate it per campaign based on current performance baseline and budget structure. Happy to walk through what it would look like for your account.</div>
+      </div>
+      <div class="ai-speak-card">
+        <div class="ai-speak-q">Client Question</div>
+        <div class="ai-speak-question">"People are using ChatGPT to search now — are we visible there?"</div>
+        <div class="ai-speak-answer">Great question — and one more B2B clients are starting to ask. 94% of frequent LLM users also use Google Search, so these aren't replacing each other. For LLM visibility, we focus on building content that earns citations: authoritative industry content, structured data, brand mentions in trade publications and forums. We can also set up GA4 to track referral traffic from ChatGPT, Perplexity, and other AI assistants as a separate channel — <strong>that tells us exactly what's coming from LLM-assisted discovery.</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 07: STANDARDS ====== -->
+<section id="standards">
+  <div class="container">
+    <div class="section-label text-teal"><div class="section-label-dot" style="background:var(--teal)"></div>07 — Standards</div>
+    <h2 class="section-title">Non-Negotiable Standards</h2>
+    <p class="section-desc">These aren't suggestions — they're the operating principles that protect the integrity of the work, the trust of the client, and the compounding effectiveness of every channel running under the OBx banner.</p>
+
+    <div class="rule-grid mb-40">
+      <div class="rule-card"><div class="rule-number">01</div><div class="rule-title">One Unified Client Voice</div><div class="rule-body">The client should never hear conflicting information from different channels. All strategic POVs are aligned internally before any external communication goes out. Channels contribute — the team sends one response. The client hears one story.</div></div>
+      <div class="rule-card"><div class="rule-number">02</div><div class="rule-title">Strategy Before Tactics</div><div class="rule-body">Never execute on a tactic that hasn't been tied to a strategic goal. Every keyword, every ad, every piece of content should trace back to a client objective. Busy work is not billable value — and it can't be explained in a strategy conversation.</div></div>
+      <div class="rule-card"><div class="rule-number">03</div><div class="rule-title">Data Informs Everything</div><div class="rule-body">Opinions without data are guesses. Every strategic recommendation should be grounded in SERP analysis, search term data, GA4 performance, or competitive intelligence. Bring receipts to every meeting — internal or client-facing.</div></div>
+      <div class="rule-card"><div class="rule-number">04</div><div class="rule-title">Respect the Sales Cycle</div><div class="rule-body">B2B clients have 90-day+ sales cycles. Don't evaluate channel performance through a 30-day lens when leads take months to close. Judge the inputs — quality traffic, qualified leads, improving engagement — before making revenue calls too early.</div></div>
+      <div class="rule-card"><div class="rule-number">05</div><div class="rule-title">Intent Is the Compass</div><div class="rule-body">Every keyword decision — in SEO and Paid — starts with intent classification. Informational terms shape content strategy. Transactional terms drive conversion-focused pages and ads. In an AI-first world, this distinction matters more than ever — not less.</div></div>
+      <div class="rule-card"><div class="rule-number">06</div><div class="rule-title">Adapt to the Landscape</div><div class="rule-body">The search environment described in this playbook will change again. AI search formats are evolving rapidly, measurement is imperfect, and new ad placements are launching monthly. The standard isn't to have all the answers — it's to stay current, stay curious, and update the strategy when the landscape shifts.</div></div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:8px;">📋 Integrated Account Review — Channel Prep Breakdown</h3>
+    <p style="font-size:14px; color:var(--gray-400); margin-bottom:28px; line-height:1.7;">Each active channel prepares their thread. Together, they form the full performance narrative.</p>
+
+    <div class="two-col">
+      <div>
+        <h4 style="font-size:13px; font-weight:700; color:var(--blue); margin-bottom:16px; letter-spacing:0.04em; text-transform:uppercase;">📊 SEO Channel Prepares:</h4>
+        <div class="checklist">
+          <div class="check-item"><div class="check-box" style="background:var(--blue-dim); color:var(--blue); border:1px solid rgba(59,130,246,0.3)">✓</div>Updated keyword rankings and SERP position changes (Ahrefs)</div>
+          <div class="check-item"><div class="check-box" style="background:var(--blue-dim); color:var(--blue); border:1px solid rgba(59,130,246,0.3)">✓</div>Organic traffic trend analysis from GA4 (sessions, conversions, engagement)</div>
+          <div class="check-item"><div class="check-box" style="background:var(--blue-dim); color:var(--blue); border:1px solid rgba(59,130,246,0.3)">✓</div>GSC performance — top queries, impressions, CTR delta from last period</div>
+          <div class="check-item"><div class="check-box" style="background:var(--blue-dim); color:var(--blue); border:1px solid rgba(59,130,246,0.3)">✓</div>SERP and competitor analysis — new entrants, position changes, AIO presence</div>
+          <div class="check-item"><div class="check-box" style="background:var(--blue-dim); color:var(--blue); border:1px solid rgba(59,130,246,0.3)">✓</div>ClickUp task status — anything at risk of missing timeline</div>
+          <div class="check-item"><div class="check-box" style="background:var(--blue-dim); color:var(--blue); border:1px solid rgba(59,130,246,0.3)">✓</div>Strategic recommendations for the next period</div>
+          <div class="check-item"><div class="check-box" style="background:var(--blue-dim); color:var(--blue); border:1px solid rgba(59,130,246,0.3)">✓</div>Keyword or content intel flagged for the Paid team</div>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-size:13px; font-weight:700; color:var(--gold); margin-bottom:16px; letter-spacing:0.04em; text-transform:uppercase;">💰 Paid Channel Prepares:</h4>
+        <div class="checklist">
+          <div class="check-item"><div class="check-box" style="background:var(--gold-dim); color:var(--gold); border:1px solid rgba(245,166,35,0.3)">✓</div>Campaign performance summary — impressions, clicks, conversion rate, CPL</div>
+          <div class="check-item"><div class="check-box" style="background:var(--gold-dim); color:var(--gold); border:1px solid rgba(245,166,35,0.3)">✓</div>Search term report highlights — new converting queries worth sharing with SEO</div>
+          <div class="check-item"><div class="check-box" style="background:var(--gold-dim); color:var(--gold); border:1px solid rgba(245,166,35,0.3)">✓</div>Budget pacing status and any recommended reallocation</div>
+          <div class="check-item"><div class="check-box" style="background:var(--gold-dim); color:var(--gold); border:1px solid rgba(245,166,35,0.3)">✓</div>Ad copy test results — which headlines and descriptions are winning</div>
+          <div class="check-item"><div class="check-box" style="background:var(--gold-dim); color:var(--gold); border:1px solid rgba(245,166,35,0.3)">✓</div>Negative keyword additions and the reasoning behind each</div>
+          <div class="check-item"><div class="check-box" style="background:var(--gold-dim); color:var(--gold); border:1px solid rgba(245,166,35,0.3)">✓</div>Auction insights — competitive pressure and SERP changes</div>
+          <div class="check-item"><div class="check-box" style="background:var(--gold-dim); color:var(--gold); border:1px solid rgba(245,166,35,0.3)">✓</div>Landing page conversion rate shifts to flag for SEO or UX</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-green mt-32">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <div class="callout-title">The 90-Day LTV Reminder</div>
+        <div class="callout-text">A single B2B lead from a qualified industrial buyer can represent <strong>$60,000+ in customer lifetime value</strong> — e.g., $2,500/month × 12 months × 2 years. Every keyword decision, every ad creative, every landing page test deserves to be framed against that number. Every team member should be able to explain why that context matters when a client questions short-term results.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== 08: EXTENDED SERVICES ====== -->
+<section id="extended">
+  <div class="container">
+    <div class="section-label text-purple"><div class="section-label-dot" style="background:var(--purple)"></div>08 — Extended Services</div>
+    <h2 class="section-title">When UX & Email<br /><em>Enter the Mix</em></h2>
+    <p class="section-desc">A handful of accounts run UX and Email alongside SEO and Paid. When they do, the collaboration model expands — but the core principle stays the same. Channels feed each other. The team speaks as one. No service operates in isolation.</p>
+
+    <div class="two-col mb-32">
+      <div class="role-card" style="border-top: 3px solid var(--purple)">
+        <div class="role-card-header"><div class="role-avatar" style="background:var(--purple-dim)">🎨</div><div><div class="role-title">UX — What Everyone Should Know</div><div class="role-subtitle">How UX connects to SEO + Paid execution</div></div></div>
+        <ul class="responsibility-list">
+          <li><div class="resp-icon" style="background:var(--purple-dim); color:var(--purple)">→</div><strong>SEO feeds UX:</strong> Top organic pages with high impressions but low CTR surface as UX audit candidates for relevance and layout</li>
+          <li><div class="resp-icon" style="background:var(--purple-dim); color:var(--purple)">→</div><strong>Paid feeds UX:</strong> Landing pages with high ad traffic but low conversion rate become CRO priorities</li>
+          <li><div class="resp-icon" style="background:var(--purple-dim); color:var(--purple)">→</div><strong>UX feeds SEO:</strong> Page restructuring impacts crawlability — UX changes must be reviewed for SEO impact before deployment</li>
+          <li><div class="resp-icon" style="background:var(--purple-dim); color:var(--purple)">→</div><strong>UX feeds Paid:</strong> Improved landing page experience reduces CPA — a win shared across both channels' reporting</li>
+          <li><div class="resp-icon" style="background:var(--purple-dim); color:var(--purple)">→</div>UX joins cross-channel syncs for any account where they own pages under active SEO or Paid targeting</li>
+        </ul>
+      </div>
+      <div class="role-card" style="border-top: 3px solid var(--teal)">
+        <div class="role-card-header"><div class="role-avatar" style="background:var(--teal-dim)">✉️</div><div><div class="role-title">Email — What Everyone Should Know</div><div class="role-subtitle">How Email connects to SEO + Paid execution</div></div></div>
+        <ul class="responsibility-list">
+          <li><div class="resp-icon" style="background:var(--teal-dim); color:var(--teal)">→</div><strong>SEO feeds Email:</strong> Top-performing organic content gets repurposed as nurture content — tested messaging, real engagement signals already validated</li>
+          <li><div class="resp-icon" style="background:var(--teal-dim); color:var(--teal)">→</div><strong>Paid feeds Email:</strong> Leads who convert on Paid but don't close immediately enter nurture sequences — Paid + Email builds full-funnel coverage</li>
+          <li><div class="resp-icon" style="background:var(--teal-dim); color:var(--teal)">→</div><strong>Email feeds SEO:</strong> Engagement data reveals what content topics resonate most — informs the next content calendar cycle</li>
+          <li><div class="resp-icon" style="background:var(--teal-dim); color:var(--teal)">→</div>Email campaign launch dates are shared with SEO and Paid to coordinate landing page readiness and avoid budget conflicts</li>
+          <li><div class="resp-icon" style="background:var(--teal-dim); color:var(--teal)">→</div>Only pre-built ESP integrations are supported — no custom development. Zapier connections where applicable.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px; font-weight:700; margin-bottom:24px;">📡 The Intelligence Layer: CallRail + LOOP</h3>
+    <div class="integration-center">
+      <div class="integration-hub">📡</div>
+      <div class="integration-spokes">
+        <div class="spoke-card"><div class="spoke-emoji">📞</div><div class="spoke-name">CallRail</div><div class="spoke-role">Real-time call transcripts, objections, and intent signals from inbound calls</div></div>
+        <div class="spoke-card"><div class="spoke-emoji">🔁</div><div class="spoke-name">LOOP</div><div class="spoke-role">Structured request data: material, quantity, dimensions, company, urgency signals</div></div>
+        <div class="spoke-card"><div class="spoke-emoji">🔍</div><div class="spoke-name">SEO Strategy</div><div class="spoke-role">Transcripts reveal natural-language queries to build content and GEO strategy around</div></div>
+        <div class="spoke-card"><div class="spoke-emoji">💰</div><div class="spoke-name">Paid Strategy</div><div class="spoke-role">Objection patterns inform ad copy testing, ACA guidance, and negative keyword additions</div></div>
+      </div>
+    </div>
+
+    <div class="highlight-strip mt-24">
+      💡 <strong>CallRail transcripts + LOOP request data = the most underused competitive intelligence in B2B digital marketing.</strong> Patterns in what prospects say on calls reveal intent signals that no keyword tool, GA4 report, or AI platform will show you. Every active team member on accounts running these tools should review insights monthly — not just the channel that owns the data.
+    </div>
+  </div>
+</section>
+
+<!-- ====== 09: TOOLS ====== -->
+<section id="tools">
+  <div class="container">
+    <div class="section-label text-green"><div class="section-label-dot" style="background:var(--green)"></div>09 — Shared Tools</div>
+    <h2 class="section-title">The Shared Toolbox</h2>
+    <p class="section-desc">These are the platforms every team member should understand — regardless of primary channel. Shared tools create shared context. You don't need to operate every tool, but you need to know what it tells us and how it connects to the channels you do own.</p>
+
+    <div class="tools-grid">
+      <div class="tool-card"><div class="tool-emoji">📊</div><div class="tool-name">Google Analytics 4</div><div class="tool-use">Cross-channel performance · Traffic source analysis · Custom AI Assistant channel groups · Conversion tracking across all active services</div></div>
+      <div class="tool-card"><div class="tool-emoji">🔎</div><div class="tool-name">Google Search Console</div><div class="tool-use">Organic query performance · CTR & impression data · AIO coverage indicators · Index health signals informing content and Paid strategy</div></div>
+      <div class="tool-card"><div class="tool-emoji">🏹</div><div class="tool-name">Ahrefs</div><div class="tool-use">Keyword research · Competitor gap analysis · Ranking tracking · SERP feature monitoring including AI Overviews presence</div></div>
+      <div class="tool-card"><div class="tool-emoji">💰</div><div class="tool-name">Google Ads</div><div class="tool-use">Campaign management · AI Max & PMax campaigns · Search term reports shared with SEO · Auction insights and competitive intelligence</div></div>
+      <div class="tool-card"><div class="tool-emoji">📈</div><div class="tool-name">Looker Studio</div><div class="tool-use">Unified cross-channel reporting · Client dashboards combining all active service metrics · Monthly report delivery for all integrated accounts</div></div>
+      <div class="tool-card"><div class="tool-emoji">✅</div><div class="tool-name">ClickUp</div><div class="tool-use">Task management · Strategy documentation · Cross-channel execution alignment · The shared source of truth for what everyone is working on</div></div>
+      <div class="tool-card"><div class="tool-emoji">📞</div><div class="tool-name">CallRail</div><div class="tool-use">Call tracking · Transcript analysis · Intent signal extraction · Source attribution that informs strategy across all active channels</div></div>
+      <div class="tool-card"><div class="tool-emoji">🔁</div><div class="tool-name">LOOP</div><div class="tool-use">Structured lead data · RFQ request details · Material / quantity / urgency signals that inform messaging and keyword strategy across all channels</div></div>
+    </div>
+
+    <div class="callout callout-blue mt-32">
+      <div class="callout-icon">🔗</div>
+      <div class="callout-body">
+        <div class="callout-title">Integrated Audit → Shared Deck → Unified Roadmap</div>
+        <div class="callout-text">For every new integrated account: Sales submits the Integrated Audit Intake Form in ClickUp → All active channels are assigned within 24 hours → Every channel contributes to the <strong>standard integrated audit template</strong> (SEO, UX, PPC, EMM sections + unified roadmap summary) → The full team holds an internal alignment call before Sales presents anything to the client. <strong>No channel goes in front of the client without the full picture reviewed together first.</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="container">
+    <div class="footer-badge">🎓 B·School — Integrated Strategy Series · 2026</div>
+    <p class="footer-text">OBx Internal Training Resource · Not for external distribution · Questions? Check the Knowledgebase in Notion or reach out to your Group Director.</p>
+  </div>
+</footer>
+
+</body>
+</html>
